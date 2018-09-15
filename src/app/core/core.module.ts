@@ -17,5 +17,11 @@ import { PieComponent } from './pie/pie.component';
     PrincipalComponent,
     PieComponent
   ]
+  exports: [
+    CabeceraComponent,
+    MenuComponent,
+    PrincipalComponent,
+    PieComponent
+  ]
 })
 export class CoreModule { }
