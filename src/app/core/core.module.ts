@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Módulo de las rutas
+import { RouterModule } from '@angular/router';
+
+
 // Componentes
 import { CabeceraComponent } from './cabecera/cabecera.component';
 import { MenuComponent } from './menu/menu.component';
@@ -9,7 +13,8 @@ import { PieComponent } from './pie/pie.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   declarations: [
     CabeceraComponent,
