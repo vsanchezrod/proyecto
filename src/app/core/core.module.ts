@@ -16,7 +16,7 @@ import { PieComponent } from './pie/pie.component';
     MenuComponent,
     PrincipalComponent,
     PieComponent
-  ]
+  ],
   exports: [
     CabeceraComponent,
     MenuComponent,
