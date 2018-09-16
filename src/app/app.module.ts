@@ -14,6 +14,9 @@ import { SalidasModule } from './salidas/salidas.module';
 import { CalendarioModule } from './calendario/calendario.module';
 import { AcercaDeModule } from './acerca-de/acerca-de.module';
 
+// Modulos para Componentes de PrimeNG
+import { ScheduleModule } from 'primeng/schedule';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { AcercaDeModule } from './acerca-de/acerca-de.module';
     ViajesModule,
     SalidasModule,
     CalendarioModule,
-    AcercaDeModule
+    AcercaDeModule,
+    ScheduleModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

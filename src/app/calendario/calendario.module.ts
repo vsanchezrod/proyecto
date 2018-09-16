@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 // Componentes
 import { CalendarioComponent } from './calendario.component';
 
-// Componentes PrimeNG
+// Modulos para Componentes de PrimeNG
 import { ScheduleModule } from 'primeng/schedule';
 
 @NgModule({
