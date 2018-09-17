@@ -1,9 +1,9 @@
-import { Coordenada} from './coordenada.model';
+import { Coordenada } from './coordenada.model';
 
 export class Salida {
 
   nombre: string;
-  categorias: Array[string];
+  categorias: Array<string>;
   descripciom: string;
   nivel: string;
   distancia: number;
