@@ -7,9 +7,14 @@ import { ListaCategoriasComponent } from './lista-categorias/lista-categorias.co
 import { ListaViajesComponent } from './lista-viajes/lista-viajes.component';
 import { ListaSalidasComponent } from './lista-salidas/lista-salidas.component';
 
+// Módulo de componentes compartidos
+import { CompartidosModule } from '../compartidos/compartidos.module';
+
+
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    CompartidosModule
   ],
   declarations: [
     InicioComponent,

@@ -10,6 +10,7 @@ import { CabeceraComponent } from './cabecera/cabecera.component';
 import { MenuComponent } from './menu/menu.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { PieComponent } from './pie/pie.component';
+import { InfoSesionMenuComponent } from './menu/info-sesion-menu/info-sesion-menu.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { PieComponent } from './pie/pie.component';
     CabeceraComponent,
     MenuComponent,
     PrincipalComponent,
-    PieComponent
+    PieComponent,
+    InfoSesionMenuComponent
   ],
   exports: [
     CabeceraComponent,
