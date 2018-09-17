@@ -14,6 +14,7 @@ import { SalidasModule } from './salidas/salidas.module';
 import { CalendarioModule } from './calendario/calendario.module';
 import { AcercaDeModule } from './acerca-de/acerca-de.module';
 import { CompartidosModule } from './compartidos/compartidos.module';
+import { LoginModule } from './login/login.module';
 
 // Modulos para Componentes de PrimeNG
 import { ScheduleModule } from 'primeng/schedule';
@@ -33,7 +34,8 @@ import { ScheduleModule } from 'primeng/schedule';
     CalendarioModule,
     AcercaDeModule,
     CompartidosModule,
-    ScheduleModule
+    ScheduleModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
