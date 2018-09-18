@@ -16,17 +16,17 @@ export class RegistroComponent implements OnInit {
   ngOnInit() {
 
     this.formularioRegistro = new FormGroup( {
-      'nombre': new FormControl(),
-      'apellido': new FormControl(),
-      'email': new FormControl(),
-      'password': new FormControl(),
-      'fechaNacimiento': new FormControl(),
-      'sexo': new FormControl(),
+      'nombre': new FormControl('', Validators.required),
+      'apellido': new FormControl('', Validators.required),
+      'email': new FormControl('', [Validators.required, Validators.email]),
+      'password': new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
+      'fechaNacimiento': new FormControl('', Validators.required),
+      'sexo': new FormControl('', Validators.required),
       'provincia': new FormControl(),
       'avatar': new FormControl(),
       'intereses': new FormArray([
           new FormControl() ]),
-      'terminos': new FormControl()
+      'terminos': new FormControl('', Validators.requiredTrue),
 
     });
   }
