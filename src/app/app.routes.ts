@@ -8,6 +8,7 @@ import { SalidasComponent } from './salidas/salidas.component';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { AcercaDeComponent } from './acerca-de/acerca-de.component';
 import { LoginComponent } from './login/login/login.component';
+import { RegistroComponent } from './login/registro/registro.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'calendario', component: CalendarioComponent },
   { path: 'acerca', component: AcercaDeComponent },
   { path: 'login', component: LoginComponent},
+  { path: 'registro', component: RegistroComponent},
   { path: '', pathMatch: 'full', redirectTo: 'inicio' },
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];
