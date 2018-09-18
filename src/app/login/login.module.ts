@@ -4,6 +4,10 @@ import { CommonModule } from '@angular/common';
 // Módulo de las rutas
 import { RouterModule } from '@angular/router';
 
+// Formularios
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 // Componentes
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
@@ -11,7 +15,9 @@ import { RegistroComponent } from './registro/registro.component';
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     LoginComponent,
