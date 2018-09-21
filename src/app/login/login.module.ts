@@ -4,6 +4,16 @@ import { CommonModule } from '@angular/common';
 // Módulo de las rutas
 import { RouterModule } from '@angular/router';
 
+// Modulos para Componentes de PrimeNG
+import { CheckboxModule } from 'primeng/checkbox';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { InputMaskModule } from 'primeng/inputmask';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { DropdownModule } from 'primeng/dropdown';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ButtonModule } from 'primeng/button';
+
 // Formularios
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -17,7 +27,15 @@ import { RegistroComponent } from './registro/registro.component';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CheckboxModule,
+    InputTextModule,
+    PasswordModule,
+    InputMaskModule,
+    RadioButtonModule,
+    DropdownModule,
+    FileUploadModule,
+    ButtonModule
   ],
   declarations: [
     LoginComponent,

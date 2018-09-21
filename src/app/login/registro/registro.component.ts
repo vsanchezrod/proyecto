@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+// Servicios
+import { ProvinciasService } from '../../servicios/provincias.service';
+
+// Modelos
+import { Provincia } from '../../modelos/provincia.model';
 
 @Component({
   selector: 'app-registro',
@@ -11,11 +17,28 @@ export class RegistroComponent implements OnInit {
 
   formularioRegistro: FormGroup;
 
-  constructor() { }
+  listaProvincias: Array<Provincia> = [];
+
+  interesesLista = [
+    { id: 1, nombre: 'Bici', descripcion: 'Kaka'},
+    { id: 2, nombre: 'Senderismo', descripcion: 'Kaka'},
+    { id: 3, nombre: 'Padel', descripcion: 'Kaka'},
+    { id: 4, nombre: 'Viajes', descripcion: 'Kaka'},
+    { id: 5, nombre: 'Salidas de un día', descripcion: 'Kaka'}
+    ];
+
+
+  constructor(private provinciasService: ProvinciasService) {}
 
   ngOnInit() {
 
-    this.formularioRegistro = new FormGroup( {
+    this.provinciasService.obtenerProvincias()
+      .subscribe(response => {
+        console.log('Respuesta de la petición: ' + response.status)
+        this.listaProvincias = response.body;
+      })
+
+    this.formularioRegistro = new FormGroup({
       'nombre': new FormControl('', Validators.required),
       'apellido': new FormControl('', Validators.required),
       'email': new FormControl('', [Validators.required, Validators.email]),
@@ -24,14 +47,15 @@ export class RegistroComponent implements OnInit {
       'sexo': new FormControl('', Validators.required),
       'provincia': new FormControl(),
       'avatar': new FormControl(),
-      'intereses': new FormArray([
-          new FormControl() ]),
+      'intereses': new FormControl(),
       'terminos': new FormControl('', Validators.requiredTrue),
-
     });
   }
 
+
+
   enviarDatos() {
     console.log(this.formularioRegistro.value);
+    console.log(this.formularioRegistro);
   }
 }

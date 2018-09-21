@@ -15,6 +15,8 @@ import { CalendarioModule } from './calendario/calendario.module';
 import { AcercaDeModule } from './acerca-de/acerca-de.module';
 import { CompartidosModule } from './compartidos/compartidos.module';
 import { LoginModule } from './login/login.module';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Modulos para Componentes de PrimeNG
 import { ScheduleModule } from 'primeng/schedule';
@@ -35,7 +37,9 @@ import { ScheduleModule } from 'primeng/schedule';
     AcercaDeModule,
     CompartidosModule,
     ScheduleModule,
-    LoginModule
+    LoginModule,
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
