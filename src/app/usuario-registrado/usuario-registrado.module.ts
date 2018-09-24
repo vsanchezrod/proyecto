@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 // Modulos para Componentes de PrimeNG
 import { TabMenuModule } from 'primeng/tabmenu';
 
-
 // Componentes
 import { UsuarioRegistradoComponent } from './usuario-registrado.component';
 import { PerfilComponent } from './perfil/perfil.component';
