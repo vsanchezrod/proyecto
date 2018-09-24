@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) {
+
+    this.activatedRoute.parent.params.subscribe( parametros => {
+
+      console.log('Ruta hija. Usuario Nuevo');
+      console.log(parametros);
+    });
+
+
+  }
 
   ngOnInit() {
   }

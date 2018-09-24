@@ -10,6 +10,8 @@ import { AcercaDeComponent } from './acerca-de/acerca-de.component';
 import { LoginComponent } from './login/login/login.component';
 import { RegistroComponent } from './login/registro/registro.component';
 import {UsuarioRegistradoComponent} from './usuario-registrado/usuario-registrado.component';
+import {PerfilComponent} from './usuario-registrado/perfil/perfil.component';
+import {CalendarioUsuarioComponent} from './usuario-registrado/calendarioUsuario/calendarioUsuario.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -19,7 +21,7 @@ const routes: Routes = [
   { path: 'acerca', component: AcercaDeComponent },
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegistroComponent},
-  { path: 'menuUsuarioRegistrado', component: UsuarioRegistradoComponent},
+  { path: 'usuario', component: UsuarioRegistradoComponent},
   { path: '', pathMatch: 'full', redirectTo: 'inicio' },
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];

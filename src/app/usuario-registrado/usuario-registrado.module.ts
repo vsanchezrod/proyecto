@@ -8,7 +8,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
 // Componentes
 import { UsuarioRegistradoComponent } from './usuario-registrado.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { CalendarioComponent } from './calendario/calendario.component';
+import { CalendarioUsuarioComponent } from './calendarioUsuario/calendarioUsuario.component';
 import { ActividadesPropuestasComponent } from './actividades-propuestas/actividades-propuestas.component';
 import { AmigosComponent } from './amigos/amigos.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
@@ -19,7 +19,15 @@ import { OpinionComponent } from './opinion/opinion.component';
     CommonModule,
     TabMenuModule
   ],
-  declarations: [UsuarioRegistradoComponent, PerfilComponent, CalendarioComponent, ActividadesPropuestasComponent, AmigosComponent, MensajesComponent, OpinionComponent],
+  declarations: [
+    UsuarioRegistradoComponent,
+    PerfilComponent,
+    CalendarioUsuarioComponent,
+    ActividadesPropuestasComponent,
+    AmigosComponent,
+    MensajesComponent,
+    OpinionComponent
+  ],
   exports: [
     UsuarioRegistradoComponent
   ]
