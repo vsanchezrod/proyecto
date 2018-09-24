@@ -16,12 +16,12 @@ export class UsuarioRegistradoComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      {label: 'Perfil', icon: 'fa fa-fw fa-support'},
-      {label: 'Calendario', icon: 'fa fa-fw fa-calendar'},
-      {label: 'Actividades propuestas', icon: 'fa fa-fw fa-book'},
-      {label: 'Amigos', icon: 'fa fa-fw fa-twitter'},
-      {label: 'Mensajes', icon: 'fa fa-fw fa-twitter'},
-      {label: 'Opiniones', icon: 'fa fa-fw fa-support'}
+      {label: 'Perfil', icon: 'fa fa-fw fa-support', routerLink: 'perfil'},
+      {label: 'Calendario', icon: 'fa fa-fw fa-calendar', routerLink: 'calendario'},
+      {label: 'Actividades propuestas', icon: 'fa fa-fw fa-book', routerLink: 'actividades'},
+      {label: 'Amigos', icon: 'fa fa-fw fa-twitter', routerLink: 'amigos'},
+      {label: 'Mensajes', icon: 'fa fa-fw fa-twitter', routerLink: 'mensajes'},
+      {label: 'Opiniones', icon: 'fa fa-fw fa-support', routerLink: 'opiniones'}
     ];
   }
 

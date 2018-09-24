@@ -12,6 +12,10 @@ import { RegistroComponent } from './login/registro/registro.component';
 import {UsuarioRegistradoComponent} from './usuario-registrado/usuario-registrado.component';
 import {PerfilComponent} from './usuario-registrado/perfil/perfil.component';
 import {CalendarioUsuarioComponent} from './usuario-registrado/calendarioUsuario/calendarioUsuario.component';
+import {ActividadesPropuestasComponent} from './usuario-registrado/actividades-propuestas/actividades-propuestas.component';
+import {AmigosComponent} from './usuario-registrado/amigos/amigos.component';
+import {MensajesComponent} from './usuario-registrado/mensajes/mensajes.component';
+import {OpinionComponent} from './usuario-registrado/opinion/opinion.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -21,7 +25,19 @@ const routes: Routes = [
   { path: 'acerca', component: AcercaDeComponent },
   { path: 'login', component: LoginComponent},
   { path: 'registro', component: RegistroComponent},
-  { path: 'usuario', component: UsuarioRegistradoComponent},
+  {
+    path: 'usuario',
+    component: UsuarioRegistradoComponent,
+    children: [
+      { path: 'perfil', component: PerfilComponent },
+      { path: 'calendario', component: CalendarioUsuarioComponent },
+      { path: 'actividades', component: ActividadesPropuestasComponent },
+      { path: 'amigos', component: AmigosComponent },
+      { path: 'mensajes', component: MensajesComponent },
+      { path: 'opiniones', component: OpinionComponent },
+      { path: '**', pathMatch: 'full', redirectTo: 'calendario' }
+    ]
+  },
   { path: '', pathMatch: 'full', redirectTo: 'inicio' },
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];
