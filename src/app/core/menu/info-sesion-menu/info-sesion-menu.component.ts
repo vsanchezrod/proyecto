@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoSesionMenuComponent implements OnInit {
 
+  usuarioRegistrado: boolean;
+
   constructor() { }
 
   ngOnInit() {
+    this.usuarioRegistrado = true;
   }
 
 }

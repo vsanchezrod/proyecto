@@ -1,3 +1,23 @@
 <div>
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a routerLink="login" routerLinkActive="active">Inicia Sesión</a></button>
 </div>
+
+<div *ngIf="usuarioRegistrado" class="dropdown show">
+
+  <!-- BOOTSTRAP-->
+  <a class="btn btn-secondary dropdown-toggle" routerLink="/menuUsuarioRegistrado" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Usuario
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="Usuario">
+    <a class="dropdown-item" href="#">Perfil</a>
+    <a class="dropdown-item" href="#">Calendario</a>
+    <a class="dropdown-item" href="#">Actividades Propuestas</a>
+    <a class="dropdown-item" href="#">Amigos</a>
+    <a class="dropdown-item" href="#">Mensajes</a>
+    <a class="dropdown-item" href="#">Opina</a>
+  </div>
+
+</div>
+
+<!--<app-usuario-registrado *ngIf="usuarioRegistrado"></app-usuario-registrado>-->

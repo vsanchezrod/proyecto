@@ -12,10 +12,15 @@ import { PrincipalComponent } from './principal/principal.component';
 import { PieComponent } from './pie/pie.component';
 import { InfoSesionMenuComponent } from './menu/info-sesion-menu/info-sesion-menu.component';
 
+// Módulo
+import { UsuarioRegistradoModule } from '../usuario-registrado/usuario-registrado.module';
+
+
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    UsuarioRegistradoModule
   ],
   declarations: [
     CabeceraComponent,
