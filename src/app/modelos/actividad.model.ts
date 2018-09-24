@@ -1,12 +1,13 @@
 import { Coordenada } from './coordenada.model';
 
-export class Salida {
+export class Actividad {
 
   nombre: string;
   categorias: Array<string>;
   descripciom: string;
   nivel: string;
   distancia: number;
+  precio?: number;
   fechaInicio: Date;
   fechaFin: Date;
   imagen: string;
