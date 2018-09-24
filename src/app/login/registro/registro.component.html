@@ -1,61 +1,65 @@
 <h3>REGISTRO</h3>
 <p>Únete a la comunidad</p>
 
-<form [formGroup]="formularioRegistro" (ngSubmit)="enviarDatos2()">
+<form [formGroup]="formularioRegistro" (ngSubmit)="enviarDatos()">
 
-  <h3>Nombre</h3>
-  <span class="ui-float-label">
+    <h3>Nombre</h3>
+    <span class="ui-float-label">
     <input [formControl]="formularioRegistro.controls['nombre']" id="nombre" type="text" size="30" pInputText>
     <label for="nombre">Nombre</label>
   </span>
 
-  <h3>Apellido</h3>
-  <span class="ui-float-label">
+    <h3>Apellido</h3>
+    <span class="ui-float-label">
     <input [formControl]="formularioRegistro.controls['apellido']" id="apellido" type="text" size="30" pInputText>
     <label for="apellido">Apellido</label>
   </span>
 
-  <h3>Email</h3>
-  <span class="ui-float-label">
+    <h3>Email</h3>
+    <span class="ui-float-label">
     <input [formControl]="formularioRegistro.controls['email']" id="email" type="text" size="30" pInputText>
     <label for="email">Email</label>
   </span>
 
-  <h3>Contraseña</h3>
-  <input [formControl]="formularioRegistro.controls['password']" pPassword type="password"/>
+    <h3>Contraseña</h3>
+    <input [formControl]="formularioRegistro.controls['password']" pPassword type="password" />
 
-  <h3>Fecha de Nacimiento</h3>
-  <div>
-    <span class="ui-float-label">Date</span>
-    <p-inputMask [formControl]="formularioRegistro.controls['fechaNacimiento']" mask="99/99/9999" placeholder="mm/dd/yyyy" slotChar="mm/dd/yyyy"></p-inputMask>
-  </div>
-
-  <h3>Sexo</h3>
-  <div class="ui-g" style="width:250px;margin-bottom:10px">
-    <div class="ui-g-12"><p-radioButton [formControl]="formularioRegistro.controls['sexo']" name="sexo" value="Mujer" label="Mujer"></p-radioButton></div>
-    <div class="ui-g-12"><p-radioButton [formControl]="formularioRegistro.controls['sexo']" name="sexo" value="Hombre" label="Hombre"></p-radioButton></div>
-  </div>
-
-  <h3>Provincia</h3>
-  <p-dropdown [formControl]="formularioRegistro.controls['provincia']" [options]="listaProvincias" placeholder="Selecciona una provincia" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
-
-
-  <h3>Avatar</h3>
-  <p-fileUpload name="avatar" url=""></p-fileUpload>
-
-  <h3>Intereses</h3>
-  <div class="ui-g" style="width:250px;margin-bottom:10px">
-    <div *ngFor="let interes of interesesLista" class="ui-g-12">
-      <p-checkbox  [formControl]="formularioRegistro.controls['intereses']" [value]="interes.id" [label]="interes.nombre"></p-checkbox>
+    <h3>Fecha de Nacimiento</h3>
+    <div>
+        <span class="ui-float-label">Date</span>
+        <p-inputMask [formControl]="formularioRegistro.controls['fechaNacimiento']" mask="99/99/9999" placeholder="mm/dd/yyyy" slotChar="mm/dd/yyyy"></p-inputMask>
     </div>
-  </div>
 
-  <h3>Términos</h3>
-  <div class="ui-g" style="width:250px;margin-bottom:10px">
-    <p-checkbox [formControl]="formularioRegistro.controls['terminos']" binary="true" label="Acepto los términos y condiciones"></p-checkbox>
-  </div>
+    <h3>Sexo</h3>
+    <div class="ui-g" style="width:250px;margin-bottom:10px">
+        <div class="ui-g-12">
+            <p-radioButton [formControl]="formularioRegistro.controls['sexo']" name="sexo" value="Mujer" label="Mujer"></p-radioButton>
+        </div>
+        <div class="ui-g-12">
+            <p-radioButton [formControl]="formularioRegistro.controls['sexo']" name="sexo" value="Hombre" label="Hombre"></p-radioButton>
+        </div>
+    </div>
 
-  <button pButton type="button" label="REGISTRO" class="ui-button-info"></button>
+    <h3>Provincia</h3>
+    <p-dropdown [formControl]="formularioRegistro.controls['provincia']" [options]="listaProvincias" placeholder="Selecciona una provincia" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
+
+
+    <h3>Avatar</h3>
+    <p-fileUpload mode="basic" name="avatar" url="./upload.php" accept="image/*" maxFileSize="1000000"></p-fileUpload>
+
+    <h3>Intereses</h3>
+    <div class="ui-g" style="width:250px;margin-bottom:10px">
+        <div *ngFor="let interes of interesesLista" class="ui-g-12">
+            <p-checkbox [formControl]="formularioRegistro.controls['intereses']" [value]="interes.id" [label]="interes.nombre"></p-checkbox>
+        </div>
+    </div>
+
+    <h3>Términos</h3>
+    <div class="ui-g" style="width:250px;margin-bottom:10px">
+        <p-checkbox [formControl]="formularioRegistro.controls['terminos']" binary="true" label="Acepto los términos y condiciones"></p-checkbox>
+    </div>
+
+    <button pButton type="submit" label="REGISTRO" class="ui-button-info"></button>
 
 </form>
 

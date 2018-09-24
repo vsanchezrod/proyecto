@@ -6,6 +6,7 @@ import { CardModule } from 'primeng/card';
 
 // Componentes compartidos
 import { TarjetaSalidaComponent } from './tarjeta-salida/tarjeta-salida.component';
+import { TarjetaViajeComponent } from './tarjeta-viaje/tarjeta-viaje.component';
 
 @NgModule({
   imports: [
@@ -13,10 +14,12 @@ import { TarjetaSalidaComponent } from './tarjeta-salida/tarjeta-salida.componen
     CardModule
   ],
   declarations: [
-    TarjetaSalidaComponent
+    TarjetaSalidaComponent,
+    TarjetaViajeComponent
   ],
   exports: [
-    TarjetaSalidaComponent
+    TarjetaSalidaComponent,
+    TarjetaViajeComponent
   ]
 })
 export class CompartidosModule { }

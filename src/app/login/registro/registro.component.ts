@@ -34,9 +34,9 @@ export class RegistroComponent implements OnInit {
 
     this.provinciasService.obtenerProvincias()
       .subscribe(response => {
-        console.log('Respuesta de la petición: ' + response.status)
+        console.log('Respuesta de la petición: ' + response.status);
         this.listaProvincias = response.body;
-      })
+      });
 
     this.formularioRegistro = new FormGroup({
       'nombre': new FormControl('', Validators.required),
@@ -51,8 +51,6 @@ export class RegistroComponent implements OnInit {
       'terminos': new FormControl('', Validators.requiredTrue),
     });
   }
-
-
 
   enviarDatos() {
     console.log(this.formularioRegistro.value);
