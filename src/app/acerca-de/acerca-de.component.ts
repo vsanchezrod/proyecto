@@ -9,7 +9,6 @@ export class AcercaDeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
