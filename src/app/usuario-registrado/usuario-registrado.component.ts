@@ -16,6 +16,7 @@ export class UsuarioRegistradoComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
+      {label: 'Perfil', icon: 'fa fa-fw fa-support'},
       {label: 'Calendario', icon: 'fa fa-fw fa-calendar'},
       {label: 'Actividades propuestas', icon: 'fa fa-fw fa-book'},
       {label: 'Amigos', icon: 'fa fa-fw fa-twitter'},
