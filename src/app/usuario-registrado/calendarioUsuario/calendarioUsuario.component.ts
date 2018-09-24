@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarioUsuarioComponent implements OnInit {
 
+  public events: Array<any>;
+
   constructor() { }
 
   ngOnInit() {
+    this.events = [];
   }
 
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 // Modulos para Componentes de PrimeNG
 import { TabMenuModule } from 'primeng/tabmenu';
+import { ScheduleModule } from 'primeng/schedule';
 
 // Componentes
 import { UsuarioRegistradoComponent } from './usuario-registrado.component';
@@ -16,7 +17,8 @@ import { OpinionComponent } from './opinion/opinion.component';
 @NgModule({
   imports: [
     CommonModule,
-    TabMenuModule
+    TabMenuModule,
+    ScheduleModule
   ],
   declarations: [
     UsuarioRegistradoComponent,
