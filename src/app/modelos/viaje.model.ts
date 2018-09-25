@@ -1,6 +1,6 @@
 import { Coordenada } from './coordenada.model';
 
-export class Actividad {
+export class Viaje {
 
   nombre: string;
   categorias: Array<string>;

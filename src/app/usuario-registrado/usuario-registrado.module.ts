@@ -13,6 +13,11 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { CardModule } from 'primeng/card';
+import { InputMaskModule } from 'primeng/inputmask';
+
+// Módulo de componentes compartidos
+import { CompartidosModule } from '../compartidos/compartidos.module';
 
 
 // Componentes
@@ -37,7 +42,10 @@ import { ActividadEditarComponent } from './actividades-propuestas/actividad-edi
     CalendarModule,
     FileUploadModule,
     FormsModule,
-    MultiSelectModule
+    MultiSelectModule,
+    CompartidosModule,
+    CardModule,
+    InputMaskModule
   ],
   declarations: [
     UsuarioRegistradoComponent,

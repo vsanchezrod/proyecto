@@ -1,11 +1,11 @@
 import { Coordenada } from './coordenada.model';
 
-export class Actividad {
+export class Salida {
 
   nombre: string;
-  categorias: Array<string>;
-  descripciom: string;
-  nivel: string;
+  categorias: Array<any>;
+  descripcion: string;
+  nivel: Array<any>;
   distancia: number;
   fechaInicio: Date;
   imagen: string;

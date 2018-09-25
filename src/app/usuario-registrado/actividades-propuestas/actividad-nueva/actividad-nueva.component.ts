@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
+// Modelo de datos
+import { Salida } from '../../../modelos/salida.model';
+
 @Component({
   selector: 'app-actividad-nueva',
   templateUrl: './actividad-nueva.component.html',
   styleUrls: ['./actividad-nueva.component.css']
 })
 export class ActividadNuevaComponent implements OnInit {
+
+  salida: Salida;
 
   listaCategorias = [
     {id: 1, nombre: 'Bici', descripcion: 'Kaka'},
@@ -27,6 +32,11 @@ export class ActividadNuevaComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.salida = new Salida();
+
+    console.log('SALIDA: '  + this.salida);
+
     this.es = {
       firstDayOfWeek: 1,
       dayNames: [ 'domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado' ],
@@ -37,5 +47,10 @@ export class ActividadNuevaComponent implements OnInit {
       today: 'Hoy',
       clear: 'Borrar'
     };
+  }
+
+  crearSalida() {
+   console.log('Datos enviados');
+   console.log(this.salida);
   }
 }

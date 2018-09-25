@@ -1,36 +1,37 @@
 <div class="ui-g-6">
   <h3>Nueva actividad!</h3>
 
-  <form>
+  <form #formularioActividad="ngForm" (submit)="crearSalida()">
+
     <h4>Nombre</h4>
     <span class="ui-float-label">
-      <input id="nombre" type="text" size="30" pInputText>
+      <input id="nombre" name="nombre" [(ngModel)]="salida.nombre" type="text" size="30" pInputText>
       <label for="nombre">Nombre</label>
     </span>
 
     <h4>Categoría</h4>
-    <p-multiSelect [options]="listaCategorias" defaultLabel="Selecciona una categoría" filterPlaceHolder="Busca aquí" optionLabel="nombre" filter="true"></p-multiSelect>
+    <p-multiSelect [options]="listaCategorias" name="categorias" [(ngModel)]="salida.categorias" defaultLabel="Selecciona una categoría" filterPlaceHolder="Busca aquí" optionLabel="nombre" filter="true"></p-multiSelect>
 
     <h4 class="first">Descripción</h4>
-    <textarea rows="5" cols="30" pInputTextarea></textarea>
+    <textarea name="descripcion" [(ngModel)]="salida.descripcion" rows="5" cols="30" pInputTextarea></textarea>
 
     <h4>Nivel</h4>
-    <p-dropdown [options]="niveles" placeholder="Selecciona un nivel" optionLabel="nombre" [showClear]="true"></p-dropdown>
+    <p-dropdown [options]="niveles" name="nivel" [(ngModel)]="salida.nivel" placeholder="Selecciona un nivel" optionLabel="nombre" [showClear]="true"></p-dropdown>
 
-    <h4>Distancia</h4>
+    <h4>Distancia km</h4>
     <span class="ui-float-label">
-      <input id="distancia" type="text" size="10" pInputText>
+      <p-inputMask mask="999" id="distancia" name="distancia" [(ngModel)]="salida.distancia"></p-inputMask>
       <label for="distancia">Km</label>
     </span>
 
     <div>
       <h4>Fecha:</h4>
       <span class="ui-float-label">Día</span>
-      <p-calendar [locale]="es" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true"></p-calendar>
+      <p-calendar [locale]="es" name="fechaInicio" [(ngModel)]="salida.fechaInicio" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true"></p-calendar>
     </div>
 
     <h4>Imágen para actividad</h4>
-    <p-fileUpload mode="basic" name="avatar" url="./upload.php" accept="image/*" maxFileSize="1000000" multiple="multiple"></p-fileUpload>
+    <p-fileUpload mode="basic" url="./upload.php" accept="image/*" maxFileSize="1000000" multiple="multiple"></p-fileUpload>
 
     <h4>Punto de encuentro</h4>
     <div><img src="" alt="AGREGAR MAPA DE GMAPS"></div>
@@ -44,4 +45,20 @@
 
 <div class="ui-g-6">
   <h3>Vista preliminar!</h3>
+  <p-card [title]="salida.nombre" [subtitle]="" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+    <p-header>
+      <img src="Card" src="../../../assets/imagenes/salida1.jpg">
+    </p-header>
+    <div>{{ salida.descripcion }}</div>
+    <p-footer>
+      <button pButton type="button" label="FECHA" icon="pi pi-check" style="margin-right: .25em" class="ui-button-secondary"></button>
+      <button pButton type="button" label="NIVEL" icon="pi pi-times" class="ui-button-secondary"></button>
+      <button pButton type="button" label="Ver más" icon="pi pi-times" class="ui-button-secondary"></button>
+    </p-footer>
+  </p-card>
+
+
+  <!--<app-tarjeta-salida class="ui-g-4"></app-tarjeta-salida>-->
 </div>
+
+{{ salida | json }} <br> PRISTINE {{ formularioActividad.pristine }} <br> TOUCHED {{ formularioActividad.touched }} <br> VALIDO {{ formularioActividad.valid }}
