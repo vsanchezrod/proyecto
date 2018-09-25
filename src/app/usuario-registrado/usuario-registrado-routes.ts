@@ -7,11 +7,19 @@ import {ActividadesPropuestasComponent} from './actividades-propuestas/actividad
 import {AmigosComponent} from './amigos/amigos.component';
 import {MensajesComponent} from './mensajes/mensajes.component';
 import {OpinionComponent} from './opinion/opinion.component';
+import {ActividadNuevaComponent} from './actividades-propuestas/actividad-nueva/actividad-nueva.component';
+
 
 export const USUARIO_RUTAS: Routes = [
     { path: 'perfil', component: PerfilComponent },
     { path: 'calendario', component: CalendarioUsuarioComponent },
-    { path: 'actividades', component: ActividadesPropuestasComponent },
+    {
+      path: 'actividades',
+      component: ActividadesPropuestasComponent,
+      children: [
+        { path: 'nueva', component: ActividadNuevaComponent},
+      ]
+    },
     { path: 'amigos', component: AmigosComponent },
     { path: 'mensajes', component: MensajesComponent },
     { path: 'opiniones', component: OpinionComponent },

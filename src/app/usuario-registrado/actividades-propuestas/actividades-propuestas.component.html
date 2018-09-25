@@ -1,6 +1,8 @@
 <div class="ui-g-12">
   <p>Crea una nueva actividad!!</p>
-  <button type="button">CREAR</button>
+  <button pButton type="button" label="CREAR" class="ui-button-info" routerLink="/usuario/actividades/nueva"></button>
+  <button pButton type="button" label="CANCELAR" class="ui-button-info" routerLink="/usuario/actividades"></button>
+  <router-outlet></router-outlet>
 </div>
 
 <div class="ui-g-6">
@@ -22,8 +24,10 @@
   <p>RESUMEN ACTIVIDAD</p>
   <img src="../../../assets/imagenes/salida1.jpg" alt="FOTO" width="400" height="400">
   <div class="ui-g-6">
-    <button type="button">EDITAR</button>
-    <button type="button">BORRAR</button>
+    <button pButton type="button" label="EDITAR" class="ui-button-info"></button>
+    <button pButton type="button" label="ELIMINAR" class="ui-button-info"></button>
   </div>
 </div>
+
+
 

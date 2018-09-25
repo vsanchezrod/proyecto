@@ -4,6 +4,11 @@ import { CommonModule } from '@angular/common';
 // Modulos para Componentes de PrimeNG
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ScheduleModule } from 'primeng/schedule';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputMaskModule } from 'primeng/inputmask';
+import { FileUploadModule } from 'primeng/fileupload';
 
 // Componentes
 import { UsuarioRegistradoComponent } from './usuario-registrado.component';
@@ -13,12 +18,19 @@ import { ActividadesPropuestasComponent } from './actividades-propuestas/activid
 import { AmigosComponent } from './amigos/amigos.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
 import { OpinionComponent } from './opinion/opinion.component';
+import { ActividadNuevaComponent } from './actividades-propuestas/actividad-nueva/actividad-nueva.component';
+import { ActividadEditarComponent } from './actividades-propuestas/actividad-editar/actividad-editar.component';
 
 @NgModule({
   imports: [
     CommonModule,
     TabMenuModule,
-    ScheduleModule
+    ScheduleModule,
+    InputTextModule,
+    DropdownModule,
+    InputTextareaModule,
+    InputMaskModule,
+    FileUploadModule
   ],
   declarations: [
     UsuarioRegistradoComponent,
@@ -27,7 +39,9 @@ import { OpinionComponent } from './opinion/opinion.component';
     ActividadesPropuestasComponent,
     AmigosComponent,
     MensajesComponent,
-    OpinionComponent
+    OpinionComponent,
+    ActividadNuevaComponent,
+    ActividadEditarComponent
   ],
   exports: [
     UsuarioRegistradoComponent

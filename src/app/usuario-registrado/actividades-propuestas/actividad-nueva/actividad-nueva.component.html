@@ -1,0 +1,45 @@
+<div class="ui-g-6">
+  <h3>Nueva actividad!</h3>
+  <form>
+    <h4>Nombre</h4>
+    <span class="ui-float-label">
+      <input id="nombre" type="text" size="30" pInputText>
+      <label for="nombre">Nombre</label>
+    </span>
+
+    <h4>Categoría</h4>
+    <p-dropdown [options]="listaCategorias" placeholder="Selecciona una categoría" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
+
+    <h4 class="first">Descripción</h4>
+    <textarea rows="5" cols="30" pInputTextarea></textarea>
+
+    <h4>Nivel</h4>
+    <p-dropdown [options]="niveles" placeholder="Selecciona un nivel" optionLabel="nombre" [showClear]="true"></p-dropdown>
+
+    <h4>Distancia</h4>
+    <span class="ui-float-label">
+      <input id="distancia" type="text" size="10" pInputText>
+      <label for="distancia">Km</label>
+    </span>
+
+    <div>
+      <h4>Fecha:</h4>
+      <span class="ui-float-label">Inicio</span>
+      <p-inputMask mask="99/99/9999" placeholder="mm/dd/yyyy" slotChar="mm/dd/yyyy"></p-inputMask>
+      <span class="ui-float-label">Fin</span>
+      <p-inputMask mask="99/99/9999" placeholder="mm/dd/yyyy" slotChar="mm/dd/yyyy"></p-inputMask>
+    </div>
+
+    <h4>Imágen para actividad</h4>
+    <p-fileUpload mode="basic" name="avatar" url="./upload.php" accept="image/*" maxFileSize="1000000" multiple="multiple"></p-fileUpload>
+
+    <button pButton type="submit" label="PUBLICAR ACTIVIDAD" class="ui-button-info"></button>
+
+  </form>
+
+</div>
+
+
+<div class="ui-g-6">
+  <h3>Vista preliminar!</h3>
+</div>

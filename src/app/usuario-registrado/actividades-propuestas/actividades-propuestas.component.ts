@@ -9,7 +9,6 @@ export class ActividadesPropuestasComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }
