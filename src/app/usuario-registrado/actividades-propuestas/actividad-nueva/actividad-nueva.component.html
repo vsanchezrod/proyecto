@@ -1,5 +1,6 @@
 <div class="ui-g-6">
   <h3>Nueva actividad!</h3>
+
   <form>
     <h4>Nombre</h4>
     <span class="ui-float-label">
@@ -8,7 +9,7 @@
     </span>
 
     <h4>Categoría</h4>
-    <p-dropdown [options]="listaCategorias" placeholder="Selecciona una categoría" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
+    <p-multiSelect [options]="listaCategorias" defaultLabel="Selecciona una categoría" filterPlaceHolder="Busca aquí" optionLabel="nombre" filter="true"></p-multiSelect>
 
     <h4 class="first">Descripción</h4>
     <textarea rows="5" cols="30" pInputTextarea></textarea>
@@ -24,14 +25,15 @@
 
     <div>
       <h4>Fecha:</h4>
-      <span class="ui-float-label">Inicio</span>
-      <p-inputMask mask="99/99/9999" placeholder="mm/dd/yyyy" slotChar="mm/dd/yyyy"></p-inputMask>
-      <span class="ui-float-label">Fin</span>
-      <p-inputMask mask="99/99/9999" placeholder="mm/dd/yyyy" slotChar="mm/dd/yyyy"></p-inputMask>
+      <span class="ui-float-label">Día</span>
+      <p-calendar [locale]="es" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true"></p-calendar>
     </div>
 
     <h4>Imágen para actividad</h4>
     <p-fileUpload mode="basic" name="avatar" url="./upload.php" accept="image/*" maxFileSize="1000000" multiple="multiple"></p-fileUpload>
+
+    <h4>Punto de encuentro</h4>
+    <div><img src="" alt="AGREGAR MAPA DE GMAPS"></div>
 
     <button pButton type="submit" label="PUBLICAR ACTIVIDAD" class="ui-button-info"></button>
 

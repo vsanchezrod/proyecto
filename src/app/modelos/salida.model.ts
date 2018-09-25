@@ -7,9 +7,7 @@ export class Actividad {
   descripciom: string;
   nivel: string;
   distancia: number;
-  precio?: number;
   fechaInicio: Date;
-  fechaFin: Date;
   imagen: string;
   puntoEncuentro: Coordenada;
 
