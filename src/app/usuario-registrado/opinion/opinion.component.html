@@ -1,7 +1,7 @@
 
 <p-card class="ui-g" class="ui-fluid ui-g-10" title="Déjanos tu opinión">
 
-  <form [formGroup]="formularioOpinion" (submit)="enviarOpinion()">
+  <form [formGroup]="formularioOpinion" (submit)="enviarOpinion(formularioOpinion.value)">
     <div class="ui-g">
 
       <img class="ui-g-2" src="" alt="usuario.avatar">
@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <button pButton type="submit" label="ENVIAR" class="ui-button-info"></button>
+    <button [disabled]="formularioOpinion.invalid" pButton type="submit" label="ENVIAR" class="ui-button-info"></button>
     <p-splitButton styleClass="ui-button-success" label="Guardar" icon="pi pi-file" (onClick)="save('info')"></p-splitButton>
 
   </form>

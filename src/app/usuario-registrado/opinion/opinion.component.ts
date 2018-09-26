@@ -4,6 +4,10 @@ import { MessageService} from 'primeng/api';
 
 // Formularios
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Opinion } from '../../modelos/opinion.model';
+
+// Servicios
+import { OpinionesService } from '../../servicios/opiniones.service';
 
 @Component({
   selector: 'app-opinion',
@@ -14,9 +18,12 @@ export class OpinionComponent implements OnInit {
 
   formularioOpinion: FormGroup;
 
+  private opinion: Opinion;
+
   listaActividades: Array<any>;
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService,
+              private opinionesService: OpinionesService) { }
 
   ngOnInit() {
 
@@ -41,8 +48,10 @@ export class OpinionComponent implements OnInit {
     this.messageService.add({severity: severity, summary: 'Success', detail: 'Data Saved'});
   }
 
-  enviarOpinion() {
-    console.log(this.formularioOpinion);
+  enviarOpinion(formularioOpinionValue: Opinion) {
+
+    this.opinion = formularioOpinionValue;
+    this.opinionesService.guardarOpinion(this.opinion);
   }
 
 }
