@@ -31,7 +31,7 @@
     </div>
 
     <h4>Imágen para actividad</h4>
-    <p-fileUpload mode="basic" url="./upload.php" accept="image/*" maxFileSize="1000000" multiple="multiple"></p-fileUpload>
+    <p-fileUpload name="imagen" [(ngModel)]="salida.imagen" mode="basic" url="./upload.php" accept="image/*" maxFileSize="1000000" multiple="multiple"></p-fileUpload>
 
     <h4>Punto de encuentro</h4>
     <div><img src="" alt="AGREGAR MAPA DE GMAPS"></div>

@@ -1,3 +1,49 @@
-<div>
-  <p>FORMULARIO DEJAR COMENTARIO</p>
-</div>
+
+<p-card class="ui-g" class="ui-fluid ui-g-10" title="Déjanos tu opinión">
+
+  <form [formGroup]="formularioOpinion" (submit)="enviarOpinion()">
+    <div class="ui-g">
+
+      <img class="ui-g-2" src="" alt="usuario.avatar">
+
+      <p-dropdown [formControl]="formularioOpinion.controls['actividad']" class="ui-g-6" [options]="listaActividades" placeholder="Selecciona una actividad" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
+
+      <span class="ui-float-label ui-g-6">
+          <input [formControl]="formularioOpinion.controls['titulo']" id="titulo"  type="text" size="30" pInputText>
+          <label for="titulo">Título de tu opinión*</label>
+      </span>
+
+      <span class="ui-float-label ui-g-10">
+          <textarea [formControl]="formularioOpinion.controls['detalle']" id="descripcion" rows="5" cols="15" pInputTextarea autoResize="autoResize"></textarea>
+          <label for="descripcion">Escribe tu opinión*</label>
+      </span>
+
+      <div class="ui-g-4">
+        <p-rating [formControl]="formularioOpinion.controls['organizacionValoracion']" class="ui-g-4" id="ratingOrganizacion" stars="5" [cancel]="false"></p-rating>
+        <label for="ratingOrganizacion">Organización</label>
+      </div>
+
+      <div class="ui-g-4">
+        <p-rating [formControl]="formularioOpinion.controls['ambienteValoracion']" class="ui-g-4"id="ratingBuenRollo" stars="5" [cancel]="false"></p-rating>
+        <label for="ratingBuenRollo">Buen rollo</label>
+      </div>
+
+      <div class="ui-g-4">
+        <p-rating [formControl]="formularioOpinion.controls['recorridoValoracion']" class="ui-g-4" id="ratingRecorrido" stars="5" [cancel]="false"></p-rating>
+        <label for="ratingRecorrido">Recorrido</label>
+      </div>
+    </div>
+
+    <button pButton type="submit" label="ENVIAR" class="ui-button-info"></button>
+    <p-splitButton styleClass="ui-button-success" label="Guardar" icon="pi pi-file" (onClick)="save('info')"></p-splitButton>
+
+  </form>
+</p-card>
+
+VALIDACION
+{{ formularioOpinion.valid }} <br> <br> <br>
+
+FORMULARIO
+{{formularioOpinion.value | json }}
+
+

@@ -22,18 +22,27 @@
         <video width="424" height="238" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></video>
     </div>
 
-    <div class="ui-g-10">
-
-        <h2>Últimas opiniones!</h2>
-        <img class="ui-g-2" src="" alt="FOTO">
-        <p class="ui-g-10">
-            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up
-            one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus
-            Bonoru
+    <p-card class="ui-fluid" title="Opinion.titulo">
+      <img class="ui-g-2" src="" alt="usuario.avatar">
+      <div class="ui-g">
+        <p class="ui-g-12">
+          <strong>Opinion.detalle</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
         </p>
-        <p-rating [ngModel]="3" readonly="true" stars="5" [cancel]="false"></p-rating>
 
-    </div>
+        <div class="ui-g-4">
+          <label for="ratingOrganizacion">Organización</label>
+          <p-rating class="ui-g-4" [ngModel]="4" readonly="true" id="ratingOrganizacion" stars="5" [cancel]="false"></p-rating>
+        </div>
 
+        <div class="ui-g-4">
+          <label for="ratingBuenRollo">Buen rollo</label>
+          <p-rating class="ui-g-4" [ngModel]="5" readonly="true" id="ratingBuenRollo" stars="5" [cancel]="false"></p-rating>
+        </div>
 
-</div>
+        <div class="ui-g-4">
+          <label for="ratingRecorrido">Recorrido</label>
+          <p-rating class="ui-g-4" [ngModel]="4" readonly="true" id="ratingRecorrido" stars="5" [cancel]="false"></p-rating>
+        </div>
+     </div>
+    </p-card>

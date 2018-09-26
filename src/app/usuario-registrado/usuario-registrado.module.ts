@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Formularios
-import { FormsModule } from '@angular/forms';
-
 // Modulos para Componentes de PrimeNG
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ScheduleModule } from 'primeng/schedule';
@@ -15,10 +12,17 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { CardModule } from 'primeng/card';
 import { InputMaskModule } from 'primeng/inputmask';
+import { RatingModule } from 'primeng/rating';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 // Módulo de componentes compartidos
 import { CompartidosModule } from '../compartidos/compartidos.module';
 
+// Servicios
+import { MessageService } from 'primeng/api';
+
+// Formularios
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Componentes
 import { UsuarioRegistradoComponent } from './usuario-registrado.component';
@@ -42,10 +46,13 @@ import { ActividadEditarComponent } from './actividades-propuestas/actividad-edi
     CalendarModule,
     FileUploadModule,
     FormsModule,
+    ReactiveFormsModule,
     MultiSelectModule,
     CompartidosModule,
     CardModule,
-    InputMaskModule
+    InputMaskModule,
+    RatingModule,
+    SplitButtonModule
   ],
   declarations: [
     UsuarioRegistradoComponent,
@@ -60,6 +67,10 @@ import { ActividadEditarComponent } from './actividades-propuestas/actividad-edi
   ],
   exports: [
     UsuarioRegistradoComponent
+  ],
+  providers: [
+    MessageService
   ]
+
 })
 export class UsuarioRegistradoModule { }
