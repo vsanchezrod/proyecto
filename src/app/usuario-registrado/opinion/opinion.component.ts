@@ -51,7 +51,15 @@ export class OpinionComponent implements OnInit {
   enviarOpinion(formularioOpinionValue: Opinion) {
 
     this.opinion = formularioOpinionValue;
-    this.opinionesService.guardarOpinion(this.opinion);
+
+    this.opinionesService.guardarOpinion(this.opinion)
+      .subscribe(response => {
+        console.log('Respuesta de la petición: ' + response.status);
+      });
   }
+
+
+
+
 
 }
