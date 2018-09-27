@@ -10,9 +10,13 @@ import { AcercaDeComponent } from './acerca-de/acerca-de.component';
 import { LoginComponent } from './login/login/login.component';
 import { RegistroComponent } from './login/registro/registro.component';
 import { UsuarioRegistradoComponent } from './usuario-registrado/usuario-registrado.component';
+import { AdministradorComponent } from './administrador/administrador.component';
 
 // Rutas de Usuario
-import { USUARIO_RUTAS } from './usuario-registrado/usuario-registrado-routes';
+import { USUARIO_RUTAS } from './usuario-registrado/usuario-registrado.routes';
+
+// Rutas de administrador
+import { ADMINISTRADOR_RUTAS } from './administrador/administrador.routes';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -26,6 +30,11 @@ const routes: Routes = [
     path: 'usuario',
     component: UsuarioRegistradoComponent,
     children: USUARIO_RUTAS
+  },
+  {
+    path: 'admin',
+    component: AdministradorComponent,
+    children: ADMINISTRADOR_RUTAS
   },
   { path: '', pathMatch: 'full', redirectTo: 'inicio' },
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' }

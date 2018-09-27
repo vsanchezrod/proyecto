@@ -16,6 +16,7 @@ import { AcercaDeModule } from './acerca-de/acerca-de.module';
 import { CompartidosModule } from './compartidos/compartidos.module';
 import { LoginModule } from './login/login.module';
 import { UsuarioRegistradoModule } from './usuario-registrado/usuario-registrado.module';
+import { AdministradorModule } from './administrador/administrador.module';
 
 // Otros módulos
 import { HttpClientModule } from '@angular/common/http';
@@ -43,7 +44,8 @@ import { ScheduleModule } from 'primeng/schedule';
     LoginModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    UsuarioRegistradoModule
+    UsuarioRegistradoModule,
+    AdministradorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

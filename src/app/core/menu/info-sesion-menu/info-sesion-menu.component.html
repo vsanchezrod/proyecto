@@ -5,17 +5,24 @@
 <div *ngIf="usuarioRegistrado" class="dropdown show">
 
   <!-- BOOTSTRAP-->
-  <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Usuario
-  </a>
+  <div>
+    <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Usuario
+    </a>
 
-  <div class="dropdown-menu" aria-labelledby="Usuario">
-    <a class="dropdown-item" routerLink="usuario/perfil">Perfil</a>
-    <a class="dropdown-item" routerLink="usuario/calendario">Calendario</a>
-    <a class="dropdown-item" routerLink="usuario/actividades">Actividades Propuestas</a>
-    <a class="dropdown-item" routerLink="usuario/amigos">Amigos</a>
-    <a class="dropdown-item" routerLink="usuario/mensajes">Mensajes</a>
-    <a class="dropdown-item" routerLink="usuario/opiniones">Opina</a>
+    <div class="dropdown-menu" aria-labelledby="Usuario">
+      <a class="dropdown-item" routerLink="usuario/perfil">Perfil</a>
+      <a class="dropdown-item" routerLink="usuario/calendario">Calendario</a>
+      <a class="dropdown-item" routerLink="usuario/actividades">Actividades Propuestas</a>
+      <a class="dropdown-item" routerLink="usuario/amigos">Amigos</a>
+      <a class="dropdown-item" routerLink="usuario/mensajes">Mensajes</a>
+      <a class="dropdown-item" routerLink="usuario/opiniones">Opina</a>
+    </div>
+  </div>
+
+  <div>
+    <p-slideMenu #menuAdmin [model]="items" [viewportHeight]="300" [popup]="true"></p-slideMenu>
+    <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menuAdmin.toggle($event)">ADMIN</button>
   </div>
 
 </div>

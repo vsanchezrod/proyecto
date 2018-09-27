@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 // Módulo de las rutas
 import { RouterModule } from '@angular/router';
 
+// Módulos de componentes de PrimeNG
+import { SlideMenuModule } from 'primeng/slidemenu';
 
 // Componentes
 import { CabeceraComponent } from './cabecera/cabecera.component';
@@ -20,7 +22,8 @@ import { UsuarioRegistradoModule } from '../usuario-registrado/usuario-registrad
   imports: [
     CommonModule,
     RouterModule,
-    UsuarioRegistradoModule
+    UsuarioRegistradoModule,
+    SlideMenuModule
   ],
   declarations: [
     CabeceraComponent,
