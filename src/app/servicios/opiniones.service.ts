@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Opinion } from '../modelos/opinion.model';
+import {Provincia} from '../modelos/provincia.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +21,12 @@ export class OpinionesService {
       'Accept': 'application/json'
     });
 
-    this.httpClient.post
-
     return this.httpClient.post('http://localhost:8080/fitness/api/public/opiniones', body, {observe: 'response'});
   }
 
-  public obtenerOpiniones(): Array<Opinion> {
+  public obtenerOpiniones(): Observable<HttpResponse<Array<Opinion>>> {
 
-    return null;
+    return this.httpClient.get<Array<Opinion>>('http://localhost:8080/fitness/api/public/opiniones', {observe: 'response'});
   }
 
 

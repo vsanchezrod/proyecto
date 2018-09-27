@@ -58,8 +58,4 @@ export class OpinionComponent implements OnInit {
       });
   }
 
-
-
-
-
 }
