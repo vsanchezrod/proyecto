@@ -5,7 +5,7 @@ export class Viaje {
   nombre: string;
   categorias: Array<string>;
   descripciom: string;
-  nivel: string;
+  nivel: number;
   distancia: number;
   fechaInicio: Date;
   fechaFin: Date;

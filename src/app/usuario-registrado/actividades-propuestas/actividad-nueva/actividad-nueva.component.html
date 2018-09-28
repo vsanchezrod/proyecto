@@ -18,9 +18,9 @@
     <h4>Nivel</h4>
     <p-dropdown [options]="niveles" name="nivel" [(ngModel)]="salida.nivel" placeholder="Selecciona un nivel" optionLabel="nombre" [showClear]="true"></p-dropdown>
 
-    <h4>Distancia km</h4>
+    <h4>Distancia km:</h4>
     <span class="ui-float-label">
-      <p-inputMask mask="999" id="distancia" name="distancia" [(ngModel)]="salida.distancia"></p-inputMask>
+      <p-slider [(ngModel)]="salida.distancia" name="distancia" [min]="1" [max]="distanciaMaxima" id="distancia"[style]="{'width':'14em'}" [animate]="true"></p-slider>
       <label for="distancia">Km</label>
     </span>
 

@@ -12,6 +12,9 @@ export class ActividadNuevaComponent implements OnInit {
 
   salida: Salida;
 
+  distanciaMinima: number;
+  distanciaMaxima: number;
+
   listaCategorias = [
     {id: 1, nombre: 'Bici', descripcion: 'Kaka'},
     {id: 2, nombre: 'Senderismo', descripcion: 'Kaka'},
@@ -34,6 +37,9 @@ export class ActividadNuevaComponent implements OnInit {
   ngOnInit() {
 
     this.salida = new Salida();
+
+    this.distanciaMinima = 1;
+    this.distanciaMaxima = 150;
 
     console.log('SALIDA: '  + this.salida);
 

@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login/login.component';
 import { RegistroComponent } from './login/registro/registro.component';
 import { UsuarioRegistradoComponent } from './usuario-registrado/usuario-registrado.component';
 import { AdministradorComponent } from './administrador/administrador.component';
+import { SalidaComponent } from './salidas/salida/salida.component';
 
 // Rutas de Usuario
 import { USUARIO_RUTAS } from './usuario-registrado/usuario-registrado.routes';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'viajes', component: ViajesComponent },
   { path: 'salidas', component: SalidasComponent },
+  { path: 'salida/:id', component: SalidaComponent },
   { path: 'calendario', component: CalendarioComponent },
   { path: 'acerca', component: AcercaDeComponent },
   { path: 'login', component: LoginComponent},

@@ -5,7 +5,7 @@ export class Salida {
   nombre: string;
   categorias: Array<any>;
   descripcion: string;
-  nivel: Array<any>;
+  nivel: number;
   distancia: number;
   fechaInicio: Date;
   imagen: string;

@@ -24,26 +24,33 @@ export class InfoSesionMenuComponent implements OnInit {
       {
         label: 'Actividades',
         icon: 'pi pi-fw pi-calendar',
-        items: [
-            {label: 'Crear', icon: 'pi pi-fw pi-plus', routerLink: 'admin/actividades'},
-            {label: 'Editar', icon: 'pi pi-fw pi-pencil'}
-          ]
+        routerLink: 'admin/actividades'
       },
 
       {
-        label: 'Usuarios', icon: 'pi pi-fw pi-users', routerLink: 'admin/usuarios'
+        label: 'Usuarios',
+        icon: 'pi pi-fw pi-users',
+        routerLink: 'admin/usuarios'
       },
 
       {
-        label: 'Gestión de opiniones', icon: 'pi pi-fw pi-bars', routerLink: 'admin/opiniones'
+        label: 'Gestión de opiniones',
+        icon: 'pi pi-fw pi-bars',
+        routerLink: 'admin/opiniones'
       },
 
       {
-        label: 'Estadísticas', icon: 'pi pi-fw pi-cog', routerLink: 'admin/estadisticas'
+        label: 'Estadísticas',
+        icon: 'pi pi-fw pi-cog',
+        routerLink: 'admin/estadisticas'
       },
+
       {separator: true},
+
       {
-        label: 'Volver', icon: 'pi pi-fw pi-times', routerLink: 'inicio'
+        label: 'Volver',
+        icon: 'pi pi-fw pi-times',
+        routerLink: 'inicio'
       }
     ];
   }

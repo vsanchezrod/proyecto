@@ -11,9 +11,9 @@ import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { CardModule } from 'primeng/card';
-import { InputMaskModule } from 'primeng/inputmask';
 import { RatingModule } from 'primeng/rating';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { SliderModule } from 'primeng/slider';
 
 // Módulo de componentes compartidos
 import { CompartidosModule } from '../compartidos/compartidos.module';
@@ -50,9 +50,9 @@ import { ActividadEditarComponent } from './actividades-propuestas/actividad-edi
     MultiSelectModule,
     CompartidosModule,
     CardModule,
-    InputMaskModule,
     RatingModule,
-    SplitButtonModule
+    SplitButtonModule,
+    SliderModule
   ],
   declarations: [
     UsuarioRegistradoComponent,
