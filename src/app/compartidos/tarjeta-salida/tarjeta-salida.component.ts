@@ -15,7 +15,7 @@ export class TarjetaSalidaComponent implements OnInit {
   // Se recibe el valor de salida desde fuera (elemento padre)
   @Input() salida: any = {};
 
-  @Input() indice: string;
+  @Input() indice: number;
 
   constructor(private router: Router) { }
 

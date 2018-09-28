@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+// Modelos de datos
 import { Salida } from '../../modelos/salida.model';
-import {Coordenada} from '../../modelos/coordenada.model';
+
+// Servicios
+import { SalidasService } from '../../servicios/salidas.service';
 
 @Component({
   selector: 'app-lista-salidas',
@@ -12,51 +15,10 @@ export class ListaSalidasComponent implements OnInit {
 
   listaSalidas: Array<Salida>;
 
-  constructor() { }
+  constructor(private salidasService: SalidasService) { }
 
   ngOnInit() {
-
-    this.listaSalidas = [
-      {
-        nombre: 'Hinojosa de San Vicente',
-        categorias: ['lala1', 'lala2'],
-        descripcion: 'lililililili',
-        nivel: 1,
-        distancia: 15,
-        fechaInicio: new Date(),
-        imagen: 'asdada',
-        puntoEncuentro: {
-          latitud: 0,
-          longitud: 0
-        }
-      },
-      {
-        nombre: 'LALALALLA2',
-        categorias: ['lala1', 'lala2'],
-        descripcion: 'lililililili',
-        nivel: 3,
-        distancia: 15,
-        fechaInicio: new Date(),
-        imagen: 'asdada',
-        puntoEncuentro: {
-          latitud: 0,
-          longitud: 0
-        }
-      },
-      {
-        nombre: 'LALALAL 3',
-        categorias: ['lala1', 'lala2'],
-        descripcion: 'lililililili',
-        nivel: 2,
-        distancia: 50,
-        fechaInicio: new Date(),
-        imagen: 'asdada',
-        puntoEncuentro: {
-          latitud: 0,
-          longitud: 0
-        }
-      }
-    ];
+    this.listaSalidas = this.salidasService.obtenerSalidas();
   }
 
 }
