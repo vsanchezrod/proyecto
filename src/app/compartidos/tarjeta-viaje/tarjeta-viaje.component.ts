@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+
+// Componentes
+import {Viaje} from '../../modelos/viaje.model';
+
+// Router para poder navegar por las diferentes rutas
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tarjeta-viaje',
@@ -7,9 +13,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TarjetaViajeComponent implements OnInit {
 
-  constructor() { }
+  // Se recibe el valor de salida desde fuera (elemento padre)
+  @Input() viaje: Viaje;
 
-  ngOnInit() {
+  @Input() indice: number;
+
+  constructor(private router: Router) { }
+
+  ngOnInit() {}
+
+  // Método para mostrar la salida
+  verViaje() {
+    this.router.navigate(['/viaje', this.indice]);
   }
-
 }

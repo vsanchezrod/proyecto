@@ -1,10 +1,12 @@
-<p-card title="NOMBRE VIAJE" subtitle="Categorías" [style]="{width: '360px'}" styleClass="ui-card-shadow">
-    <p-header>
-        <img src="Card" src="../../../assets/imagenes/salida1.jpg">
-    </p-header>
-    <div> DESCRIPCIÓN: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</div>
-    <p-footer>
-        <button pButton type="button" label="Save" icon="pi pi-check" style="margin-right: .25em">FECHA</button>
-        <button pButton type="button" label="Cancel" icon="pi pi-times" class="ui-button-secondary">PRECIO</button>
-    </p-footer>
+<p-card [title]="viaje.nombre" subtitle="Categorías" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+  <p-header>
+    <img alt="viaje" [src]="viaje.imagen">
+  </p-header>
+  <div>{{ viaje.descripcion }}</div>
+  <p-footer>
+    <div>{{ viaje.fechaInicio }}</div>
+    <div>{{ viaje.fechaFin }}</div>
+    <p-rating  readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
+    <button pButton (click)="verViaje()" type="button" icon="pi pi-check" iconPos="right" label="VER MAS"></button>
+  </p-footer>
 </p-card>

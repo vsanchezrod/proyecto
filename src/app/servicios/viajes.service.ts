@@ -1,35 +1,24 @@
 import { Injectable } from '@angular/core';
 
-import { Salida } from '../modelos/salida.model';
-
+import { Viaje } from '../modelos/viaje.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SalidasService {
+export class ViajesService {
 
   // CAMBIAR PARA QUE LOS DATOS VENGAN DE LA API
-  private listaSalidas: Array<Salida> = [
+  private listaViajes: Array<Viaje> = [
     {
-      nombre: 'Hinojosa de San Vicente',
-      categorias: ['lala1', 'lala2'],
-      descripcion: 'lililililili',
-      nivel: 1,
-      distancia: 15,
-      fechaInicio: new Date(),
-      imagen: 'asdada',
-      puntoEncuentro: {
-        latitud: 0,
-        longitud: 0
-      }
-    },
-    {
-      nombre: 'LALALALLA2',
+      nombre: 'Pirineos',
       categorias: ['lala1', 'lala2'],
       descripcion: 'lililililili',
       nivel: 3,
       distancia: 15,
       fechaInicio: new Date(),
+      fechaFin: new Date(),
+      precio: 100,
+      plazas: 10,
       imagen: 'asdada',
       puntoEncuentro: {
         latitud: 0,
@@ -37,12 +26,47 @@ export class SalidasService {
       }
     },
     {
-      nombre: 'LALALAL 3',
+      nombre: 'Tourmalet',
+      categorias: ['lala1', 'lala2'],
+      descripcion: 'lililililili',
+      nivel: 3,
+      distancia: 100,
+      fechaInicio: new Date(),
+      fechaFin: new Date(),
+      precio: 100,
+      plazas: 15,
+      imagen: 'asdada',
+      puntoEncuentro: {
+        latitud: 0,
+        longitud: 0
+      }
+    },
+    {
+      nombre: 'Hinojosa de San Vicente',
       categorias: ['lala1', 'lala2'],
       descripcion: 'lililililili',
       nivel: 2,
-      distancia: 50,
+      distancia: 15,
       fechaInicio: new Date(),
+      fechaFin: new Date(),
+      precio: 100,
+      plazas: 10,
+      imagen: 'asdada',
+      puntoEncuentro: {
+        latitud: 0,
+        longitud: 0
+      }
+    },
+    {
+      nombre: 'Lalalalal1',
+      categorias: ['lala1', 'lala2'],
+      descripcion: 'lililililili',
+      nivel: 2,
+      distancia: 15,
+      fechaInicio: new Date(),
+      fechaFin: new Date(),
+      precio: 1000,
+      plazas: 5,
       imagen: 'asdada',
       puntoEncuentro: {
         latitud: 0,
@@ -54,14 +78,13 @@ export class SalidasService {
   constructor() {}
 
   // Método público para poder acceder a los datos. Devuelve un array de Salidas
-  obtenerSalidas(): Array<Salida> {
-    return this.listaSalidas;
+  obtenerViajes(): Array<Viaje> {
+    return this.listaViajes;
   }
 
   // Método público para poder acceder a una salida en concreto a través del índice
-  obtenerSalida(indice: number): Salida {
-    return this.listaSalidas[indice];
+  obtenerViaje(indice: number): Viaje {
+    return this.listaViajes[indice];
   }
-
 
 }

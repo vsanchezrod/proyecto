@@ -12,6 +12,7 @@ import { RegistroComponent } from './login/registro/registro.component';
 import { UsuarioRegistradoComponent } from './usuario-registrado/usuario-registrado.component';
 import { AdministradorComponent } from './administrador/administrador.component';
 import { SalidaComponent } from './salidas/salida/salida.component';
+import { ViajeComponent } from './viajes/viaje/viaje.component';
 
 // Rutas de Usuario
 import { USUARIO_RUTAS } from './usuario-registrado/usuario-registrado.routes';
@@ -22,6 +23,7 @@ import { ADMINISTRADOR_RUTAS } from './administrador/administrador.routes';
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'viajes', component: ViajesComponent },
+  { path: 'viaje/:id', component: ViajeComponent },
   { path: 'salidas', component: SalidasComponent },
   { path: 'salida/:id', component: SalidaComponent },
   { path: 'calendario', component: CalendarioComponent },

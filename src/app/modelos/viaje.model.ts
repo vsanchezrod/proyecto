@@ -4,12 +4,13 @@ export class Viaje {
 
   nombre: string;
   categorias: Array<string>;
-  descripciom: string;
+  descripcion: string;
   nivel: number;
   distancia: number;
   fechaInicio: Date;
   fechaFin: Date;
   precio: number;
+  plazas: number;
   imagen: string;
   puntoEncuentro: Coordenada;
 

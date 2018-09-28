@@ -2,8 +2,6 @@
 
     <h1 class="ui-g-12">CARRUSEL DE VIAJES</h1>
 
-    <app-tarjeta-viaje class="ui-g-4"></app-tarjeta-viaje>
-    <app-tarjeta-viaje class="ui-g-4"></app-tarjeta-viaje>
-    <app-tarjeta-viaje class="ui-g-4"></app-tarjeta-viaje>
+    <app-tarjeta-viaje [viaje]="viaje" [indice]="i" *ngFor="let viaje of listaViajes; let i = index" class="ui-g-4"></app-tarjeta-viaje>
 
 </div>

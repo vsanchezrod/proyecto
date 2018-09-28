@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+// Componentes
 import { Salida } from '../../modelos/salida.model';
 
 // Router para poder navegar por las diferentes rutas
@@ -13,14 +14,13 @@ import { Router } from '@angular/router';
 export class TarjetaSalidaComponent implements OnInit {
 
   // Se recibe el valor de salida desde fuera (elemento padre)
-  @Input() salida: any = {};
+  @Input() salida: Salida;
 
   @Input() indice: number;
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   // Método para mostrar la salida
   verSalida() {
