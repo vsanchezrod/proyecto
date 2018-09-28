@@ -7,6 +7,9 @@ import { ListaCategoriasComponent } from './lista-categorias/lista-categorias.co
 import { ListaViajesComponent } from './lista-viajes/lista-viajes.component';
 import { ListaSalidasComponent } from './lista-salidas/lista-salidas.component';
 
+// Módulos de componentes de PrimeNG
+import { CarouselModule } from 'primeng/carousel';
+
 // Módulo de componentes compartidos
 import { CompartidosModule } from '../compartidos/compartidos.module';
 
@@ -14,7 +17,8 @@ import { CompartidosModule } from '../compartidos/compartidos.module';
 @NgModule({
   imports: [
     CommonModule,
-    CompartidosModule
+    CompartidosModule,
+    CarouselModule
   ],
   declarations: [
     InicioComponent,

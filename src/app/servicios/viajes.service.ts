@@ -10,6 +10,7 @@ export class ViajesService {
   // CAMBIAR PARA QUE LOS DATOS VENGAN DE LA API
   private listaViajes: Array<Viaje> = [
     {
+      id: '1',
       nombre: 'Pirineos',
       categorias: ['lala1', 'lala2'],
       descripcion: 'lililililili',
@@ -26,6 +27,7 @@ export class ViajesService {
       }
     },
     {
+      id: '2',
       nombre: 'Tourmalet',
       categorias: ['lala1', 'lala2'],
       descripcion: 'lililililili',
@@ -42,6 +44,7 @@ export class ViajesService {
       }
     },
     {
+      id: '3',
       nombre: 'Hinojosa de San Vicente',
       categorias: ['lala1', 'lala2'],
       descripcion: 'lililililili',
@@ -58,6 +61,7 @@ export class ViajesService {
       }
     },
     {
+      id: '4',
       nombre: 'Lalalalal1',
       categorias: ['lala1', 'lala2'],
       descripcion: 'lililililili',
@@ -77,13 +81,13 @@ export class ViajesService {
 
   constructor() {}
 
-  // Método público para poder acceder a los datos. Devuelve un array de Salidas
-  obtenerViajes(): Array<Viaje> {
+  // Método para poder acceder a los datos. Devuelve un array de Salidas
+  public obtenerViajes(): Array<Viaje> {
     return this.listaViajes;
   }
 
-  // Método público para poder acceder a una salida en concreto a través del índice
-  obtenerViaje(indice: number): Viaje {
+  // Método para poder acceder a una salida en concreto a través del índice
+  public obtenerViaje(indice: number): Viaje {
     return this.listaViajes[indice];
   }
 

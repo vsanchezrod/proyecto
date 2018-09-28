@@ -16,14 +16,12 @@ export class TarjetaViajeComponent implements OnInit {
   // Se recibe el valor de salida desde fuera (elemento padre)
   @Input() viaje: Viaje;
 
-  @Input() indice: number;
-
   constructor(private router: Router) { }
 
   ngOnInit() {}
 
   // Método para mostrar la salida
   verViaje() {
-    this.router.navigate(['/viaje', this.indice]);
+    this.router.navigate(['/viaje', this.viaje.id]);
   }
 }
