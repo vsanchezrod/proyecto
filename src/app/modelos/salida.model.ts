@@ -2,14 +2,15 @@ import { Coordenada } from './coordenada.model';
 
 export class Salida {
 
+  id?: string
   nombre: string;
   categorias: Array<any>;
   descripcion: string;
   nivel: number;
   distancia: number;
   fechaInicio: Date;
-  imagen: string;
-  puntoEncuentro: Coordenada;
+  imagen?: string;
+  puntoEncuentro?: Coordenada;
 
   constructor() {
     this.categorias = [];
@@ -18,5 +19,4 @@ export class Salida {
       longitud: 0
     };
   }
-
 }

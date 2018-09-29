@@ -12,8 +12,8 @@ export interface Viaje {
   fechaFin: Date;
   precio: number;
   plazas: number;
-  imagen: string;
-  puntoEncuentro: Coordenada;
+  imagen?: string;
+  puntoEncuentro?: Coordenada;
 
   /*constructor() {
     this.categorias = [];

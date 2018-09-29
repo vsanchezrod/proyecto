@@ -16,7 +16,7 @@
     <textarea name="descripcion" [(ngModel)]="salida.descripcion" rows="5" cols="30" pInputTextarea></textarea>
 
     <h4>Nivel</h4>
-    <p-dropdown [options]="niveles" name="nivel" [(ngModel)]="salida.nivel" placeholder="Selecciona un nivel" optionLabel="nombre" [showClear]="true"></p-dropdown>
+    <p-rating stars="3" [(ngModel)]="salida.nivel" name="nivel" [cancel]="false"></p-rating>
 
     <h4>Distancia km:</h4>
     <span class="ui-float-label">
@@ -31,7 +31,7 @@
     </div>
 
     <h4>Imágen para actividad</h4>
-    <p-fileUpload name="imagen" [(ngModel)]="salida.imagen" mode="basic" url="./upload.php" accept="image/*" maxFileSize="1000000" multiple="multiple"></p-fileUpload>
+    <!--<p-fileUpload name="imagen" [(ngModel)]="salida.imagen" mode="basic" url="./upload.php" accept="image/*" maxFileSize="1000000" multiple="multiple"></p-fileUpload>-->
 
     <h4>Punto de encuentro</h4>
     <div><img src="" alt="AGREGAR MAPA DE GMAPS"></div>
@@ -45,20 +45,7 @@
 
 <div class="ui-g-6">
   <h3>Vista preliminar!</h3>
-  <p-card [title]="salida.nombre" [subtitle]="" [style]="{width: '360px'}" styleClass="ui-card-shadow">
-    <p-header>
-      <img src="Card" src="../../../assets/imagenes/salida1.jpg">
-    </p-header>
-    <div>{{ salida.descripcion }}</div>
-    <p-footer>
-      <button pButton type="button" label="FECHA" icon="pi pi-check" style="margin-right: .25em" class="ui-button-secondary"></button>
-      <button pButton type="button" label="NIVEL" icon="pi pi-times" class="ui-button-secondary"></button>
-      <button pButton type="button" label="Ver más" icon="pi pi-times" class="ui-button-secondary"></button>
-    </p-footer>
-  </p-card>
-
-
-  <!--<app-tarjeta-salida class="ui-g-4"></app-tarjeta-salida>-->
+  <app-tarjeta-salida [salida]="salida" class="ui-g-4"></app-tarjeta-salida>
 </div>
 
 {{ salida | json }} <br> PRISTINE {{ formularioActividad.pristine }} <br> TOUCHED {{ formularioActividad.touched }} <br> VALIDO {{ formularioActividad.valid }}

@@ -23,12 +23,6 @@ export class ActividadNuevaComponent implements OnInit {
     {id: 5, nombre: 'Salidas de un día', descripcion: 'Kaka'}
   ];
 
-  niveles = [
-    {id: 1, nombre: 'Bajo', descripcion: 'Rutas fáciles y rápidas con desnivel suave'},
-    {id: 2, nombre: 'Medio', descripcion: 'Rutas medias con desnivel moderado'},
-    {id: 3, nombre: 'Alto', descripcion: 'Rutas largas y con mucho desnivel'}
-  ];
-
   es: any;
 
   constructor() {
