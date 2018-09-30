@@ -7,7 +7,7 @@ import { Viaje} from '../../modelos/viaje.model';
 import { ViajesService } from '../../servicios/viajes.service';
 
 // Recoger parámetros de la URL
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-viaje',

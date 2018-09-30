@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ViajesService } from '../../servicios/viajes.service';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  private contador = 0;
+
+  constructor(private viajeService: ViajesService) { }
 
   ngOnInit() {
+  }
+
+  kkkk() {
+    this.contador += 1;
+    this.viajeService.obtenerViaje('' + this.contador);
   }
 
 }
