@@ -3,7 +3,6 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Opinion } from '../modelos/opinion.model';
-import {Provincia} from '../modelos/provincia.model';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Coordenada } from './coordenada.model';
 
-export interface Viaje {
+export class Viaje {
 
   id?: string;
   nombre: string;
@@ -15,12 +15,12 @@ export interface Viaje {
   imagen?: string;
   puntoEncuentro?: Coordenada;
 
-  /*constructor() {
+  constructor() {
     this.categorias = [];
     this.puntoEncuentro = {
       latitud: 0,
       longitud: 0
     };
-  }*/
+  }
 
 }

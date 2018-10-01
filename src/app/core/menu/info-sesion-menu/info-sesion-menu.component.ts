@@ -28,6 +28,12 @@ export class InfoSesionMenuComponent implements OnInit {
       },
 
       {
+        label: 'Categorias',
+        icon: 'pi pi-fw pi-calendar',
+        routerLink: 'admin/categorias'
+      },
+
+      {
         label: 'Usuarios',
         icon: 'pi pi-fw pi-users',
         routerLink: 'admin/usuarios'

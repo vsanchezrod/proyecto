@@ -1,0 +1,38 @@
+<div class="ui-g-12">
+
+  <div class="ui-g-4" *ngFor="let categoria of listaCategorias">
+    <h5>{{ categoria.nombre }}</h5>
+    <img src="" alt="FOTO">
+  </div>
+
+</div>
+
+<div class="ui-g-10">
+  <h3>CREAR CATEGORÍA</h3>
+
+  <form [formGroup]="formularioCategoria" (ngSubmit)="crearCategoria(formularioCategoria.value)">
+
+    <div>
+      <h4>Nombre de la categoría</h4>
+      <span class="ui-float-label">
+        <input [formControl]="formularioCategoria.controls['nombre']" id="nombre" name="nombre" type="text" size="30" pInputText>
+        <label for="nombre">Nombre</label>
+      </span>
+
+      <h4>Añade una descripción</h4>
+      <span class="ui-float-label">
+        <input [formControl]="formularioCategoria.controls['descripcion']" id="descripcion" name="descripcion" type="text" size="30" pInputText>
+        <label for="descripcion">Nombre</label>
+      </span>
+
+      <h4>Asocia la nueva categoría con una imagen</h4>
+      <!--<p-fileUpload [formControl]="formularioCategoria.controls['imagen']" mode="basic" name="imagen" url="./upload.php" accept="image/*" maxFileSize="1000000"></p-fileUpload>-->
+
+    </div>
+
+    <button pButton type="submit" label="CREAR" class="ui-button-info"></button>
+
+  </form>
+
+
+</div>

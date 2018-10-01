@@ -1,7 +1,9 @@
 <div class="ui-g">
 
-  <img class="ui-g-3" width="300" height="300" alt="FOTO">
-  <img class="ui-g-3" width="300" height="300" alt="FOTO">
-  <img class="ui-g-3" width="300" height="300" alt="FOTO">
+  <div class="ui-g-4" *ngFor="let categoria of listaCategorias">
+    <h5>{{ categoria.nombre }}</h5>
+    <img src="" alt="FOTO">
+
+  </div>
 
 </div>
