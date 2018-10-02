@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Opinion } from '../modelos/opinion.model';
@@ -15,12 +15,12 @@ export class OpinionesService {
   public guardarOpinion(opinion: Opinion): Observable<any> {
 
     const body = opinion;
-    const headers = new Headers({
+    const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     });
 
-    return this.httpClient.post('http://localhost:8080/fitness/api/public/opiniones', body, {observe: 'response'});
+    return this.httpClient.post('http://localhost:8080/fitness/api/public/opiniones', body, {observe: 'response'},);
   }
 
   public obtenerOpiniones(): Observable<HttpResponse<Array<Opinion>>> {

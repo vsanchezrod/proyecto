@@ -1,8 +1,12 @@
 <div class="ui-g-12">
 
   <div class="ui-g-4" *ngFor="let categoria of listaCategorias">
-    <h5>{{ categoria.nombre }}</h5>
-    <img src="" alt="FOTO">
+    <div>
+      <h5>{{ categoria.nombre }}</h5>
+      <img src="" alt="FOTO">
+    </div>
+    <button pButton type="button" label="Editar" class="ui-button-rounded ui-button-warning"></button>
+    <button pButton type="button" label="Borrar" (click)="borrarCategoria(categoria.id)" class="ui-button-rounded ui-button-danger"></button>
   </div>
 
 </div>

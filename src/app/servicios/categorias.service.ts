@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 
 // Peticiones al API
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // Modelos
 import { Categoria } from '../modelos/categoria.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,16 +22,34 @@ export class CategoriasService {
   }
 
   // Método para guardar una opinion
-  public crearCategoria (categoria: Categoria): Observable<any> {
+  public crearCategoria (categoria: Categoria): Observable<HttpResponse<Categoria>> {
 
     const body = categoria;
 
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    });
+    const cabeceras = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    };
 
-    return this.httpClient.post('http://localhost:8080/fitness/api/public/categorias', body, {observe: 'response'});
+    return this.httpClient.post<Categoria>('http://localhost:8080/fitness/api/public/categorias', body, {observe: 'response'});
   }
+
+  public borrarCategoria(id: string): Observable<any>{
+
+    console.log('Quiero borrar la categoría: ' + id);
+
+    const cabeceras = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    };
+
+    return this.httpClient.delete(`http://localhost:8080/fitness/api/public/categorias/${id}`, cabeceras);
+
+  }
+
 
 }

@@ -15,6 +15,10 @@ import { CategoriasComponent } from './categorias/categorias.component';
 
 // Modulos para Componentes de PrimeNG
 import { FileUploadModule } from 'primeng/fileupload';
+import { RatingModule } from 'primeng/rating';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
+import { DataScrollerModule } from 'primeng/datascroller';
 
 
 @NgModule({
@@ -23,7 +27,11 @@ import { FileUploadModule } from 'primeng/fileupload';
     RouterModule,
     FileUploadModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RatingModule,
+    CardModule,
+    ButtonModule,
+    DataScrollerModule
   ],
   declarations: [
     AdministradorComponent,

@@ -15,11 +15,11 @@ export class AcercaDeComponent implements OnInit {
 
   listaOpiniones: Array<Opinion> = [];
 
-  constructor(private opinionService: OpinionesService) { }
+  constructor(private opinionesService: OpinionesService) { }
 
   ngOnInit() {
 
-    this.opinionService.obtenerOpiniones()
+    this.opinionesService.obtenerOpiniones()
       .subscribe( response => {
         console.log('Respuesta de la petición: ' + response.status);
         this.listaOpiniones = response.body;

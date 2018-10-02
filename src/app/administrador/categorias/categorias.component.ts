@@ -45,4 +45,10 @@ export class CategoriasComponent implements OnInit {
     });
   }
 
+  public borrarCategoria(id: string) {
+    this.categoriaService.borrarCategoria(id).subscribe(response => {
+      console.log('Respuesta: ' + response.status);
+    });
+  }
+
 }
