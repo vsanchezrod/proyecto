@@ -23,10 +23,10 @@ export class ViajeComponent implements OnInit {
 
   ngOnInit() {
     /* Params regresa un observador, que está pendiente de los cambios y para que funcione se necesita suscribirse a ese observador*/
-    this.activatedRoute.params.subscribe(parametro => {
+    /*this.activatedRoute.params.subscribe(parametro => {
       console.log(parametro);
       this.viaje = this.viajesService.obtenerViaje(parametro['id']);
       console.log(this.viaje);
-    });
+    });*/
   }
 }

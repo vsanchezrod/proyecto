@@ -11,14 +11,8 @@ export class MenuComponent implements OnInit {
 
   private contador = 0;
 
-  constructor(private viajeService: ViajesService) { }
+  constructor(private viajesService: ViajesService) { }
 
-  ngOnInit() {
-  }
-
-  kkkk() {
-    this.contador += 1;
-    this.viajeService.obtenerViaje('' + this.contador);
-  }
+  ngOnInit() {}
 
 }

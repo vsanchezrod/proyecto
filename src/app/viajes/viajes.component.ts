@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+// Servicio
+import { ViajesService } from '../servicios/viajes.service';
+
+
 @Component({
   selector: 'app-viajes',
   templateUrl: './viajes.component.html',
@@ -7,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViajesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private viajesService: ViajesService) { }
 
   ngOnInit() {
   }

@@ -27,4 +27,9 @@ export class OpinionesComponent implements OnInit {
       });
   }
 
+  public borrarOpinion(id: string)  {
+
+    this.opinionesService.borrarOpinion(id);
+  }
+
 }

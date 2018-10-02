@@ -11,7 +11,7 @@ export class OpinionesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // Función para guardar una opinion
+  // Petición HTTP(POST) para guardar una opinión
   public guardarOpinion(opinion: Opinion): Observable<any> {
 
     const body = opinion;
@@ -20,13 +20,21 @@ export class OpinionesService {
       'Accept': 'application/json'
     });
 
-    return this.httpClient.post('http://localhost:8080/fitness/api/public/opiniones', body, {observe: 'response'},);
+    return this.httpClient.post('http://localhost:8080/fitness/api/public/opiniones', body, {observe: 'response'});
   }
 
+  // Petición HTTP(GET) para recuperar las opiniones
   public obtenerOpiniones(): Observable<HttpResponse<Array<Opinion>>> {
 
     return this.httpClient.get<Array<Opinion>>('http://localhost:8080/fitness/api/public/opiniones', {observe: 'response'});
   }
 
+  // Petición HTTP(DELETE) para recuperar las opiniones
+  public borrarOpinion(id: string): Observable<any> {
+    console.log(id);
+    return null;
+    // return this.httpClient.delete('http://localhost:8080/fitness/api/public/opiniones', {observe: 'response'});
+
+  }
 
 }

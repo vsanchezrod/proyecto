@@ -32,7 +32,7 @@ export class CategoriasComponent implements OnInit {
     this.formularioCategoria = new FormGroup({
       'nombre': new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
       'descripcion': new FormControl('', Validators.required),
-      // 'imagen': new FormControl('', Validators.required)
+      'imagen': new FormControl('', Validators.required)
     });
   }
 

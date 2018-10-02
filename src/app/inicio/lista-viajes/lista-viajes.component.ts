@@ -6,6 +6,9 @@ import { Viaje } from '../../modelos/viaje.model';
 // Servicios
 import { ViajesService } from '../../servicios/viajes.service';
 
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-lista-viajes',
   templateUrl: './lista-viajes.component.html',
@@ -13,9 +16,9 @@ import { ViajesService } from '../../servicios/viajes.service';
 })
 export class ListaViajesComponent implements OnInit {
 
-  listaViajes: Array<Viaje>;
+  listaViajes: Array<Viaje> = [];
 
-  constructor(private viajesService: ViajesService) { }
+  constructor(private viajesService: ViajesService) {}
 
   ngOnInit() {
 
@@ -23,6 +26,8 @@ export class ListaViajesComponent implements OnInit {
       console.log('lista-viajes component. viajes: ', viajes);
       this.listaViajes = viajes;
     });
+
+    this.viajesService.obtenerViajes2();
   }
 
 }

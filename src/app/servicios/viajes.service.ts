@@ -5,6 +5,7 @@ import { Viaje } from '../modelos/viaje.model';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {Opinion} from '../modelos/opinion.model';
 
 
 @Injectable({
@@ -13,16 +14,23 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 export class ViajesService {
 
   private listaViajes: Array<Viaje> = [];
-  private viajesSubject: BehaviorSubject<Array<Viaje>> = new BehaviorSubject<Array<Viaje>>(this.listaViajes);
+
+  // Se crea un canal de datos que se inicializa con un valor de array vacío
+  private _viajesSubject$: BehaviorSubject<Array<Viaje>> = new BehaviorSubject<Array<Viaje>>(this.listaViajes);
 
   constructor(private httpClient: HttpClient) {}
 
-  // Método para poder acceder a los datos. Devuelve un array de Salidas
   public obtenerViajes(): Observable<Array<Viaje>> {
-    return this.viajesSubject.asObservable();
+    return this._viajesSubject$.asObservable();
   }
 
-  // Método para poder acceder a una salida en concreto a través del índice
+  public obtenerViajes2() {
+    this.httpClient.get<Array<Viaje>>('http://localhost:8080/fitness/api/public/viajes', {observe: 'response'}).subscribe(response => {
+      this._viajesSubject$.next(response.body);
+      }
+    );
+  }
+
   public obtenerViaje(id: string): Viaje {
     const viajeNuevo: Viaje = {
       id: id,
@@ -38,9 +46,12 @@ export class ViajesService {
       precio: 1,
       puntoEncuentro: undefined
     };
+
     console.log('ViajesService.obtenerViaje: ', viajeNuevo);
     this.listaViajes.push(viajeNuevo);
-    this.viajesSubject.next(this.listaViajes);
+
+    // Con el método next se mandan los datos por el canal abierto
+    this._viajesSubject$.next(this.listaViajes);
     return null;
   }
 
