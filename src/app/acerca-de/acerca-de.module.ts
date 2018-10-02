@@ -10,12 +10,16 @@ import { AcercaDeComponent } from './acerca-de.component';
 import { CardModule } from 'primeng/card';
 import { RatingModule } from 'primeng/rating';
 
+// Módulos propios
+import { CompartidosModule } from '../compartidos/compartidos.module';
+
 @NgModule({
   imports: [
     CommonModule,
     CardModule,
     RatingModule,
-    FormsModule
+    FormsModule,
+    CompartidosModule
   ],
   declarations: [
     AcercaDeComponent

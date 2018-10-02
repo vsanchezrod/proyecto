@@ -36,20 +36,4 @@ export class CategoriasService {
     return this.httpClient.post<Categoria>('http://localhost:8080/fitness/api/public/categorias', body, {observe: 'response'});
   }
 
-  public borrarCategoria(id: string): Observable<any>{
-
-    console.log('Quiero borrar la categoría: ' + id);
-
-    const cabeceras = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      })
-    };
-
-    return this.httpClient.delete(`http://localhost:8080/fitness/api/public/categorias/${id}`, cabeceras);
-
-  }
-
-
 }

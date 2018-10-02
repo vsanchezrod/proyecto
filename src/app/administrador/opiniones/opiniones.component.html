@@ -1,46 +1,21 @@
 <div class="ui-g-12">
-  <p>OPINIONES</p>
 
-  <p> AQUI TIENE QUE CARGAR LAS TARJETAS DE LAS OPINIONES CON PAGINACION</p>
+  <h4>Moderador de opiniones</h4>
 
   <p-dataScroller [value]="listaOpiniones" [rows]="10" [inline]="true" scrollHeight="500px">
     <p-header>
-      Scroll Down to to Load More
+      OPINIONES DE LOS USUARIOS
     </p-header>
     <ng-template let-opinion pTemplate="item">
-      <p-card class="ui-g-10" [title]="opinion.titulo">
-        <img class="ui-g-2" src="" alt="usuario.avatar">
-        <div class="ui-g">
-          <p class="ui-g-10">
-            {{ opinion.detalle }}
-          </p>
 
-          <div class="ui-g-4">
-            <label for="ratingOrganizacion">Organización</label>
-            <p-rating class="ui-g-4" [ngModel]="opinion.organizacionValoracion" readonly="true" id="ratingOrganizacion" stars="5" [cancel]="false"></p-rating>
-          </div>
+      <app-tarjeta-opinion [opinion]="opinion"></app-tarjeta-opinion>
 
-          <div class="ui-g-4">
-            <label for="ratingBuenRollo">Buen rollo</label>
-            <p-rating class="ui-g-4" [ngModel]="opinion.ambienteValoracion" readonly="true" id="ratingBuenRollo" stars="5" [cancel]="false"></p-rating>
-          </div>
-
-          <div class="ui-g-4">
-            <label for="ratingRecorrido">Recorrido</label>
-            <p-rating class="ui-g-4" [ngModel]="opinion.recorridoValoracion" readonly="true" id="ratingRecorrido" stars="5" [cancel]="false"></p-rating>
-          </div>
-        </div>
-
-        <button pButton type="button" label="MANDAR MENSAJE USUARIO" class="ui-button-rounded ui-button-warning"></button>
+      <div class="ui-g-2">
+        <button pButton type="button" label="MENSAJE" class="ui-button-rounded ui-button-warning"></button>
         <button pButton type="button" label="BORRAR" class="ui-button-rounded ui-button-danger"></button>
-      </p-card>
+      </div>
+
     </ng-template>
   </p-dataScroller>
-
-
-
-
-
-
 
 </div>

@@ -22,26 +22,6 @@
         <video width="424" height="238" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></video>
     </div>
 
-    <p-card *ngFor="let opinion of listaOpiniones" class="ui-g-10" [title]="opinion.titulo">
-      <img class="ui-g-2" src="" alt="usuario.avatar">
-      <div class="ui-g">
-        <p class="ui-g-12">
-          {{ opinion.detalle }}
-        </p>
+</div>
 
-        <div class="ui-g-4">
-          <label for="ratingOrganizacion">Organización</label>
-          <p-rating class="ui-g-4" [ngModel]="opinion.organizacionValoracion" readonly="true" id="ratingOrganizacion" stars="5" [cancel]="false"></p-rating>
-        </div>
-
-        <div class="ui-g-4">
-          <label for="ratingBuenRollo">Buen rollo</label>
-          <p-rating class="ui-g-4" [ngModel]="opinion.ambienteValoracion" readonly="true" id="ratingBuenRollo" stars="5" [cancel]="false"></p-rating>
-        </div>
-
-        <div class="ui-g-4">
-          <label for="ratingRecorrido">Recorrido</label>
-          <p-rating class="ui-g-4" [ngModel]="opinion.recorridoValoracion" readonly="true" id="ratingRecorrido" stars="5" [cancel]="false"></p-rating>
-        </div>
-     </div>
-    </p-card>
+<app-tarjeta-opinion [opinion]="opinion" *ngFor="let opinion of listaOpiniones"></app-tarjeta-opinion>

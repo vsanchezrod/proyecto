@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 // Componentes compartidos
 import { TarjetaSalidaComponent } from './tarjeta-salida/tarjeta-salida.component';
 import { TarjetaViajeComponent } from './tarjeta-viaje/tarjeta-viaje.component';
+import { TarjetaOpinionComponent } from './tarjeta-opinion/tarjeta-opinion.component';
 
 @NgModule({
   imports: [
@@ -23,11 +24,13 @@ import { TarjetaViajeComponent } from './tarjeta-viaje/tarjeta-viaje.component';
   ],
   declarations: [
     TarjetaSalidaComponent,
-    TarjetaViajeComponent
+    TarjetaViajeComponent,
+    TarjetaOpinionComponent
   ],
   exports: [
     TarjetaSalidaComponent,
-    TarjetaViajeComponent
+    TarjetaViajeComponent,
+    TarjetaOpinionComponent
   ]
 })
 export class CompartidosModule { }

@@ -13,12 +13,13 @@ import { OpinionesComponent } from './opiniones/opiniones.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 
-// Modulos para Componentes de PrimeNG
+// Módulos para Componentes de PrimeNG
 import { FileUploadModule } from 'primeng/fileupload';
-import { RatingModule } from 'primeng/rating';
-import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { DataScrollerModule } from 'primeng/datascroller';
+
+// Módulos propios
+import { CompartidosModule } from '../compartidos/compartidos.module';
 
 
 @NgModule({
@@ -28,10 +29,9 @@ import { DataScrollerModule } from 'primeng/datascroller';
     FileUploadModule,
     FormsModule,
     ReactiveFormsModule,
-    RatingModule,
-    CardModule,
     ButtonModule,
-    DataScrollerModule
+    DataScrollerModule,
+    CompartidosModule
   ],
   declarations: [
     AdministradorComponent,
