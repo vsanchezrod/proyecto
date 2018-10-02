@@ -1,17 +1,37 @@
-<div class="ui-g-10">
-  <p>NUEVA LISTA DE ACTIVIDADES</p>
+<h3>NUEVA LISTA DE ACTIVIDADES</h3>
+<h4>AQUI TIENE QUE CARGAR UN LISTADO CON TODAS ACTIVIDADES CON PAGINACION</h4>
 
-  <p> AQUI TIENE QUE CARGAR UN LISTADO CON TODAS ACTIVIDADES CON PAGINACION</p>
+<p-dataScroller class="ui-g-6" [value]="listaViajes" [rows]="10" [inline]="true" scrollHeight="500px">
+  <p-header>
+    LISTA DE VIAJES
+  </p-header>
 
-  <div class="ui-g-6">
-  <ul>
-    <h3>Lista de Viajes</h3>
-    <li>Actividad 1 <button>EDITAR</button><button>BORRAR</button></li>
-    <li>Actividad 2 <button>EDITAR</button><button>BORRAR</button></li>
-    <li>Actividad 3 <button>EDITAR</button><button>BORRAR</button></li>
-    <li>Actividad 4 <button>EDITAR</button><button>BORRAR</button></li>
-    <li>Actividad 5 <button>EDITAR</button><button>BORRAR</button></li>
-  </ul>
-  </div>
+  <ng-template let-viaje pTemplate="item">
 
-</div>
+    <app-tarjeta-viaje class="ui-g-8" [viaje]="viaje"></app-tarjeta-viaje>
+
+    <div class="ui-g-2">
+      <button pButton type="button" label="EDITAR" class="ui-button-rounded ui-button-warning"></button>
+      <button pButton type="button" label="BORRAR"  class="ui-button-rounded ui-button-danger"></button>
+    </div>
+
+  </ng-template>
+</p-dataScroller>
+
+
+<p-dataScroller class="ui-g-6" [value]="listaViajes" [rows]="10" [inline]="true" scrollHeight="500px">
+  <p-header>
+    LISTA DE SALIDAS
+  </p-header>
+
+  <ng-template let-viaje pTemplate="item">
+
+    <app-tarjeta-viaje class="ui-g-8" [viaje]="viaje"></app-tarjeta-viaje>
+
+    <div class="ui-g-2">
+      <button pButton type="button" label="EDITAR" class="ui-button-rounded ui-button-warning"></button>
+      <button pButton type="button" label="BORRAR"  class="ui-button-rounded ui-button-danger"></button>
+    </div>
+
+  </ng-template>
+</p-dataScroller>
