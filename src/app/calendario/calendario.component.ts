@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
+// Servicio
+import { ViajesService } from '../servicios/viajes.service';
+
+// Modelos
+import { Evento } from '../modelos/evento.model';
+
+
 @Component({
   selector: 'app-calendario',
   templateUrl: './calendario.component.html',
@@ -7,26 +14,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarioComponent implements OnInit {
 
-  public events: any[];
+  public listaEventos: Array<Evento> = [];
 
-  constructor() { }
+  constructor(private viajesService: ViajesService) { }
 
   ngOnInit() {
 
-    this.events = [
-      {
-        'title': 'Ruta en bici a Marrupe',
-        'start': '2018-09-16'
-      },
-      {
-        'title': 'Ruta en bici a Sotillo de las Palomas',
-        'start': '2018-09-17'
-      },
-      {
-        'title': 'Ruta en bici a Cervera',
-        'start': '2018-09-18'
+    this.viajesService.obtenerViajes().subscribe(viajes => {
+      console.log('Calendario VIAJES: ', viajes);
+      for (const viaje of viajes) {
+        const nuevoEvento: Evento = new Evento(viaje.nombre, '2018-10-22');
+        this.listaEventos.push(nuevoEvento);
+
       }
-    ];
+
+    });
+
+    this.viajesService.obtenerViajes2();
+
   }
 
 }
