@@ -6,6 +6,8 @@ import { ViajesService } from '../servicios/viajes.service';
 // Modelos
 import { Evento } from '../modelos/evento.model';
 
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-calendario',
@@ -23,6 +25,8 @@ export class CalendarioComponent implements OnInit {
     this.viajesService.obtenerViajes().subscribe(viajes => {
       console.log('Calendario VIAJES: ', viajes);
       for (const viaje of viajes) {
+
+        // viaje.fechaInicio = moment(viaje.fechaInicio).format('YYYY-MM-DD');
         const nuevoEvento: Evento = new Evento(viaje.nombre, '2018-10-22');
         this.listaEventos.push(nuevoEvento);
 

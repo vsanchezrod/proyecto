@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 // Modelo de datos
 import { Salida } from '../../../modelos/salida.model';
+import { Categoria } from '../../../modelos/categoria.model';
+
+// Servicio
+import { CategoriasService } from '../../../servicios/categorias.service';
 
 @Component({
   selector: 'app-actividad-nueva',
@@ -15,17 +19,11 @@ export class ActividadNuevaComponent implements OnInit {
   distanciaMinima: number;
   distanciaMaxima: number;
 
-  listaCategorias = [
-    {id: 1, nombre: 'Bici', descripcion: 'Kaka'},
-    {id: 2, nombre: 'Senderismo', descripcion: 'Kaka'},
-    {id: 3, nombre: 'Padel', descripcion: 'Kaka'},
-    {id: 4, nombre: 'Viajes', descripcion: 'Kaka'},
-    {id: 5, nombre: 'Salidas de un día', descripcion: 'Kaka'}
-  ];
+  listaCategorias: Array<Categoria> = [];
 
   es: any;
 
-  constructor() {
+  constructor(private categoriaService: CategoriasService) {
   }
 
   ngOnInit() {
@@ -34,6 +32,10 @@ export class ActividadNuevaComponent implements OnInit {
 
     this.distanciaMinima = 1;
     this.distanciaMaxima = 150;
+
+   this.categoriaService.obtenerListaCategorias().subscribe(response => {
+     this.listaCategorias = response.body;
+   });
 
     console.log('SALIDA: '  + this.salida);
 

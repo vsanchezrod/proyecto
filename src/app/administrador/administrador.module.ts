@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Rutas
 import { RouterModule } from '@angular/router';
 
+// Formularios
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Componentes
@@ -17,9 +19,14 @@ import { CategoriasComponent } from './categorias/categorias.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
 import { DataScrollerModule } from 'primeng/datascroller';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { RatingModule } from 'primeng/rating';
+import { SliderModule } from 'primeng/slider';
+import { CalendarModule } from 'primeng/calendar';
 
 // Módulos propios
 import { CompartidosModule } from '../compartidos/compartidos.module';
+
 
 
 @NgModule({
@@ -31,7 +38,11 @@ import { CompartidosModule } from '../compartidos/compartidos.module';
     ReactiveFormsModule,
     ButtonModule,
     DataScrollerModule,
-    CompartidosModule
+    CompartidosModule,
+    MultiSelectModule,
+    RatingModule,
+    SliderModule,
+    CalendarModule
   ],
   declarations: [
     AdministradorComponent,

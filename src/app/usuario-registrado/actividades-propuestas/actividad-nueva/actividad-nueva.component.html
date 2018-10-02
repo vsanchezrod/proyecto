@@ -20,14 +20,14 @@
 
     <h4>Distancia km:</h4>
     <span class="ui-float-label">
-      <p-slider [(ngModel)]="salida.distancia" name="distancia" [min]="1" [max]="distanciaMaxima" id="distancia"[style]="{'width':'14em'}" [animate]="true"></p-slider>
+      <p-slider [(ngModel)]="salida.distancia" name="distancia" [min]="1" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true"></p-slider>
       <label for="distancia">Km</label>
     </span>
 
     <div>
       <h4>Fecha:</h4>
       <span class="ui-float-label">Día</span>
-      <p-calendar [locale]="es" name="fechaInicio" [(ngModel)]="salida.fechaInicio" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true"></p-calendar>
+      <p-calendar [locale]="es" name="fechaInicio" [(ngModel)]="salida.fechaInicio" dateFormat="yy-mm-dd" [showTime]="true" [showIcon]="true" hourFormat="24"></p-calendar>
     </div>
 
     <h4>Imágen para actividad</h4>

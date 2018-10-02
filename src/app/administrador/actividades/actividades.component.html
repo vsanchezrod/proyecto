@@ -35,3 +35,63 @@
 
   </ng-template>
 </p-dataScroller>
+
+
+<div class="ui-g-6">
+  <h3>CREAR VIAJE</h3>
+
+  <form #formularioActividadAdmin="ngForm">
+
+    <h4>Nombre</h4>
+    <span class="ui-float-label">
+      <input id="nombre" name="nombre" [(ngModel)]="viaje.nombre" type="text" size="30" pInputText>
+      <label for="nombre">Nombre</label>
+    </span>
+
+    <h4>Categoría</h4>
+    <p-multiSelect [options]="listaCategorias" name="categorias" [(ngModel)]="viaje.categorias" defaultLabel="Selecciona una categoría" filterPlaceHolder="Busca aquí" optionLabel="nombre" filter="true"></p-multiSelect>
+
+    <h4 class="first">Descripción</h4>
+    <textarea name="descripcion" [(ngModel)]="viaje.descripcion" rows="5" cols="30" pInputTextarea></textarea>
+
+    <h4>Nivel</h4>
+    <p-rating stars="3" [(ngModel)]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
+
+    <h4>Distancia km:</h4>
+    <span class="ui-float-label">
+      <p-slider [(ngModel)]="viaje.distancia" name="distancia" [min]="1" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true"></p-slider>
+      <label for="distancia">Km</label>
+    </span>
+
+    <div>
+      <h4>Fecha Inicio:</h4>
+      <span class="ui-float-label">Día</span>
+      <p-calendar [locale]="es" name="fechaInicio" [(ngModel)]="viaje.fechaInicio" dateFormat="yy-mm-dd" [showTime]="true" [showIcon]="true" hourFormat="24"></p-calendar>
+    </div>
+
+    <div>
+      <h4>Fecha Fin:</h4>
+      <span class="ui-float-label">Día</span>
+      <p-calendar [locale]="es" name="fechaFin" [(ngModel)]="viaje.fechaFin" dateFormat="yy-mm-dd" [showTime]="true" [showIcon]="true" hourFormat="24"></p-calendar>
+    </div>
+
+    <h4>Precio:</h4>
+
+    <h4>Plazas:</h4>
+
+    <h4>Imágen para actividad</h4>
+    <!--<p-fileUpload name="imagen" [(ngModel)]="salida.imagen" mode="basic" url="./upload.php" accept="image/*" maxFileSize="1000000" multiple="multiple"></p-fileUpload>-->
+
+    <h4>Punto de encuentro</h4>
+    <div><img src="" alt="AGREGAR MAPA DE GMAPS"></div>
+
+    <button pButton type="submit" label="PUBLICAR ACTIVIDAD" class="ui-button-info"></button>
+
+  </form>
+
+</div>
+
+<div class="ui-g-6">
+  <h3>Vista preliminar!</h3>
+  <app-tarjeta-viaje [viaje]="viaje" class="ui-g-4"></app-tarjeta-viaje>
+</div>
