@@ -5,9 +5,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // Servicios
 import { ProvinciasService } from '../../servicios/provincias.service';
+import { InteresesService } from '../../servicios/intereses.service';
 
 // Modelos
 import { Provincia } from '../../modelos/provincia.model';
+import { Interes } from '../../modelos/interes.model';
 
 @Component({
   selector: 'app-registro',
@@ -20,23 +22,23 @@ export class RegistroComponent implements OnInit {
 
   listaProvincias: Array<Provincia> = [];
 
-  interesesLista = [
-    { id: 1, nombre: 'Bici', descripcion: 'Kaka'},
-    { id: 2, nombre: 'Senderismo', descripcion: 'Kaka'},
-    { id: 3, nombre: 'Padel', descripcion: 'Kaka'},
-    { id: 4, nombre: 'Viajes', descripcion: 'Kaka'},
-    { id: 5, nombre: 'Salidas de un día', descripcion: 'Kaka'}
-    ];
+  listaIntereses: Array<Interes> = [];
 
-
-  constructor(private provinciasService: ProvinciasService) {}
+  constructor(private provinciasService: ProvinciasService,
+              private interesesService: InteresesService) {}
 
   ngOnInit() {
 
     this.provinciasService.obtenerProvincias()
       .subscribe(response => {
-        console.log('Respuesta de la petición: ' + response.status);
+        console.log('Respuesta de la petición de lista de provincias: ' + response.status);
         this.listaProvincias = response.body;
+      });
+
+    this.interesesService.obtenerListaIntereses()
+      .subscribe(response => {
+        console.log('Respuesta de la petición de lista de intereses: ' + response.status);
+        this.listaIntereses = response.body;
       });
 
     this.formularioRegistro = new FormGroup({

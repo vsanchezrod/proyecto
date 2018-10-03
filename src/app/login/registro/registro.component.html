@@ -27,7 +27,7 @@
     <h3>Fecha de Nacimiento</h3>
     <div>
         <span class="ui-float-label">Date</span>
-        <p-inputMask [formControl]="formularioRegistro.controls['fechaNacimiento']" mask="99/99/9999" placeholder="mm/dd/yyyy" slotChar="mm/dd/yyyy"></p-inputMask>
+        <p-inputMask [formControl]="formularioRegistro.controls['fechaNacimiento']" mask="99/99/9999" placeholder="dd/mm/yyyy" slotChar="dd/mm/yyyy"></p-inputMask>
     </div>
 
     <h3>Sexo</h3>
@@ -49,15 +49,14 @@
 
     <h3>Intereses</h3>
     <div class="ui-g" style="width:250px;margin-bottom:10px">
-        <div *ngFor="let interes of interesesLista" class="ui-g-12">
+        <div *ngFor="let interes of listaIntereses" class="ui-g-12">
             <p-checkbox [formControl]="formularioRegistro.controls['intereses']" [value]="interes.id" [label]="interes.nombre"></p-checkbox>
         </div>
     </div>
 
     <h3>Términos</h3>
-    <div class="ui-g" style="width:250px;margin-bottom:10px">
-        <p-checkbox [formControl]="formularioRegistro.controls['terminos']" binary="true" label="Acepto los términos y condiciones"></p-checkbox>
-    </div>
+    <p-inputSwitch [formControl]="formularioRegistro.controls['terminos']"></p-inputSwitch>
+    <span>Acepto los términos y condiciones</span>
 
     <button pButton type="submit" label="REGISTRO" class="ui-button-info"></button>
 

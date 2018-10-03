@@ -13,6 +13,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 // Formularios
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +36,8 @@ import { RegistroComponent } from './registro/registro.component';
     RadioButtonModule,
     DropdownModule,
     FileUploadModule,
-    ButtonModule
+    ButtonModule,
+    InputSwitchModule
   ],
   declarations: [
     LoginComponent,
