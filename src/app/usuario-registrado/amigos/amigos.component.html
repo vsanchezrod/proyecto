@@ -1,3 +1,48 @@
-<div>
-  <p>LISTA DE AMIGOS</p>
+<div class="card-body">
+  <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+  </form>
+</div>
+
+<div class="ui-g-3">
+
+  <p-dataScroller [value]="listaContactos" [rows]="10">
+    <p-header>
+      Tus contactos!
+    </p-header>
+    <ng-template let-usuario pTemplate="item">
+      <div class="ui-g car-item">
+        <div class="ui-g-12 ui-md-3">
+          <img [src]="usuario.avatar">
+        </div>
+        <div class="ui-g-12 ui-md-9">
+          <p>{{ usuario.nombre }}</p>
+          <button class="btn btn-outline-success my-2 my-sm-0">Mandar mensaje</button>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataScroller>
+
+</div>
+
+<div class="ui-g-3">
+
+  <p-dataScroller [value]="listaContactos" [rows]="10">
+    <p-header>
+      Contactos encontrados!
+    </p-header>
+    <ng-template let-usuario pTemplate="item">
+      <div class="ui-g car-item">
+        <div class="ui-g-12 ui-md-3">
+          <img [src]="usuario.avatar">
+        </div>
+        <div class="ui-g-12 ui-md-9">
+          <p>{{ usuario.nombre }}</p>
+          <button class="btn btn-outline-success my-2 my-sm-0">Mandar mensaje</button>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataScroller>
+
 </div>

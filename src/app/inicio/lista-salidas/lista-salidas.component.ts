@@ -18,7 +18,10 @@ export class ListaSalidasComponent implements OnInit {
   constructor(private salidasService: SalidasService) { }
 
   ngOnInit() {
-    this.listaSalidas = this.salidasService.obtenerSalidas();
+
+    this.salidasService.obtenerSalidas().subscribe(response => {
+      this.listaSalidas = response.body;
+    });
   }
 
 }

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 import { Salida } from '../modelos/salida.model';
 
 
@@ -8,60 +11,17 @@ import { Salida } from '../modelos/salida.model';
 })
 export class SalidasService {
 
-  // CAMBIAR PARA QUE LOS DATOS VENGAN DE LA API
-  public listaSalidas: Array<Salida> = [
-    {
-      nombre: 'Hinojosa de San Vicente',
-      categorias: ['lala1', 'lala2'],
-      descripcion: 'lililililili',
-      nivel: 1,
-      distancia: 15,
-      fechaInicio: new Date(),
-      imagen: 'asdada',
-      puntoEncuentro: {
-        latitud: 0,
-        longitud: 0
-      }
-    },
-    {
-      nombre: 'LALALALLA2',
-      categorias: ['lala1', 'lala2'],
-      descripcion: 'lililililili',
-      nivel: 3,
-      distancia: 15,
-      fechaInicio: new Date(),
-      imagen: 'asdada',
-      puntoEncuentro: {
-        latitud: 0,
-        longitud: 0
-      }
-    },
-    {
-      nombre: 'LALALAL 3',
-      categorias: ['lala1', 'lala2'],
-      descripcion: 'lililililili',
-      nivel: 2,
-      distancia: 50,
-      fechaInicio: new Date(),
-      imagen: 'asdada',
-      puntoEncuentro: {
-        latitud: 0,
-        longitud: 0
-      }
-    }
-  ];
-
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
   // Método público para poder acceder a los datos. Devuelve un array de Salidas
-  obtenerSalidas(): Array<Salida> {
-    return this.listaSalidas;
+  public obtenerSalidas(): Observable<HttpResponse<Array<Salida>>> {
+    return this.httpClient.get<Array<Salida>>('http://localhost:8080/fitness/api/public/salidas', {observe: 'response'});
   }
 
-  // Método público para poder acceder a una salida en concreto a través del índice
-  obtenerSalida(indice: number): Salida {
+  // HACERLO CON BEHAVIOUR SUBJECT
+  /*obtenerSalida(indice: number): Salida {
     return this.listaSalidas[indice];
-  }
+  }*/
 
 
 }

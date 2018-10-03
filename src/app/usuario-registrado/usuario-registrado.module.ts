@@ -14,6 +14,7 @@ import { CardModule } from 'primeng/card';
 import { RatingModule } from 'primeng/rating';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { SliderModule } from 'primeng/slider';
+import { DataScrollerModule } from 'primeng/datascroller';
 
 // Módulo de componentes compartidos
 import { CompartidosModule } from '../compartidos/compartidos.module';
@@ -52,7 +53,8 @@ import { ActividadEditarComponent } from './actividades-propuestas/actividad-edi
     CardModule,
     RatingModule,
     SplitButtonModule,
-    SliderModule
+    SliderModule,
+    DataScrollerModule
   ],
   declarations: [
     UsuarioRegistradoComponent,

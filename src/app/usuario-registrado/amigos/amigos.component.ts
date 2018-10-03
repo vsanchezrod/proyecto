@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Usuario} from '../../modelos/usuario.model';
+
 @Component({
   selector: 'app-amigos',
   templateUrl: './amigos.component.html',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AmigosComponent implements OnInit {
 
+  listaContactos: Array<Usuario>;
+
   constructor() { }
 
   ngOnInit() {
+
+    this.listaContactos = [];
   }
 
 }

@@ -44,8 +44,9 @@ export class ActividadesComponent implements OnInit {
 
     this.viajesService.obtenerViajes2();
 
-    // CAMBIARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-    this.listaSalidas = this.salidasService.listaSalidas;
+    this.salidasService.obtenerSalidas().subscribe( response => {
+      this.listaSalidas = response.body;
+    });
 
     this.es = {
       firstDayOfWeek: 1,
