@@ -1,17 +1,21 @@
 <div class="ui-g-12">
   <p>LISTA DE USUARIOS</p>
 
-  <p> AQUI TIENE QUE CARGAR UN LISTADO CON TODOS LOS USUARIOS CON PAGINACION</p>
+  <p-dataScroller [value]="listaUsuarios" [rows]="10" [inline]="true" scrollHeight="500px">
+    <p-header>
+      LISTA DE USUARIOS
+    </p-header>
+    <ng-template let-usuario pTemplate="item">
 
-  <div class="ui-g-8">
-    <ul>
-      <h3>Lista de Usuarios registrados</h3>
-      <li><img src="" alt="AVATAR">Nombre Usuario 1<button>VER</button><button>ELIMINAR</button></li>
-      <li>Nombre Usuario 2</li>
-      <li>Nombre Usuario 3</li>
-      <li>Nombre Usuario 4</li>
-      <li>Nombre Usuario 5</li>
-    </ul>
-  </div>
+      <p> {{ usuario.nombre }}</p>
+
+
+      <div class="ui-g-2">
+        <button pButton type="button" label="MENSAJE" class="ui-button-rounded ui-button-warning"></button>
+        <button pButton type="button" label="BORRAR" class="ui-button-rounded ui-button-danger"></button>
+      </div>
+
+    </ng-template>
+  </p-dataScroller>
 
 </div>

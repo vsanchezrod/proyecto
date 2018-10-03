@@ -15,9 +15,12 @@ export class Usuario {
   intereses?: Array<Interes>;
   terminos: boolean;
   valoracion: number;
+  roles?: Array<string>
 
   constructor() {
     this.intereses = [];
+    this.roles = [];
   }
 
 }
+
