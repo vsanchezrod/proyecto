@@ -1,0 +1,13 @@
+<p-card class="ui-g-10" [title]="usuario.nombre" [subtitle]="usuario.fechaNacimiento" styleClass="ui-card-shadow">
+  <p-header>
+    <img src="Card" [src]="usuario.avatar">
+  </p-header>
+  <p> {{ usuario.email }}</p>
+  <div class="ui-g-4">
+    <p-rating class="ui-g-4" [ngModel]="usuario.valoracion" readonly="true" id="valoracion" stars="5" [cancel]="false"></p-rating>
+  </div>
+  <p-footer>
+    <button pButton type="button" label="Agregar" icon="pi pi-check" style="margin-right: .25em"></button>
+    <button pButton type="button" label="Eliminar" icon="pi pi-times" class="ui-button-secondary"></button>
+  </p-footer>
+</p-card>

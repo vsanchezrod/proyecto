@@ -7,13 +7,7 @@
     </p-header>
     <ng-template let-usuario pTemplate="item">
 
-      <p> {{ usuario.nombre }}</p>
-
-
-      <div class="ui-g-2">
-        <button pButton type="button" label="MENSAJE" class="ui-button-rounded ui-button-warning"></button>
-        <button pButton type="button" label="BORRAR" class="ui-button-rounded ui-button-danger"></button>
-      </div>
+      <app-tarjeta-usuario [usuario]="usuario"></app-tarjeta-usuario>
 
     </ng-template>
   </p-dataScroller>

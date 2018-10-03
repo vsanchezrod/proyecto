@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { TarjetaSalidaComponent } from './tarjeta-salida/tarjeta-salida.component';
 import { TarjetaViajeComponent } from './tarjeta-viaje/tarjeta-viaje.component';
 import { TarjetaOpinionComponent } from './tarjeta-opinion/tarjeta-opinion.component';
+import { TarjetaUsuarioComponent } from './tarjeta-usuario/tarjeta-usuario.component';
 
 @NgModule({
   imports: [
@@ -25,12 +26,14 @@ import { TarjetaOpinionComponent } from './tarjeta-opinion/tarjeta-opinion.compo
   declarations: [
     TarjetaSalidaComponent,
     TarjetaViajeComponent,
-    TarjetaOpinionComponent
+    TarjetaOpinionComponent,
+    TarjetaUsuarioComponent
   ],
   exports: [
     TarjetaSalidaComponent,
     TarjetaViajeComponent,
-    TarjetaOpinionComponent
+    TarjetaOpinionComponent,
+    TarjetaUsuarioComponent
   ]
 })
 export class CompartidosModule { }

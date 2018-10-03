@@ -9,7 +9,7 @@ import { Salida } from '../modelos/salida.model';
 export class SalidasService {
 
   // CAMBIAR PARA QUE LOS DATOS VENGAN DE LA API
-  private listaSalidas: Array<Salida> = [
+  public listaSalidas: Array<Salida> = [
     {
       nombre: 'Hinojosa de San Vicente',
       categorias: ['lala1', 'lala2'],
