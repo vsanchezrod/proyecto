@@ -47,6 +47,12 @@
     <h3>Avatar</h3>
     <p-fileUpload mode="basic" name="avatar" url="./upload.php" accept="image/*" maxFileSize="1000000"></p-fileUpload>
 
+    <h3>Más sobre ti</h3>
+    <span class="ui-float-label">
+        <input [formControl]="formularioRegistro.controls['info']" id="info" type="text" size="30" pInputText>
+        <label for="info">Info</label>
+    </span>
+
     <h3>Intereses</h3>
     <div class="ui-g" style="width:250px;margin-bottom:10px">
         <div *ngFor="let interes of listaIntereses" class="ui-g-12">

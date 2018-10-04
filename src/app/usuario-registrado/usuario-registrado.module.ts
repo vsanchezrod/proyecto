@@ -15,6 +15,9 @@ import { RatingModule } from 'primeng/rating';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { SliderModule } from 'primeng/slider';
 import { DataScrollerModule } from 'primeng/datascroller';
+import { InplaceModule } from 'primeng/inplace';
+import { InputMaskModule } from 'primeng/inputmask';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 // Módulo de componentes compartidos
 import { CompartidosModule } from '../compartidos/compartidos.module';
@@ -54,7 +57,10 @@ import { ActividadEditarComponent } from './actividades-propuestas/actividad-edi
     RatingModule,
     SplitButtonModule,
     SliderModule,
-    DataScrollerModule
+    DataScrollerModule,
+    InplaceModule,
+    InputMaskModule,
+    RadioButtonModule
   ],
   declarations: [
     UsuarioRegistradoComponent,

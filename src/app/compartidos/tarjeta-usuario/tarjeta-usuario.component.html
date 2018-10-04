@@ -2,8 +2,9 @@
   <p-header>
     <img src="Card" [src]="usuario.avatar">
   </p-header>
-  <p> {{ usuario.email }}</p>
+  <p>{{ usuario.email }}</p>
   <div class="ui-g-4">
+    <p>{{ usuario.info }}</p>
     <p-rating class="ui-g-4" [ngModel]="usuario.valoracion" readonly="true" id="valoracion" stars="5" [cancel]="false"></p-rating>
   </div>
   <p-footer>

@@ -12,10 +12,11 @@ export class Usuario {
   sexo: string;
   provincia?: Provincia;
   avatar?: string;
+  info?: string;
   intereses?: Array<Interes>;
   terminos: boolean;
   valoracion: number;
-  roles?: Array<string>
+  roles?: Array<string>;
 
   constructor() {
     this.intereses = [];

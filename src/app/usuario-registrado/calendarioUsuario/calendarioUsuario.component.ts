@@ -26,7 +26,7 @@ export class CalendarioUsuarioComponent implements OnInit {
     this.listaEventos = [
       {
         'id': 'lallalal',
-        'title': 'Ruta en bici a Marrupe',
+        'title': 'Ruta en bici a Marrupeaaaaa',
         'start': '2018-10-16'
       },
       {
@@ -38,7 +38,7 @@ export class CalendarioUsuarioComponent implements OnInit {
         'id': 'lallalal',
         'title': 'Ruta en bici a Cervera',
         'start': '2018-10-18',
-        'end': '2018-10-20'
+        'end': '2018-10-21'
       }
     ];
  }
