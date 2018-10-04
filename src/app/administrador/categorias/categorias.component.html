@@ -1,9 +1,55 @@
 <div class="ui-g-12">
 
-  <div class="ui-g-4" *ngFor="let categoria of listaCategorias">
+  <div class="ui-g-6">
+
+    <div class="ui-g-4" *ngFor="let categoria of listaCategorias">
+      <div>
+        <h5>{{ categoria.nombre }}</h5>
+        <img src="" alt="FOTO">
+      </div>
+      <button pButton type="button" label="Editar" class="ui-button-rounded ui-button-warning"></button>
+      <button pButton type="button" label="¿Borrar?" class="ui-button-rounded ui-button-danger"></button>
+    </div>
+
+  </div>
+
+  <div class="ui-g-6">
+    <h3>CREAR CATEGORÍA</h3>
+
+    <form [formGroup]="formularioCategoria" (ngSubmit)="crearCategoria(formularioCategoria.value)">
+
+      <div>
+        <h4>Nombre de la categoría</h4>
+        <span class="ui-float-label">
+          <input [formControl]="formularioCategoria.controls['nombre']" id="nombre" name="nombre" type="text" size="30" pInputText>
+          <label for="nombre">Nombre</label>
+        </span>
+
+        <h4>Añade una descripción</h4>
+        <span class="ui-float-label">
+          <input [formControl]="formularioCategoria.controls['descripcion']" id="descripcion" name="descripcion" type="text" size="30" pInputText>
+          <label for="descripcion">Nombre</label>
+        </span>
+
+        <h4>Asocia la nueva categoría con una imagen</h4>
+        <p-fileUpload chooseLabel="Subir Imagen" mode="basic" id="imagen" name="imagen" accept="image/*" maxFileSize="1000000"></p-fileUpload>
+
+      </div>
+
+      <button pButton type="submit" label="CREAR" class="ui-button-info"></button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<div class="ui-g-6">
+
+  <div class="ui-g-4" *ngFor="let interes of listaIntereses">
     <div>
-      <h5>{{ categoria.nombre }}</h5>
-      <img src="" alt="FOTO">
+      <h5>{{ interes.nombre }}</h5>
     </div>
     <button pButton type="button" label="Editar" class="ui-button-rounded ui-button-warning"></button>
     <button pButton type="button" label="¿Borrar?" class="ui-button-rounded ui-button-danger"></button>
@@ -11,30 +57,28 @@
 
 </div>
 
-<div class="ui-g-10">
-  <h3>CREAR CATEGORÍA</h3>
 
-  <form [formGroup]="formularioCategoria" (ngSubmit)="crearCategoria(formularioCategoria.value)">
+<div class="ui-g-6">
+  <h3>AÑADIR INTERÉS</h3>
+
+  <form [formGroup]="formularioIntereses" (ngSubmit)="crearInteres(formularioIntereses.value)">
 
     <div>
       <h4>Nombre de la categoría</h4>
       <span class="ui-float-label">
-        <input [formControl]="formularioCategoria.controls['nombre']" id="nombre" name="nombre" type="text" size="30" pInputText>
-        <label for="nombre">Nombre</label>
+        <input [formControl]="formularioIntereses.controls['nombre']" id="nombreInteres" name="nombreInteres" type="text" size="30" pInputText>
+        <label for="nombreInteres">Nombre</label>
       </span>
 
       <h4>Añade una descripción</h4>
       <span class="ui-float-label">
-        <input [formControl]="formularioCategoria.controls['descripcion']" id="descripcion" name="descripcion" type="text" size="30" pInputText>
-        <label for="descripcion">Nombre</label>
+        <input [formControl]="formularioIntereses.controls['descripcion']" id="descripcionInteres" name="descripcionInteres" type="text" size="30" pInputText>
+        <label for="descripcionInteres">Nombre</label>
       </span>
-
-      <h4>Asocia la nueva categoría con una imagen</h4>
-      <p-fileUpload chooseLabel="Subir Imagen" mode="basic" id="imagen" name="imagen" accept="image/*" maxFileSize="1000000"></p-fileUpload>
 
     </div>
 
-    <button pButton type="submit" label="CREAR" class="ui-button-info"></button>
+    <button pButton type="submit" label="AÑADIR" class="ui-button-info"></button>
 
   </form>
 

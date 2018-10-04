@@ -1,12 +1,12 @@
-
 <p-dataScroller class="ui-g-6" [value]="listaViajes" [rows]="10" [inline]="true" scrollHeight="500px">
+
   <p-header>
     LISTA DE VIAJES
   </p-header>
 
   <ng-template let-viaje pTemplate="item">
 
-    <app-tarjeta-viaje class="ui-g-8" [viaje]="viaje"></app-tarjeta-viaje>
+    <app-tarjeta-viaje class="ui-g-10" [viaje]="viaje"></app-tarjeta-viaje>
 
     <div class="ui-g-2">
       <button pButton type="button" label="EDITAR" class="ui-button-rounded ui-button-warning"></button>
@@ -14,10 +14,11 @@
     </div>
 
   </ng-template>
+
 </p-dataScroller>
 
-
 <p-dataScroller class="ui-g-6" [value]="listaSalidas" [rows]="10" [inline]="true" scrollHeight="500px">
+
   <p-header>
     LISTA DE SALIDAS
   </p-header>
@@ -32,11 +33,13 @@
     </div>
 
   </ng-template>
+
 </p-dataScroller>
 
 
-<div class="ui-g-6">
-  <h3>CREAR VIAJE</h3>
+<div class="ui-g-12">
+
+  <h3 class="ui-g-12">CREAR VIAJE</h3>
 
   <form #formularioActividadAdmin="ngForm">
 
