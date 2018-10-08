@@ -17,10 +17,10 @@
 
 </p-dataScroller>
 
-<p-dataScroller class="ui-g-6" [value]="listaSalidas" [rows]="10" [inline]="true" scrollHeight="500px">
+<p-dataScroller class="ui-g-6" [value]="listaActividades" [rows]="10" [inline]="true" scrollHeight="500px">
 
   <p-header>
-    LISTA DE SALIDAS
+    LISTA DE ACTIVIDADES
   </p-header>
 
   <ng-template let-salida pTemplate="item">
@@ -81,7 +81,7 @@
     <h4>Plazas:</h4>
 
     <h4>Imágen para actividad</h4>
-    <!--<p-fileUpload name="imagen" [(ngModel)]="salida.imagen" mode="basic" url="./upload.php" accept="image/*" maxFileSize="1000000" multiple="multiple"></p-fileUpload>-->
+    <input type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
 
     <h4>Punto de encuentro</h4>
     <div><img src="" alt="AGREGAR MAPA DE GMAPS"></div>
@@ -89,6 +89,10 @@
     <button pButton type="submit" label="PUBLICAR ACTIVIDAD" class="ui-button-info"></button>
 
   </form>
+
+{{ formularioActividadAdmin.value | json }}
+
+  {{ imagen }}
 
 </div>
 

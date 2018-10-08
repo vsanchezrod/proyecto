@@ -1,7 +1,6 @@
 <p-card class="ui-g" [title]="salida.nombre" subtitle="Categorías" styleClass="ui-card-shadow">
     <p-header class="ui-g-12">
-        <img alt="SALIDA" src="../../../assets/imagenes/avatars/1.png">
-        <!--[src]="salida.imagen"-->
+        <img alt="SALIDA" [src]="salida.imagen">
     </p-header>
     <div class="ui-g-9">{{ salida.descripcion }}</div>
     <div class="ui-g-3">

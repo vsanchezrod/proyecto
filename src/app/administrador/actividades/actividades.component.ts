@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 // Servicio
 import { ViajesService } from '../../servicios/viajes.service';
-import { SalidasService } from '../../servicios/salidas.service';
+import { ActividadesService } from '../../servicios/actividades.service';
+import { CategoriasService } from '../../servicios/categorias.service';
+
 
 import { Viaje } from '../../modelos/viaje.model';
-import { Salida } from '../../modelos/salida.model';
+import { Actividad } from '../../modelos/actividad.model';
 import { Categoria } from '../../modelos/categoria.model';
+
 
 @Component({
   selector: 'app-actividades',
@@ -16,7 +19,7 @@ import { Categoria } from '../../modelos/categoria.model';
 export class ActividadesComponent implements OnInit {
 
   listaViajes: Array<Viaje> = [];
-  listaSalidas: Array<Salida> = [];
+  listaActividades: Array<Actividad> = [];
 
   viaje: Viaje;
 
@@ -25,10 +28,15 @@ export class ActividadesComponent implements OnInit {
 
   listaCategorias: Array<Categoria> = [];
 
+  imagen: string;
+  progreso: number;
+  mostrarSpinner: boolean;
+
   es: any;
 
   constructor(private viajesService: ViajesService,
-              private salidasService: SalidasService) { }
+              private actividadesService: ActividadesService,
+              private categoriasService: CategoriasService) { }
 
   ngOnInit() {
 
@@ -44,9 +52,13 @@ export class ActividadesComponent implements OnInit {
 
     this.viajesService.obtenerViajes2();
 
-    this.salidasService.obtenerSalidas().subscribe( response => {
-      this.listaSalidas = response.body;
+    this.actividadesService.obtenerListaActividades().subscribe( response => {
+      this.listaActividades = response.body;
     });
+
+    this.categoriasService.obtenerListaCategorias().subscribe( response => {
+      this.listaCategorias = response.body;
+    })
 
     this.es = {
       firstDayOfWeek: 1,
@@ -58,5 +70,37 @@ export class ActividadesComponent implements OnInit {
       today: 'Hoy',
       clear: 'Borrar'
     };
+
+  }
+
+  public cargarImagen(event: Event): void {
+    console.log(event);
+    const inputValue: any = event.target;
+    const fichero: File = inputValue.files[0];
+    const fileReader: FileReader = new FileReader();
+
+    fileReader.onerror = (evento) => {
+      this.progreso = 0;
+      this.mostrarSpinner = false;
+    };
+
+    fileReader.onabort = () => {
+      this.progreso = 0;
+      this.mostrarSpinner = false;
+    };
+
+    fileReader.onloadend = (evento) => {
+      this.viaje.imagen = fileReader.result;
+      this.progreso = 100;
+      this.mostrarSpinner = false;
+    };
+
+    fileReader.onprogress = (progressEvent) => {
+      this.progreso = progressEvent.loaded / progressEvent.total * 100;
+    };
+
+    this.progreso = 0;
+    fileReader.readAsDataURL(fichero);
+    this.mostrarSpinner = true;
   }
 }

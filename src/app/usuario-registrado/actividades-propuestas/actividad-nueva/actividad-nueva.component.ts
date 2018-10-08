@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 // Modelo de datos
-import { Salida } from '../../../modelos/salida.model';
+import { Actividad } from '../../../modelos/actividad.model';
 import { Categoria } from '../../../modelos/categoria.model';
 
 // Servicio
 import { CategoriasService } from '../../../servicios/categorias.service';
+import { ActividadesService } from '../../../servicios/actividades.service';
 
 @Component({
   selector: 'app-actividad-nueva',
@@ -14,21 +15,26 @@ import { CategoriasService } from '../../../servicios/categorias.service';
 })
 export class ActividadNuevaComponent implements OnInit {
 
-  salida: Salida;
+  actividad: Actividad;
 
   distanciaMinima: number;
   distanciaMaxima: number;
 
   listaCategorias: Array<Categoria> = [];
 
+  imagen: string;
+  progreso: number;
+  mostrarSpinner: boolean;
+
   es: any;
 
-  constructor(private categoriaService: CategoriasService) {
+  constructor(private categoriaService: CategoriasService,
+              private actividadesService: ActividadesService ) {
   }
 
   ngOnInit() {
 
-    this.salida = new Salida();
+    this.actividad = new Actividad();
 
     this.distanciaMinima = 1;
     this.distanciaMaxima = 150;
@@ -37,7 +43,7 @@ export class ActividadNuevaComponent implements OnInit {
      this.listaCategorias = response.body;
    });
 
-    console.log('SALIDA: '  + this.salida);
+    console.log('ACTIVIDAD: '  + this.actividad);
 
     this.es = {
       firstDayOfWeek: 1,
@@ -51,8 +57,40 @@ export class ActividadNuevaComponent implements OnInit {
     };
   }
 
-  crearSalida() {
-   console.log('Datos enviados');
-   console.log(this.salida);
+  public cargarImagen(event: Event): void {
+    console.log(event);
+    const inputValue: any = event.target;
+    const fichero: File = inputValue.files[0];
+    const fileReader: FileReader = new FileReader();
+
+    fileReader.onerror = (evento) => {
+      this.progreso = 0;
+      this.mostrarSpinner = false;
+    };
+
+    fileReader.onabort = () => {
+      this.progreso = 0;
+      this.mostrarSpinner = false;
+    };
+
+    fileReader.onloadend = (evento) => {
+      this.actividad.imagen = fileReader.result;
+      this.progreso = 100;
+      this.mostrarSpinner = false;
+    };
+
+    fileReader.onprogress = (progressEvent) => {
+      this.progreso = progressEvent.loaded / progressEvent.total * 100;
+    };
+
+    this.progreso = 0;
+    fileReader.readAsDataURL(fichero);
+    this.mostrarSpinner = true;
+  }
+
+  crearActividad(datos) {
+    this.actividadesService.guardarActividad(datos).subscribe( response => {
+      console.log('Respuesta: ' + response.status);
+    });
   }
 }
