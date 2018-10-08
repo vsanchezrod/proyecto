@@ -2,7 +2,7 @@
 
   <div class="ui-g-4" *ngFor="let categoria of listaCategorias">
     <h5>{{ categoria.nombre }}</h5>
-    <img src="" alt="FOTO">
+    <img [src]="categoria.imagen" alt="FOTO">
 
   </div>
 

@@ -29,6 +29,6 @@ export class ViajeComponent implements OnInit {
       console.log(this.viaje);
     });*/
 
-    this.viaje = this.viajesService.obtenerViaje();
+    // this.viaje = this.viajesService.obtenerViaje();
   }
 }

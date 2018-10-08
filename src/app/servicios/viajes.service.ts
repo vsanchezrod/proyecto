@@ -31,27 +31,4 @@ export class ViajesService {
     );
   }
 
-  // FUNCION PRUEBA S BEHAVIOR
-  public obtenerViaje(): Viaje {
-    const viajeNuevo: Viaje = {
-      id: 'Viaje viaje',
-      nombre: 'Viaje',
-      descripcion: 'desc',
-      distancia: 1,
-      fechaFin: new Date(),
-      fechaInicio: new Date(),
-      imagen: 'img',
-      nivel: 1,
-      plazas: 10,
-      precio: 1
-    };
-
-    console.log('ViajesService.obtenerViaje: ', viajeNuevo);
-    // this.listaViajes.push(viajeNuevo);
-
-    // Con el método next se mandan los datos por el canal abierto
-    // this._viajesSubject$.next(this.listaViajes);
-    return viajeNuevo;
-  }
-
 }

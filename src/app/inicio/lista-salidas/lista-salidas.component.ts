@@ -19,9 +19,9 @@ export class ListaSalidasComponent implements OnInit {
 
   ngOnInit() {
 
-    this.salidasService.obtenerSalidas().subscribe(response => {
+    /*this.salidasService.obtenerSalidas().subscribe(response => {
       this.listaSalidas = response.body;
-    });
+    });*/
   }
 
 }
