@@ -1,11 +1,13 @@
-<div class="ui-g">
-
-  <h1 class="ui-g-12">CARRUSEL DE SALIDAS</h1>
+ <p-carousel class="ui-g-12" [value]="listaActividades">
+  <ng-template let-salida pTemplate="item">
+    <div class="ui-grid ui-grid-responsive">
+      <div class="ui-grid-row">
+        <app-tarjeta-salida [salida]="salida" class="ui-g-4"></app-tarjeta-salida>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>
 
   <!-- Con [salida]="salida" le estoy mandando al componente hijo el valor de salida que recibe con el @Input
   De la misma manera se manda el valor del indice al componente hijo con [indice]="i"-->
-  <app-tarjeta-salida [salida]="salida" *ngFor="let salida of listaSalidas" class="ui-g-4"></app-tarjeta-salida>
-
-
-</div>
-
+  <!-- <app-tarjeta-salida [salida]="salida" *ngFor="let salida of listaActividades" class="ui-g-4"></app-tarjeta-salida> -->

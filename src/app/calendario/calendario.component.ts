@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // Servicio
 import { ViajesService } from '../servicios/viajes.service';
-import { SalidasService } from '../servicios/salidas.service';
+import { ActividadesService } from '../servicios/actividades.service';
 
 // Rutas
 import { Router } from '@angular/router';
@@ -30,7 +30,7 @@ export class CalendarioComponent implements OnInit {
   };
 
   constructor(private viajesService: ViajesService,
-              private salidasService: SalidasService,
+              private actividadesService: ActividadesService,
               private router: Router) { }
 
   ngOnInit() {
@@ -48,11 +48,11 @@ export class CalendarioComponent implements OnInit {
 
     this.viajesService.obtenerViajes2();
 
-    this.salidasService.obtenerSalidas().subscribe( salidas => {
+    this.actividadesService.obtenerListaActividades().subscribe( actividades => {
 
-      for (const salida of salidas.body) {
+      for (const actividad of actividades.body) {
         // salida.fechaInicio = moment(salida.fechaInicio).format('YYYY-MM-DD');
-        const nuevoEvento: Evento = new Evento(salida.id, salida.nombre, '2018-10-23');
+        const nuevoEvento: Evento = new Evento(actividad.id, actividad.nombre, '2018-10-23');
         this.listaEventos.push(nuevoEvento);
       }
 

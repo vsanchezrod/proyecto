@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 // Componente
-import { Salida } from '../modelos/salida.model';
+import { Actividad } from '../modelos/actividad.model';
 
 // Servicio
-import { SalidasService } from '../servicios/salidas.service';
+import { ActividadesService } from '../servicios/actividades.service';
 
 
 @Component({
@@ -14,14 +14,14 @@ import { SalidasService } from '../servicios/salidas.service';
 })
 export class SalidasComponent implements OnInit {
 
-  listaSalidas: Array<Salida>;
+  listaActividades: Array<Actividad>;
 
-  constructor(private salidasService: SalidasService) { }
+  constructor(private actividadesService: ActividadesService) { }
 
   ngOnInit() {
 
-    this.salidasService.obtenerSalidas().subscribe(response => {
-      this.listaSalidas = response.body;
+    this.actividadesService.obtenerListaActividades().subscribe(response => {
+      this.listaActividades = response.body;
     });
   }
 

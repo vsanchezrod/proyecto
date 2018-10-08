@@ -1,11 +1,13 @@
-<div class="ui-g">
+<!--<div class="ui-g">
 
     <h1 class="ui-g-12">CARRUSEL DE VIAJES</h1>
     <app-tarjeta-viaje [viaje]="viaje" *ngFor="let viaje of listaViajes" class="ui-g-4"></app-tarjeta-viaje>
 
 </div>
+-->
 
-<p-carousel [value]="listaViajes">
+
+<p-carousel class="ui-g-12" [value]="listaViajes">
   <ng-template let-viaje pTemplate="item">
     <div class="ui-grid ui-grid-responsive">
       <div class="ui-grid-row">
