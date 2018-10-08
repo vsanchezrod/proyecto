@@ -6,6 +6,8 @@ import { Provincia } from '../../modelos/provincia.model';
 
 // Servicios
 import { ProvinciasService } from '../../servicios/provincias.service';
+import {ActividadCategoria} from '../../modelos/actividadCategoria.model';
+import {Rol} from '../../modelos/rol.model';
 
 @Component({
   selector: 'app-perfil',
@@ -30,8 +32,7 @@ export class PerfilComponent implements OnInit {
     'info': 'Yihaaaaaaaaaaaaaaaaaa',
     'intereses': [],
     'terminos': true,
-    'valoracion': 3,
-    'roles': ['usuario']
+    'valoracion': 3
   };
 
   selectedValue = this.usuario.sexo;

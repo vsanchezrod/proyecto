@@ -1,5 +1,6 @@
-import { Interes } from './interes.model';
 import { Provincia } from './provincia.model';
+import { ActividadCategoria } from './actividadCategoria.model';
+import { Rol } from './rol.model';
 
 export class Usuario {
 
@@ -13,10 +14,10 @@ export class Usuario {
   provincia?: Provincia;
   avatar?: string;
   info?: string;
-  intereses?: Array<Interes>;
+  intereses?: Array<ActividadCategoria>;
   terminos: boolean;
   valoracion: number;
-  roles?: Array<string>;
+  roles?: Array<Rol>;
 
   constructor() {
     this.intereses = [];

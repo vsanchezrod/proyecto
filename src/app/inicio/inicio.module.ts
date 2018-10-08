@@ -9,6 +9,8 @@ import { ListaSalidasComponent } from './lista-salidas/lista-salidas.component';
 
 // Módulos de componentes de PrimeNG
 import { CarouselModule } from 'primeng/carousel';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
 
 // Módulo de componentes compartidos
 import { CompartidosModule } from '../compartidos/compartidos.module';
@@ -18,7 +20,8 @@ import { CompartidosModule } from '../compartidos/compartidos.module';
   imports: [
     CommonModule,
     CompartidosModule,
-    CarouselModule
+    CarouselModule,
+    ProgressSpinnerModule
   ],
   declarations: [
     InicioComponent,

@@ -1,4 +1,5 @@
 import { Coordenada } from './coordenada.model';
+import { Usuario } from './usuario.model';
 
 export class Salida {
 
@@ -11,6 +12,9 @@ export class Salida {
   fechaInicio: Date;
   imagen?: string;
   puntoEncuentro?: Coordenada;
+  puntuacion?: number;
+  participantes?: number;
+  usuarioCreacion?: Usuario;
 
   constructor() {
     this.categorias = [];
@@ -18,5 +22,8 @@ export class Salida {
       latitud: 0,
       longitud: 0
     };
+
+    this.puntuacion = 0;
+    this.participantes = 1;
   }
 }

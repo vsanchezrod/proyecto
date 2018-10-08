@@ -28,5 +28,7 @@ export class ViajeComponent implements OnInit {
       this.viaje = this.viajesService.obtenerViaje(parametro['id']);
       console.log(this.viaje);
     });*/
+
+    this.viaje = this.viajesService.obtenerViaje();
   }
 }

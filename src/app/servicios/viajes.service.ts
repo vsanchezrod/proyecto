@@ -31,28 +31,27 @@ export class ViajesService {
     );
   }
 
-  public obtenerViaje(id: string): Viaje {
+  // FUNCION PRUEBA S BEHAVIOR
+  public obtenerViaje(): Viaje {
     const viajeNuevo: Viaje = {
-      id: id,
-      categorias: undefined,
+      id: 'Viaje viaje',
+      nombre: 'Viaje',
       descripcion: 'desc',
       distancia: 1,
       fechaFin: new Date(),
       fechaInicio: new Date(),
       imagen: 'img',
       nivel: 1,
-      nombre: 'nombre' + id,
-      plazas: 1,
-      precio: 1,
-      puntoEncuentro: undefined
+      plazas: 10,
+      precio: 1
     };
 
     console.log('ViajesService.obtenerViaje: ', viajeNuevo);
-    this.listaViajes.push(viajeNuevo);
+    // this.listaViajes.push(viajeNuevo);
 
     // Con el método next se mandan los datos por el canal abierto
-    this._viajesSubject$.next(this.listaViajes);
-    return null;
+    // this._viajesSubject$.next(this.listaViajes);
+    return viajeNuevo;
   }
 
 }

@@ -43,9 +43,10 @@
     <h3>Provincia</h3>
     <p-dropdown [formControl]="formularioRegistro.controls['provincia']" [options]="listaProvincias" placeholder="Selecciona una provincia" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
 
-
     <h3>Avatar</h3>
-    <p-fileUpload mode="basic" name="avatar" url="./upload.php" accept="image/*" maxFileSize="1000000"></p-fileUpload>
+    <input [formControl]="formularioRegistro.controls['avatar']" type="file" accept="image/*" (change)="cargarAvatar($event)">
+
+    <p-progressSpinner *ngIf="mostrarSpinner"></p-progressSpinner>
 
     <h3>Más sobre ti</h3>
     <span class="ui-float-label">
@@ -55,8 +56,8 @@
 
     <h3>Intereses</h3>
     <div class="ui-g" style="width:250px;margin-bottom:10px">
-        <div *ngFor="let interes of listaIntereses" class="ui-g-12">
-            <p-checkbox [formControl]="formularioRegistro.controls['intereses']" [value]="interes.id" [label]="interes.nombre"></p-checkbox>
+        <div class="ui-g-12">
+            <p-checkbox [formControl]="formularioRegistro.controls['intereses']"></p-checkbox>
         </div>
     </div>
 

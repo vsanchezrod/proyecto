@@ -1,10 +1,21 @@
-<p-card class="ui-g-10" [title]="salida.nombre" subtitle="Categorías" styleClass="ui-card-shadow">
-    <p-header>
-        <img alt="SALIDA" [src]="salida.imagen">
+<p-card class="ui-g-12" [title]="salida.nombre" subtitle="Categorías" styleClass="ui-card-shadow">
+    <p-header class="ui-g-12">
+        <img alt="SALIDA" src="../../../assets/imagenes/avatars/1.png">
+        <!--[src]="salida.imagen"-->
     </p-header>
-    <div>{{ salida.descripcion }}</div>
+    <div class="ui-g-9">{{ salida.descripcion }}</div>
+    <div class="ui-g-3">
+      <img class="ui-g-12 rounded-circle" alt="USUARIO" src="../../../assets/imagenes/avatars/1.png">
+      <!--[src]="salida.usuarioCreacion['avatar']"-->
+      <p-rating class="ui-g-12" readonly="true" stars="3" [ngModel]="3" name="valoracion" [cancel]="false"></p-rating>
+      <p class="ui-g-12">PEPITO</p>
+    </div>
+    <div class="ui-g-9">
+     <p>Ya somos </p><span class="badge-info">{{ salida.participantes }}</span>
+    </div>
     <p-footer>
       <div>{{ salida.fechaInicio }}</div>
+      <p>Dificultad</p>
       <p-rating  readonly="true" stars="3" [ngModel]="salida.nivel" name="nivel" [cancel]="false"></p-rating>
       <button pButton (click)="verSalida()" type="button" icon="pi pi-check" iconPos="right" label="VER MAS"></button>
       <button pButton type="button" icon="pi pi-check" iconPos="right" label="APÚNTATE!"></button>

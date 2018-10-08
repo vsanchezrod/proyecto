@@ -1,5 +1,5 @@
-export interface Interes {
-  id?: string;
+export interface Rol {
+  id: string;
   nombre: string;
   descripcion: string;
 }

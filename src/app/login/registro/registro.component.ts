@@ -5,11 +5,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // Servicios
 import { ProvinciasService } from '../../servicios/provincias.service';
-import { InteresesService } from '../../servicios/intereses.service';
 
 // Modelos
 import { Provincia } from '../../modelos/provincia.model';
-import { Interes } from '../../modelos/interes.model';
 
 @Component({
   selector: 'app-registro',
@@ -22,10 +20,15 @@ export class RegistroComponent implements OnInit {
 
   listaProvincias: Array<Provincia> = [];
 
-  listaIntereses: Array<Interes> = [];
+  // listaIntereses: Array<Interes> = [];
 
-  constructor(private provinciasService: ProvinciasService,
-              private interesesService: InteresesService) {}
+  imagenAvatar: string;
+  progreso: number;
+  mostrarSpinner: boolean;
+
+  avatarFormControl: FormControl = new FormControl();
+
+  constructor(private provinciasService: ProvinciasService) {}
 
   ngOnInit() {
 
@@ -33,12 +36,6 @@ export class RegistroComponent implements OnInit {
       .subscribe(response => {
         console.log('Respuesta de la petición de lista de provincias: ' + response.status);
         this.listaProvincias = response.body;
-      });
-
-    this.interesesService.obtenerListaIntereses()
-      .subscribe(response => {
-        console.log('Respuesta de la petición de lista de intereses: ' + response.status);
-        this.listaIntereses = response.body;
       });
 
     this.formularioRegistro = new FormGroup({
@@ -49,15 +46,56 @@ export class RegistroComponent implements OnInit {
       'fechaNacimiento': new FormControl('', Validators.required),
       'sexo': new FormControl('', Validators.required),
       'provincia': new FormControl(),
-      'avatar': new FormControl(),
+      'avatar': this.avatarFormControl,
       'info': new FormControl('', Validators.minLength(20) ),
       'intereses': new FormControl(),
       'terminos': new FormControl('', Validators.requiredTrue),
     });
   }
 
-  enviarDatos() {
+  public enviarDatos(): void {
     console.log(this.formularioRegistro.value);
     console.log(this.formularioRegistro);
   }
+
+  public cargarAvatar(event: Event): void {
+    const inputValue: any = event.target;
+    console.log(event);
+    console.log(inputValue);
+
+    const fichero: File = inputValue.files[0];
+    console.log('file:', fichero);
+
+    const fileReader: FileReader = new FileReader();
+
+    fileReader.onerror = (evento) => {
+      console.error('Error leyendo fichero:', evento);
+      this.progreso = 0;
+      this.mostrarSpinner = false;
+    };
+
+    fileReader.onabort = () => {
+      this.progreso = 0;
+      this.mostrarSpinner = false;
+    };
+
+    fileReader.onloadend = (evento) => {
+      this.imagenAvatar = fileReader.result;
+      console.log('imagen! =====>>>>', this.imagenAvatar);
+      this.progreso = 100;
+      this.mostrarSpinner = false;
+      this.avatarFormControl.setValue(fileReader.result);
+    };
+
+    fileReader.onprogress = (progressEvent) => {
+      console.log('progressEvent: ', progressEvent);
+      this.progreso = progressEvent.loaded / progressEvent.total * 100;
+    };
+
+    this.progreso = 0;
+    fileReader.readAsDataURL(fichero);
+    this.mostrarSpinner = true;
+  }
+
+
 }

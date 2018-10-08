@@ -1,23 +1,20 @@
-import { Coordenada } from './coordenada.model';
 import {ActividadCategoria} from './actividadCategoria.model';
+import {Coordenada} from './coordenada.model';
 
-export class Viaje {
+export class Actividad {
 
   id?: string;
   nombre: string;
-  categorias?: Array<ActividadCategoria>;
+  categorias: Array<ActividadCategoria>;
   descripcion: string;
   nivel: number;
   distancia?: number;
   fechaInicio: Date;
   imagen: string;
-  coordendas?: Coordenada;
-  idUsuarioCreacion?: string;
-  listaParticipantes?: Array<string>;
-  puntuacion?: number;
-  fechaFin: Date;
-  precio: number;
-  plazas: number;
+  coordendas: Coordenada;
+  idUsuarioCreacion: string;
+  listaParticipantes: Array<string>;
+  puntuacion: number;
 
   constructor() {
     this.categorias = [];
