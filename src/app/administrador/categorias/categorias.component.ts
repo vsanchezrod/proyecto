@@ -38,10 +38,10 @@ export class CategoriasComponent implements OnInit {
 
   }
 
-  public crearCategoria() {
+  public crearCategoria(datos): void {
     console.log(this.formularioCategoria.value);
 
-    this.categoriaService.crearCategoria(this.formularioCategoria.value).subscribe( response => {
+    this.categoriaService.crearCategoria(datos).subscribe( response => {
       console.log('Respuesta: ' + response.status);
       console.log(this.formularioCategoria);
     });

@@ -17,7 +17,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {}
 
-  public changeListener(evento: Event): void {
+  /*public changeListener(evento: Event): void {
     console.log(evento);
     const inputValue: any = evento.target;
     const fichero: File = inputValue.files[0];
@@ -51,6 +51,6 @@ export class InicioComponent implements OnInit {
     this.progreso = 0;
     fileReader.readAsDataURL(fichero);
     this.cargando = true;
-  }
+  }*/
 
 }

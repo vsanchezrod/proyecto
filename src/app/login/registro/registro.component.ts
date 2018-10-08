@@ -5,9 +5,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // Servicios
 import { ProvinciasService } from '../../servicios/provincias.service';
+import { CategoriasService } from '../../servicios/categorias.service';
+import { UsuariosService } from '../../servicios/usuarios.service';
 
 // Modelos
 import { Provincia } from '../../modelos/provincia.model';
+import { Categoria } from '../../modelos/categoria.model';
 
 @Component({
   selector: 'app-registro',
@@ -19,16 +22,15 @@ export class RegistroComponent implements OnInit {
   formularioRegistro: FormGroup;
 
   listaProvincias: Array<Provincia> = [];
-
-  // listaIntereses: Array<Interes> = [];
+  listaIntereses: Array<Categoria> = [];
 
   imagenAvatar: string;
   progreso: number;
   mostrarSpinner: boolean;
 
-  avatarFormControl: FormControl = new FormControl();
-
-  constructor(private provinciasService: ProvinciasService) {}
+  constructor(private provinciasService: ProvinciasService,
+              private categoriasService: CategoriasService,
+              private usuariosService: UsuariosService) {}
 
   ngOnInit() {
 
@@ -38,6 +40,13 @@ export class RegistroComponent implements OnInit {
         this.listaProvincias = response.body;
       });
 
+    this.categoriasService.obtenerListaCategorias()
+      .subscribe( response => {
+        console.log('Respuesta de la petición de lista de intereses: ' + response.status);
+        this.listaIntereses = response.body;
+    })
+
+
     this.formularioRegistro = new FormGroup({
       'nombre': new FormControl('', Validators.required),
       'apellido': new FormControl('', Validators.required),
@@ -46,30 +55,27 @@ export class RegistroComponent implements OnInit {
       'fechaNacimiento': new FormControl('', Validators.required),
       'sexo': new FormControl('', Validators.required),
       'provincia': new FormControl(),
-      'avatar': this.avatarFormControl,
       'info': new FormControl('', Validators.minLength(20) ),
       'intereses': new FormControl(),
       'terminos': new FormControl('', Validators.requiredTrue),
     });
   }
 
-  public enviarDatos(): void {
+  public enviarDatos(datos): void {
     console.log(this.formularioRegistro.value);
-    console.log(this.formularioRegistro);
+
+    this.usuariosService.crearUsuario(datos).subscribe( response => {
+      console.log('Respuesta: ' + response.status);
+    });
   }
 
   public cargarAvatar(event: Event): void {
-    const inputValue: any = event.target;
     console.log(event);
-    console.log(inputValue);
-
+    const inputValue: any = event.target;
     const fichero: File = inputValue.files[0];
-    console.log('file:', fichero);
-
     const fileReader: FileReader = new FileReader();
 
     fileReader.onerror = (evento) => {
-      console.error('Error leyendo fichero:', evento);
       this.progreso = 0;
       this.mostrarSpinner = false;
     };
@@ -81,14 +87,12 @@ export class RegistroComponent implements OnInit {
 
     fileReader.onloadend = (evento) => {
       this.imagenAvatar = fileReader.result;
-      console.log('imagen! =====>>>>', this.imagenAvatar);
       this.progreso = 100;
       this.mostrarSpinner = false;
-      this.avatarFormControl.setValue(fileReader.result);
+      this.formularioRegistro.addControl('avatar', new FormControl(this.imagenAvatar, Validators.required));
     };
 
     fileReader.onprogress = (progressEvent) => {
-      console.log('progressEvent: ', progressEvent);
       this.progreso = progressEvent.loaded / progressEvent.total * 100;
     };
 
@@ -96,6 +100,5 @@ export class RegistroComponent implements OnInit {
     fileReader.readAsDataURL(fichero);
     this.mostrarSpinner = true;
   }
-
 
 }
