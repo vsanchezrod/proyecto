@@ -4,7 +4,7 @@
   <input type="file" accept="image/*" (change)="changeListener($event)">
 
   <label>cargado: {{ progreso | number:'.2' }}%</label>
-  <img src="../../favicon.ico" [src]="imagen">
+  <img [src]="imagen">
   {{ imagen }}
 
   <p-progressSpinner *ngIf="cargando"></p-progressSpinner>

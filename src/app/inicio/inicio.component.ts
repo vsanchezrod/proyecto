@@ -12,7 +12,6 @@ export class InicioComponent implements OnInit {
   imagen: string;
   progreso: number;
   cargando: boolean;
-  lala: Array<Provincia> = [];
 
   constructor() {}
 
@@ -53,13 +52,5 @@ export class InicioComponent implements OnInit {
     fileReader.readAsDataURL(fichero);
     this.cargando = true;
   }
-
-
-  // BORRAR
-
-
-
-
-
 
 }

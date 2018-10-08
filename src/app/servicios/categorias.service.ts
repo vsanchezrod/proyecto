@@ -36,4 +36,5 @@ export class CategoriasService {
     return this.httpClient.post<Categoria>('http://localhost:8080/fitness/api/public/categorias', body, {observe: 'response'});
   }
 
+
 }
