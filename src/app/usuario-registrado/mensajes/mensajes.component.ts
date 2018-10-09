@@ -21,6 +21,7 @@ export class MensajesComponent implements OnInit {
   mensaje4: Mensaje;
 
   listaMensajes: Array<Mensaje> = [];
+  listaAmigos: Array<string> = [];
 
   items: MenuItem[];
 
@@ -79,4 +80,11 @@ export class MensajesComponent implements OnInit {
   borrarMensaje(id): void {
     this.messageService.add({severity: 'success', summary: 'Success', detail: 'Data Deleted'});
     console.log('Quiero borrar el mensaje con id ' + id);
-  }}
+  }
+
+  mostrarFormularioMensaje () {
+
+  }
+
+}
+

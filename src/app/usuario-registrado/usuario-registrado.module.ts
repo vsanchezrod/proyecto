@@ -18,7 +18,6 @@ import { InplaceModule } from 'primeng/inplace';
 import { InputMaskModule } from 'primeng/inputmask';
 import { RadioButtonModule } from 'primeng/radiobutton';
 
-
 // Módulo de componentes compartidos
 import { CompartidosModule } from '../compartidos/compartidos.module';
 
