@@ -20,6 +20,7 @@ export class ActividadesComponent implements OnInit {
 
   listaViajes: Array<Viaje> = [];
   listaActividades: Array<Actividad> = [];
+  listaCategorias: Array<Categoria> = [];
 
   viaje: Viaje;
 
@@ -31,8 +32,6 @@ export class ActividadesComponent implements OnInit {
 
   plazasMinimas: number;
   plazasMaximas: number;
-
-  listaCategorias: Array<Categoria> = [];
 
   imagen: string;
   progreso: number;
@@ -47,6 +46,7 @@ export class ActividadesComponent implements OnInit {
   ngOnInit() {
 
     this.viaje = new Viaje();
+    console.log('LISTA PARTICIPANTES',  this.viaje.listaParticipantes);
 
     this.distanciaMinima = 0;
     this.distanciaMaxima = 150;
@@ -56,8 +56,6 @@ export class ActividadesComponent implements OnInit {
 
     this.plazasMinimas = 1;
     this.plazasMaximas = 30;
-
-
 
     this.viajesService.obtenerViajes().subscribe(viajes => {
       console.log('lista-viajes component. viajes: ', viajes);
@@ -87,17 +85,6 @@ export class ActividadesComponent implements OnInit {
 
   }
 
-  public enviarDatos(datos) {
-    this.viaje = datos;
-    this.viaje.imagen = this.imagen;
-    console.log(this.viaje);
-    this.viajesService.guardarViaje(this.viaje).subscribe(response => {
-      console.log('Respuesta: ' + response.status);
-    });
-  }
-
-
-
   public cargarImagen(event: Event): void {
     console.log(event);
     const inputValue: any = event.target;
@@ -116,6 +103,7 @@ export class ActividadesComponent implements OnInit {
 
     fileReader.onloadend = (evento) => {
       this.imagen = fileReader.result;
+      this.viaje.imagen = this.imagen;
       this.progreso = 100;
       this.mostrarSpinner = false;
     };
@@ -127,5 +115,14 @@ export class ActividadesComponent implements OnInit {
     this.progreso = 0;
     fileReader.readAsDataURL(fichero);
     this.mostrarSpinner = true;
+  }
+
+  public crearViaje(datos) {
+    this.viaje = datos;
+    this.viaje.imagen = this.imagen;
+    console.log(this.viaje);
+    this.viajesService.guardarViaje(this.viaje).subscribe(response => {
+      console.log('Respuesta: ' + response.status);
+    });
   }
 }

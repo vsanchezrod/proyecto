@@ -8,7 +8,7 @@
     <div>{{ viaje.fechaFin }}</div>
     <p-rating  readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
     <button pButton (click)="verViaje()" type="button" icon="pi pi-check" iconPos="right" label="VER MAS"></button>
-    <span *ngIf="viaje.listaParticipantes.length >= viaje.plazas">Plazas agotadas :(</span>
-    <button [disabled]="viaje.listaParticipantes.length >= viaje.plazas" pButton type="button" icon="pi pi-check" iconPos="right" label="APUNTARSE!!"></button>
+    <!--<span *ngIf="viaje.listaParticipantes.length === viaje.plazas">Plazas agotadas :(</span>
+    <button [disabled]="viaje.listaParticipantes.length === viaje.plazas" pButton type="button" icon="pi pi-check" iconPos="right" label="APUNTARSE!!"></button> -->
   </p-footer>
 </p-card>

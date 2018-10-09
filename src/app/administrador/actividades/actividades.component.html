@@ -41,7 +41,7 @@
 
   <h3 class="ui-g-12">CREAR VIAJE</h3>
 
-  <form #formularioActividadAdmin="ngForm" (ngSubmit)="enviarDatos(formularioActividadAdmin.value)">
+  <form #formularioActividadAdmin="ngForm" (ngSubmit)="crearViaje(formularioActividadAdmin.value)">
 
     <h4>Nombre</h4>
     <span class="ui-float-label">
@@ -92,6 +92,8 @@
     <input type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
 
     <h4>Punto de encuentro</h4>
+
+    <div> FALTA MAPA GOOGLE </div>
 
     <button pButton type="submit" label="PUBLICAR ACTIVIDAD" class="ui-button-info"></button>
 

@@ -75,6 +75,7 @@ export class ActividadNuevaComponent implements OnInit {
 
     fileReader.onloadend = (evento) => {
       this.imagen = fileReader.result;
+      this.actividad.imagen = this.imagen;
       this.progreso = 100;
       this.mostrarSpinner = false;
     };
