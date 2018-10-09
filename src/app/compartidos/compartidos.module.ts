@@ -14,6 +14,7 @@ import { TarjetaSalidaComponent } from './tarjeta-salida/tarjeta-salida.componen
 import { TarjetaViajeComponent } from './tarjeta-viaje/tarjeta-viaje.component';
 import { TarjetaOpinionComponent } from './tarjeta-opinion/tarjeta-opinion.component';
 import { TarjetaUsuarioComponent } from './tarjeta-usuario/tarjeta-usuario.component';
+import { TarjetaMensajeComponent } from './tarjeta-mensaje/tarjeta-mensaje.component';
 
 @NgModule({
   imports: [
@@ -27,13 +28,15 @@ import { TarjetaUsuarioComponent } from './tarjeta-usuario/tarjeta-usuario.compo
     TarjetaSalidaComponent,
     TarjetaViajeComponent,
     TarjetaOpinionComponent,
-    TarjetaUsuarioComponent
+    TarjetaUsuarioComponent,
+    TarjetaMensajeComponent
   ],
   exports: [
     TarjetaSalidaComponent,
     TarjetaViajeComponent,
     TarjetaOpinionComponent,
-    TarjetaUsuarioComponent
+    TarjetaUsuarioComponent,
+    TarjetaMensajeComponent
   ]
 })
 export class CompartidosModule { }

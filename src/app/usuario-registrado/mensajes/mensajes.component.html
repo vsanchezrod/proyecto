@@ -1,27 +1,40 @@
-<h4 class="ui-g-12">Mensajes de usuarios</h4>
 
-<div class="ui-g-2">
 
-  <div>Mensaje 1</div>
-  <div>Mensaje 2</div>
-  <div>Mensaje 3</div>
-  <div>Mensaje 4</div>
-  <div>Mensaje 5</div>
-  <div>Mensaje 6</div>
-  <div>Mensaje 7</div>
-  <div>Mensaje 8</div>
+<p-dataScroller class="ui-g-4" [value]="listaMensajes" [rows]="10">
+  <p-header>
+    Tus mensajes ({{ listaMensajes.length }})
+  </p-header>
+  <ng-template *ngIf="listaMensajes.length > 0" let-mensaje pTemplate="item" let-i="index">
+    <div class="ui-g mensaje-item ui-button" (click)="cargarMensaje(mensaje)">
+      <div class="ui-g-12 ui-md-3">
+        <img src="" alt="usuarioEmisor">
+      </div>
+      <div class="ui-g-12 ui-md-9">
+        <div class="ui-g">
+          <div class="ui-g-2 ui-sm-6">Fecha </div>
+          <div class="ui-g-10 ui-sm-6">{{ mensaje.fecha }}</div>
 
-</div>
+          <div class="ui-g-2 ui-sm-6">Usuario: </div>
+          <div class="ui-g-10 ui-sm-6">{{ mensaje.idUsuarioEmisor }}</div>
+
+          <div class="ui-g-2 ui-sm-6">Asunto: </div>
+          <div class="ui-g-10 ui-sm-6">{{ mensaje.asunto }}</div>
+        </div>
+        <p-splitButton label="Responder" icon="pi pi-file" (click)="responderMensaje(mensaje.idUsuarioEmisor)" [model]="items"></p-splitButton>
+      </div>
+
+    </div>
+  </ng-template>
+</p-dataScroller>
+
 
 <div class="ui-g-8">
 
-  <div class="h-300 w-300">
-    <p> usuario.nombre </p>
-    <p> fecha </p>
-    <p> Mensaje </p>
-
+  <app-tarjeta-mensaje *ngIf="listaMensajes.length > 0" [mensaje]="mensaje"></app-tarjeta-mensaje>
+  <div *ngIf="listaMensajes.length == 0">
+    <img src="" alt="NO HAY MENSAJE">
+    <p>No tienes ningún mensaje</p>
   </div>
-
 
 </div>
 

@@ -6,15 +6,15 @@
     <div class="ui-g-8">
       <p-inplace class="ui-g-8" closable="closable">
         <span pInplaceDisplay>
-         <img class="rounded-circle" [src]="usuario.avatar" alt="AVATAR">
+         <img class="rounded-circle" [src]="usuario.avatar" name="avatar" alt="AVATAR">
         </span>
         <span pInplaceContent>
           <span>Elige un avatar o sube tu propia foto</span>
-          <p-fileUpload mode="basic" name="avatar" url="./upload.php" accept="image/*" maxFileSize="1000000"></p-fileUpload>
+          <input type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
           <p-dropdown [options]="" [placeholder]="" optionLabel="" [showClear]="true" filter="true"></p-dropdown>
+          <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
       </p-inplace>
-      <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
     </div>
 
     <div class="ui-g-8">
@@ -26,9 +26,9 @@
         <span pInplaceContent>
             <input type="text" [value]="usuario.nombre" pInputText>
             <input type="text" [value]="usuario.apellido" pInputText>
+            <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
       </p-inplace>
-      <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
     </div>
 
     <!-- NO ME FUNCIONA PARA LA FECHA -->
@@ -40,9 +40,9 @@
         </span>
         <span pInplaceContent>
           <p-inputMask [(ngModel)]="usuario.fechaNacimiento" mask="99/9999/99" placeholder="dd/yyyy/mm" slotChar="dd/yyyy/mm"></p-inputMask>
+          <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
       </p-inplace>
-      <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
     </div>
 
     <div class="ui-g-8">
@@ -52,17 +52,17 @@
           {{ usuario.sexo }}
         </span>
         <span pInplaceContent>
-            <div class="ui-g" style="width:250px;margin-bottom:10px">
-              <div class="ui-g-12">
-                  <p-radioButton name="sexo" value="Mujer" label="Mujer"></p-radioButton>
-              </div>
-              <div class="ui-g-12">
-                  <p-radioButton name="sexo" value="Hombre" label="Hombre"></p-radioButton>
-              </div>
-           </div>
+          <div class="ui-g" style="width:250px;margin-bottom:10px">
+            <div class="ui-g-12">
+                <p-radioButton name="sexo" value="Mujer" label="Mujer"></p-radioButton>
+            </div>
+            <div class="ui-g-12">
+                <p-radioButton name="sexo" value="Hombre" label="Hombre"></p-radioButton>
+            </div>
+          </div>
+          <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
       </p-inplace>
-      <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
     </div>
 
     <div class="ui-g-8">
@@ -73,9 +73,9 @@
         </span>
         <span pInplaceContent>
           <p-dropdown [options]="listaProvincias" [placeholder]="usuario.provincia['nombre']" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
+          <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
       </p-inplace>
-      <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
     </div>
 
     <div class="ui-g-8">
@@ -85,11 +85,11 @@
           ********
         </span>
         <span pInplaceContent>
-         <span>Password antiguo:</span><input pPassword type="password" value="********"/>
-         <span>Nuevo password:</span><input pPassword type="password" value="********"/>
+          <span>Password antiguo:</span><input pPassword type="password" value="********"/>
+          <span>Nuevo password:</span><input pPassword type="password" value="********"/>
+          <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
       </p-inplace>
-      <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
     </div>
 
     <div class="ui-g-8">
@@ -99,10 +99,10 @@
           {{ usuario.info }}
         </span>
         <span pInplaceContent>
-            <input type="text" [value]="usuario.info" pInputText>
+          <input type="text" [value]="usuario.info" pInputText>
+          <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
       </p-inplace>
-      <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
     </div>
 
 

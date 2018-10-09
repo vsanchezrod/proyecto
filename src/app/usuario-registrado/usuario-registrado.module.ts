@@ -8,7 +8,6 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
-import { FileUploadModule } from 'primeng/fileupload';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { CardModule } from 'primeng/card';
 import { RatingModule } from 'primeng/rating';
@@ -49,7 +48,6 @@ import { ActividadEditarComponent } from './actividades-propuestas/actividad-edi
     DropdownModule,
     InputTextareaModule,
     CalendarModule,
-    FileUploadModule,
     FormsModule,
     ReactiveFormsModule,
     MultiSelectModule,
