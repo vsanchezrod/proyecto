@@ -36,14 +36,14 @@ export class ActividadNuevaComponent implements OnInit {
 
     this.actividad = new Actividad();
 
-    this.distanciaMinima = 1;
+    this.distanciaMinima = 0;
     this.distanciaMaxima = 150;
 
    this.categoriaService.obtenerListaCategorias().subscribe(response => {
      this.listaCategorias = response.body;
    });
 
-    console.log('ACTIVIDAD: '  + this.actividad);
+    console.log('ACTIVIDAD: ' + this.actividad);
 
     this.es = {
       firstDayOfWeek: 1,
@@ -74,7 +74,7 @@ export class ActividadNuevaComponent implements OnInit {
     };
 
     fileReader.onloadend = (evento) => {
-      this.actividad.imagen = fileReader.result;
+      this.imagen = fileReader.result;
       this.progreso = 100;
       this.mostrarSpinner = false;
     };
@@ -89,7 +89,10 @@ export class ActividadNuevaComponent implements OnInit {
   }
 
   crearActividad(datos) {
-    this.actividadesService.guardarActividad(datos).subscribe( response => {
+    this.actividad = datos;
+    this.actividad.imagen = this.imagen;
+    console.log(this.actividad);
+    this.actividadesService.guardarActividad(this.actividad).subscribe( response => {
       console.log('Respuesta: ' + response.status);
     });
   }

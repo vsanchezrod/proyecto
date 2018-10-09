@@ -41,7 +41,7 @@
 
   <h3 class="ui-g-12">CREAR VIAJE</h3>
 
-  <form #formularioActividadAdmin="ngForm">
+  <form #formularioActividadAdmin="ngForm" (ngSubmit)="enviarDatos(formularioActividadAdmin.value)">
 
     <h4>Nombre</h4>
     <span class="ui-float-label">
@@ -58,9 +58,9 @@
     <h4>Nivel</h4>
     <p-rating stars="3" [(ngModel)]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
 
-    <h4>Distancia km:</h4>
+    <h4>Distancia {{ viaje.distancia }} km:</h4>
     <span class="ui-float-label">
-      <p-slider [(ngModel)]="viaje.distancia" name="distancia" [min]="1" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true"></p-slider>
+      <p-slider [(ngModel)]="viaje.distancia" name="distancia" [min]="distanciaMinima" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true"></p-slider>
       <label for="distancia">Km</label>
     </span>
 
@@ -76,15 +76,22 @@
       <p-calendar [locale]="es" name="fechaFin" [(ngModel)]="viaje.fechaFin" dateFormat="yy-mm-dd" [showTime]="true" [showIcon]="true" hourFormat="24"></p-calendar>
     </div>
 
-    <h4>Precio:</h4>
+    <h4>Precio {{ viaje.precio }} €:</h4>
+    <input type="number" [(ngModel)]="viaje.precio" name="precio">
+    <span class="ui-float-label">
+      <p-slider [(ngModel)]="viaje.precio" name="precio" [min]="precioMinimo" [max]="precioMaximo" id="precio" [style]="{'width':'14em'}" [animate]="true"></p-slider>
+      <label for="precio">€</label>
+    </span>
 
-    <h4>Plazas:</h4>
+    <h4>Plazas {{ viaje.plazas }}:</h4>
+    <span class="ui-float-label">
+      <p-slider [(ngModel)]="viaje.plazas" name="plazas" [min]="plazasMinimas" [max]="plazasMaximas" id="plazas" [style]="{'width':'14em'}" [animate]="true"></p-slider>
+    </span>
 
     <h4>Imágen para actividad</h4>
     <input type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
 
     <h4>Punto de encuentro</h4>
-    <div><img src="" alt="AGREGAR MAPA DE GMAPS"></div>
 
     <button pButton type="submit" label="PUBLICAR ACTIVIDAD" class="ui-button-info"></button>
 

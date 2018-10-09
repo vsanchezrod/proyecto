@@ -18,9 +18,9 @@
     <h4>Nivel</h4>
     <p-rating stars="3" [(ngModel)]="actividad.nivel" name="nivel" [cancel]="false"></p-rating>
 
-    <h4>Distancia km:</h4>
+    <h4>Distancia {{ actividad.distancia }}km:</h4>
     <span class="ui-float-label">
-      <p-slider [(ngModel)]="actividad.distancia" name="distancia" [min]="1" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true"></p-slider>
+      <p-slider [(ngModel)]="actividad.distancia" name="distancia" [min]="distanciaMinima" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true"></p-slider>
       <label for="distancia">Km</label>
     </span>
 

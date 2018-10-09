@@ -26,6 +26,12 @@ export class ActividadesComponent implements OnInit {
   distanciaMinima: number;
   distanciaMaxima: number;
 
+  precioMinimo: number;
+  precioMaximo: number;
+
+  plazasMinimas: number;
+  plazasMaximas: number;
+
   listaCategorias: Array<Categoria> = [];
 
   imagen: string;
@@ -42,8 +48,16 @@ export class ActividadesComponent implements OnInit {
 
     this.viaje = new Viaje();
 
-    this.distanciaMinima = 1;
+    this.distanciaMinima = 0;
     this.distanciaMaxima = 150;
+
+    this.precioMinimo = 0;
+    this.precioMaximo = 3000;
+
+    this.plazasMinimas = 1;
+    this.plazasMaximas = 30;
+
+
 
     this.viajesService.obtenerViajes().subscribe(viajes => {
       console.log('lista-viajes component. viajes: ', viajes);
@@ -73,6 +87,17 @@ export class ActividadesComponent implements OnInit {
 
   }
 
+  public enviarDatos(datos) {
+    this.viaje = datos;
+    this.viaje.imagen = this.imagen;
+    console.log(this.viaje);
+    this.viajesService.guardarViaje(this.viaje).subscribe(response => {
+      console.log('Respuesta: ' + response.status);
+    });
+  }
+
+
+
   public cargarImagen(event: Event): void {
     console.log(event);
     const inputValue: any = event.target;
@@ -90,7 +115,7 @@ export class ActividadesComponent implements OnInit {
     };
 
     fileReader.onloadend = (evento) => {
-      this.viaje.imagen = fileReader.result;
+      this.imagen = fileReader.result;
       this.progreso = 100;
       this.mostrarSpinner = false;
     };

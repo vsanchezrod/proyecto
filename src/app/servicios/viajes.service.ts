@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 
 import { Viaje } from '../modelos/viaje.model';
 
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {Opinion} from '../modelos/opinion.model';
+
 
 
 @Injectable({
@@ -26,9 +26,24 @@ export class ViajesService {
 
   public obtenerViajes2() {
     this.httpClient.get<Array<Viaje>>('http://localhost:8080/fitness/api/public/viajes', {observe: 'response'}).subscribe(response => {
-      this._viajesSubject$.next(response.body);
+        this._viajesSubject$.next(response.body);
       }
     );
+  }
+
+  public guardarViaje(viaje: Viaje): Observable<HttpResponse<Viaje>> {
+
+    const body = viaje;
+
+    // FALTAN LAS CABECERAS
+    const cabeceras = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    }
+
+    return this.httpClient.post<Viaje>('http://localhost:8080/fitness/api/public/viajes', body, {observe: 'response'});
   }
 
 }
