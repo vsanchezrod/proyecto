@@ -1,9 +1,11 @@
 <div class="card-body">
-  <form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Nombre del atleta" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-  </form>
+
+    <input #textoBusqueda class="form-control mr-sm-2" type="search" (keyup)="buscarAtletas(textoBusqueda.value)" placeholder="Nombre del atleta" aria-label="Search">
+
 </div>
+
+
+
 
 <div class="ui-g-3">
 
@@ -28,7 +30,7 @@
 
 <div class="ui-g-3">
 
-  <p-dataScroller [value]="amigos" [rows]="10">
+  <p-dataScroller [value]="listaUsuariosBusqueda" [rows]="10">
     <p-header>
       Contactos encontrados!
     </p-header>
@@ -39,7 +41,8 @@
         </div>
         <div class="ui-g-12 ui-md-9">
           <p>{{ usuario.nombre }}</p>
-          <button class="btn btn-outline-success my-2 my-sm-0">Mandar mensaje</button>
+          <button class="btn btn-outline-success my-2 my-sm-0">Agregar</button>
+          <button class="btn btn-outline-info my-2 my-sm-0">Mandar mensaje</button>
         </div>
       </div>
     </ng-template>

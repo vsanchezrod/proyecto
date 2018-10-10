@@ -32,8 +32,12 @@ export class UsuariosService {
     return this.httpClient.post<Usuario>('http://localhost:8080/fitness/api/public/usuarios', body, {observe: 'response'});
   }
 
-  public obtenerUsuario(id): Observable<Usuario> {
+  public buscarUsuarioPorId(id: string): Observable<Usuario> {
     return this.httpClient.get<Usuario>(`http://localhost:8080/fitness/api/public/usuarios/${id}`);
+  }
+
+  public buscarUsuarioPorNombre(nombre: string): Observable<Usuario> {
+    return this.httpClient.get<Usuario>(`http://localhost:8080/fitness/api/public/usuarios/${nombre}`);
   }
 
 

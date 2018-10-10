@@ -51,7 +51,7 @@ export class PerfilComponent implements OnInit {
     this.id = '5bbcc0f73d8796144d755263';
 
     // Setea el valor del usuario con una peticion al servicio usuarioService a través de una id
-    this.usuariosService.obtenerUsuario(this.id).subscribe(response => {
+    this.usuariosService.buscarUsuarioPorId(this.id).subscribe(response => {
       this.usuario = response;
       console.log(this.usuario);
     });
