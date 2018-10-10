@@ -4,13 +4,13 @@
     </p-header>
     <div class="ui-g-9">{{ salida.descripcion }}</div>
     <div class="ui-g-3">
-      <img class="ui-g-12 rounded-circle" alt="USUARIO" src="../../../assets/imagenes/avatars/1.png">
-      <!--[src]="salida.usuarioCreacion['avatar']"-->
-      <p-rating class="ui-g-12" readonly="true" stars="3" [ngModel]="3" name="valoracion" [cancel]="false"></p-rating>
-      <p class="ui-g-12">PEPITO</p>
+      <!-- SOLUCIONAR LO DEL USUARIO-->
+      <img class="ui-g-12 rounded-circle" alt="USUARIO" src="usuario.avatar">
+      <p-rating class="ui-g-12" readonly="true" stars="5" [ngModel]="3" name="valoracion" [cancel]="false"></p-rating>
+      <p class="ui-g-12">usuario.nombre</p>
     </div>
     <div class="ui-g-9">
-     <p>Ya somos </p><span class="badge-info">{{ salida.participantes }}</span>
+     <p>Ya somos </p><span class="badge-info">{{ salida.listaParticipantes }}</span>
     </div>
     <p-footer>
       <div>{{ salida.fechaInicio }}</div>

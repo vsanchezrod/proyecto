@@ -23,12 +23,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Modulos para Componentes de PrimeNG
-import { ScheduleModule } from 'primeng/schedule';
+import { ScheduleModule } from 'primeng/schedul;
+import { BusquedaComponent } from './busqueda/busqueda.component'e';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppCompone,
+    BusquedaComponentnt
   ],
   imports: [
     BrowserModule,

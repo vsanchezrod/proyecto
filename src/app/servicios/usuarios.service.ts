@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // Componente
@@ -31,5 +31,10 @@ export class UsuariosService {
 
     return this.httpClient.post<Usuario>('http://localhost:8080/fitness/api/public/usuarios', body, {observe: 'response'});
   }
+
+  public obtenerUsuario(id): Observable<Usuario> {
+    return this.httpClient.get<Usuario>(`http://localhost:8080/fitness/api/public/usuarios/${id}`);
+  }
+
 
 }

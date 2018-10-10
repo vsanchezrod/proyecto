@@ -6,8 +6,7 @@ import { Provincia } from '../../modelos/provincia.model';
 
 // Servicios
 import { ProvinciasService } from '../../servicios/provincias.service';
-import {ActividadCategoria} from '../../modelos/actividadCategoria.model';
-import {Rol} from '../../modelos/rol.model';
+import { UsuariosService } from '../../servicios/usuarios.service';
 
 @Component({
   selector: 'app-perfil',
@@ -18,7 +17,7 @@ export class PerfilComponent implements OnInit {
 
   usuario: Usuario = {
     'id': 'qewqeqe',
-    'nombre': 'Vir',
+    'nombre': 'NO CARGAR',
     'apellido': 'Sanchez',
     'email': 'vir@vir.com',
     'password': '123456',
@@ -35,6 +34,8 @@ export class PerfilComponent implements OnInit {
     'valoracion': 3
   };
 
+  id: string;
+
   selectedValue = this.usuario.sexo;
 
   listaProvincias: Array<Provincia> = [];
@@ -42,9 +43,18 @@ export class PerfilComponent implements OnInit {
   progreso: number;
   mostrarSpinner: boolean;
 
-  constructor(private provinciasService: ProvinciasService) {}
+  constructor(private provinciasService: ProvinciasService,
+              private usuariosService: UsuariosService) {}
 
   ngOnInit() {
+
+    this.id = '5bbcc0f73d8796144d755263';
+
+    // Setea el valor del usuario con una peticion al servicio usuarioService a través de una id
+    this.usuariosService.obtenerUsuario(this.id).subscribe(response => {
+      this.usuario = response;
+      console.log(this.usuario);
+    });
 
     this.provinciasService.obtenerProvincias().subscribe(response => {
       this.listaProvincias = response.body;

@@ -2,8 +2,7 @@
 
   <div class="ui-g-4" *ngFor="let categoria of listaCategorias">
     <h5>{{ categoria.nombre }}</h5>
-    <img [src]="categoria.imagen" alt="FOTO">
-
+    <img (click)="cargarActividades(categoria)" class="rounded-circle ui-button" [src]="categoria.imagen" alt="FOTO">
   </div>
 
 </div>

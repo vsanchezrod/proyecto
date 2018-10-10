@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+// Modelo
 import { Usuario} from '../../modelos/usuario.model';
+
+// Servicio
+import { UsuariosService } from '../../servicios/usuarios.service';
 
 @Component({
   selector: 'app-amigos',
@@ -9,13 +13,18 @@ import { Usuario} from '../../modelos/usuario.model';
 })
 export class AmigosComponent implements OnInit {
 
-  listaContactos: Array<Usuario>;
+  amigos: Array<string>;
+  listaUsuarios: Array<Usuario>;
 
-  constructor() { }
+  constructor(private usuariosService: UsuariosService) { }
 
   ngOnInit() {
 
-    this.listaContactos = [];
+    this.amigos = [];
+    this.listaUsuarios = [];
+    this.usuariosService.obtenerListaUsuarios().subscribe(response => {
+      this.listaUsuarios = response.body;
+    });
   }
 
 }

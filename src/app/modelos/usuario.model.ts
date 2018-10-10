@@ -12,16 +12,18 @@ export class Usuario {
   fechaNacimiento: Date;
   sexo: string;
   provincia?: Provincia;
-  avatar?: string;
-  info?: string;
+  avatar: string;
+  info: string;
   intereses?: Array<ActividadCategoria>;
   terminos: boolean;
   valoracion: number;
   roles?: Array<Rol>;
+  amigos?: Array<string>;
 
   constructor() {
     this.intereses = [];
     this.roles = [];
+    this.amigos = [];
   }
 
 }

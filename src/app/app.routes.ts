@@ -22,9 +22,11 @@ import { ADMINISTRADOR_RUTAS } from './administrador/administrador.routes';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
+  { path: 'busqueda/:clave', component: BusquedaComponent },
   { path: 'viajes', component: ViajesComponent },
   { path: 'viaje/:id', component: ViajeComponent },
   { path: 'salidas', component: SalidasComponent },
+  { path: 'salidas/:id', component: SalidasComponent },
   { path: 'salida/:id', component: SalidaComponent },
   { path: 'calendario', component: CalendarioComponent },
   { path: 'acerca', component: AcercaDeComponent },
