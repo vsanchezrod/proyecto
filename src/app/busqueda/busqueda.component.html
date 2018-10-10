@@ -1,0 +1,8 @@
+<h1>Resultados de la búsqueda: <small> {{ clave }}</small></h1>
+<a class="btn btn-outline-danger btn-block" [routerLink]="['/inicio']">Volver</a>
+
+<h2 *ngIf="listaActividadesBusqueda.length > 0">ACTIVIDADES</h2>
+<app-tarjeta-salida [salida]="salida" *ngFor="let salida of listaActividadesBusqueda"></app-tarjeta-salida>
+
+<h2 *ngIf="listaViajesBusqueda.length > 0">ACTIVIDADES</h2>
+<app-tarjeta-viaje [viaje]="viaje" *ngFor="let viaje of listaViajesBusqueda"></app-tarjeta-viaje>

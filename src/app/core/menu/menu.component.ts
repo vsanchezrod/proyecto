@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ViajesService } from '../../servicios/viajes.service';
+// Para navegar por rutas
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -9,10 +10,11 @@ import { ViajesService } from '../../servicios/viajes.service';
 })
 export class MenuComponent implements OnInit {
 
-  private contador = 0;
-
-  constructor(private viajesService: ViajesService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
 
+  buscarActividades(clave: string) {
+    this.router.navigate(['/busqueda', clave]);
+  }
 }

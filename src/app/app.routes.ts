@@ -13,6 +13,7 @@ import { UsuarioRegistradoComponent } from './usuario-registrado/usuario-registr
 import { AdministradorComponent } from './administrador/administrador.component';
 import { SalidaComponent } from './salidas/salida/salida.component';
 import { ViajeComponent } from './viajes/viaje/viaje.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 // Rutas de Usuario
 import { USUARIO_RUTAS } from './usuario-registrado/usuario-registrado.routes';
