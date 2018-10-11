@@ -125,4 +125,12 @@ export class ActividadesComponent implements OnInit {
       console.log('Respuesta: ' + response.status);
     });
   }
+
+  public borrarActividad(id: string): void {
+    console.log('id ' + id);
+    /*this.actividadesService.borrarActividad(id).subscribe( response => {
+      console.log('Actividad con id ' + id + ' borrada');
+    });*/
+  }
+
 }

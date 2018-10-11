@@ -1,8 +1,8 @@
- <p-carousel class="ui-g-12" [value]="listaActividades">
+ <p-carousel numVisible="4" headerText="ENCUENTRA GENTE CON LA QUE HACER DEPORTE DIARIAMENTE" effectDuration="slow" circular="true" autoplayInterval="5000" [value]="listaActividades">
   <ng-template let-salida pTemplate="item">
     <div class="ui-grid ui-grid-responsive">
       <div class="ui-grid-row">
-        <app-tarjeta-salida [salida]="salida" class="ui-g-4"></app-tarjeta-salida>
+        <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
       </div>
     </div>
   </ng-template>

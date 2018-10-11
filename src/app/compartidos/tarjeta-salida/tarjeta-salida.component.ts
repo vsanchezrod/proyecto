@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input } from '@angular/core';
 
 // Componentes
 import { Actividad } from '../../modelos/actividad.model';

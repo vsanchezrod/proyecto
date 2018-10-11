@@ -1,17 +1,17 @@
-<div class="ui-g-12">
-  <div>INICIO!!</div>
+<div class="container">
 
-  <!--<input type="file" accept="image/*" (change)="changeListener($event)">
+  <div class="row">
+    <app-lista-categorias class="col-sm-12 col-md-12"></app-lista-categorias>
+  </div>
 
-  <label>cargado: {{ progreso | number:'.2' }}%</label>
-  <img [src]="imagen">
-  {{ imagen }}
+  <div class="row">
+    <app-lista-viajes class="col-sm-12 col-md-12"></app-lista-viajes>
+  </div>
 
-  <p-progressSpinner *ngIf="cargando"></p-progressSpinner> -->
+  <div class="row">
+    <app-lista-salidas class="col-sm-12 col-md-12"></app-lista-salidas>
+  </div>
 
-  <app-lista-categorias></app-lista-categorias>
-  <app-lista-viajes></app-lista-viajes>
-  <app-lista-salidas></app-lista-salidas>
 </div>
 
 

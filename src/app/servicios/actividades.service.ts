@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 // Modelo de datos
 import { Actividad } from '../modelos/actividad.model';
 import {Categoria} from '../modelos/categoria.model';
+import {Usuario} from '../modelos/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,10 @@ export class ActividadesService {
     };
 
     return this.httpClient.post<Actividad>('http://localhost:8080/fitness/api/public/actividades', body, {observe: 'response'});
+  }
+
+  public borrarActividad(id: string): Observable<Usuario> {
+    return this.httpClient.delete<Usuario>(`http://localhost:8080/fitness/api/public/actividades/${id}`);
   }
 
 }
