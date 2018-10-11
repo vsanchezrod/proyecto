@@ -1,6 +1,6 @@
-<div class="ui-g">
-
-  <app-tarjeta-salida [salida]="salida" *ngFor="let salida of listaActividades" class="ui-g-4"></app-tarjeta-salida>
-
+<div class="container">
+  <div class="row">
+  <app-tarjeta-salida class="col-md-12 col-lg-6" [salida]="salida" *ngFor="let salida of listaActividades"></app-tarjeta-salida>
+  </div>
 </div>
 

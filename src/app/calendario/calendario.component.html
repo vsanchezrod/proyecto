@@ -1,6 +1,5 @@
-<div class="ui-g-12">CALENDARIO!!</div>
-<div>
-  <div class="ui-g-2"></div>
-  <p-schedule class="ui-g-8" [events]="listaEventos" [header]="cabeceraConfiguracion" (onEventClick)="visualizarEvento($event)"></p-schedule>
-  <div class="ui-g-2"></div>
+<div class="container">
+  <div class="row">
+    <p-schedule class="col-12" [events]="listaEventos" [header]="cabeceraConfiguracion" (onEventClick)="visualizarEvento($event)"></p-schedule>
+  </div>
 </div>

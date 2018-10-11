@@ -1,25 +1,28 @@
-<p-card class="ui-g-10" [title]="opinion.titulo">
+<p-card [title]="opinion.titulo" [subtitle]="opinion.actividad.nombre">
 
-  <img class="ui-g-2" src="" alt="Avatar" [src]="">
-  <div class="ui-g">
-    <p class="ui-g-10">
+  <!-- PONER AVATAR DE LA PERSONA QUE HA ESCRITO LA OPINION-->
+  <img class="ui-grid-col-1 img-thumbnail mx-auto d-block" src="" alt="Avatar" src="../../../assets/imagenes/avatars/2.png">
+
+  <div class="ui-grid-col-11">
+    <p class="ui-grid-col-12">
       {{ opinion.detalle }}
     </p>
 
-    <div class="ui-g-4">
-      <label for="ratingOrganizacion">Organización</label>
-      <p-rating class="ui-g-4" [ngModel]="opinion.organizacionValoracion" readonly="true" id="ratingOrganizacion" stars="5" [cancel]="false"></p-rating>
+    <div class="ui-g-12 ui-md-4">
+      <label class="ui-g-6" for="ratingOrganizacion">Organización</label>
+      <p-rating class="ui-g-6" [ngModel]="opinion.organizacionValoracion" readonly="true" id="ratingOrganizacion" stars="5" [cancel]="false"></p-rating>
     </div>
 
-    <div class="ui-g-4">
-      <label for="ratingBuenRollo">Buen rollo</label>
-      <p-rating class="ui-g-4" [ngModel]="opinion.ambienteValoracion" readonly="true" id="ratingBuenRollo" stars="5" [cancel]="false"></p-rating>
+    <div class="ui-g-12 ui-md-4">
+      <label class="ui-g-6"for="ratingBuenRollo">Buen rollo</label>
+      <p-rating class="ui-g-6" [ngModel]="opinion.ambienteValoracion" readonly="true" id="ratingBuenRollo" stars="5" [cancel]="false"></p-rating>
     </div>
 
-    <div class="ui-g-4">
-      <label for="ratingRecorrido">Recorrido</label>
-      <p-rating class="ui-g-4" [ngModel]="opinion.recorridoValoracion" readonly="true" id="ratingRecorrido" stars="5" [cancel]="false"></p-rating>
+    <div class="ui-g-12 ui-md-4">
+      <label class="ui-g-6" for="ratingRecorrido">Recorrido</label>
+      <p-rating class="ui-g-6" [ngModel]="opinion.recorridoValoracion" readonly="true" id="ratingRecorrido" stars="5" [cancel]="false"></p-rating>
     </div>
   </div>
+
 
 </p-card>
