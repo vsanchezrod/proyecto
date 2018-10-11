@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Evento } from '../../modelos/evento.model';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-calendario',
   templateUrl: './calendarioUsuario.component.html',
@@ -18,29 +20,41 @@ export class CalendarioUsuarioComponent implements OnInit {
     right:  'prev,next'
   };
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
 
     // EJEMPLO
     this.listaEventos = [
       {
-        'id': 'lallalal',
+        'id': 'EstaIDTIENE QUE SER LA DE LA ACTIVIDAD',
         'title': 'Ruta en bici a Marrupeaaaaa',
-        'start': '2018-10-16'
+        'start': '2018-10-16',
+        'tipo': 'actividad'
       },
       {
         'id': 'lallalal',
         'title': 'Ruta en bici a Sotillo de las Palomas',
-        'start': '2018-10-17'
+        'start': '2018-10-17',
+        'tipo': 'actividad'
       },
       {
         'id': 'lallalal',
         'title': 'Ruta en bici a Cervera',
         'start': '2018-10-18',
-        'end': '2018-10-21'
+        'end': '2018-10-21',
+        'tipo': 'viaje'
       }
     ];
  }
+
+  public verActividad(evento: Evento): void {
+    if(evento.tipo = 'actividad') {
+      this.router.navigate(['salida', evento.id]);
+    }
+    else {
+      this.router.navigate(['viaje', evento.id]);
+    }
+  }
 
 }

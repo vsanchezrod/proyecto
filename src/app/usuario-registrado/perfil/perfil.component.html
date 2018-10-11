@@ -1,53 +1,55 @@
-<div class="ui-g">
-  <h3 class="ui-g-12">PERFIL DE USUARIO</h3>
+<div class="container">
+  <h3 class="text-center">PERFIL DE USUARIO</h3>
 
-  <div class="ui-g-8">
+  <div class="row">
 
-    <div class="ui-g-8">
-      <p-inplace class="ui-g-8" closable="closable">
-        <span pInplaceDisplay>
-         <img class="rounded-circle" [src]="usuario.avatar" name="avatar" alt="AVATAR">
+    <div class="ui-grid-col-12">
+      <p-inplace class="ui-grid-col-12" closable="true">
+        <span pInplaceDisplay class="ui-grid-col-12">
+         <img class="rounded-circle mx-auto d-block ui-button" [src]="usuario.avatar" name="avatar" alt="AVATAR">
         </span>
-        <span pInplaceContent>
-          <span>Elige un avatar o sube tu propia foto</span>
-          <input type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
-          <p-dropdown [options]="" [placeholder]="" optionLabel="" [showClear]="true" filter="true"></p-dropdown>
-          <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
+        <span pInplaceContent class="ui-grid-col-10">
+          <img class="ui-grid-col-4 rounded-circle" [src]="usuario.avatar" name="avatar" alt="AVATAR">
+          <input class="ui-grid-col-6" type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
+          <p-dropdown class="ui-grid-col-6" [options]="" placeholder="Elige avatar" optionLabel="" [showClear]="true" filter="true"></p-dropdown>
+          <button pButton class="ui-grid-col-4" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
       </p-inplace>
     </div>
 
-    <div class="ui-g-8">
-      <span class="ui-g-2">Nombre:</span>
-      <p-inplace class="ui-g-6" closable="closable">
-        <span pInplaceDisplay>
+
+    <div class="ui-grid-col-12">
+      <span class="ui-grid-col-4">Nombre:</span>
+      <p-inplace class="ui-grid-col-8" closable="true">
+        <span pInplaceDisplay class="ui-grid-col-12">
           {{ usuario.nombre }} {{ usuario.apellido }}
         </span>
-        <span pInplaceContent>
-            <input type="text" [value]="usuario.nombre" pInputText>
-            <input type="text" [value]="usuario.apellido" pInputText>
-            <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
+        <span pInplaceContent class="ui-grid-col-8">
+            <input class="ui-grid-col-4" type="text" [value]="usuario.nombre" pInputText>
+            <input class="ui-grid-col-4" type="text" [value]="usuario.apellido" pInputText>
+            <button pButton class="ui-grid-col-4" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
       </p-inplace>
     </div>
+
 
     <!-- NO ME FUNCIONA PARA LA FECHA -->
-    <div class="ui-g-8">
-      <span class="ui-g-2">Fecha:</span>
-      <p-inplace class="ui-g-6" closable="closable">
-        <span pInplaceDisplay>
+    <div class="col-12">
+      <span class="ui-grid-col-4">Fecha:</span>
+      <p-inplace class="ui-grid-col-8" closable="true">
+        <span pInplaceDisplay class="ui-grid-col-12">
           {{ usuario.fechaNacimiento }}
         </span>
-        <span pInplaceContent>
-          <p-inputMask [(ngModel)]="usuario.fechaNacimiento" mask="99/9999/99" placeholder="dd/yyyy/mm" slotChar="dd/yyyy/mm"></p-inputMask>
-          <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
+        <span pInplaceContent class="ui-grid-col-8">
+          <p-inputMask class="ui-grid-col-4" [(ngModel)]="usuario.fechaNacimiento" mask="99/9999/99" placeholder="dd/yyyy/mm" slotChar="dd/yyyy/mm"></p-inputMask>
+          <button pButton class="ui-grid-col-4" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
       </p-inplace>
     </div>
 
-    <div class="ui-g-8">
-      <span class="ui-g-2">Sexo:</span>
-      <p-inplace class="ui-g-6" closable="closable">
+    <div class="col-12">
+      <span class="ui-grid-col-2">Sexo:</span>
+      <p-inplace class="ui-g-6" closable="true">
         <span pInplaceDisplay>
           {{ usuario.sexo }}
         </span>
@@ -65,8 +67,8 @@
       </p-inplace>
     </div>
 
-    <div class="ui-g-8">
-      <span class="ui-g-2">Provincia:</span>
+    <div class="col-12">
+      <span class="ui-grid-col-2">Provincia:</span>
       <p-inplace class="ui-g-6" closable="closable">
         <span pInplaceDisplay>
           {{ usuario.provincia['nombre'] }}
@@ -78,8 +80,8 @@
       </p-inplace>
     </div>
 
-    <div class="ui-g-8">
-      <span class="ui-g-2">Password:</span>
+    <div class="col-12">
+      <span class="ui-grid-col-2">Password:</span>
       <p-inplace class="ui-g-6" closable="closable">
         <span pInplaceDisplay>
           ********
@@ -92,8 +94,8 @@
       </p-inplace>
     </div>
 
-    <div class="ui-g-8">
-      <span class="ui-g-2">Sobre mi:</span>
+    <div class="col-12">
+      <span class="ui-grid-col-2">Sobre mi:</span>
       <p-inplace class="ui-g-6" closable="closable">
         <span pInplaceDisplay>
           {{ usuario.info }}
