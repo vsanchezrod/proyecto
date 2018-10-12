@@ -66,10 +66,14 @@ export class MensajesComponent implements OnInit {
 
     // Para que cargue por defecto el primer mensaje ordenado por fecha
     this.mensaje = this.listaMensajes[0];
+
   }
 
   cargarMensaje(mensaje): void {
     this.mensaje = mensaje;
+
+    // Cuando se carga el mensaje cambia el estado a LEIDO
+    this.mensaje.leido = true;
   }
 
   responderMensaje(idUsuarioEmisor) {

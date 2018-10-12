@@ -1,17 +1,12 @@
-<div class="ui-g">
+<p-card [title]="mensaje.asunto" [subtitle]="mensaje.fecha">
 
-  <div class="ui-g-12">
-
-    <img class="ui-g-4" alt="AVATAR">
-    <p>NOMBRE USUARIO EMISOR <!--{{ usuario.nombre }}--></p>
-    <p>{{ mensaje.fecha }}</p>
-    <p>{{ mensaje.asunto }}</p>
-
+  <!-- PONER AVATAR DE LA PERSONA QUE HA ESCRITO EL MENSAJE-->
+  <img class="ui-grid-col-1 img-thumbnail mx-auto d-block" src="" alt="Avatar" src="../../../assets/imagenes/avatars/2.png">
+  <p>NOMBRE USUARIO EMISOR <!--{{ usuario.nombre }}--></p>
+  <div class="ui-grid-col-11">
+    <p class="ui-grid-col-12">
+      {{ mensaje.mensaje }}
+    </p>
   </div>
 
-  <p class="ui-g-12">
-    {{ mensaje.mensaje}}
-  </p>
-
-</div>
-
+</p-card>

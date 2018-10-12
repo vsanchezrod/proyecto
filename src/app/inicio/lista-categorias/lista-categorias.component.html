@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-12 col-md-4" *ngFor="let categoria of listaCategorias">
+  <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let categoria of listaCategorias">
     <img (click)="cargarActividades(categoria)" class="img-thumbnail rounded-circle ui-button mx-auto d-block" [src]="categoria.imagen" alt="FOTO">
     <h5 class="text-center">{{ categoria.nombre | uppercase }}</h5>
   </div>
