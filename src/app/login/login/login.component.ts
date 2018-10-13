@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 // Formularios - Aproximación por DATA
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+// Para redirrecionar
+import { Router } from '@angular/router';
+
 // Servicio
 import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 
@@ -14,9 +17,9 @@ import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 export class LoginComponent implements OnInit {
 
   formularioLogin: FormGroup;
-  accessToken: string;
 
-  constructor(private usuarioSesionService: UsuarioSesionService) { }
+  constructor(private usuarioSesionService: UsuarioSesionService,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -32,10 +35,22 @@ export class LoginComponent implements OnInit {
     const email = this.formularioLogin.controls['email'].value;
     const password = this.formularioLogin.controls['password'].value;
 
-    this.usuarioSesionService.login(email, password).subscribe( response => {
-      this.accessToken = response;
-      console.log(this.accessToken);
-    });
+    this.usuarioSesionService.login(email, password)
+      .subscribe(
+        (response) => {
+          console.log('LoginComponent:login:response: ', response);
 
+          if(response.status === 200) {
+            this.router.navigate(['/inicio']);
+          }
+          else {
+            alert(response['error']['error_description']);
+          }
+        },
+        (errorResponse) => {
+          console.error('LoginComponent:login:responseError: ', errorResponse);
+        }
+      );
   }
+
 }
