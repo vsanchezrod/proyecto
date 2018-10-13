@@ -14,13 +14,13 @@ import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 export class LoginComponent implements OnInit {
 
   formularioLogin: FormGroup;
+  accessToken: string;
 
   constructor(private usuarioSesionService: UsuarioSesionService) { }
 
   ngOnInit() {
 
     this.formularioLogin = new FormGroup({
-
       'email': new FormControl('', [Validators.required , Validators.email]),
       'password': new FormControl('', Validators.required),
     });
@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
     const password = this.formularioLogin.controls['password'].value;
 
     this.usuarioSesionService.login(email, password).subscribe( response => {
-      console.log(response);
+      this.accessToken = response;
+      console.log(this.accessToken);
     });
 
   }

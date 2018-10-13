@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 // Peticiones HTTP
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,11 +13,10 @@ export class UsuarioSesionService {
 
   public login(email: string, password: string): Observable<any> {
 
-    const body = {
-      'grant_type': 'password',
-      'username': email,
-      'password': password
-    }
+    const body = new HttpParams()
+      .set('grant_type' , 'password')
+      .set('username', email)
+      .set('password', password);
 
     const cabeceras = {
       headers: new HttpHeaders({
@@ -26,6 +25,7 @@ export class UsuarioSesionService {
         'Accept': 'application/json'
       })
     }
+
 
     return this.httpClient.post('http://localhost:8080/fitness/api/oauth/token', body, {headers: cabeceras.headers});
   }

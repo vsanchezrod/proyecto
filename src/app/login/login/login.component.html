@@ -1,23 +1,24 @@
+<div class="container">
+  <h3 class="text-center">INICIA SESIÓN</h3>
 
-<h3>INICIA SESIÓN</h3>
+  <form class="col-8" [formGroup]="formularioLogin" (ngSubmit)="login()">
 
-<form [formGroup]="formularioLogin" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input formControlName="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Introduce tu email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input formControlName="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Introduce tu email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
+    <div class="form-group">
+      <label for="password">Contraseña</label>
+      <input formControlName="password" type="password" class="form-control" id="password" placeholder="Contraseña">
+    </div>
 
-  <div class="form-group">
-    <label for="password">Contraseña</label>
-    <input formControlName="password" type="password" class="form-control" id="password" placeholder="Contraseña">
-  </div>
+    <button class="btn btn-outline-danger" type="submit">INICIAR SESIÓN</button>
+    <button class="btn btn-outline-danger" type="button"><a routerLink="/registro" routerLinkActive="active">REGÍSTRATE</a></button>
 
-  <button class="btn btn-outline-danger" type="submit">INICIAR SESIÓN</button>
-  <button class="btn btn-outline-danger" type="button"><a routerLink="/registro" routerLinkActive="active">REGÍSTRATE</a></button>
+  </form>
 
-</form>
-
+</div>
 
 {{ formularioLogin.valid }}
