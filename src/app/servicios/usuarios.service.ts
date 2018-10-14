@@ -37,7 +37,7 @@ export class UsuariosService {
   }
 
   public buscarUsuarioPorNombre(nombre: string): Observable<Usuario> {
-    return this.httpClient.get<Usuario>(`http://localhost:8080/fitness/api/public/usuarios/${nombre}`);
+    return this.httpClient.get<Usuario>(`http://localhost:8080/fitness/api/public/usuarios?nombre=${nombre}`);
   }
 
 

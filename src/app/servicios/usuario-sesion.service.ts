@@ -10,23 +10,20 @@ import { Usuario } from '../modelos/usuario.model';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
+// Servicio
+import { UsuariosService } from './usuarios.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioSesionService {
 
-  public usuario$: Observable<Usuario>;
-
   private respuestaLogin$ = new Subject<HttpResponse<any>>();
-  private _accessToken$ = new BehaviorSubject<string>('');
-  private _usuarioAcceso$ = new Subject<Usuario>();
-  public accessToken$ = this._accessToken$.asObservable();
+  private accessToken$ = new BehaviorSubject<string>('');
+  private usuarioLogado$ = new Subject<Usuario>();
 
-  private tokenArray: Array<string>;
-  private datosToken: string;
-  private idUsuarioLogado: string;
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              private usuariosService: UsuariosService) { }
 
   public login(email: string, password: string): Observable<HttpResponse<any>> {
 
@@ -37,7 +34,10 @@ export class UsuarioSesionService {
 
           (response) => {
             const accessToken = this.obtenerAccessToken(response);
-            this._accessToken$.next(accessToken);
+
+            this.obtenerUsuario(accessToken);
+
+            this.accessToken$.next(accessToken);
             this.respuestaLogin$.next(response);
             },
 
@@ -50,6 +50,14 @@ export class UsuarioSesionService {
 
     return this.respuestaLogin$.asObservable();
 
+  }
+
+  public obtenerAccessToken$(): Observable<string> {
+    return this.accessToken$.asObservable();
+  }
+
+  public obtenerUsuario$(): Observable<Usuario> {
+    return this.usuarioLogado$.asObservable();
   }
 
   private generarCabeceras(): HttpHeaders {
@@ -71,19 +79,22 @@ export class UsuarioSesionService {
     return response.body['access_token'];
   }
 
+  private obtenerUsuario(accessToken: string): void {
 
-  private tmp(): void {
-    // Del objeto guardamos la parte del string del token
-    // this.accessToken$ = this.accessTokenCompleto.access_token;
+    const arrayDatosToken = accessToken.split('.');
 
-    // Un token se divide en 3 partes separadas por . (Metadatos del token, datos del token, firma)
-    // this.tokenArray = this.accessToken$.split('.');
+    // Se guarda en un string los datos del TOKEN (metadatos [0], datos[1], firma[2]
+    const datosToken = arrayDatosToken[1];
 
-    // Se guarda en un string los datos del TOKEN
-    this.datosToken = this.tokenArray[1];
+    // Devuelve un STRING que contiene los datos del token decodeados. ID del usuario y authoritis
+    const datosPayload = decodeURIComponent(atob(datosToken));
 
-    // Devuelve el objeto que contiene los datos del token decodeados. ID del usuario y authoritis
-    this.idUsuarioLogado = decodeURIComponent(atob(this.datosToken));
+    // Se parsea el string a JSON y se accede a la propiedad
+    const idUsuario = JSON.parse(datosPayload)['user_name'];
+
+    this.usuariosService.buscarUsuarioPorId(idUsuario).subscribe((usuario: Usuario) => {
+      this.usuarioLogado$.next(usuario);
+    });
   }
 
 }

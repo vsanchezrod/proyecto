@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+// Modelos
+import { Usuario } from '../../modelos/usuario.model';
+
 // Para navegar por rutas
 import { Router } from '@angular/router';
 
@@ -20,11 +23,13 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
 
-    this.usuarioSesionService.accessToken$.subscribe((accessToken: string) => {
+    this.usuarioSesionService.obtenerAccessToken$().subscribe((accessToken: string) => {
       // Si no es null, undefined o vacío
-      console.log('MenuComponent:ngOnInit:accessToken:' , accessToken);
       this.usuarioLogado = accessToken ? true : false;
-      console.log('BOOLEAN: ' , this.usuarioLogado);
+    });
+
+    this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
+      console.log('MenuComponent:ngOnInit:usuario', usuario);
     });
 
   }
