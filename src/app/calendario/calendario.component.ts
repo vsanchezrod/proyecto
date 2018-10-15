@@ -35,8 +35,10 @@ export class CalendarioComponent implements OnInit {
 
   ngOnInit() {
 
-    this.viajesService.obtenerViajes().subscribe(viajes => {
+    this.viajesService.obtenerListadoViajes$().subscribe(viajes => {
+      console.log('CALENDARIO: obtenerListadoViajes$: ', viajes);
 
+      // Se crean eventos con los viajes
       for (const viaje of viajes) {
         // viaje.fechaInicio = moment(viaje.fechaInicio).format('YYYY-MM-DD');
         // viaje.fechaFin = ...........................
@@ -45,8 +47,6 @@ export class CalendarioComponent implements OnInit {
       }
 
     });
-
-    this.viajesService.obtenerViajes2();
 
     this.actividadesService.obtenerListaActividades().subscribe( actividades => {
 

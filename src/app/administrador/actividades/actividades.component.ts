@@ -57,12 +57,10 @@ export class ActividadesComponent implements OnInit {
     this.plazasMinimas = 1;
     this.plazasMaximas = 30;
 
-    this.viajesService.obtenerViajes().subscribe(viajes => {
-      console.log('lista-viajes component. viajes: ', viajes);
+    this.viajesService.obtenerListadoViajes$().subscribe(viajes => {
+      console.log('ActividadesComponent: ObtenerListadoViahjes$: viajes: ', viajes);
       this.listaViajes = viajes;
     });
-
-    this.viajesService.obtenerViajes2();
 
     this.actividadesService.obtenerListaActividades().subscribe( response => {
       this.listaActividades = response.body;
@@ -70,7 +68,7 @@ export class ActividadesComponent implements OnInit {
 
     this.categoriasService.obtenerListaCategorias().subscribe( response => {
       this.listaCategorias = response.body;
-    })
+    });
 
     this.es = {
       firstDayOfWeek: 1,

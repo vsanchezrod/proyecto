@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // Import primeng
 import {MenuItem} from 'primeng/api';
-import {Usuario} from '../modelos/usuario.model';
+
 
 @Component({
   selector: 'app-usuario-registrado',

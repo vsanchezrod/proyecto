@@ -31,6 +31,7 @@ export class PerfilComponent implements OnInit {
     this.usuarioSesionService.obtenerAccessToken$().subscribe((accessToken: string) => {
       // Si no es null, undefined o vacío
       this.usuarioLogado = accessToken ? true : false;
+      console.log('PERFIL: usuariLogado: ', this.usuarioLogado);
     });
 
     this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
