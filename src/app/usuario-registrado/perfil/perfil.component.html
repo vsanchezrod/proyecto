@@ -1,7 +1,9 @@
 <div class="container">
   <h3 class="text-center">PERFIL DE USUARIO</h3>
+  <p>usuario: {{ usuario | json }}</p>
 
   <div class="row">
+
 
     <div class="ui-grid-col-12">
       <p-inplace class="ui-grid-col-12" closable="true">
@@ -34,18 +36,18 @@
 
 
     <!-- NO ME FUNCIONA PARA LA FECHA -->
-    <div class="col-12">
+   <!-- <div class="col-12">
       <span class="ui-grid-col-4">Fecha:</span>
       <p-inplace class="ui-grid-col-8" closable="true">
         <span pInplaceDisplay class="ui-grid-col-12">
           {{ usuario.fechaNacimiento }}
         </span>
         <span pInplaceContent class="ui-grid-col-8">
-          <p-inputMask class="ui-grid-col-4" [(ngModel)]="usuario.fechaNacimiento" mask="99/9999/99" placeholder="dd/yyyy/mm" slotChar="dd/yyyy/mm"></p-inputMask>
+         <p-inputMask class="ui-grid-col-4" [(ngModel)]="usuario.fechaNacimiento" mask="99/9999/99" placeholder="dd/yyyy/mm" slotChar="dd/yyyy/mm"></p-inputMask>
           <button pButton class="ui-grid-col-4" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
       </p-inplace>
-    </div>
+    </div>-->
 
     <div class="col-12">
       <span class="ui-grid-col-2">Sexo:</span>
@@ -66,6 +68,7 @@
         </span>
       </p-inplace>
     </div>
+
 
     <div class="col-12">
       <span class="ui-grid-col-2">Provincia:</span>

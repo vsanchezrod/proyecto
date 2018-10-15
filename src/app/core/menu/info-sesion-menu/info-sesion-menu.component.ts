@@ -11,14 +11,11 @@ import { MenuItem } from 'primeng/api';
 })
 export class InfoSesionMenuComponent implements OnInit {
 
-  usuarioRegistrado: boolean;
-
   items: MenuItem[];
 
   constructor() { }
 
   ngOnInit() {
-    this.usuarioRegistrado = true;
 
     this.items = [
       {

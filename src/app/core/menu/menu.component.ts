@@ -17,6 +17,7 @@ import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 export class MenuComponent implements OnInit {
 
   usuarioLogado: boolean;
+  usuario: Usuario;
 
   constructor(private router: Router,
               private usuarioSesionService: UsuarioSesionService) { }
@@ -29,9 +30,11 @@ export class MenuComponent implements OnInit {
     });
 
     this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
-      console.log('MenuComponent:ngOnInit:usuario', usuario);
+      this.usuario = usuario;
+      console.log('USUARIO EN PERFIL:' , this.usuario);
     });
 
+    console.log('USUARIO:', this.usuario);
   }
 
   buscarActividades(clave: string) {

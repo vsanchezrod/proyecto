@@ -25,6 +25,16 @@ export class Usuario {
     this.roles = [];
     this.amigos = [];
   }
+/*
+  private esUsuario(): boolean {
+    // TODO: implemtar
+    return false;
+  }
 
+  private esAdministrador(): boolean {
+    // TODO: implemtar
+    return true;
+  }
+  */
 }
 

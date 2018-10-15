@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // Import primeng
 import {MenuItem} from 'primeng/api';
+import {Usuario} from '../modelos/usuario.model';
 
 @Component({
   selector: 'app-usuario-registrado',
@@ -24,5 +25,4 @@ export class UsuarioRegistradoComponent implements OnInit {
       {label: 'Opiniones', icon: 'fa fa-fw fa-support', routerLink: 'opiniones'}
     ];
   }
-
 }

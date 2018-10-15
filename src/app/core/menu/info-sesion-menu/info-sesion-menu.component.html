@@ -1,4 +1,4 @@
-<div *ngIf="usuarioRegistrado" class="dropdown show">
+<div class="dropdown show">
 
   <div>
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a routerLink="login" routerLinkActive="active">Logout</a></button>
@@ -24,7 +24,6 @@
 
   </div>
 
-
   <div>
     <p-slideMenu #menuAdmin [model]="items" [viewportHeight]="300" [popup]="true"></p-slideMenu>
     <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menuAdmin.toggle($event)">ADMIN</button>
@@ -32,4 +31,4 @@
 
 </div>
 
-<!--<app-usuario-registrado *ngIf="usuarioRegistrado"></app-usuario-registrado>-->
+
