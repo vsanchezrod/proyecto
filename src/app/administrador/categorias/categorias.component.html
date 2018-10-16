@@ -1,53 +1,49 @@
 <div class="ui-g-12">
 
-  <div class="ui-g-6">
-    <h3>CREAR CATEGORÍA</h3>
+    <div class="ui-g-6">
+        <h3>CREAR CATEGORÍA</h3>
 
-    <form [formGroup]="formularioCategoria" (ngSubmit)="crearCategoria(formularioCategoria.value)">
-      <div>
+        <form [formGroup]="formularioCategoria" (ngSubmit)="crearCategoria(formularioCategoria.value)">
+            <div>
 
-        <h4>Nombre de la categoría</h4>
-        <span class="ui-float-label">
+                <h4>Nombre de la categoría</h4>
+                <span class="ui-float-label">
           <input [formControl]="formularioCategoria.controls['nombre']" id="nombre" name="nombre" type="text" size="30" pInputText>
           <label for="nombre">Nombre</label>
         </span>
 
-        <h4>Añade una descripción</h4>
-        <span class="ui-float-label">
+                <h4>Añade una descripción</h4>
+                <span class="ui-float-label">
           <input [formControl]="formularioCategoria.controls['descripcion']" id="descripcion" name="descripcion" type="text" size="30" pInputText>
           <label for="descripcion">Nombre</label>
         </span>
 
-        <h4>Asocia la nueva categoría con una imagen</h4>
-        <input type="file" accept="image/*" (change)="changeListener($event)">
-        <img [src]="imagen">
+                <h4>Asocia la nueva categoría con una imagen</h4>
+                <input type="file" accept="image/*" (change)="changeListener($event)">
+                <img [src]="imagen">
 
-      </div>
+            </div>
 
-      <button pButton type="submit" label="CREAR" class="ui-button-info"></button>
-    </form>
+            <button pButton type="submit" label="CREAR" class="ui-button-info"></button>
+        </form>
 
-  </div>
-
-  {{ formularioCategoria.value | json }}
-
-  {{ imagen }}
-
-  <div class="ui-g-6">
-
-    <div class="ui-g-4" *ngFor="let categoria of listaCategorias">
-      <div>
-        <h5>{{ categoria.nombre }}</h5>
-        <img [src]="categoria.imagen" alt="FOTO">
-      </div>
-      <button pButton type="button" label="Editar" class="ui-button-rounded ui-button-warning"></button>
-      <button pButton type="button" label="Borrar" class="ui-button-rounded ui-button-danger"></button>
     </div>
 
-  </div>
+    {{ formularioCategoria.value | json }} {{ imagen }}
+
+    <div class="ui-g-6">
+
+        <div class="ui-g-4" *ngFor="let categoria of listaCategorias">
+            <div>
+                <h5>{{ categoria.nombre }}</h5>
+                <img [src]="categoria.imagen" alt="FOTO">
+            </div>
+            <button pButton type="button" label="Editar" class="ui-button-rounded ui-button-warning"></button>
+            <button pButton type="button" label="Borrar" class="ui-button-rounded ui-button-danger" (click)="borrarCategoria(categoria.id)"></button>
+        </div>
+
+    </div>
 
 
 
 </div>
-
-

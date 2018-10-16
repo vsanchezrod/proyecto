@@ -15,12 +15,9 @@ export class OpinionesService {
   public guardarOpinion(opinion: Opinion): Observable<any> {
 
     const body = opinion;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    });
 
-    return this.httpClient.post('http://localhost:8080/fitness/api/public/opiniones', body, {observe: 'response'});
+    return this.httpClient.post('http://localhost:8080/fitness/api/public/opiniones', body,
+      {headers: this.generarCabeceras(), observe: 'response'});
   }
 
   // Petición HTTP(GET) para recuperar las opiniones
@@ -37,4 +34,10 @@ export class OpinionesService {
 
   }
 
+  private generarCabeceras(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+  }
 }

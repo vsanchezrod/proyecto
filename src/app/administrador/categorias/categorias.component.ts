@@ -3,7 +3,6 @@ import {Component, OnInit } from '@angular/core';
 // Servicios
 import { CategoriasService } from '../../servicios/categorias.service';
 
-
 // Modelos
 import { Categoria } from '../../modelos/categoria.model';
 
@@ -47,6 +46,14 @@ export class CategoriasComponent implements OnInit {
       console.log(this.formularioCategoria);
     });
   }
+
+  public borrarCategoria(idCategoria) {
+    this.categoriaService.borrarCategoria(idCategoria).subscribe( response => {
+      console.log('CategoriasComp:BorrarCategoria:Respuesta: ' + response.status);
+      console.log('La categoria borrada es: ', idCategoria);
+    });
+  }
+
 
   // Método que maneja el upload de los archivos subidos
   public changeListener(evento: Event): void {
