@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app.routes';
 import { CoreModule } from './core/core.module';
 import { InicioModule } from './inicio/inicio.module';
 import { ViajesModule } from './viajes/viajes.module';
-import { SalidasModule } from './salidas/salidas.module';
+import { ActividadesModule } from './actividades/actividades.module';
 import { CalendarioModule } from './calendario/calendario.module';
 import { AcercaDeModule } from './acerca-de/acerca-de.module';
 import { CompartidosModule } from './compartidos/compartidos.module';
@@ -38,7 +38,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     CoreModule,
     InicioModule,
     ViajesModule,
-    SalidasModule,
+    ActividadesModule,
     CalendarioModule,
     AcercaDeModule,
     CompartidosModule,

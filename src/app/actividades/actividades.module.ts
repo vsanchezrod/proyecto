@@ -7,8 +7,8 @@ import { RouterModule } from '@angular/router';
 import { CompartidosModule } from '../compartidos/compartidos.module';
 
 // Componentes
-import { SalidasComponent } from './salidas.component';
-import { SalidaComponent } from './salida/salida.component';
+import { ActividadesComponent } from './actividades.component';
+import { ActividadComponent } from './actividad/actividad.component';
 
 @NgModule({
   imports: [
@@ -17,8 +17,8 @@ import { SalidaComponent } from './salida/salida.component';
     CompartidosModule
   ],
   declarations: [
-    SalidasComponent,
-    SalidaComponent
+    ActividadComponent,
+    ActividadesComponent
   ]
 })
-export class SalidasModule { }
+export class ActividadesModule { }

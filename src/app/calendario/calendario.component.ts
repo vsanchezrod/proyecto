@@ -48,9 +48,10 @@ export class CalendarioComponent implements OnInit {
 
     });
 
-    this.actividadesService.obtenerListaActividades().subscribe( actividades => {
+    this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
+      console.log('lista-actividades component. actividades: ', actividades);
 
-      for (const actividad of actividades.body) {
+      for (const actividad of actividades) {
         // salida.fechaInicio = moment(salida.fechaInicio).format('YYYY-MM-DD');
         const nuevoEvento: Evento = new Evento(actividad.id, actividad.nombre, '2018-10-23');
         this.listaEventos.push(nuevoEvento);
@@ -60,7 +61,7 @@ export class CalendarioComponent implements OnInit {
 
   }
 
-  visualizarEvento(evento) {
+  public visualizarEvento(evento): void {
     for (evento of this.listaEventos) {
       console.log(evento);
     }

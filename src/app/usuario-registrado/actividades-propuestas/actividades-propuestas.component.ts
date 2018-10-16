@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 // Componentes
-import { Salida } from '../../modelos/salida.model';
+import { Actividad } from '../../modelos/actividad.model';
 
 @Component({
   selector: 'app-actividades-propuestas',
@@ -10,7 +10,7 @@ import { Salida } from '../../modelos/salida.model';
 })
 export class ActividadesPropuestasComponent implements OnInit {
 
-  salida: Salida = new Salida();
+  salida: Actividad = new Actividad();
 
   constructor() { }
 

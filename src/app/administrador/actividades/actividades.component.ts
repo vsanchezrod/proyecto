@@ -62,8 +62,9 @@ export class ActividadesComponent implements OnInit {
       this.listaViajes = viajes;
     });
 
-    this.actividadesService.obtenerListaActividades().subscribe( response => {
-      this.listaActividades = response.body;
+    this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
+      console.log('lista-actividades component. actividades: ', actividades);
+      this.listaActividades = actividades;
     });
 
     this.categoriasService.obtenerListaCategorias().subscribe( response => {

@@ -19,8 +19,9 @@ export class ListaSalidasComponent implements OnInit {
 
   ngOnInit() {
 
-    this.actividadesService.obtenerListaActividades().subscribe(response => {
-      this.listaActividades = response.body;
+    this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
+      console.log('lista-actividades component. actividades: ', actividades);
+      this.listaActividades = actividades;
     });
 
   }

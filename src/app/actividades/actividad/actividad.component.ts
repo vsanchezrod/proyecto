@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 
 // Componentes
-import { Salida } from '../../modelos/salida.model';
+import { Actividad } from '../../modelos/actividad.model';
 
 // Servicios
-import { SalidasService } from '../../servicios/salidas.service';
+
 
 // Para poder recuperar un parámetro de la url
 import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
-  selector: 'app-salida',
-  templateUrl: './salida.component.html',
-  styleUrls: ['./salida.component.css']
+  selector: 'app-actividad',
+  templateUrl: './actividad.component.html',
+  styleUrls: ['./actividad.component.css']
 })
-export class SalidaComponent implements OnInit {
+export class ActividadComponent implements OnInit {
 
-  salida: Salida;
+  salida: Actividad;
 
-  constructor(private salidasService: SalidasService,
-              private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     /* Params regresa un observador, que está pendiente de los cambios y para que funcione se necesita suscribirse a ese observador*/

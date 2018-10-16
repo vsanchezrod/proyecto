@@ -8,11 +8,11 @@ import { ActividadesService } from '../servicios/actividades.service';
 
 
 @Component({
-  selector: 'app-salidas',
-  templateUrl: './salidas.component.html',
-  styleUrls: ['./salidas.component.css']
+  selector: 'app-actividades',
+  templateUrl: './actividades.component.html',
+  styleUrls: ['./actividades.component.css']
 })
-export class SalidasComponent implements OnInit {
+export class ActividadesComponent implements OnInit {
 
   listaActividades: Array<Actividad>;
 
@@ -20,8 +20,8 @@ export class SalidasComponent implements OnInit {
 
   ngOnInit() {
 
-    this.actividadesService.obtenerListaActividades().subscribe(response => {
-      this.listaActividades = response.body;
+    this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
+      this.listaActividades = actividades;
     });
   }
 

@@ -34,8 +34,8 @@ export class BusquedaComponent implements OnInit {
     this.listaViajesBusqueda = [];
 
     // SE PODRÍA AHORRAR ESTA BUSQUEDA SI YA TUVIERAMOS LA LISTA??
-    this.actividadesService.obtenerListaActividades().subscribe( response => {
-      this.listaActividades = response.body;
+    this.actividadesService.obtenerListaActividades$().subscribe( response => {
+      this.listaActividades = response;
       // Se recoge el parámetro y se usa suscribe
       this.activatedRoute.params.subscribe(params => {
         this.clave = params['clave'];
@@ -43,7 +43,17 @@ export class BusquedaComponent implements OnInit {
       });
     });
 
-    // HACER LO MISMO PARA VIAJES
+    // LO MISMO PARA VIAJES
+    this.viajesService.obtenerListadoViajes$().subscribe( response => {
+      this.listaViajesBusqueda = response;
+      // Se recoge el parámetro y se usa suscribe
+      this.activatedRoute.params.subscribe(params => {
+        this.clave = params['clave'];
+
+        // MÉTODO BUSCAR VIAJE POR IDE
+        // TODO: implementar
+      });
+    });
 
   }
 
