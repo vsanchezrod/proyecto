@@ -36,9 +36,9 @@ export class ActividadesService {
      {headers: this.generarCabeceras(), observe: 'response'});
   }
 
-  public borrarActividad(id: string): Observable<HttpResponse<Actividad>> {
+  public borrarActividad(id: string, accessToken: string): Observable<HttpResponse<Actividad>> {
     return this.httpClient.delete<Actividad>(`http://localhost:8080/fitness/api/actividades/${id}`,
-      {headers: this.generarCabecerasConAccessToken(), observe: 'response'} );
+      {headers: this.generarCabecerasConAccessToken(accessToken), observe: 'response'} );
   }
 
   private generarCabeceras(): HttpHeaders {
@@ -48,11 +48,11 @@ export class ActividadesService {
     });
   }
 
-  private generarCabecerasConAccessToken(): HttpHeaders {
+  private generarCabecerasConAccessToken(accessToken: string): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiNWJjMGJlN2FkZjU1MDcxOTY0MjcwNDQ2Iiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTUzOTcyMTIzMSwiYXV0aG9yaXRpZXMiOlsiYWRtaW5pc3RyYWRvciIsInVzdWFyaW8iXSwianRpIjoiODEwZDM2YzAtYTNkZS00MDg4LWI0ODYtNTNhZWZhYjdkMTk3IiwiY2xpZW50X2lkIjoidGVzdGp3dGNsaWVudGlkIn0.p0pk1TOXsy2sg3FkQCmvk43WaJds1EW73jI1xvywHEU'
+      'Authorization' : `Bearer ${accessToken}`
     });
   }
 

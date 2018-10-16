@@ -4,12 +4,13 @@ import { Component, OnInit } from '@angular/core';
 import { ViajesService } from '../../servicios/viajes.service';
 import { ActividadesService } from '../../servicios/actividades.service';
 import { CategoriasService } from '../../servicios/categorias.service';
+import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 
-
+// Modelos de datos
 import { Viaje } from '../../modelos/viaje.model';
 import { Actividad } from '../../modelos/actividad.model';
 import { Categoria } from '../../modelos/categoria.model';
-
+import { Usuario } from '../../modelos/usuario.model';
 
 @Component({
   selector: 'app-actividades',
@@ -18,30 +19,31 @@ import { Categoria } from '../../modelos/categoria.model';
 })
 export class ActividadesComponent implements OnInit {
 
-  listaViajes: Array<Viaje> = [];
-  listaActividades: Array<Actividad> = [];
-  listaCategorias: Array<Categoria> = [];
+  private usuario: Usuario;
+  private accessToken: string;
 
-  viaje: Viaje;
+  private listaViajes: Array<Viaje> = [];
+  private listaActividades: Array<Actividad> = [];
+  private listaCategorias: Array<Categoria> = [];
 
-  distanciaMinima: number;
-  distanciaMaxima: number;
+  private viaje: Viaje;
+  private distanciaMinima: number;
+  private distanciaMaxima: number;
+  private precioMinimo: number;
+  private precioMaximo: number;
+  private plazasMinimas: number;
+  private plazasMaximas: number;
 
-  precioMinimo: number;
-  precioMaximo: number;
-
-  plazasMinimas: number;
-  plazasMaximas: number;
-
-  imagen: string;
-  progreso: number;
-  mostrarSpinner: boolean;
+  private imagen: string;
+  private progreso: number;
+  private mostrarSpinner: boolean;
 
   es: any;
 
   constructor(private viajesService: ViajesService,
               private actividadesService: ActividadesService,
-              private categoriasService: CategoriasService) { }
+              private categoriasService: CategoriasService,
+              private usuarioSesionService: UsuarioSesionService) { }
 
   ngOnInit() {
 
@@ -50,12 +52,20 @@ export class ActividadesComponent implements OnInit {
 
     this.distanciaMinima = 0;
     this.distanciaMaxima = 150;
-
     this.precioMinimo = 0;
     this.precioMaximo = 3000;
-
     this.plazasMinimas = 1;
     this.plazasMaximas = 30;
+
+    this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
+      console.log('ActividadesComponent: obtenerAccessToken: accessToken', accessToken);
+      this.accessToken = accessToken;
+    });
+
+    this.usuarioSesionService.obtenerUsuario$().subscribe ( usuario => {
+      console.log('ActividadesComponent: obtenerAccessToken: usuario', usuario);
+      this.usuario = usuario;
+    });
 
     this.viajesService.obtenerListadoViajes$().subscribe(viajes => {
       console.log('ActividadesComponent: ObtenerListadoViahjes$: viajes: ', viajes);
@@ -63,7 +73,7 @@ export class ActividadesComponent implements OnInit {
     });
 
     this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
-      console.log('lista-actividades component. actividades: ', actividades);
+      console.log('ActividadesComponentt: Lista actividades: ', actividades);
       this.listaActividades = actividades;
     });
 
@@ -126,7 +136,7 @@ export class ActividadesComponent implements OnInit {
   }
 
   public borrarActividad(id): void {
-    this.actividadesService.borrarActividad(id).subscribe(response => {
+    this.actividadesService.borrarActividad(id, this.accessToken).subscribe(response => {
       console.log('ActividadesCompAdmin:BorrarActividad: ' + response.status);
       console.log('Borrada la actividad con id ' + id);
     });
