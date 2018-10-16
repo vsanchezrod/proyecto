@@ -21,9 +21,9 @@ export class ListaCategoriasComponent implements OnInit {
 
   ngOnInit() {
 
-    this.categoriasService.obtenerListaCategorias().subscribe(response => {
-      console.log('Las categorias son: ', response.body);
-      this.listaCategorias = response.body;
+    this.categoriasService.obtenerListaCategorias$().subscribe(response => {
+      console.log('Las categorias son: ', response);
+      this.listaCategorias = response;
       }
     );
   }

@@ -40,12 +40,10 @@ export class RegistroComponent implements OnInit {
         this.listaProvincias = response.body;
       });
 
-    this.categoriasService.obtenerListaCategorias()
+    this.categoriasService.obtenerListaCategorias$()
       .subscribe( response => {
-        console.log('Respuesta de la petición de lista de intereses: ' + response.status);
-        this.listaIntereses = response.body;
-    })
-
+         this.listaIntereses = response;
+    });
 
     this.formularioRegistro = new FormGroup({
       'nombre': new FormControl('', Validators.required),

@@ -28,8 +28,8 @@ export class CategoriasComponent implements OnInit {
 
   ngOnInit() {
 
-    this.categoriaService.obtenerListaCategorias().subscribe(response => {
-      this.listaCategorias = response.body;
+    this.categoriaService.obtenerListaCategorias$().subscribe(response => {
+      this.listaCategorias = response;
     });
 
     this.formularioCategoria = new FormGroup({
