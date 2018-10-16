@@ -47,7 +47,7 @@ export class CategoriasComponent implements OnInit {
     });
   }
 
-  public borrarCategoria(idCategoria) {
+  public borrarCategoria(idCategoria): void {
     this.categoriaService.borrarCategoria(idCategoria).subscribe( response => {
       console.log('CategoriasComp:BorrarCategoria:Respuesta: ' + response.status);
       console.log('La categoria borrada es: ', idCategoria);

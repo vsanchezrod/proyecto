@@ -125,11 +125,11 @@ export class ActividadesComponent implements OnInit {
     });
   }
 
-  public borrarActividad(id: string): void {
-    console.log('id ' + id);
-    /*this.actividadesService.borrarActividad(id).subscribe( response => {
-      console.log('Actividad con id ' + id + ' borrada');
-    });*/
+  public borrarActividad(id): void {
+    this.actividadesService.borrarActividad(id).subscribe(response => {
+      console.log('ActividadesCompAdmin:BorrarActividad: ' + response.status);
+      console.log('Borrada la actividad con id ' + id);
+    });
   }
 
 }

@@ -1,47 +1,44 @@
 <div class="">
 
-  <div class="row">
+    <div class="row">
 
-      <p-dataScroller class="col-md-12 col-lg-6" [value]="listaViajes" [rows]="10" [inline]="true" scrollHeight="500px">
+        <p-dataScroller class="col-md-12 col-lg-6" [value]="listaViajes" [rows]="10" [inline]="true" scrollHeight="500px">
 
-        <p-header>
-          LISTA DE VIAJES
-        </p-header>
+            <p-header>
+                LISTA DE VIAJES
+            </p-header>
 
-        <ng-template let-viaje pTemplate="item">
+            <ng-template let-viaje pTemplate="item">
 
-          <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
+                <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
 
-          <div>
-            <button pButton type="button" label="EDITAR" class="ui-button-rounded ui-button-warning"></button>
-            <button pButton type="button" label="BORRAR"  class="ui-button-rounded ui-button-danger"></button>
-          </div>
+                <div>
+                    <button pButton type="button" label="EDITAR" class="ui-button-rounded ui-button-warning"></button>
+                    <button pButton type="button" label="BORRAR" class="ui-button-rounded ui-button-danger"></button>
+                </div>
 
-        </ng-template>
+            </ng-template>
 
-      </p-dataScroller>
+        </p-dataScroller>
 
 
-      <p-dataScroller class="col-md-12 col-lg-6" [value]="listaActividades" [rows]="10" [inline]="true" scrollHeight="500px">
+        <p-dataScroller class="col-md-12 col-lg-6" [value]="listaActividades" [rows]="10" [inline]="true" scrollHeight="500px">
 
-        <p-header>
-          LISTA DE ACTIVIDADES
-        </p-header>
+            <p-header>
+                LISTA DE ACTIVIDADES
+            </p-header>
 
-        <ng-template let-salida pTemplate="item">
+            <ng-template let-salida pTemplate="item">
 
-          <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
+                <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
+                <button pButton type="button" label="EDITAR" class="ui-button-rounded ui-button-warning"></button>
+                <button pButton type="button" label="BORRAR" class="ui-button-rounded ui-button-danger" (click)="borrarActividad(salida.id)"></button>
 
-          <div>
-            <button pButton type="button" label="EDITAR" class="ui-button-rounded ui-button-warning"></button>
-            <button pButton type="button" label="BORRAR"  class="ui-button-rounded ui-button-danger"></button>
-          </div>
+            </ng-template>
 
-        </ng-template>
+        </p-dataScroller>
 
-      </p-dataScroller>
-
-  </div>
+    </div>
 
 </div>
 
@@ -124,4 +121,3 @@
 </div>
 
 -->
-

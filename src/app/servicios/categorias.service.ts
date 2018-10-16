@@ -29,7 +29,6 @@ export class CategoriasService {
 
   // Método para guardar una categoría
   public crearCategoria (categoria: Categoria): Observable<HttpResponse<Categoria>> {
-
     const body = categoria;
     return this.httpClient.post<Categoria>('http://localhost:8080/fitness/api/categorias',
       body, {headers: this.generarCabecerasConAccessToken(), observe: 'response'});
