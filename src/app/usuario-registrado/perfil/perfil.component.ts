@@ -16,6 +16,7 @@ import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 export class PerfilComponent implements OnInit {
 
   usuario: Usuario;
+  accessToken: String;
   listaProvincias: Array<Provincia> = [];
   usuarioLogado: boolean;
 
@@ -28,15 +29,16 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit() {
 
-    this.usuarioSesionService.obtenerAccessToken$().subscribe((accessToken: string) => {
+    this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
+      console.log('PerfilComponent: obtenerAccessToken: accessToken', accessToken);
+      this.accessToken = accessToken;
       // Si no es null, undefined o vacío
       this.usuarioLogado = accessToken ? true : false;
-      console.log('PERFIL: usuariLogado: ', this.usuarioLogado);
     });
 
-    this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
+    this.usuarioSesionService.obtenerUsuario$().subscribe ( usuario => {
+      console.log('PerfilComponent: obtenerUsuario: usuario', usuario);
       this.usuario = usuario;
-      console.log('PERFIL: obtenerUsuario:' , this.usuario);
     });
 
     this.provinciasService.obtenerProvincias().subscribe(response => {

@@ -1,42 +1,40 @@
 <div class="container">
-  <h3 class="text-center">PERFIL DE USUARIO</h3>
-  <p>usuario: {{ usuario | json }}</p>
+    <h3 class="text-center">PERFIL DE USUARIO</h3>
 
-  <div class="row">
+    <div class="row">
 
-
-    <div class="ui-grid-col-12">
-      <p-inplace class="ui-grid-col-12" closable="true">
-        <span pInplaceDisplay class="ui-grid-col-12">
+        <div class="ui-grid-col-12">
+            <p-inplace class="ui-grid-col-12" closable="true">
+                <span pInplaceDisplay class="ui-grid-col-12">
          <img class="rounded-circle mx-auto d-block ui-button" [src]="usuario.avatar" name="avatar" alt="AVATAR">
         </span>
-        <span pInplaceContent class="ui-grid-col-10">
+                <span pInplaceContent class="ui-grid-col-10">
           <img class="ui-grid-col-4 rounded-circle" [src]="usuario.avatar" name="avatar" alt="AVATAR">
           <input class="ui-grid-col-6" type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
           <p-dropdown class="ui-grid-col-6" [options]="" placeholder="Elige avatar" optionLabel="" [showClear]="true" filter="true"></p-dropdown>
           <button pButton class="ui-grid-col-4" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
-      </p-inplace>
-    </div>
+            </p-inplace>
+        </div>
 
 
-    <div class="ui-grid-col-12">
-      <span class="ui-grid-col-4">Nombre:</span>
-      <p-inplace class="ui-grid-col-8" closable="true">
-        <span pInplaceDisplay class="ui-grid-col-12">
+        <div class="ui-grid-col-12">
+            <span class="ui-grid-col-4">Nombre:</span>
+            <p-inplace class="ui-grid-col-8" closable="true">
+                <span pInplaceDisplay class="ui-grid-col-12">
           {{ usuario.nombre }} {{ usuario.apellido }}
         </span>
-        <span pInplaceContent class="ui-grid-col-8">
+                <span pInplaceContent class="ui-grid-col-8">
             <input class="ui-grid-col-4" type="text" [value]="usuario.nombre" pInputText>
             <input class="ui-grid-col-4" type="text" [value]="usuario.apellido" pInputText>
             <button pButton class="ui-grid-col-4" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
-      </p-inplace>
-    </div>
+            </p-inplace>
+        </div>
 
 
-    <!-- NO ME FUNCIONA PARA LA FECHA -->
-   <!-- <div class="col-12">
+        <!-- NO ME FUNCIONA PARA LA FECHA -->
+        <!-- <div class="col-12">
       <span class="ui-grid-col-4">Fecha:</span>
       <p-inplace class="ui-grid-col-8" closable="true">
         <span pInplaceDisplay class="ui-grid-col-12">
@@ -49,13 +47,13 @@
       </p-inplace>
     </div>-->
 
-    <div class="col-12">
-      <span class="ui-grid-col-2">Sexo:</span>
-      <p-inplace class="ui-g-6" closable="true">
-        <span pInplaceDisplay>
+        <div class="col-12">
+            <span class="ui-grid-col-2">Sexo:</span>
+            <p-inplace class="ui-g-6" closable="true">
+                <span pInplaceDisplay>
           {{ usuario.sexo }}
         </span>
-        <span pInplaceContent>
+                <span pInplaceContent>
           <div class="ui-g" style="width:250px;margin-bottom:10px">
             <div class="ui-g-12">
                 <p-radioButton name="sexo" value="Mujer" label="Mujer"></p-radioButton>
@@ -66,53 +64,53 @@
           </div>
           <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
-      </p-inplace>
-    </div>
+            </p-inplace>
+        </div>
 
 
-    <div class="col-12">
-      <span class="ui-grid-col-2">Provincia:</span>
-      <p-inplace class="ui-g-6" closable="closable">
-        <span pInplaceDisplay>
+        <div class="col-12">
+            <span class="ui-grid-col-2">Provincia:</span>
+            <p-inplace class="ui-g-6" closable="closable">
+                <span pInplaceDisplay>
           {{ usuario.provincia['nombre'] }}
         </span>
-        <span pInplaceContent>
+                <span pInplaceContent>
           <p-dropdown [options]="listaProvincias" [placeholder]="usuario.provincia['nombre']" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
           <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
-      </p-inplace>
-    </div>
+            </p-inplace>
+        </div>
 
-    <div class="col-12">
-      <span class="ui-grid-col-2">Password:</span>
-      <p-inplace class="ui-g-6" closable="closable">
-        <span pInplaceDisplay>
+        <div class="col-12">
+            <span class="ui-grid-col-2">Password:</span>
+            <p-inplace class="ui-g-6" closable="closable">
+                <span pInplaceDisplay>
           ********
         </span>
-        <span pInplaceContent>
-          <span>Password antiguo:</span><input pPassword type="password" value="********"/>
-          <span>Nuevo password:</span><input pPassword type="password" value="********"/>
-          <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
-        </span>
-      </p-inplace>
-    </div>
+                <span pInplaceContent>
+          <span>Password antiguo:</span><input pPassword type="password" value="********" />
+                <span>Nuevo password:</span><input pPassword type="password" value="********" />
+                <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
+                </span>
+            </p-inplace>
+        </div>
 
-    <div class="col-12">
-      <span class="ui-grid-col-2">Sobre mi:</span>
-      <p-inplace class="ui-g-6" closable="closable">
-        <span pInplaceDisplay>
+        <div class="col-12">
+            <span class="ui-grid-col-2">Sobre mi:</span>
+            <p-inplace class="ui-g-6" closable="closable">
+                <span pInplaceDisplay>
           {{ usuario.info }}
         </span>
-        <span pInplaceContent>
+                <span pInplaceContent>
           <input type="text" [value]="usuario.info" pInputText>
           <button pButton class="ui-g-2" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </span>
-      </p-inplace>
+            </p-inplace>
+        </div>
+
+
+
     </div>
-
-
-
-  </div>
 
 
 </div>

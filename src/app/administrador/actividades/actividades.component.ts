@@ -63,7 +63,7 @@ export class ActividadesComponent implements OnInit {
     });
 
     this.usuarioSesionService.obtenerUsuario$().subscribe ( usuario => {
-      console.log('ActividadesComponent: obtenerAccessToken: usuario', usuario);
+      console.log('ActividadesComponent: obtenerUsuario: usuario', usuario);
       this.usuario = usuario;
     });
 
