@@ -20,7 +20,6 @@ export class ListaViajesComponent implements OnInit {
   ngOnInit() {
 
     this.viajesService.obtenerListadoViajes$().subscribe(viajes => {
-      console.log('lista-viajes component. viajes: ', viajes);
       this.listaViajes = viajes;
     });
   }

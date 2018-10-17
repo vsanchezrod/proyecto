@@ -11,18 +11,18 @@
     <div class="ui-grid-col-12">Fecha: {{ salida.fechaInicio }}</div>
 
     <p-footer>
-      <div class="ui-grid-col-4">
-        <img class="ui-grid-col-12 rounded-circle avatar mx-auto d-block" alt="img" src="../../../assets/imagenes/avatars/1.png">
-      </div>
+        <div class="ui-grid-col-4">
+            <img class="ui-grid-col-12 rounded-circle avatar mx-auto d-block" alt="img" [src]="usuario.avatar">
+        </div>
 
-      <div class="ui-grid-col-8">
-        <p class="ui-grid-col-12">usuario.nombre</p>
-        <span class="ui-grid-col-12">Valoracion: </span>
-        <p-rating class="ui-grid-col-12" readonly="true" stars="5" [ngModel]="3" name="valoracion" [cancel]="false"></p-rating>
-      </div>
+        <div class="ui-grid-col-8">
+            <p class="ui-grid-col-12">{{ usuario.nombre }}</p>
+            <span class="ui-grid-col-12">Valoración:</span>
+            <p-rating class="ui-grid-col-12" readonly="true" stars="5" [ngModel]="usuario.valoracion" name="valoracion" [cancel]="false"></p-rating>
+        </div>
 
-      <button class="ui-grid-col-6" pButton (click)="verSalida()" type="button" icon="pi pi-check" iconPos="right" label="VER MAS"></button>
-      <button class="ui-grid-col-6" pButton type="button" icon="pi pi-check" iconPos="right" label="APÚNTATE!"></button>
-      <span class="ui-grid-col-12 text-center badge-info letraBlanca">Ya somos {{ salida.listaParticipantes }}!!</span>
+        <button class="ui-grid-col-6" pButton (click)="verSalida()" type="button" icon="pi pi-check" iconPos="right" label="VER MAS"></button>
+        <button class="ui-grid-col-6" pButton type="button" icon="pi pi-check" iconPos="right" label="APÚNTATE!"></button>
+        <span class="ui-grid-col-12 text-center badge-info letraBlanca">Ya somos {{ salida.listaParticipantes.length }}!!</span>
     </p-footer>
 </p-card>

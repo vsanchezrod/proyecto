@@ -8,7 +8,7 @@ import { Usuario } from '../modelos/usuario.model';
 
 // Peticiones HTTP
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import { BehaviorSubject, Observable, Subject} from 'rxjs';
 
 // Servicio
 import { UsuariosService } from './usuarios.service';
@@ -20,7 +20,7 @@ export class UsuarioSesionService {
 
   private respuestaLogin$ = new Subject<HttpResponse<any>>();
   private accessToken$ = new BehaviorSubject<string>('');
-  private usuarioLogado$ = new Subject<Usuario>();
+  private usuarioLogado$ = new BehaviorSubject<Usuario>(null);
 
   constructor(private httpClient: HttpClient,
               private usuariosService: UsuariosService) { }
@@ -34,11 +34,9 @@ export class UsuarioSesionService {
 
           (response) => {
             const accessToken = this.obtenerAccessToken(response);
-
-            this.obtenerUsuario(accessToken);
-
             this.accessToken$.next(accessToken);
             this.respuestaLogin$.next(response);
+            this.obtenerUsuario(accessToken);
             },
 
           (errorResponse) => {
@@ -92,7 +90,9 @@ export class UsuarioSesionService {
     // Se parsea el string a JSON y se accede a la propiedad
     const idUsuario = JSON.parse(datosPayload)['user_name'];
 
+    console.log('LOGIN: ID USUARIO:', idUsuario);
     this.usuariosService.buscarUsuarioPorId(idUsuario).subscribe((usuario: Usuario) => {
+      console.log('USUARIO LOGIN encontrado: ', usuario);
       this.usuarioLogado$.next(usuario);
     });
   }

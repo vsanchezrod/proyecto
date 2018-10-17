@@ -6,8 +6,6 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 // Modelo de datos
 import { Actividad } from '../modelos/actividad.model';
-import {Categoria} from '../modelos/categoria.model';
-import { Usuario } from '../modelos/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +28,10 @@ export class ActividadesService {
   }
 
   // Método para crear actividad y mandar la petición a backned
-  public guardarActividad(actividad: Actividad): Observable<HttpResponse<Actividad>> {
+  public crearActividad(actividad: Actividad, accessToken: string): Observable<HttpResponse<Actividad>> {
     const body = actividad;
-    return this.httpClient.post<Actividad>('http://localhost:8080/fitness/api/public/actividades', body,
-     {headers: this.generarCabeceras(), observe: 'response'});
+    return this.httpClient.post<Actividad>('http://localhost:8080/fitness/api/actividades', body,
+     {headers: this.generarCabecerasConAccessToken(accessToken), observe: 'response'});
   }
 
   public borrarActividad(id: string, accessToken: string): Observable<HttpResponse<Actividad>> {

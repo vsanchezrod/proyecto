@@ -31,10 +31,9 @@ export class MenuComponent implements OnInit {
 
     this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
       this.usuario = usuario;
-      console.log('USUARIO EN PERFIL:' , this.usuario);
+      console.log('MENUComp: obtenerUsuario$: usuario' , this.usuario);
     });
 
-    console.log('USUARIO:', this.usuario);
   }
 
   buscarActividades(clave: string) {

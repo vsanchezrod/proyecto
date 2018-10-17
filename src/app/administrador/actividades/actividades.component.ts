@@ -18,7 +18,7 @@ import { Usuario } from '../../modelos/usuario.model';
   styleUrls: ['./actividades.component.css']
 })
 export class ActividadesComponent implements OnInit {
-  
+
   public listaViajes: Array<Viaje> = [];
   public listaActividades: Array<Actividad> = [];
   public listaCategorias: Array<Categoria> = [];

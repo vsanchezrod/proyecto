@@ -1,77 +1,78 @@
 <div class="container fondoTransparente" style="z-index: 1000">
 
-  <div class="row">
+    <p class="col-12">Usuario {{ usuario.id }}</p>
+    <div class="row">
 
-    <h3 class="text-center col-12">Nueva actividad!</h3>
+        <h3 class="text-center col-12">Nueva actividad!</h3>
 
-    <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-6">
 
-      <!-- FORMULARIO CREAR NUEVA ACTIVIDAD -->
-      <form #formularioActividad="ngForm" (submit)="crearActividad(formularioActividad.value)">
+            <!-- FORMULARIO CREAR NUEVA ACTIVIDAD -->
+            <form #formularioActividad="ngForm" (submit)="crearActividad(formularioActividad.value)">
 
-        <div class="col-12">
-          <h4>Imágen para actividad</h4>
-          <input class="ui-button" type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
-        </div>
+                <div class="col-12">
+                    <h4>Imágen para actividad</h4>
+                    <input class="ui-button" type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
+                </div>
 
-        <div class="col-12">
-          <h4>Nombre</h4>
-          <span class="ui-float-label">
-            <input class="col-10" id="nombre" name="nombre" [(ngModel)]="actividad.nombre" type="text" size="30" pInputText>
-            <label for="nombre">Nombre</label>
-          </span>
-        </div>
+                <div class="col-12">
+                    <h4>Nombre</h4>
+                    <span class="ui-float-label">
+                    <input class="col-10" id="nombre" name="nombre" [(ngModel)]="actividad.nombre" type="text" size="30" pInputText>
+                    <label for="nombre">Nombre</label>
+                  </span>
+                </div>
 
-        <div class="col-12">
-          <h4>Categoría</h4>
-          <p-multiSelect class="col-10" [options]="listaCategorias" name="categorias" [(ngModel)]="actividad.categorias" defaultLabel="Selecciona una categoría" filterPlaceHolder="Busca aquí" optionLabel="nombre" filter="true"></p-multiSelect>
-        </div>
+                <div class="col-12">
+                    <h4>Categoría</h4>
+                    <p-multiSelect class="col-10" [options]="listaCategorias" name="categorias" [(ngModel)]="actividad.categorias" defaultLabel="Selecciona una categoría" filterPlaceHolder="Busca aquí" optionLabel="nombre" filter="true"></p-multiSelect>
+                </div>
 
-        <div class="col-12">
-          <h4 class="first">Descripción</h4>
-          <textarea class="col-10" name="descripcion" [(ngModel)]="actividad.descripcion" rows="5" cols="30" pInputTextarea></textarea>
-        </div>
+                <div class="col-12">
+                    <h4 class="first">Descripción</h4>
+                    <textarea class="col-10" name="descripcion" [(ngModel)]="actividad.descripcion" rows="5" cols="30" pInputTextarea></textarea>
+                </div>
 
-        <div class="col-12">
-          <div class="row">
-            <div class="col-sm-12 col-md-6">
-               <h4>Nivel</h4>
-               <p-rating stars="3" [(ngModel)]="actividad.nivel" name="nivel" [cancel]="false"></p-rating>
-            </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <h4>Nivel</h4>
+                            <p-rating stars="3" [(ngModel)]="actividad.nivel" name="nivel" [cancel]="false"></p-rating>
+                        </div>
 
-            <div class="col-sm-12 col-md-6">
-              <h4>Distancia {{ actividad.distancia }}km:</h4>
-              <span class="ui-float-label">
+                        <div class="col-sm-12 col-md-6">
+                            <h4>Distancia {{ actividad.distancia }}km:</h4>
+                            <span class="ui-float-label">
                 <p-slider class="col-sm-10 col-md-5" [(ngModel)]="actividad.distancia" name="distancia" [min]="distanciaMinima" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true"></p-slider>
                 <label for="distancia">Km</label>
               </span>
-            </div>
-          </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <h4>Día:</h4>
+                    <p-calendar [locale]="es" name="fechaInicio" [(ngModel)]="actividad.fechaInicio" dateFormat="yy-mm-dd" [showTime]="true" [showIcon]="true" hourFormat="24"></p-calendar>
+                </div>
+
+                <div class="col-12">
+                    <h4>Punto de encuentro</h4>
+                    <div><img class="col-12" src="../../../../assets/imagenes/map.png" alt="AGREGAR MAPA DE GMAPS"></div>
+                </div>
+
+                <button (click)="crearActividad(formularioActividad.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button-info"></button>
+
+            </form>
+
         </div>
 
-        <div class="col-12">
-          <h4>Día:</h4>
-          <p-calendar [locale]="es" name="fechaInicio" [(ngModel)]="actividad.fechaInicio" dateFormat="yy-mm-dd" [showTime]="true" [showIcon]="true" hourFormat="24"></p-calendar>
+        <!-- VISTA PRELIMINAR -->
+        <div class="col-sm-12 col-md-6">
+            <h3 class="col-12 text-center">Vista preliminar!</h3>
+            <app-tarjeta-salida [salida]="actividad" [usuario]="usuario"></app-tarjeta-salida>
         </div>
-
-        <div class="col-12">
-          <h4>Punto de encuentro</h4>
-          <div><img class="col-12" src="../../../../assets/imagenes/map.png" alt="AGREGAR MAPA DE GMAPS"></div>
-        </div>
-
-        <button pButton type="submit" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button-info"></button>
-
-      </form>
 
     </div>
-
-    <!-- VISTA PRELIMINAR -->
-    <div class="col-sm-12 col-md-6">
-      <h3 class="col-12 text-center">Vista preliminar!</h3>
-      <app-tarjeta-salida [salida]="actividad"></app-tarjeta-salida>
-    </div>
-
-  </div>
 
 
 

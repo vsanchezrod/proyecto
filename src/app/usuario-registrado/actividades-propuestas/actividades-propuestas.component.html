@@ -1,38 +1,31 @@
 <div class="container">
-
-  <div class="row">
-    <h3 class="col-md-12 col-lg-4">Crea una nueva actividad!!</h3>
+    <h3 class="col-12">Crea una nueva actividad!!</h3>
     <button pButton type="button" label="CREAR" class="ui-button-info" routerLink="/usuario/actividades/nueva"></button>
     <button pButton type="button" label="CANCELAR" class="ui-button-danger" routerLink="/usuario/actividades"></button>
-  </div>
-
 </div>
 
 <router-outlet></router-outlet>
 
 <div class="container">
 
-  <div class="row">
+    <div class="row">
 
-    <div class="col-sm-12 col-md-6">
-      <h3 class="text-center col-sm-12 col-md-6">Mis actividades propuestas</h3>
-      <ul class="list-group">
-        <li class="list-group-item">Salida en Bici a Hinojosa</li>
-        <li class="list-group-item">Senderismo por Peñalara</li>
-        <li class="list-group-item">Paseo nocturno por la ciudad</li>
-        <li class="list-group-item">Bici hasta El Escorial</li>
-        <li class="list-group-item">Ruta con perros por la sierra de Madrid</li>
-      </ul>
+        <div class="col-sm-12 col-md-6">
+            <h3 class="text-center col-sm-12 col-md-6">Mis actividades propuestas</h3>
+            <ul class="list-group">
+                <li class="list-group-item">Salida en Bici a Hinojosa</li>
+                <li class="list-group-item">Senderismo por Peñalara</li>
+                <li class="list-group-item">Paseo nocturno por la ciudad</li>
+                <li class="list-group-item">Bici hasta El Escorial</li>
+                <li class="list-group-item">Ruta con perros por la sierra de Madrid</li>
+            </ul>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+            <h3 class="text-center col-sm-12 col-md-6">Resumen de la actividad</h3>
+            <app-tarjeta-salida [salida]="salida" [usuario]="usuario"></app-tarjeta-salida>
+        </div>
+
     </div>
-
-    <div class="col-sm-12 col-md-6">
-      <h3 class="text-center col-sm-12 col-md-6">Resumen de la actividad</h3>
-      <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
-    </div>
-
-  </div>
 
 </div>
-
-
-

@@ -3,10 +3,16 @@ import { Component, OnInit } from '@angular/core';
 // Modelo de datos
 import { Actividad } from '../../../modelos/actividad.model';
 import { Categoria } from '../../../modelos/categoria.model';
+import { Usuario } from '../../../modelos/usuario.model';
 
 // Servicio
 import { CategoriasService } from '../../../servicios/categorias.service';
 import { ActividadesService } from '../../../servicios/actividades.service';
+import { UsuarioSesionService } from '../../../servicios/usuario-sesion.service';
+
+// Rutas
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-actividad-nueva',
@@ -15,21 +21,24 @@ import { ActividadesService } from '../../../servicios/actividades.service';
 })
 export class ActividadNuevaComponent implements OnInit {
 
-  actividad: Actividad;
+  public actividad: Actividad;
+  public distanciaMinima: number;
+  public distanciaMaxima: number;
+  public listaCategorias: Array<Categoria> = [];
 
-  distanciaMinima: number;
-  distanciaMaxima: number;
+  public imagen: string;
+  public progreso: number;
+  public mostrarSpinner: boolean;
 
-  listaCategorias: Array<Categoria> = [];
+  public es: any;
 
-  imagen: string;
-  progreso: number;
-  mostrarSpinner: boolean;
-
-  es: any;
+  public usuario: Usuario;
+  private accessToken: string;
 
   constructor(private categoriaService: CategoriasService,
-              private actividadesService: ActividadesService ) {
+              private actividadesService: ActividadesService,
+              private usuarioSesionService: UsuarioSesionService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -39,11 +48,21 @@ export class ActividadNuevaComponent implements OnInit {
     this.distanciaMinima = 0;
     this.distanciaMaxima = 150;
 
-   this.categoriaService.obtenerListaCategorias$().subscribe(response => {
-     this.listaCategorias = response;
-   });
+    this.categoriaService.obtenerListaCategorias$().subscribe(categorias => {
+       this.listaCategorias = categorias;
+    });
 
-    console.log('ACTIVIDAD: ' + this.actividad);
+    // Obtener token de acceso
+    this.usuarioSesionService.obtenerAccessToken$().subscribe(accessToken => {
+      this.accessToken = accessToken;
+      console.log('ActivNueva:ObtenerAccessToken$: accesstoken', accessToken);
+    });
+
+    // Obtener el usuario logado
+    this.usuarioSesionService.obtenerUsuario$().subscribe(usuario => {
+      this.usuario = usuario;
+      console.log('ActivNueva:ObtenerUsuario$: USUARIO', usuario);
+    });
 
     this.es = {
       firstDayOfWeek: 1,
@@ -90,12 +109,22 @@ export class ActividadNuevaComponent implements OnInit {
     this.mostrarSpinner = true;
   }
 
-  crearActividad(datos) {
-    this.actividad = datos;
+  public crearActividad(datosFormularioActividad): void {
+    this.actividad = datosFormularioActividad;
     this.actividad.imagen = this.imagen;
-    console.log(this.actividad);
-    this.actividadesService.guardarActividad(this.actividad).subscribe( response => {
+    this.actividad.idUsuarioCreacion = this.usuario.id;
+    this.actividad.listaParticipantes = [];
+    this.actividad.listaParticipantes.push(this.actividad.idUsuarioCreacion);
+    console.log('ACTIVIDAD A CREAR: ', this.actividad);
+    this.actividadesService.crearActividad(this.actividad, this.accessToken).subscribe( response => {
       console.log('Respuesta: ' + response.status);
     });
+
+    this.redirigirAActividadesPropuestas();
+
+  }
+
+  private redirigirAActividadesPropuestas(): void {
+    this.router.navigate(['/usuario/actividades']);
   }
 }
