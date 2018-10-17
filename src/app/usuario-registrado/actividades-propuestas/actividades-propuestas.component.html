@@ -25,6 +25,8 @@
         <div class="col-sm-12 col-md-6">
             <h3 class="text-center col-12">Resumen de la actividad</h3>
             <app-tarjeta-salida [salida]="salida" [usuario]="usuario"></app-tarjeta-salida>
+            <button pButton type="button" label="Editar" class="ui-button-warning" routerLink="/usuario/actividades/editar"></button>
+            <button pButton type="button" label="Cancelar" class="ui-button-danger" (click)="cancelarSalida(salida)"></button>
         </div>
 
     </div>

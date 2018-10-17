@@ -1,3 +1,5 @@
+<p class="col-12">Usuario {{ usuario.id }} </p>
+
 <div class="container card-body">
 
     <input #textoBusqueda class="form-control mr-sm-2" type="search" (keyup)="buscarAtletas(textoBusqueda.value)" placeholder="Nombre del atleta" aria-label="Search">
@@ -5,50 +7,51 @@
 </div>
 
 <div class="container">
-  <div class="row">
+    <div class="row">
 
-    <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-6">
 
-      <p-dataScroller [value]="amigos" [rows]="10">
-        <p-header>
-          Tus contactos ({{amigos.length}})
-        </p-header>
-        <ng-template let-usuario pTemplate="item">
-          <div class="ui-g car-item">
-            <div class="ui-g-12 ui-md-3">
-              <img [src]="usuario.avatar">
-            </div>
-            <div class="ui-g-12 ui-md-9">
-              <p>{{ usuario.nombre }}</p>
-              <button class="btn btn-outline-success my-2 my-sm-0">Mandar mensaje</button>
-            </div>
-          </div>
-        </ng-template>
-      </p-dataScroller>
+            <p-dataScroller [value]="usuario.amigos" [rows]="10">
+                <p-header>
+                    Tus contactos ({{usuario.amigos.length}})
+                </p-header>
+                <ng-template let-amigo pTemplate="item">
+                    <div class="ui-g car-item">
+                        <div class="ui-g-12 ui-md-3">
+                            <img [src]="amigo.avatar">
+                        </div>
+                        <div class="ui-g-12 ui-md-9">
+                            <p>usuario id {{ amigo.id }} CAMBIAR POR amigo.nombre</p>
+                            <button class="btn btn-outline-success my-2 my-sm-0">Mandar mensaje</button>
+                            <button class="btn btn-outline-danger my-2 my-sm-0">Eliminar</button>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataScroller>
+
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+
+            <p-dataScroller [value]="listaUsuariosBusqueda" [rows]="10">
+                <p-header>
+                    Contactos encontrados!
+                </p-header>
+                <ng-template let-usuario pTemplate="item">
+                    <div class="ui-g car-item">
+                        <div class="ui-g-12">
+                            <img class="mx-auto d-block" [src]="usuario.avatar">
+                        </div>
+                        <div class="ui-g-12">
+                            <p>{{ usuario.nombre }}</p>
+                            <button class="btn btn-outline-success my-2 my-sm-0">Agregar</button>
+                            <button class="btn btn-outline-info my-2 my-sm-0">Mandar mensaje</button>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataScroller>
+
+        </div>
 
     </div>
-
-    <div class="col-sm-12 col-md-6">
-
-      <p-dataScroller [value]="listaUsuariosBusqueda" [rows]="10">
-        <p-header>
-          Contactos encontrados!
-        </p-header>
-        <ng-template let-usuario pTemplate="item">
-          <div class="ui-g car-item">
-            <div class="ui-g-12">
-              <img class="mx-auto d-block" [src]="usuario.avatar">
-            </div>
-            <div class="ui-g-12">
-              <p>{{ usuario.nombre }}</p>
-              <button class="btn btn-outline-success my-2 my-sm-0">Agregar</button>
-              <button class="btn btn-outline-info my-2 my-sm-0">Mandar mensaje</button>
-            </div>
-          </div>
-        </ng-template>
-      </p-dataScroller>
-
-    </div>
-
-  </div>
 </div>

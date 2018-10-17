@@ -52,6 +52,9 @@ export class ActividadesPropuestasComponent implements OnInit {
     this.salida = actividad;
   }
 
+  private cancelarSalida(actviidad): void {
+    alert('SALIDA CANCELADA');
+  }
 
 
 }

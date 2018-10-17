@@ -5,6 +5,8 @@ import { Usuario} from '../../modelos/usuario.model';
 
 // Servicio
 import { UsuariosService } from '../../servicios/usuarios.service';
+import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
+
 
 @Component({
   selector: 'app-amigos',
@@ -13,18 +15,31 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 })
 export class AmigosComponent implements OnInit {
 
-  amigos: Array<string>;
   listaUsuarios: Array<Usuario>;
   listaUsuariosBusqueda: Array<Usuario>;
 
-  constructor(private usuariosService: UsuariosService) { }
+  private accessToken: string;
+  usuario: Usuario;
+
+  constructor(private usuariosService: UsuariosService,
+              private usuarioSesionService: UsuarioSesionService) { }
 
   ngOnInit() {
 
-    this.amigos = [];
     this.listaUsuarios = [];
     this.listaUsuariosBusqueda = [];
 
+    this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
+      this.accessToken = accesToken;
+      console.log('Amigos Component: accessToken: ' , this.accessToken);
+    });
+
+    this.usuarioSesionService.obtenerUsuario$().subscribe ( (usuario: Usuario) => {
+      this.usuario = usuario;
+      console.log('Amigos Component: usuario: ' , this.usuario);
+    });
+
+    // CAMBIAR CON BEHAVIOR
     this.usuariosService.obtenerListaUsuarios().subscribe(response => {
       this.listaUsuarios = response.body;
       console.log(this.listaUsuarios);
@@ -38,7 +53,7 @@ export class AmigosComponent implements OnInit {
     this.listaUsuariosBusqueda = [];
     for (const usuario of this.listaUsuarios) {
       console.log(usuario.nombre);
-      if(usuario.nombre.includes(clave)) {
+      if (usuario.nombre.includes(clave)) {
         this.listaUsuariosBusqueda.push(usuario);
       }
       console.log('Longitud del array de busqueda');

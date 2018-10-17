@@ -30,14 +30,12 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
 
     this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
-      console.log('PerfilComponent: obtenerAccessToken: accessToken', accessToken);
       this.accessToken = accessToken;
       // Si no es null, undefined o vacío
       this.usuarioLogado = accessToken ? true : false;
     });
 
     this.usuarioSesionService.obtenerUsuario$().subscribe ( usuario => {
-      console.log('PerfilComponent: obtenerUsuario: usuario', usuario);
       this.usuario = usuario;
     });
 
