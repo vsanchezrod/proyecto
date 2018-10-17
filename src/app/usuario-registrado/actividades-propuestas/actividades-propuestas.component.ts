@@ -20,6 +20,8 @@ export class ActividadesPropuestasComponent implements OnInit {
 
   public salida: Actividad = new Actividad();
   public usuario: Usuario;
+  public listaMisActividadesPropuestas: Array<Actividad>;
+
   private accessToken: string;
 
   constructor(private usuarioSesionService: UsuarioSesionService,
@@ -28,17 +30,28 @@ export class ActividadesPropuestasComponent implements OnInit {
   ngOnInit() {
 
     // Obtener token de acceso
-    this.usuarioSesionService.obtenerAccessToken$().subscribe(accessToken => {
+    this.usuarioSesionService.obtenerAccessToken$().subscribe( (accessToken: string) => {
       this.accessToken = accessToken;
       console.log('ActivProp:ObtenerAccessToken: accesstoken', accessToken);
     });
 
     // Obtener el usuario logado
-    this.usuarioSesionService.obtenerUsuario$().subscribe(usuario => {
+    this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
       this.usuario = usuario;
       console.log('ActivProp:ObtenerUsuario: USUARIO', usuario);
     });
 
+    // Obtener la lista de actividades creadas por el usuario
+    this.actividadesService.buscarActividadesCreadasPorUnUsuario(this.usuario.id, this.accessToken).subscribe( (listaActividades: Array<Actividad>) => {
+      this.listaMisActividadesPropuestas = listaActividades;
+    });
   }
+
+  private cargarActividad(actividad): void {
+    console.log('ACTIVIDAD PARA CARGAR: ' , actividad);
+    this.salida = actividad;
+  }
+
+
 
 }

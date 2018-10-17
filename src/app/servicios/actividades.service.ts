@@ -27,7 +27,7 @@ export class ActividadesService {
     return this.listaActividades$.asObservable();
   }
 
-  // Método para crear actividad y mandar la petición a backned
+  // Método para crear actividad y mandar la petición al API
   public crearActividad(actividad: Actividad, accessToken: string): Observable<HttpResponse<Actividad>> {
     const body = actividad;
     return this.httpClient.post<Actividad>('http://localhost:8080/fitness/api/actividades', body,
@@ -37,6 +37,12 @@ export class ActividadesService {
   public borrarActividad(id: string, accessToken: string): Observable<HttpResponse<Actividad>> {
     return this.httpClient.delete<Actividad>(`http://localhost:8080/fitness/api/actividades/${id}`,
       {headers: this.generarCabecerasConAccessToken(accessToken), observe: 'response'} );
+  }
+
+  public buscarActividadesCreadasPorUnUsuario(idUsuario: string, accessToken: string): Observable<Array<Actividad>> {
+    return this.httpClient.get<Array<Actividad>>(`http://localhost:8080/fitness/api/actividades?id=${idUsuario}`,
+      {headers: this.generarCabecerasConAccessToken(accessToken)});
+
   }
 
   private generarCabeceras(): HttpHeaders {

@@ -39,28 +39,28 @@ export class MensajesComponent implements OnInit {
     this.mensaje1 = new Mensaje();
     this.mensaje1.asunto = 'Hola!!!';
     this.mensaje1.mensaje = 'lalalalalallaallallala';
-    this.mensaje1.idUsuarioEmisor = '11111111111'
+    this.mensaje1.idUsuarioEmisor = '11111111111';
     this.mensaje1.fecha = new Date();
     this.listaMensajes.push(this.mensaje1);
 
     this.mensaje2 = new Mensaje();
     this.mensaje2.asunto = 'Adios!!!';
     this.mensaje2.mensaje = 'lililililililili';
-    this.mensaje2.idUsuarioEmisor = '2222222222222'
+    this.mensaje2.idUsuarioEmisor = '2222222222222';
     this.mensaje2.fecha = new Date();
     this.listaMensajes.push(this.mensaje2);
 
     this.mensaje3 = new Mensaje();
     this.mensaje3.asunto = '3333!!!';
     this.mensaje3.mensaje = 'lolololollolo';
-    this.mensaje3.idUsuarioEmisor = '3333333333333'
+    this.mensaje3.idUsuarioEmisor = '3333333333333';
     this.mensaje3.fecha = new Date();
     this.listaMensajes.push(this.mensaje3);
 
     this.mensaje4 = new Mensaje();
     this.mensaje4.asunto = '444444!!!';
     this.mensaje4.mensaje = 'luuuuuuuu';
-    this.mensaje4.idUsuarioEmisor = '44444444'
+    this.mensaje4.idUsuarioEmisor = '44444444';
     this.mensaje4.fecha = new Date();
     this.listaMensajes.push(this.mensaje4);
 
