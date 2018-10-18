@@ -17,6 +17,7 @@ export class AmigosComponent implements OnInit {
 
   listaUsuarios: Array<Usuario>;
   listaUsuariosBusqueda: Array<Usuario>;
+  listaAmigos: Array<Usuario>;
 
   private accessToken: string;
   usuario: Usuario;
@@ -28,6 +29,7 @@ export class AmigosComponent implements OnInit {
 
     this.listaUsuarios = [];
     this.listaUsuariosBusqueda = [];
+    this.listaAmigos = [];
 
     this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
       this.accessToken = accesToken;
@@ -37,6 +39,15 @@ export class AmigosComponent implements OnInit {
     this.usuarioSesionService.obtenerUsuario$().subscribe ( (usuario: Usuario) => {
       this.usuario = usuario;
       console.log('Amigos Component: usuario: ' , this.usuario);
+      console.log('Amigos', this.usuario.amigos);
+
+      // Carga de los datos de cada amigo
+      for (const idAmigo of this.usuario.amigos) {
+        this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe( (amigo: Usuario) => {
+          this.listaAmigos.push(amigo);
+        });
+      }
+
     });
 
     // CAMBIAR CON BEHAVIOR

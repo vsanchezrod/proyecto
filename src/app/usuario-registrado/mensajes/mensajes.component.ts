@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 // Modelo de datos
+import { Usuario } from '../../modelos/usuario.model';
 import { Mensaje } from '../../modelos/mensaje.model';
 import { MenuItem } from 'primeng/api';
 
 // Servicio
+import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
+import { MensajesService } from '../../servicios/mensajes.service';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -15,17 +18,18 @@ import { MessageService } from 'primeng/api';
 export class MensajesComponent implements OnInit {
 
   mensaje: Mensaje;
-  mensaje1: Mensaje;
-  mensaje2: Mensaje;
-  mensaje3: Mensaje;
-  mensaje4: Mensaje;
+  usuario: Usuario;
 
   listaMensajes: Array<Mensaje> = [];
   listaAmigos: Array<string> = [];
 
   items: MenuItem[];
 
-  constructor(private messageService: MessageService) { }
+  private accessToken: string;
+
+  constructor(private usuarioSesionService: UsuarioSesionService,
+              private mensajesService: MensajesService,
+              private messageService: MessageService) { }
 
   ngOnInit() {
 
@@ -36,33 +40,21 @@ export class MensajesComponent implements OnInit {
       }
     ];
 
-    this.mensaje1 = new Mensaje();
-    this.mensaje1.asunto = 'Hola!!!';
-    this.mensaje1.mensaje = 'lalalalalallaallallala';
-    this.mensaje1.idUsuarioEmisor = '11111111111';
-    this.mensaje1.fecha = new Date();
-    this.listaMensajes.push(this.mensaje1);
+    this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
+      this.accessToken = accesToken;
+      console.log('Mensajes Component: accessToken: ' , this.accessToken);
+    });
 
-    this.mensaje2 = new Mensaje();
-    this.mensaje2.asunto = 'Adios!!!';
-    this.mensaje2.mensaje = 'lililililililili';
-    this.mensaje2.idUsuarioEmisor = '2222222222222';
-    this.mensaje2.fecha = new Date();
-    this.listaMensajes.push(this.mensaje2);
+    this.usuarioSesionService.obtenerUsuario$().subscribe ( (usuario: Usuario) => {
+      this.usuario = usuario;
+      console.log('Mensajes Component: usuario: ' , this.usuario);
 
-    this.mensaje3 = new Mensaje();
-    this.mensaje3.asunto = '3333!!!';
-    this.mensaje3.mensaje = 'lolololollolo';
-    this.mensaje3.idUsuarioEmisor = '3333333333333';
-    this.mensaje3.fecha = new Date();
-    this.listaMensajes.push(this.mensaje3);
+      this.mensajesService.obtenerListadMensajes$(this.usuario.id, this.accessToken).subscribe( (mensajes: Array<Mensaje>) => {
+        this.listaMensajes = mensajes;
+      });
 
-    this.mensaje4 = new Mensaje();
-    this.mensaje4.asunto = '444444!!!';
-    this.mensaje4.mensaje = 'luuuuuuuu';
-    this.mensaje4.idUsuarioEmisor = '44444444';
-    this.mensaje4.fecha = new Date();
-    this.listaMensajes.push(this.mensaje4);
+
+    });
 
     // Para que cargue por defecto el primer mensaje ordenado por fecha
     this.mensaje = this.listaMensajes[0];

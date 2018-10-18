@@ -7,14 +7,14 @@
         <div class="ui-grid-col-12">
             <p-inplace class="ui-grid-col-12" closable="true">
                 <span pInplaceDisplay class="ui-grid-col-12">
-         <img class="rounded-circle mx-auto d-block ui-button" [src]="usuario.avatar" name="avatar" alt="AVATAR">
-        </span>
+                    <img class="ui-g-12 ui-md-6 ui-lg-3 rounded-circle mx-auto d-block ui-button" [src]="usuario.avatar" name="avatar" alt="AVATAR">
+                </span>
                 <span pInplaceContent class="ui-grid-col-10">
-          <img class="ui-grid-col-4 rounded-circle" [src]="usuario.avatar" name="avatar" alt="AVATAR">
-          <input class="ui-grid-col-6" type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
-          <p-dropdown class="ui-grid-col-6" [options]="" placeholder="Elige avatar" optionLabel="" [showClear]="true" filter="true"></p-dropdown>
-          <button pButton class="ui-grid-col-4" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
-        </span>
+                    <img class="ui-grid-col-4 rounded-circle" [src]="usuario.avatar" name="avatar" alt="AVATAR">
+                    <input class="ui-grid-col-6" type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
+                    <p-dropdown class="ui-grid-col-6" [options]="" placeholder="Elige avatar" optionLabel="" [showClear]="true" filter="true"></p-dropdown>
+                    <button pButton class="ui-grid-col-4" type="button" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
+                </span>
             </p-inplace>
         </div>
 
