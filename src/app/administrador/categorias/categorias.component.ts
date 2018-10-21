@@ -20,7 +20,7 @@ export class CategoriasComponent implements OnInit {
   listaCategorias: Array<Categoria>;
   formularioCategoria: FormGroup;
 
-  imagen: string;
+  imagen: string | ArrayBuffer;
   cargando: boolean;
 
   constructor(private categoriaService: CategoriasService) { }

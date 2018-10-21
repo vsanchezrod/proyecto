@@ -24,7 +24,7 @@ export class RegistroComponent implements OnInit {
   listaProvincias: Array<Provincia> = [];
   listaIntereses: Array<Categoria> = [];
 
-  imagenAvatar: string;
+  imagenAvatar: string | ArrayBuffer;
   progreso: number;
   mostrarSpinner: boolean;
 

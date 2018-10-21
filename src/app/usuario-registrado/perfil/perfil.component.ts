@@ -20,7 +20,7 @@ export class PerfilComponent implements OnInit {
   listaProvincias: Array<Provincia> = [];
   usuarioLogado: boolean;
 
-  imagen: string;
+  imagen: string | ArrayBuffer;
   progreso: number;
   mostrarSpinner: boolean;
 

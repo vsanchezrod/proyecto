@@ -26,7 +26,7 @@ export class ActividadNuevaComponent implements OnInit {
   public distanciaMaxima: number;
   public listaCategorias: Array<Categoria> = [];
 
-  public imagen: string;
+  public imagen: string | ArrayBuffer;
   public progreso: number;
   public mostrarSpinner: boolean;
 

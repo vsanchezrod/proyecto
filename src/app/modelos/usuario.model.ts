@@ -12,7 +12,7 @@ export class Usuario {
   fechaNacimiento: Date;
   sexo: string;
   provincia?: Provincia;
-  avatar: string;
+  avatar: string | ArrayBuffer;
   info: string;
   intereses?: Array<ActividadCategoria>;
   terminos: boolean;

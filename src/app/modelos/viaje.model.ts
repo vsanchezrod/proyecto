@@ -10,7 +10,7 @@ export class Viaje {
   nivel: number;
   distancia?: number;
   fechaInicio: Date;
-  imagen: string;
+  imagen: string | ArrayBuffer;
   coordendas?: Coordenada;
   idUsuarioCreacion?: string;
   listaParticipantes?: Array<string>;

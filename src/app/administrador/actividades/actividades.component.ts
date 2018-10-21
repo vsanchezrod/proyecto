@@ -34,7 +34,7 @@ export class ActividadesComponent implements OnInit {
   private plazasMinimas: number;
   private plazasMaximas: number;
 
-  private imagen: string;
+  private imagen: string | ArrayBuffer;
   private progreso: number;
   private mostrarSpinner: boolean;
 
