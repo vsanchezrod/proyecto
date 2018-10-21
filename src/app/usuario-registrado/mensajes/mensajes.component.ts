@@ -49,7 +49,7 @@ export class MensajesComponent implements OnInit {
       this.usuario = usuario;
       console.log('Mensajes Component: usuario: ' , this.usuario);
 
-      this.mensajesService.obtenerListadMensajes$(this.usuario.id, this.accessToken).subscribe( (mensajes: Array<Mensaje>) => {
+      this.mensajesService.obtenerListaDeMensajes$(this.usuario.id, this.accessToken).subscribe( (mensajes: Array<Mensaje>) => {
         this.listaMensajes = mensajes;
       });
 

@@ -19,7 +19,7 @@ export class MensajesService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public obtenerListadMensajes$(id: string, accessToken: string): Observable<Array<Mensaje>> {
+  public obtenerListaDeMensajes$(id: string, accessToken: string): Observable<Array<Mensaje>> {
     this.httpClient.get<Array<Mensaje>>(`http://localhost:8080/fitness/api/mensajes/${id}`,
       {headers: this.generarCabecerasConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
         this.listaMensajes$.next(response.body);
