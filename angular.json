@@ -13,7 +13,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/project",
+                        "outputPath": "dist/meetnfit",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
@@ -23,19 +23,19 @@
                             "src/assets"
                         ],
                         "styles": [
-                          "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                          "node_modules/fullcalendar/dist/fullcalendar.css",
-                          "node_modules/primeicons/primeicons.css",
-                          "node_modules/primeng/resources/themes/nova-dark/theme.css",
-                          "node_modules/primeng/resources/primeng.min.css",
-                          "src/styles.css"
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "node_modules/fullcalendar/dist/fullcalendar.css",
+                            "node_modules/primeicons/primeicons.css",
+                            "node_modules/primeng/resources/themes/nova-dark/theme.css",
+                            "node_modules/primeng/resources/primeng.min.css",
+                            "src/styles.css"
                         ],
                         "scripts": [
-                          "node_modules/popper.js/dist/umd/popper.min.js",
-                          "node_modules/jquery/dist/jquery.slim.min.js",
-                          "node_modules/bootstrap/dist/js/bootstrap.min.js",
-                          "node_modules/moment/min/moment.min.js",
-                          "node_modules/fullcalendar/dist/fullcalendar.js"
+                            "node_modules/popper.js/dist/umd/popper.min.js",
+                            "node_modules/jquery/dist/jquery.slim.min.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.min.js",
+                            "node_modules/moment/min/moment.min.js",
+                            "node_modules/fullcalendar/dist/fullcalendar.js"
                         ]
 
                     },
@@ -133,5 +133,5 @@
             }
         }
     },
-    "defaultProject": "project"
+    "defaultProject": "meetnfit"
 }

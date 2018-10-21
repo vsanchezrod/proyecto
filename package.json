@@ -1,13 +1,14 @@
 {
-    "name": "project",
+    "name": "meetnfit",
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve",
+        "start": "node server.js",
         "build": "ng build --prod",
         "test": "ng test",
         "lint": "ng lint",
-        "e2e": "ng e2e"
+        "e2e": "ng e2e",
+        "postinstall": "ng build --prod"
     },
     "private": true,
     "dependencies": {
@@ -22,6 +23,7 @@
         "@angular/router": "^7.0.0",
         "bootstrap": "^4.1.3",
         "core-js": "^2.5.4",
+        "express": "^4.16.4",
         "fullcalendar": "^4.0.0-alpha",
         "jquery": "^3.3.1",
         "popper.js": "^1.14.4",
@@ -50,5 +52,9 @@
         "ts-node": "~5.0.1",
         "tslint": "~5.9.1",
         "typescript": "~3.1.3"
+    },
+    "engines": {
+        "node": "10.6.0",
+        "npm": "6.1.0"
     }
 }
