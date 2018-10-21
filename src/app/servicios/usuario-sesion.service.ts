@@ -12,6 +12,7 @@ import { BehaviorSubject, Observable, Subject} from 'rxjs';
 
 // Servicio
 import { UsuariosService } from './usuarios.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class UsuarioSesionService {
 
   public login(email: string, password: string): Observable<HttpResponse<any>> {
 
-    this.httpClient.post<any>('http://localhost:8080/fitness/api/oauth/token',
+    this.httpClient.post<any>(environment.host + '/oauth/token',
       this.generarBody(email, password),
       {headers: this.generarCabeceras(), observe: 'response'})
         .subscribe(
