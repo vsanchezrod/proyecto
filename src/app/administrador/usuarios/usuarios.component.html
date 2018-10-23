@@ -1,15 +1,14 @@
-<div class="ui-g-12">
-  <p>LISTA DE USUARIOS</p>
+<div class="container">
 
-  <p-dataScroller [value]="listaUsuarios" [rows]="10" [inline]="true" scrollHeight="500px">
-    <p-header>
-      LISTA DE USUARIOS
-    </p-header>
-    <ng-template let-usuario pTemplate="item">
+    <p-dataScroller class="col-12" [value]="listaUsuarios" [rows]="10" [inline]="true" scrollHeight="500px">
+        <p-header>
+            LISTA DE USUARIOS
+        </p-header>
+        <ng-template let-usuario pTemplate="item">
 
-      <app-tarjeta-usuario [usuario]="usuario"></app-tarjeta-usuario>
+            <app-tarjeta-usuario class="col-4" [usuario]="usuario"></app-tarjeta-usuario>
 
-    </ng-template>
-  </p-dataScroller>
+        </ng-template>
+    </p-dataScroller>
 
 </div>

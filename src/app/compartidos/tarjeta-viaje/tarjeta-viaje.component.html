@@ -1,20 +1,20 @@
-<p-card [title]="viaje.nombre" subtitle="Categorías" styleClass="ui-card-shadow">
+<p-card class="ui-g" [title]="viaje.nombre" subtitle="Categorías" styleClass="ui-card-shadow">
 
-  <p-header class="ui-grid-col-12">
-    <img alt="viaje" [src]="viaje.imagen">
-  </p-header>
+    <p-header class="ui-grid-col-12">
+        <img alt="viaje" [src]="viaje.imagen">
+    </p-header>
 
-  <div class="ui-grid-row">{{ viaje.descripcion }}</div>
+    <div class="ui-grid-row">{{ viaje.descripcion }}</div>
 
-  <p-footer>
-    <div class="ui-grid-col-6">Inicio: {{ viaje.fechaInicio }}</div>
-    <div class="ui-grid-col-6">Fin: {{ viaje.fechaFin }}</div>
-    <span class="ui-grid-col-6">Dificultad:</span>
-    <span class="ui-grid-col-6">Precio: <strong> {{ viaje.precio }} €</strong></span>
-    <p-rating class="ui-grid-col-12" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
-    <button class="ui-grid-col-6" pButton (click)="verViaje()" type="button" icon="pi pi-check" iconPos="right" label="VER MAS"></button>
-    <button class="ui-grid-col-6" [disabled]="viaje.listaParticipantes.length === viaje.plazas" pButton type="button" icon="pi pi-check" iconPos="right" label="APUNTARSE!!"></button>
-    <span class="ui-grid-col-12 text-center text-danger" *ngIf="viaje.listaParticipantes.length === viaje.plazas">Plazas agotadas :(</span>
-  </p-footer>
+    <p-footer>
+        <div class="ui-grid-col-6">Inicio: {{ viaje.fechaInicio }}</div>
+        <div class="ui-grid-col-6">Fin: {{ viaje.fechaFin }}</div>
+        <span class="ui-grid-col-6">Dificultad:</span>
+        <span class="ui-grid-col-6">Precio: <strong> {{ viaje.precio }} €</strong></span>
+        <p-rating class="ui-grid-col-12" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
+        <button class="ui-grid-col-6" pButton (click)="verViaje()" type="button" icon="pi pi-check" iconPos="right" label="VER MAS"></button>
+        <button class="ui-grid-col-6" [disabled]="viaje.listaParticipantes.length === viaje.plazas" pButton type="button" icon="pi pi-check" iconPos="right" label="APUNTARSE!!"></button>
+        <span class="ui-grid-col-12 text-center text-danger" *ngIf="viaje.listaParticipantes.length === viaje.plazas">Plazas agotadas :(</span>
+    </p-footer>
 
 </p-card>
