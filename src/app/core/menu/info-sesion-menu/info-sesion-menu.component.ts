@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 // Componentes de PrimeNG
 import { MenuItem } from 'primeng/api';
 
+// Servicio
+import { UsuarioSesionService } from '../../../servicios/usuario-sesion.service';
+
+// Rutas
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-info-sesion-menu',
@@ -13,7 +18,8 @@ export class InfoSesionMenuComponent implements OnInit {
 
   items: MenuItem[];
 
-  constructor() { }
+  constructor(private usuarioSesionService: UsuarioSesionService,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -56,6 +62,12 @@ export class InfoSesionMenuComponent implements OnInit {
         routerLink: 'inicio'
       }
     ];
+  }
+
+  // TO DO - TERMINAR
+  public logout(): void {
+    this.usuarioSesionService.logout();
+    this.router.navigate(['login']);
   }
 
 }

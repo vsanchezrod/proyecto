@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         (response) => {
           console.log('LoginComponent:login:response: ', response);
 
-          if(response.status === 200) {
+          if (response.status === 200) {
             this.router.navigate(['/inicio']);
           }
           else {

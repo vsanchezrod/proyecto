@@ -9,6 +9,8 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 // Observables
 import { BehaviorSubject, Observable } from 'rxjs';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +22,7 @@ export class MensajesService {
   constructor(private httpClient: HttpClient) {}
 
   public obtenerListaDeMensajes$(id: string, accessToken: string): Observable<Array<Mensaje>> {
-    this.httpClient.get<Array<Mensaje>>(`http://localhost:8080/fitness/api/mensajes/${id}`,
+    this.httpClient.get<Array<Mensaje>>(environment.host + `/mensajes/${id}`,
       {headers: this.generarCabecerasConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
         this.listaMensajes$.next(response.body);
     });

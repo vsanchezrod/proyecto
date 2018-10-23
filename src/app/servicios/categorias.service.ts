@@ -28,16 +28,16 @@ export class CategoriasService {
   }
 
   // Método para guardar una categoría
-  public crearCategoria (categoria: Categoria): Observable<HttpResponse<Categoria>> {
+  public crearCategoria (categoria: Categoria, accessToken: string): Observable<HttpResponse<Categoria>> {
     const body = categoria;
     return this.httpClient.post<Categoria>('http://localhost:8080/fitness/api/categorias',
-      body, {headers: this.generarCabecerasConAccessToken(), observe: 'response'});
+      body, {headers: this.generarCabecerasConAccessToken(accessToken), observe: 'response'});
   }
 
   // Método para borrar una categoría
-  public borrarCategoria (id: string): Observable<HttpResponse<Categoria>> {
+  public borrarCategoria (id: string, accessToken: string): Observable<HttpResponse<Categoria>> {
     return this.httpClient.delete<Categoria>(`http://localhost:8080/fitness/api/categorias/${id}`,
-      {headers: this.generarCabecerasConAccessToken(), observe: 'response'});
+      {headers: this.generarCabecerasConAccessToken(accessToken), observe: 'response'});
   }
 
 
@@ -48,11 +48,11 @@ export class CategoriasService {
     });
   }
 
-  private generarCabecerasConAccessToken(): HttpHeaders {
+  private generarCabecerasConAccessToken(accessToken: string): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiNWJjMGJlN2FkZjU1MDcxOTY0MjcwNDQ2Iiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImV4cCI6MTUzOTcyMTIzMSwiYXV0aG9yaXRpZXMiOlsiYWRtaW5pc3RyYWRvciIsInVzdWFyaW8iXSwianRpIjoiODEwZDM2YzAtYTNkZS00MDg4LWI0ODYtNTNhZWZhYjdkMTk3IiwiY2xpZW50X2lkIjoidGVzdGp3dGNsaWVudGlkIn0.p0pk1TOXsy2sg3FkQCmvk43WaJds1EW73jI1xvywHEU'
+      'Authorization' : `Bearer ${accessToken}`
     });
   }
 }

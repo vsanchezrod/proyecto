@@ -51,6 +51,12 @@ export class UsuarioSesionService {
 
   }
 
+  // TO DO - TERMINAR!!!
+  public logout(): void {
+    this.accessToken$.next(null);
+    this.usuarioLogado$.next(null);
+  }
+
   public obtenerAccessToken$(): Observable<string> {
     return this.accessToken$.asObservable();
   }
@@ -58,6 +64,11 @@ export class UsuarioSesionService {
   public obtenerUsuario$(): Observable<Usuario> {
     return this.usuarioLogado$.asObservable();
   }
+
+
+
+
+
 
   private generarCabeceras(): HttpHeaders {
     return new HttpHeaders({

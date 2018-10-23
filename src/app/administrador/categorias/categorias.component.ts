@@ -9,6 +9,11 @@ import { Categoria } from '../../modelos/categoria.model';
 // Formularios
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+// Modelos
+import { Usuario } from '../../modelos/usuario.model';
+
+// Servicios
+import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 
 @Component({
   selector: 'app-categorias',
@@ -17,19 +22,34 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class CategoriasComponent implements OnInit {
 
-  listaCategorias: Array<Categoria>;
-  formularioCategoria: FormGroup;
+  public usuario: Usuario;
+  public listaCategorias: Array<Categoria>;
+  public formularioCategoria: FormGroup;
+  public imagen: string | ArrayBuffer;
+  public cargando: boolean;
 
-  imagen: string | ArrayBuffer;
-  cargando: boolean;
+  private accessToken: string;
 
-  constructor(private categoriaService: CategoriasService) { }
+  constructor(private categoriasService: CategoriasService,
+              private usuarioSesionService: UsuarioSesionService) { }
 
   ngOnInit() {
 
-    this.categoriaService.obtenerListaCategorias$().subscribe(response => {
-      this.listaCategorias = response;
+    // Obtener token de acceso
+    this.usuarioSesionService.obtenerAccessToken$().subscribe( (accessToken: string) => {
+      this.accessToken = accessToken;
     });
+
+    // Obtener el usuario logado
+    this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
+      this.usuario = usuario;
+    });
+
+
+    this.categoriasService.obtenerListaCategorias$().subscribe(categorias => {
+      this.listaCategorias = categorias;
+      }
+    );
 
     this.formularioCategoria = new FormGroup({
       'nombre': new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
@@ -41,16 +61,15 @@ export class CategoriasComponent implements OnInit {
   public crearCategoria(datos): void {
     console.log(this.formularioCategoria.value);
 
-    this.categoriaService.crearCategoria(datos).subscribe( response => {
-      console.log('Respuesta: ' + response.status);
-      console.log(this.formularioCategoria);
+    this.categoriasService.crearCategoria(datos, this.accessToken).subscribe( response => {
+      console.log('CategoriasComp:CrearCategoria:Respuesta: ' + response.status);
     });
   }
 
   public borrarCategoria(idCategoria): void {
-    this.categoriaService.borrarCategoria(idCategoria).subscribe( response => {
+    this.categoriasService.borrarCategoria(idCategoria, this.accessToken).subscribe( response => {
       console.log('CategoriasComp:BorrarCategoria:Respuesta: ' + response.status);
-      console.log('La categoria borrada es: ', idCategoria);
+
     });
   }
 

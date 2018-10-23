@@ -7,6 +7,7 @@ import { MenuItem } from 'primeng/api';
 
 // Servicio
 import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
+import { UsuariosService } from '../../servicios/usuarios.service';
 import { MensajesService } from '../../servicios/mensajes.service';
 import { MessageService } from 'primeng/api';
 
@@ -21,7 +22,7 @@ export class MensajesComponent implements OnInit {
   usuario: Usuario;
 
   listaMensajes: Array<Mensaje> = [];
-  listaAmigos: Array<string> = [];
+  listaAmigos: Array<Usuario> = [];
 
   items: MenuItem[];
 
@@ -29,7 +30,8 @@ export class MensajesComponent implements OnInit {
 
   constructor(private usuarioSesionService: UsuarioSesionService,
               private mensajesService: MensajesService,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              private usuariosService: UsuariosService) { }
 
   ngOnInit() {
 
@@ -48,12 +50,21 @@ export class MensajesComponent implements OnInit {
     this.usuarioSesionService.obtenerUsuario$().subscribe ( (usuario: Usuario) => {
       this.usuario = usuario;
       console.log('Mensajes Component: usuario: ' , this.usuario);
+      console.log('MensajeComp: Amigos: ', this.usuario.amigos);
 
+      // Carga de los nombre de cada amigo en el select de mandar nuevo mensaje
+      for (const idAmigo of this.usuario.amigos) {
+        this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe( (amigo: Usuario) => {
+          this.listaAmigos.push(amigo);
+          console.log('ListaAmigos: ' , this.listaAmigos);
+        });
+      }
+
+      // Buscar los mensajes para ese usuario
       this.mensajesService.obtenerListaDeMensajes$(this.usuario.id, this.accessToken).subscribe( (mensajes: Array<Mensaje>) => {
         this.listaMensajes = mensajes;
+        console.log('Mensajes Component: listamensajes: ' , this.listaMensajes);
       });
-
-
     });
 
     // Para que cargue por defecto el primer mensaje ordenado por fecha
@@ -65,6 +76,7 @@ export class MensajesComponent implements OnInit {
     this.mensaje = mensaje;
 
     // Cuando se carga el mensaje cambia el estado a LEIDO
+    // TO DO - HACER UN PUT / PATCH DEL MENSAJE para cambiar el estado en la BBDD
     this.mensaje.leido = true;
   }
 

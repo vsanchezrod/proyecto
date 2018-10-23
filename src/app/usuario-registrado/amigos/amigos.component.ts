@@ -50,10 +50,10 @@ export class AmigosComponent implements OnInit {
 
     });
 
-    // CAMBIAR CON BEHAVIOR
-    this.usuariosService.obtenerListaUsuarios().subscribe(response => {
-      this.listaUsuarios = response.body;
-      console.log(this.listaUsuarios);
+    // Obtener lista de usuarios
+    this.usuariosService.obtenerListaUsuarios$(this.accessToken).subscribe( (listaUsuarios: Array<Usuario>) => {
+      this.listaUsuarios = listaUsuarios;
+      console.log('AmigosUserComp: listaUsuarios', this.listaUsuarios);
     });
   }
 

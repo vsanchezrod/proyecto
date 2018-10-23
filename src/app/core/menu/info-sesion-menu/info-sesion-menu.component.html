@@ -1,34 +1,32 @@
 <div class="dropdown show">
 
-  <div>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a routerLink="login" routerLinkActive="active">Logout</a></button>
-  </div>
+    <div>
+        <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()" type="submit">Logout</button>
+    </div>
 
-  <!-- BOOTSTRAP-->
-  <div>
-    <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <!-- BOOTSTRAP-->
+    <div>
+        <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Usuario
     </a>
 
-    <div class="dropdown-menu" aria-labelledby="Usuario">
-      <a class="dropdown-item" routerLink="usuario/perfil">Perfil</a>
-      <a class="dropdown-item" routerLink="usuario/calendario">Calendario</a>
-      <a class="dropdown-item" routerLink="usuario/actividades">Actividades Propuestas</a>
-      <a class="dropdown-item" routerLink="usuario/amigos">Amigos</a>
-      <a class="dropdown-item" routerLink="usuario/mensajes">Mensajes</a>
-      <a class="dropdown-item" routerLink="usuario/opiniones">Opina</a>
+        <div class="dropdown-menu" aria-labelledby="Usuario">
+            <a class="dropdown-item" routerLink="usuario/perfil">Perfil</a>
+            <a class="dropdown-item" routerLink="usuario/calendario">Calendario</a>
+            <a class="dropdown-item" routerLink="usuario/actividades">Actividades Propuestas</a>
+            <a class="dropdown-item" routerLink="usuario/amigos">Amigos</a>
+            <a class="dropdown-item" routerLink="usuario/mensajes">Mensajes</a>
+            <a class="dropdown-item" routerLink="usuario/opiniones">Opina</a>
+        </div>
+
+        <!--NO SE PORQUE NI SE VE-->
+        <button pButton type="button" label="" icon="pi pi-file" class="ui-button-icon-only ui-button-info"></button>
+
     </div>
 
-    <!--NO SE PORQUE NI SE VE-->
-    <button pButton type="button" label="" icon="pi pi-file" class="ui-button-icon-only ui-button-info"></button>
-
-  </div>
-
-  <div>
-    <p-slideMenu #menuAdmin [model]="items" [viewportHeight]="300" [popup]="true"></p-slideMenu>
-    <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menuAdmin.toggle($event)">ADMIN</button>
-  </div>
+    <div>
+        <p-slideMenu #menuAdmin [model]="items" [viewportHeight]="300" [popup]="true"></p-slideMenu>
+        <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menuAdmin.toggle($event)">ADMIN</button>
+    </div>
 
 </div>
-
-

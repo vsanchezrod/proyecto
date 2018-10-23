@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class ListaCategoriasComponent implements OnInit {
 
-  public listaCategorias: Array<Categoria>
+  public listaCategorias: Array<Categoria>;
 
   constructor(private categoriasService: CategoriasService,
               private router: Router) {}
