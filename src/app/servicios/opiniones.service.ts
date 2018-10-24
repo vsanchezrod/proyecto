@@ -12,6 +12,9 @@ import { Opinion } from '../modelos/opinion.model';
 })
 export class OpinionesService {
 
+  private listaOpiniones: Array<Opinion> = [];
+  private listaOpiniones$: BehaviorSubject<Array<Opinion>> = new BehaviorSubject<Array<Opinion>>(this.listaOpiniones);
+
   private numeroOpiniones = 0;
   private numeroOpiniones$: BehaviorSubject<number> = new BehaviorSubject<number>(this.numeroOpiniones);
 
@@ -21,12 +24,16 @@ export class OpinionesService {
   // Petición HTTP(POST) para guardar una opinión
   public guardarOpinion(opinion: Opinion): Observable<any> {
     return this.httpClient.post('http://localhost:8080/fitness/api/public/opiniones', opinion,
-      {headers: this.generarCabeceras(), observe: 'response'});
+      {headers: this.generarCabecerasPost(), observe: 'response'});
   }
 
   // Petición HTTP(GET) para recuperar las opiniones
-  public obtenerOpiniones(): Observable<HttpResponse<Array<Opinion>>> {
-    return this.httpClient.get<Array<Opinion>>('http://localhost:8080/fitness/api/public/opiniones', {observe: 'response'});
+  public obtenerOpiniones(): Observable<Array<Opinion>> {
+    this.httpClient.get<Array<Opinion>>('http://localhost:8080/fitness/api/public/opiniones',
+    {headers: this.generarCabecerasGet(), observe: 'response'}).subscribe(response => {
+      this.listaOpiniones$.next(response.body);
+    });
+    return this.listaOpiniones$.asObservable();
   }
 
   public obtenerNumeroOpiniones(accessToken: string): Observable<number> {
@@ -45,7 +52,13 @@ export class OpinionesService {
 
   }
 
-  private generarCabeceras(): HttpHeaders {
+  private generarCabecerasGet(): HttpHeaders {
+    return new HttpHeaders({
+      'Accept': 'application/json'
+    });
+  }
+
+  private generarCabecerasPost(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json'

@@ -13,17 +13,15 @@ import { Opinion } from '../modelos/opinion.model';
 })
 export class AcercaDeComponent implements OnInit {
 
-  listaOpiniones: Array<Opinion> = [];
+  public listaOpiniones: Array<Opinion> = [];
 
   constructor(private opinionesService: OpinionesService) { }
 
   ngOnInit() {
 
-    this.opinionesService.obtenerOpiniones()
-      .subscribe( response => {
-        console.log('Respuesta de la petición: ' + response.status);
-        this.listaOpiniones = response.body;
-      });
+    this.opinionesService.obtenerOpiniones().subscribe( (listaOpiniones: Array<Opinion>) => {
+        this.listaOpiniones = listaOpiniones;
+    });
   }
 
 }
