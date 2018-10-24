@@ -1,32 +1,14 @@
-<div class="dropdown show">
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div>
-        <button class="btn btn-outline-success my-2 my-sm-0" (click)="logout()" type="submit">Logout</button>
+        <p-slideMenu #menuUsuario [model]="itemsUsuario" [viewportHeight]="320" [popup]="true"></p-slideMenu>
+        <img class="rounded-circle" [src]="usuario.avatar" alt="avatar" (mouseover)="menuUsuario.toggle($event)" (mouseleave)="menuUsuario.toggle($event)">
     </div>
 
-    <!-- BOOTSTRAP-->
+    <!-- PONER ICONO PARA ADMINISTRADOR-->
     <div>
-        <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuUsuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Usuario
-    </a>
-
-        <div class="dropdown-menu" aria-labelledby="Usuario">
-            <a class="dropdown-item" routerLink="usuario/perfil">Perfil</a>
-            <a class="dropdown-item" routerLink="usuario/calendario">Calendario</a>
-            <a class="dropdown-item" routerLink="usuario/actividades">Actividades Propuestas</a>
-            <a class="dropdown-item" routerLink="usuario/amigos">Amigos</a>
-            <a class="dropdown-item" routerLink="usuario/mensajes">Mensajes</a>
-            <a class="dropdown-item" routerLink="usuario/opiniones">Opina</a>
-        </div>
-
-        <!--NO SE PORQUE NI SE VE-->
-        <button pButton type="button" label="" icon="pi pi-file" class="ui-button-icon-only ui-button-info"></button>
-
+        <p-slideMenu #menuAdmin [model]="itemsAdmin" [viewportHeight]="300" [popup]="true"></p-slideMenu>
+        <button class="ui-button-icon-only" type="button" pButton icon="pi pi-bars" label="Show" (mouseover)="menuAdmin.toggle($event)" (mouseleave)="menuAdmin.toggle($event)">ADM</button>
     </div>
 
-    <div>
-        <p-slideMenu #menuAdmin [model]="items" [viewportHeight]="300" [popup]="true"></p-slideMenu>
-        <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menuAdmin.toggle($event)">ADMIN</button>
-    </div>
-
-</div>
+    <button class="btn btn-outline-success my-2 my-sm-0" icon="pi-power-off" (click)="logout()" type="submit">Logout</button>
+</nav>
