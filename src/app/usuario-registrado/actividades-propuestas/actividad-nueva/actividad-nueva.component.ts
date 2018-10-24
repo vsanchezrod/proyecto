@@ -55,13 +55,11 @@ export class ActividadNuevaComponent implements OnInit {
     // Obtener token de acceso
     this.usuarioSesionService.obtenerAccessToken$().subscribe(accessToken => {
       this.accessToken = accessToken;
-      console.log('ActivNueva:ObtenerAccessToken$: accesstoken', accessToken);
     });
 
     // Obtener el usuario logado
     this.usuarioSesionService.obtenerUsuario$().subscribe(usuario => {
       this.usuario = usuario;
-      console.log('ActivNueva:ObtenerUsuario$: USUARIO', usuario);
     });
 
     this.es = {

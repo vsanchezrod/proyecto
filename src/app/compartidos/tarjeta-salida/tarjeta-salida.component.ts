@@ -19,28 +19,24 @@ export class TarjetaSalidaComponent implements OnInit {
 
   // Se recibe el valor de salida desde fuera (elemento padre)
   @Input() salida: Actividad;
-  @Input() usuario: Usuario = null;
+  public usuario: Usuario;
+  public idUsuario: string;
 
   constructor(private router: Router,
               private usuariosService: UsuariosService) {}
 
   ngOnInit() {
 
-    if (this.usuario == null) {
-      this.obtenerUsuarioDeActividad(this.salida.idUsuarioCreacion);
-    }
+    this.idUsuario = this.salida.idUsuarioCreacion;
+
+    this.usuariosService.buscarUsuarioPorId(this.idUsuario).subscribe( (usuarioCreacion: Usuario) => {
+      this.usuario = usuarioCreacion;
+    });
   }
 
   // Método para mostrar la salida
   verSalida() {
     this.router.navigate(['/salida', this.salida.id]);
   }
-
-  private obtenerUsuarioDeActividad(idUsuario: string): void {
-    this.usuariosService.buscarUsuarioPorId(idUsuario).subscribe( (usuario: Usuario) => {
-      this.usuario = usuario;
-    });
-  }
-
 
 }

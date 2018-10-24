@@ -33,12 +33,10 @@ export class AmigosComponent implements OnInit {
 
     this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
       this.accessToken = accesToken;
-      console.log('Amigos Component: accessToken: ' , this.accessToken);
     });
 
     this.usuarioSesionService.obtenerUsuario$().subscribe ( (usuario: Usuario) => {
       this.usuario = usuario;
-      console.log('Amigos Component: usuario: ' , this.usuario);
       console.log('Amigos', this.usuario.amigos);
 
       // Carga de los datos de cada amigo

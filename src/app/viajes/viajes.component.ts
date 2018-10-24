@@ -19,7 +19,6 @@ export class ViajesComponent implements OnInit {
   ngOnInit() {
 
     this.viajesService.obtenerListadoViajes$().subscribe(viajes => {
-      console.log('ViajesComponent: ObtenerListadoViajes: viajes: ', viajes);
       this.listaViajes = viajes;
     });
   }

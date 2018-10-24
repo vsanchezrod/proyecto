@@ -44,26 +44,21 @@ export class MensajesComponent implements OnInit {
 
     this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
       this.accessToken = accesToken;
-      console.log('Mensajes Component: accessToken: ' , this.accessToken);
     });
 
     this.usuarioSesionService.obtenerUsuario$().subscribe ( (usuario: Usuario) => {
       this.usuario = usuario;
-      console.log('Mensajes Component: usuario: ' , this.usuario);
-      console.log('MensajeComp: Amigos: ', this.usuario.amigos);
 
       // Carga de los nombre de cada amigo en el select de mandar nuevo mensaje
       for (const idAmigo of this.usuario.amigos) {
         this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe( (amigo: Usuario) => {
           this.listaAmigos.push(amigo);
-          console.log('ListaAmigos: ' , this.listaAmigos);
         });
       }
 
       // Buscar los mensajes para ese usuario
       this.mensajesService.obtenerListaDeMensajes$(this.usuario.id, this.accessToken).subscribe( (mensajes: Array<Mensaje>) => {
         this.listaMensajes = mensajes;
-        console.log('Mensajes Component: listamensajes: ' , this.listaMensajes);
       });
     });
 

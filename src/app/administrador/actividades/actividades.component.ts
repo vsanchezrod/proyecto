@@ -58,22 +58,18 @@ export class ActividadesComponent implements OnInit {
     this.plazasMaximas = 30;
 
     this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
-      console.log('ActividadesComponent: obtenerAccessToken: accessToken', accessToken);
       this.accessToken = accessToken;
     });
 
     this.usuarioSesionService.obtenerUsuario$().subscribe ( usuario => {
-      console.log('ActividadesComponent: obtenerUsuario: usuario', usuario);
       this.usuario = usuario;
     });
 
     this.viajesService.obtenerListadoViajes$().subscribe(viajes => {
-      console.log('ActividadesComponent: ObtenerListadoViahjes$: viajes: ', viajes);
       this.listaViajes = viajes;
     });
 
     this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
-      console.log('ActividadesComponentt: Lista actividades: ', actividades);
       this.listaActividades = actividades;
     });
 

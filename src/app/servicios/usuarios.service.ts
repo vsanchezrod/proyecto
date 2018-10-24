@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import {HttpClient, HttpHeaders, HttpResponse, HttpParams } from '@angular/common/http';
 // Observables
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 
 // Componente
 import { Usuario } from '../modelos/usuario.model';
@@ -19,6 +19,8 @@ export class UsuariosService {
   private numeroUsuarios = 0;
   private numeroUsuarios$: BehaviorSubject<number> = new BehaviorSubject<number>(this.numeroUsuarios);
 
+  private usuarioCreacion = new Usuario();
+  private usuarioCreacion$: BehaviorSubject<Usuario> = new BehaviorSubject<Usuario>(this.usuarioCreacion);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -33,12 +35,15 @@ export class UsuariosService {
   }
 
   public crearUsuario(usuario: Usuario): Observable<HttpResponse<Usuario>> {
-    const body = usuario;
-    return this.httpClient.post<Usuario>('http://localhost:8080/fitness/api/public/usuarios', body, {headers: this.generarCabecerasPost(), observe: 'response'});
+    return this.httpClient.post<Usuario>('http://localhost:8080/fitness/api/public/usuarios', usuario, {headers: this.generarCabecerasPost(), observe: 'response'});
   }
 
   public buscarUsuarioPorId(id: string): Observable<Usuario> {
-    return this.httpClient.get<Usuario>(`http://localhost:8080/fitness/api/public/usuarios/${id}`);
+    this.httpClient.get<Usuario>(`http://localhost:8080/fitness/api/public/usuarios/${id}`,
+      {headers: this.generarCabecerasGet(), observe: 'response'}).subscribe ( response => {
+        this.usuarioCreacion$.next(response.body);
+      });
+    return this.usuarioCreacion$.asObservable();
   }
 
   public buscarUsuarioPorNombre(nombre: string): Observable<Usuario> {
@@ -58,6 +63,12 @@ export class UsuariosService {
   private generarCabecerasPost(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+  }
+
+  private generarCabecerasGet(): HttpHeaders {
+    return new HttpHeaders({
       'Accept': 'application/json'
     });
   }

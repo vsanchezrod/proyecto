@@ -32,18 +32,17 @@ export class ActividadesPropuestasComponent implements OnInit {
     // Obtener token de acceso
     this.usuarioSesionService.obtenerAccessToken$().subscribe( (accessToken: string) => {
       this.accessToken = accessToken;
-      console.log('ActivProp:ObtenerAccessToken: accesstoken', accessToken);
     });
 
     // Obtener el usuario logado
     this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
       this.usuario = usuario;
-      console.log('ActivProp:ObtenerUsuario: USUARIO', usuario);
     });
 
     // Obtener la lista de actividades creadas por el usuario
-    this.actividadesService.buscarActividadesCreadasPorUnUsuario(this.usuario.id, this.accessToken).subscribe( (listaActividades: Array<Actividad>) => {
+    this.actividadesService.buscarActividadesCreadasPorUsuario(this.usuario.id, this.accessToken).subscribe( (listaActividades: Array<Actividad>) => {
       this.listaMisActividadesPropuestas = listaActividades;
+      console.log('ActivProp: buscarActivUsuario: listaActividades: ', this.listaMisActividadesPropuestas);
     });
   }
 

@@ -27,6 +27,7 @@ export class ListaCategoriasComponent implements OnInit {
     );
   }
 
+  // PENDIENTE
   public cargarActividades(categoria): void {
     this.router.navigate(['/salidas', categoria.nombre ]);
   }

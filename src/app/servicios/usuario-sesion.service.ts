@@ -65,11 +65,6 @@ export class UsuarioSesionService {
     return this.usuarioLogado$.asObservable();
   }
 
-
-
-
-
-
   private generarCabeceras(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -102,9 +97,7 @@ export class UsuarioSesionService {
     // Se parsea el string a JSON y se accede a la propiedad
     const idUsuario = JSON.parse(datosPayload)['user_name'];
 
-    console.log('LOGIN: ID USUARIO:', idUsuario);
     this.usuariosService.buscarUsuarioPorId(idUsuario).subscribe((usuario: Usuario) => {
-      console.log('USUARIO LOGIN encontrado: ', usuario);
       this.usuarioLogado$.next(usuario);
     });
   }
