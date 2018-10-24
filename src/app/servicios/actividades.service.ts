@@ -13,8 +13,10 @@ import { Actividad } from '../modelos/actividad.model';
 export class ActividadesService {
 
   private listaActividades: Array<Actividad> = [];
-
   private listaActividades$: BehaviorSubject<Array<Actividad>> = new BehaviorSubject(this.listaActividades);
+
+  private numeroActividades = 0;
+  private numeroActividades$: BehaviorSubject<number> = new BehaviorSubject<number>(this.numeroActividades);
 
   constructor(private httpClient: HttpClient) {}
 
@@ -45,6 +47,14 @@ export class ActividadesService {
 
   }
 
+  public obtenerNumeroActividades(accessToken: string): Observable<number> {
+    this.httpClient.get<number>('http://localhost:8080/fitness/api/actividades',
+    {headers: this.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
+      this.numeroActividades$.next(response.body);
+    });
+    return this.numeroActividades$.asObservable();
+  }
+
   private generarCabeceras(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
@@ -60,6 +70,12 @@ export class ActividadesService {
     });
   }
 
+  private generarCabecerasGetConAccessToken(accessToken: string): HttpHeaders {
+    return new HttpHeaders({
+      'Accept': 'application/json',
+      'Authorization' : `Bearer ${accessToken}`
+    });
+  }
 }
 
 

@@ -16,12 +16,16 @@ export class UsuariosService {
   private listaUsuarios: Array<Usuario> = [];
   private listaUsuarios$: BehaviorSubject<Array<Usuario>> = new BehaviorSubject<Array<Usuario>>(this.listaUsuarios);
 
+  private numeroUsuarios = 0;
+  private numeroUsuarios$: BehaviorSubject<number> = new BehaviorSubject<number>(this.numeroUsuarios);
+
+
   constructor(private httpClient: HttpClient) { }
 
   public obtenerListaUsuarios$(accessToken: string): Observable<Array<Usuario>> {
 
     this.httpClient.get<Array<Usuario>>('http://localhost:8080/fitness/api/usuarios',
-      {headers: this.generarCabecerasConAccessTokenGet(accessToken), observe: 'response'}).subscribe( (response) => {
+      {headers: this.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe( (response) => {
       this.listaUsuarios$.next(response.body);
       console.log('ServicioUsuario: ListaUsuarios: ', response.body);
     });
@@ -41,6 +45,16 @@ export class UsuariosService {
     return this.httpClient.get<Usuario>(`http://localhost:8080/fitness/api/public/usuarios?nombre=${nombre}`);
   }
 
+  public obtenerNumeroUsuarios(accessToken: string): Observable<number> {
+    this.httpClient.get<number>('http://localhost:8080/fitness/api/viajes',
+    {headers: this.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
+      this.numeroUsuarios$.next(response.body);
+    });
+    return this.numeroUsuarios$.asObservable();
+  }
+
+
+
   private generarCabecerasPost(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
@@ -48,13 +62,7 @@ export class UsuariosService {
     });
   }
 
-  private generarCabecerasGet(): HttpHeaders {
-    return new HttpHeaders({
-      'Accept': 'application/json'
-    });
-  }
-
-  private generarCabecerasConAccessTokenGet(accessToken: string): HttpHeaders {
+  private generarCabecerasGetConAccessToken(accessToken: string): HttpHeaders {
     return new HttpHeaders({
       'Accept': 'application/json',
       'Authorization' : `Bearer ${accessToken}`

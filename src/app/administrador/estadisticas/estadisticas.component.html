@@ -1,50 +1,44 @@
 <h4 class="ui-g-12">ESTADÍSTICAS</h4>
 
-<div class="ui-g-6">
+<div class="container">
+    <div class="row">
 
-  <h5 class="ui-g-12">USUARIOS</h5>
+        <div class="col-sm-12 col-md-6">
+            <h5 class="col-12">USUARIOS</h5>
+            <div class="col-12">
+                <p>Nº Usuarios Registrados: <span>{{ contadorUsuarios }}</span></p>
+                <p>Usuario con mayor puntuación</p>
+                <p>Categoría mas interesante</p>
+                <p>Puntuación media de los usuarios:</p>
+            </div>
+        </div>
 
-  <div class="ui-g-12">
+        <div class="col-sm-12 col-md-6">
+            <h5 class="col-12">ACTIVIDADES</h5>
+            <div class="col-12">
+                <p>Nº Actividades Creadas: <span>{{ contadorActividades }}</span> </p>
+                <p>Nº Medio de participantes por actividad</p>
+                <p>Actividad con más participantes</p>
+                <p>Usuario que ha creado más actividades</p>
+                <p>GRÁFICO: Categoría con más salidas</p>
+            </div>
+        </div>
 
-    <p>Nº Usuarios Registrados: </p>
-    <p>Usuario con mayor puntuación</p>
-    <p>Categoría mas interesante</p>
-    <p>Puntuación media de los usuarios:</p>
+        <div class="col-sm-12 col-md-6">
+            <h5 class="col-12">VIAJES</h5>
+            <div class="col-12">
+                <p>Nº Viajes Creados: <span>{{ contadorViajes }}</span> </p>
+                <p>Nº Medio de participantes por viaje</p>
+                <p>GRÁFICO: Categoría con más salidas</p>
+            </div>
+        </div>
 
-  </div>
+        <div class="col-sm-12 col-md-6">
+            <h5 class="col-12">OPINIONES</h5>
+            <div class="col-12">
+                <p>Nº Opiniones Creadas: <span>{{ contadorOpiniones }}</span> </p>
+            </div>
+        </div>
 
-
-</div>
-
-
-<div class="ui-g-6">
-
-  <h5 class="ui-g-12">ACTIVIDADES</h5>
-
-  <div class="ui-g-12">
-
-    <p>Nº Actividades Creadas </p>
-    <p>Nº Medio de participantes por actividad</p>
-    <p>Actividad con más participantes</p>
-    <p>Usuario que ha creado más actividades</p>
-    <p>GRÁFICO: Categoría con más salidas</p>
-
-  </div>
-
-
-</div>
-
-<div class="ui-g-6">
-
-  <h5 class="ui-g-12">VIAJES</h5>
-
-  <div class="ui-g-12">
-
-    <p>Nº Viajes Creados </p>
-    <p>Nº Medio de participantes por viaje</p>
-    <p>GRÁFICO: Categoría con más salidas</p>
-
-  </div>
-
-
+    </div>
 </div>
