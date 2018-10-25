@@ -1,6 +1,6 @@
 import {Component, OnInit, Input } from '@angular/core';
 
-// Componentes
+// Modelos
 import { Actividad } from '../../modelos/actividad.model';
 import { Usuario } from '../../modelos/usuario.model';
 

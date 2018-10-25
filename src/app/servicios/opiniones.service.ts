@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 // Peticiones
-import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 // Modelos
@@ -22,9 +22,9 @@ export class OpinionesService {
   constructor(private httpClient: HttpClient) { }
 
   // Petición HTTP(POST) para guardar una opinión
-  public guardarOpinion(opinion: Opinion): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/fitness/api/public/opiniones', opinion,
-      {headers: this.generarCabecerasPost(), observe: 'response'});
+  public guardarOpinion(opinion: Opinion, accessToken: string): Observable<HttpResponse<Opinion>> {
+    return this.httpClient.post<Opinion>('http://localhost:8080/fitness/api/opiniones', opinion,
+      {headers: this.generarCabecerasPostConAccessToken(accessToken), observe: 'response'});
   }
 
   // Petición HTTP(GET) para recuperar las opiniones
@@ -37,19 +37,17 @@ export class OpinionesService {
   }
 
   public obtenerNumeroOpiniones(accessToken: string): Observable<number> {
-    this.httpClient.get<number>('http://localhost:8080/fitness/api/actividades',
+    this.httpClient.get<number>('http://localhost:8080/fitness/api/opiniones',
     {headers: this.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
       this.numeroOpiniones$.next(response.body);
     });
     return this.numeroOpiniones$.asObservable();
   }
 
-  // Petición HTTP(DELETE) para recuperar las opiniones
-  public borrarOpinion(id: string): Observable<any> {
-    console.log(id);
-    return null;
-    // return this.httpClient.delete('http://localhost:8080/fitness/api/public/opiniones', {observe: 'response'});
-
+  // Petición HTTP(DELETE) para borrar las opiniones
+  public borrarOpinion(id: string, accessToken: string): Observable<HttpResponse<any>> {
+    return this.httpClient.delete<Opinion>(`http://localhost:8080/fitness/api/opiniones/${id}`,
+    {headers: this.generarCabecerasPostConAccessToken(accessToken), observe: 'response'});
   }
 
   private generarCabecerasGet(): HttpHeaders {
@@ -71,4 +69,13 @@ export class OpinionesService {
       'Authorization' : `Bearer ${accessToken}`
     });
   }
+
+  private generarCabecerasPostConAccessToken(accessToken: string): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization' : `Bearer ${accessToken}`
+    });
+  }
+
 }

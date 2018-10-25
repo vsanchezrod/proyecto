@@ -1,13 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div>
         <p-slideMenu #menuUsuario [model]="itemsUsuario" [viewportHeight]="320" [popup]="true"></p-slideMenu>
-        <img class="rounded-circle" [src]="usuario.avatar" alt="avatar" (mouseover)="menuUsuario.toggle($event)" (mouseleave)="menuUsuario.toggle($event)">
+        <img class="rounded-circle" [src]="usuario.avatar" alt="avatar" (mouseover)="menuUsuario.toggle($event)">
+
+        <!-- (mouseleave)="menuUsuario.toggle($event) -->
+
     </div>
+
 
     <!-- PONER ICONO PARA ADMINISTRADOR-->
     <div>
         <p-slideMenu #menuAdmin [model]="itemsAdmin" [viewportHeight]="300" [popup]="true"></p-slideMenu>
-        <button class="ui-button-icon-only" type="button" pButton icon="pi pi-bars" label="Show" (mouseover)="menuAdmin.toggle($event)" (mouseleave)="menuAdmin.toggle($event)">ADM</button>
+        <button class="ui-button-icon-only" type="button" pButton icon="pi pi-bars" label="Show" (mouseover)="menuAdmin.toggle($event)">ADM</button>
+
+        <!-- (mouseleave)="menuUsuario.toggle($event) -->
     </div>
 
     <button class="btn btn-outline-success my-2 my-sm-0" icon="pi-power-off" (click)="logout()" type="submit">Logout</button>

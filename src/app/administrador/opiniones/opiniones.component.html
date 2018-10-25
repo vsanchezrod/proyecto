@@ -1,21 +1,21 @@
 <div class="ui-g-12">
 
-  <h4>Moderador de opiniones</h4>
+    <h4>Moderador de opiniones</h4>
 
-  <p-dataScroller [value]="listaOpiniones" [rows]="10" [inline]="true" scrollHeight="500px">
-    <p-header>
-      OPINIONES DE LOS USUARIOS
-    </p-header>
-    <ng-template let-opinion pTemplate="item">
+    <p-dataScroller [value]="listaOpiniones" [rows]="10" [inline]="true" scrollHeight="500px">
+        <p-header>
+            OPINIONES DE LOS USUARIOS
+        </p-header>
+        <ng-template let-opinion pTemplate="item">
 
-      <app-tarjeta-opinion [opinion]="opinion"></app-tarjeta-opinion>
+            <app-tarjeta-opinion [opinion]="opinion"></app-tarjeta-opinion>
 
-      <div class="ui-g-2">
-        <button pButton type="button" label="MENSAJE" class="ui-button-rounded ui-button-warning"></button>
-        <button pButton type="button" label="BORRAR" (click)="borrarOpinion(opinion.id)" class="ui-button-rounded ui-button-danger"></button>
-      </div>
+            <div class="ui-g-2">
+                <button pButton type="button" label="MENSAJE" class="ui-button-rounded ui-button-warning"></button>
+                <button pButton type="button" label="BORRAR" (click)="borrarOpinion(opinion.id)" class="ui-button-rounded ui-button-danger"></button>
+            </div>
 
-    </ng-template>
-  </p-dataScroller>
+        </ng-template>
+    </p-dataScroller>
 
 </div>

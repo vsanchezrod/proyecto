@@ -1,54 +1,47 @@
 <div class="container">
-  <p-card class="ui-fluid" title="Déjanos tu opinión">
+    <p-card class="ui-fluid" title="Déjanos tu opinión">
 
-    <form [formGroup]="formularioOpinion" (submit)="enviarOpinion(formularioOpinion.value)">
-      <div class="ui-grid">
+        <form [formGroup]="formularioOpinion" (submit)="enviarOpinion()">
+            <div class="ui-grid">
 
-        <img class="ui-grid-col-2 mx-auto d-block" src="../../../assets/imagenes/avatars/3.png" alt="usuario.avatar">
+                <img class="ui-grid-col-2 mx-auto d-block" src="usuario.avatar" alt="avatar">
 
-        <div class="ui-g-12 ui-md-12 ui-lg-10">
-          <p-dropdown [formControl]="formularioOpinion.controls['actividad']" class="ui-grid-col-6" [options]="listaActividades" placeholder="Selecciona una actividad" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
+                <div class="ui-g-12 ui-md-12 ui-lg-10">
+                    <p-dropdown [formControl]="formularioOpinion.controls['actividad']" class="ui-grid-col-6" [options]="listaActividades" placeholder="Selecciona una actividad" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
 
-          <span class="ui-float-label ui-g-12 ui-md-10">
+                    <span class="ui-float-label ui-g-12 ui-md-10">
               <input [formControl]="formularioOpinion.controls['titulo']" id="titulo"  type="text" size="30" pInputText>
               <label for="titulo">Título de tu opinión*</label>
           </span>
 
-          <span class="ui-float-label ui-g-12 ui-md-10">
+                    <span class="ui-float-label ui-g-12 ui-md-10">
               <textarea [formControl]="formularioOpinion.controls['detalle']" id="descripcion" rows="5" cols="15" pInputTextarea autoResize="autoResize"></textarea>
               <label for="descripcion">Escribe tu opinión*</label>
           </span>
-        </div>
+                </div>
 
-        <div class="ui-g-12">
-          <div class="ui-g-12 ui-md-12 ui-lg-4">
-            <p-rating [formControl]="formularioOpinion.controls['organizacionValoracion']" class="ui-g-4" id="ratingOrganizacion" stars="5" [cancel]="false"></p-rating>
-            <label for="ratingOrganizacion">Organización</label>
-          </div>
+                <div class="ui-g-12">
+                    <div class="ui-g-12 ui-md-12 ui-lg-4">
+                        <p-rating [formControl]="formularioOpinion.controls['organizacionValoracion']" class="ui-g-4" id="ratingOrganizacion" stars="5" [cancel]="false"></p-rating>
+                        <label for="ratingOrganizacion">Organización</label>
+                    </div>
 
-          <div class="ui-g-12 ui-md-12 ui-lg-4">
-            <p-rating [formControl]="formularioOpinion.controls['ambienteValoracion']" class="ui-g-4"id="ratingBuenRollo" stars="5" [cancel]="false"></p-rating>
-            <label for="ratingBuenRollo">Buen rollo</label>
-          </div>
+                    <div class="ui-g-12 ui-md-12 ui-lg-4">
+                        <p-rating [formControl]="formularioOpinion.controls['ambienteValoracion']" class="ui-g-4" id="ratingBuenRollo" stars="5" [cancel]="false"></p-rating>
+                        <label for="ratingBuenRollo">Buen rollo</label>
+                    </div>
 
-          <div class="ui-g-12 ui-md-12 ui-lg-4">
-            <p-rating [formControl]="formularioOpinion.controls['recorridoValoracion']" class="ui-g-4" id="ratingRecorrido" stars="5" [cancel]="false"></p-rating>
-            <label for="ratingRecorrido">Recorrido</label>
-          </div>
-        </div>
-      </div>
+                    <div class="ui-g-12 ui-md-12 ui-lg-4">
+                        <p-rating [formControl]="formularioOpinion.controls['recorridoValoracion']" class="ui-g-4" id="ratingRecorrido" stars="5" [cancel]="false"></p-rating>
+                        <label for="ratingRecorrido">Recorrido</label>
+                    </div>
+                </div>
+            </div>
 
-      <button [disabled]="formularioOpinion.invalid" pButton type="submit" label="ENVIAR" class="ui-button-info"></button>
-      <p-splitButton styleClass="ui-button-success" label="Guardar" icon="pi pi-file" (onClick)="save('info')"></p-splitButton>
+            <button [disabled]="formularioOpinion.invalid" pButton type="submit" label="ENVIAR" class="ui-button-info"></button>
 
-    </form>
-  </p-card>
+        </form>
+    </p-card>
 </div>
 
-VALIDACION
-{{ formularioOpinion.valid }} <br> <br> <br>
-
-FORMULARIO
-{{formularioOpinion.value | json }}
-
-
+VALIDACION {{ formularioOpinion.valid }} <br> <br> <br> FORMULARIO {{formularioOpinion.value | json }}

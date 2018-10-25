@@ -58,7 +58,7 @@ export class CategoriasComponent implements OnInit {
 
   }
 
-  public crearCategoria(datos): void {
+  public crearCategoria(datos: Categoria): void {
     console.log(this.formularioCategoria.value);
 
     this.categoriasService.crearCategoria(datos, this.accessToken).subscribe( response => {
@@ -66,7 +66,7 @@ export class CategoriasComponent implements OnInit {
     });
   }
 
-  public borrarCategoria(idCategoria): void {
+  public borrarCategoria(idCategoria: string): void {
     this.categoriasService.borrarCategoria(idCategoria, this.accessToken).subscribe( response => {
       console.log('CategoriasComp:BorrarCategoria:Respuesta: ' + response.status);
 

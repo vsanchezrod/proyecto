@@ -1,5 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Opinion} from '../../modelos/opinion.model';
+
+// Modelos
+import { Opinion } from '../../modelos/opinion.model';
+import { Usuario } from '../../modelos/usuario.model';
+
+// Servicio
+import { UsuariosService } from '../../servicios/usuarios.service';
+
 
 @Component({
   selector: 'app-tarjeta-opinion',
@@ -10,10 +17,19 @@ export class TarjetaOpinionComponent implements OnInit {
 
   // Se recibe el valor del elemento padre
   @Input() opinion: Opinion;
+  public usuario: Usuario;
+  public idUsuario: string;
 
-  constructor() { }
+  constructor(private usuariosService: UsuariosService) { }
 
   ngOnInit() {
+
+    this.idUsuario = this.opinion.usuarioOpinion;
+
+    this.usuariosService.buscarUsuarioPorId(this.idUsuario).subscribe( (usuarioCreacion: Usuario) => {
+      this.usuario = usuarioCreacion;
+    });
+
   }
 
 }

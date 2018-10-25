@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MessageService} from 'primeng/api';
-
 // Formularios
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+// Modelos
 import { Opinion } from '../../modelos/opinion.model';
+import { Usuario } from '../../modelos/usuario.model';
 
 // Servicios
 import { OpinionesService } from '../../servicios/opiniones.service';
+import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
+
 
 @Component({
   selector: 'app-opinion',
@@ -16,16 +19,28 @@ import { OpinionesService } from '../../servicios/opiniones.service';
 })
 export class OpinionComponent implements OnInit {
 
-  formularioOpinion: FormGroup;
+  public formularioOpinion: FormGroup;
+  public usuario: Usuario;
+  // PENDIENTE
+  public listaActividades: Array<any>;
 
+  private accessToken: string;
   private opinion: Opinion;
 
-  listaActividades: Array<any>;
 
-  constructor(private messageService: MessageService,
-              private opinionesService: OpinionesService) { }
+  constructor(private opinionesService: OpinionesService,
+              private usuarioSesionService: UsuarioSesionService) { }
 
   ngOnInit() {
+
+    this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
+      this.accessToken = accesToken;
+    });
+
+    this.usuarioSesionService.obtenerUsuario$().subscribe ( (usuario: Usuario) => {
+      this.usuario = usuario;
+      console.log('OpinionComp: Usuario', this.usuario);
+    });
 
     this.formularioOpinion = new FormGroup({
       'actividad': new FormControl('', Validators.required),
@@ -36,6 +51,7 @@ export class OpinionComponent implements OnInit {
       'recorridoValoracion': new FormControl('', Validators.required),
     });
 
+    // PENDIENTE CARGAR ARCTIVIDADES DEL USUARIO
     this.listaActividades = [
       {nombre: 'Ruta1'},
       {nombre: 'Ruta2'},
@@ -44,18 +60,20 @@ export class OpinionComponent implements OnInit {
     ];
   }
 
-  save(severity: string) {
-    this.messageService.add({severity: severity, summary: 'Success', detail: 'Data Saved'});
-  }
+  public enviarOpinion(): void {
 
-  enviarOpinion(formularioOpinionValue: Opinion) {
+    this.opinion = this.formularioOpinion.value;
+    this.opinion.fecha = new Date();
+    this.opinion.usuarioOpinion = this.usuario.id;
 
-    this.opinion = formularioOpinionValue;
+    console.log('Opinion: ', this.opinion);
 
-    this.opinionesService.guardarOpinion(this.opinion)
-      .subscribe(response => {
-        console.log('Respuesta de la petición: ' + response.status);
+    this.opinionesService.guardarOpinion(this.opinion, this.accessToken).subscribe(response => {
+        console.log('OpiniónComp: RespuestaGuardarOpinion ' + response.status);
       });
+
+    // MOSTRAR MENSAJE DE QUE SE HA ENVIADO!!
+
   }
 
 }

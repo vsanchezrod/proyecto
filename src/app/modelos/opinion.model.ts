@@ -1,5 +1,4 @@
 import { OpinionActividad } from './opinionActividad.model';
-import { OpinionUsuario } from './opinionUsuario.model';
 
 export interface Opinion {
   id?: string;
@@ -10,6 +9,6 @@ export interface Opinion {
   organizacionValoracion: number;
   ambienteValoracion: number;
   recorridoValoracion: number;
-  usuario: OpinionUsuario;
+  usuarioOpinion: string;
 }
 

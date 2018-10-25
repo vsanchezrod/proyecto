@@ -5,6 +5,7 @@ import { Opinion } from '../../modelos/opinion.model';
 
 // Servicio
 import { OpinionesService } from '../../servicios/opiniones.service';
+import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 
 
 @Component({
@@ -16,19 +17,26 @@ import { OpinionesService } from '../../servicios/opiniones.service';
 export class OpinionesComponent implements OnInit {
 
   public listaOpiniones: Array<Opinion> = [];
+  private accessToken: string;
 
-  constructor(private opinionesService: OpinionesService) { }
+  constructor(private opinionesService: OpinionesService,
+              private usuarioSesionService: UsuarioSesionService) { }
 
   ngOnInit() {
+
+    this.usuarioSesionService.obtenerAccessToken$().subscribe( (accessToken: string) => {
+      this.accessToken = accessToken;
+    });
 
     this.opinionesService.obtenerOpiniones().subscribe( (listaOpiniones: Array<Opinion>) => {
       this.listaOpiniones = listaOpiniones;
     });
   }
 
-  public borrarOpinion(id: string)  {
-
-    this.opinionesService.borrarOpinion(id);
+  public borrarOpinion(idOpinion: string, accessToken: string)  {
+    this.opinionesService.borrarOpinion(idOpinion, this.accessToken).subscribe( response => {
+      console.log('Response:', response.status);
+    });
   }
 
 }
