@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 
-import {HttpClient, HttpHeaders, HttpResponse, HttpParams } from '@angular/common/http';
-// Observables
-import { BehaviorSubject, Subject, Observable } from 'rxjs';
+// Peticiones Http
+import {HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 // Componente
 import { Usuario } from '../modelos/usuario.model';
+
+// Producción
+import { environment } from '../../environments/environment';
+
+// Servicios
+import { CabecerasHttpService } from './cabeceras-http.service';
 
 
 @Injectable({
@@ -22,12 +28,13 @@ export class UsuariosService {
   private usuarioCreacion = new Usuario();
   private usuarioCreacion$: BehaviorSubject<Usuario> = new BehaviorSubject<Usuario>(this.usuarioCreacion);
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              private cabecerasHttpService: CabecerasHttpService) { }
 
   public obtenerListaUsuarios$(accessToken: string): Observable<Array<Usuario>> {
 
-    this.httpClient.get<Array<Usuario>>('http://localhost:8080/fitness/api/usuarios',
-      {headers: this.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe( (response) => {
+    this.httpClient.get<Array<Usuario>>(environment.host + '/usuarios',
+      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe( (response) => {
       this.listaUsuarios$.next(response.body);
       console.log('ServicioUsuario: ListaUsuarios: ', response.body);
     });
@@ -35,49 +42,30 @@ export class UsuariosService {
   }
 
   public crearUsuario(usuario: Usuario): Observable<HttpResponse<Usuario>> {
-    return this.httpClient.post<Usuario>('http://localhost:8080/fitness/api/public/usuarios', usuario, {headers: this.generarCabecerasPost(), observe: 'response'});
+    return this.httpClient.post<Usuario>(environment.host + '/public/usuarios', usuario,
+      {headers: this.cabecerasHttpService.generarCabecerasPost(), observe: 'response'});
   }
 
   public buscarUsuarioPorId(id: string): Observable<Usuario> {
-    this.httpClient.get<Usuario>(`http://localhost:8080/fitness/api/public/usuarios/${id}`,
-      {headers: this.generarCabecerasGet(), observe: 'response'}).subscribe ( response => {
+    this.httpClient.get<Usuario>(environment.host + `/public/usuarios/${id}`,
+      {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'response'}).subscribe ( response => {
         this.usuarioCreacion$.next(response.body);
       });
     return this.usuarioCreacion$.asObservable();
   }
 
+  // REVISAR ESTE MÉTODO Y EL TIPO DE OBSERVABLE
   public buscarUsuarioPorNombre(nombre: string): Observable<Usuario> {
-    return this.httpClient.get<Usuario>(`http://localhost:8080/fitness/api/public/usuarios?nombre=${nombre}`);
+    return this.httpClient.get<Usuario>(environment.host + `/public/usuarios?nombre=${nombre}`, 
+      {headers: this.cabecerasHttpService.generarCabecerasGet()});
   }
 
   public obtenerNumeroUsuarios(accessToken: string): Observable<number> {
-    this.httpClient.get<number>('http://localhost:8080/fitness/api/viajes',
-    {headers: this.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
+    this.httpClient.get<number>(environment.host + '/viajes',
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
       this.numeroUsuarios$.next(response.body);
     });
     return this.numeroUsuarios$.asObservable();
-  }
-
-
-
-  private generarCabecerasPost(): HttpHeaders {
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    });
-  }
-
-  private generarCabecerasGet(): HttpHeaders {
-    return new HttpHeaders({
-      'Accept': 'application/json'
-    });
-  }
-
-  private generarCabecerasGetConAccessToken(accessToken: string): HttpHeaders {
-    return new HttpHeaders({
-      'Accept': 'application/json',
-      'Authorization' : `Bearer ${accessToken}`
-    });
   }
 
 }

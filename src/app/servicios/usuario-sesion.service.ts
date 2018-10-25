@@ -12,6 +12,9 @@ import { BehaviorSubject, Observable, Subject} from 'rxjs';
 
 // Servicio
 import { UsuariosService } from './usuarios.service';
+import { CabecerasHttpService } from './cabeceras-http.service';
+
+// Producción
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -24,13 +27,14 @@ export class UsuarioSesionService {
   private usuarioLogado$ = new BehaviorSubject<Usuario>(null);
 
   constructor(private httpClient: HttpClient,
-              private usuariosService: UsuariosService) { }
+              private usuariosService: UsuariosService,
+              private cabecerasHttpService: CabecerasHttpService) { }
 
   public login(email: string, password: string): Observable<HttpResponse<any>> {
 
     this.httpClient.post<any>(environment.host + '/oauth/token',
       this.generarBody(email, password),
-      {headers: this.generarCabeceras(), observe: 'response'})
+      {headers: this.cabecerasHttpService.generarCabecerasPost(), observe: 'response'})
         .subscribe(
 
           (response) => {
@@ -63,14 +67,6 @@ export class UsuarioSesionService {
 
   public obtenerUsuario$(): Observable<Usuario> {
     return this.usuarioLogado$.asObservable();
-  }
-
-  private generarCabeceras(): HttpHeaders {
-    return new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Basic dGVzdGp3dGNsaWVudGlkOlhZN2ttem9OemwxMDA=',
-      'Accept': 'application/json'
-    });
   }
 
   private generarBody(email: string, password: string): HttpParams {

@@ -7,6 +7,12 @@ import { Observable, BehaviorSubject } from 'rxjs';
 // Modelo de datos
 import { Actividad } from '../modelos/actividad.model';
 
+// Servicios
+import { CabecerasHttpService } from './cabeceras-http.service';
+
+// Producción
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,11 +27,12 @@ export class ActividadesService {
   private actividadesCreadasPorUsuario: Array<Actividad> = [];
   private actividadesCreadasPorUsuario$: BehaviorSubject<Array<Actividad>> = new BehaviorSubject(this.actividadesCreadasPorUsuario);
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,
+              private cabecerasHttpService: CabecerasHttpService ) {}
 
   public obtenerListaActividades$(): Observable<Array<Actividad>> {
-    this.httpClient.get<Array<Actividad>>('http://localhost:8080/fitness/api/public/actividades',
-    {headers: this.generarCabeceras(), observe: 'response'}).subscribe( response => {
+    this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'response'}).subscribe( response => {
       this.listaActividades$.next(response.body);
     });
 
@@ -35,18 +42,18 @@ export class ActividadesService {
   // Método para crear actividad y mandar la petición al API
   public crearActividad(actividad: Actividad, accessToken: string): Observable<HttpResponse<Actividad>> {
     const body = actividad;
-    return this.httpClient.post<Actividad>('http://localhost:8080/fitness/api/actividades', body,
-     {headers: this.generarCabecerasConAccessToken(accessToken), observe: 'response'});
+    return this.httpClient.post<Actividad>(environment.host + '/actividades', body,
+     {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(accessToken), observe: 'response'});
   }
 
   public borrarActividad(id: string, accessToken: string): Observable<HttpResponse<Actividad>> {
-    return this.httpClient.delete<Actividad>(`http://localhost:8080/fitness/api/actividades/${id}`,
-      {headers: this.generarCabecerasConAccessToken(accessToken), observe: 'response'} );
+    return this.httpClient.delete<Actividad>(environment.host + `/actividades/${id}`,
+      {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(accessToken), observe: 'response'} );
   }
 
   public buscarActividadesCreadasPorUsuario(idUsuario: string, accessToken: string): Observable<Array<Actividad>> {
-    this.httpClient.get<Array<Actividad>>(`http://localhost:8080/fitness/api/actividades?id=${idUsuario}`,
-      {headers: this.generarCabecerasConAccessToken(accessToken)}).subscribe ( response => {
+    this.httpClient.get<Array<Actividad>>(environment.host + `/actividades?id=${idUsuario}`,
+      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken)}).subscribe ( response => {
         this.actividadesCreadasPorUsuario$.next(response);
         console.log('RESPONSE. BUSCAR ACTIVIDADES: ', response);
       });
@@ -54,34 +61,13 @@ export class ActividadesService {
   }
 
   public obtenerNumeroActividades(accessToken: string): Observable<number> {
-    this.httpClient.get<number>('http://localhost:8080/fitness/api/actividades',
-    {headers: this.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
+    this.httpClient.get<number>(environment.host + '/actividades',
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
       this.numeroActividades$.next(response.body);
     });
     return this.numeroActividades$.asObservable();
   }
 
-  private generarCabeceras(): HttpHeaders {
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    });
-  }
-
-  private generarCabecerasConAccessToken(accessToken: string): HttpHeaders {
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization' : `Bearer ${accessToken}`
-    });
-  }
-
-  private generarCabecerasGetConAccessToken(accessToken: string): HttpHeaders {
-    return new HttpHeaders({
-      'Accept': 'application/json',
-      'Authorization' : `Bearer ${accessToken}`
-    });
-  }
 }
 
 
