@@ -22,36 +22,40 @@ import { environment } from '../../environments/environment';
 })
 export class UsuarioSesionService {
 
-  private respuestaLogin$ = new Subject<HttpResponse<any>>();
   private accessToken$ = new BehaviorSubject<string>('');
   private usuarioLogado$ = new BehaviorSubject<Usuario>(null);
-
+  
   constructor(private httpClient: HttpClient,
               private usuariosService: UsuariosService,
               private cabecerasHttpService: CabecerasHttpService) { }
-
+    
   public login(email: string, password: string): Observable<HttpResponse<any>> {
-
+      
+    const respuestaLogin$ = new Subject<HttpResponse<any>>();
     this.httpClient.post<any>(environment.host + '/oauth/token',
       this.generarBody(email, password),
       {headers: this.cabecerasHttpService.generarCabecerasLogin(), observe: 'response'})
         .subscribe(
-
           (response) => {
             const accessToken = this.obtenerAccessToken(response);
             this.accessToken$.next(accessToken);
-            this.respuestaLogin$.next(response);
+            respuestaLogin$.next(response);
             this.obtenerUsuario(accessToken);
-            },
+          },
 
           (errorResponse) => {
             console.error('UsuarioSesionService:login:responseError: ', errorResponse);
             // Si la respuesta es de error, se usa NEXT en vez de ERROR para que el suscribe ejecute la 2 funcion (algo ha ido mal)
-            this.respuestaLogin$.next(errorResponse);
+            respuestaLogin$.error(errorResponse);
+          },
+
+          () => {
+            console.log('UsuarioSesionService:login:ON COMPLETE XD');
           }
+
         );
 
-    return this.respuestaLogin$.asObservable();
+    return respuestaLogin$.asObservable();
 
   }
 

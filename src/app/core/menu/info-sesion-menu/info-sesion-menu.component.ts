@@ -32,11 +32,11 @@ export class InfoSesionMenuComponent implements OnInit {
 
     this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
       this.usuario = usuario;
-      console.log('INFOSESION: Usuario: ', this.usuario);
+      // console.log('INFOSESION: Usuario: ', this.usuario);
 
       if (this.usuario != null && this.usuario.roles.includes('administrador')) {
         this.usuarioAdministrador = true;
-        console.log('INFOSESSION: ES ADMIN');
+        // console.log('INFOSESSION: ES ADMIN');
       }
     });
 
