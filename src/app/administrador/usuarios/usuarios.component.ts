@@ -31,7 +31,7 @@ export class UsuariosComponent implements OnInit {
     });
 
     // Obtener el usuario logado
-    this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
+    this.usuarioSesionService.obtenerUsuarioLogado$().subscribe( (usuario: Usuario) => {
       this.usuario = usuario;
     });
 

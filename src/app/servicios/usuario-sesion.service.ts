@@ -23,7 +23,8 @@ import { environment } from '../../environments/environment';
 export class UsuarioSesionService {
 
   private accessToken$ = new BehaviorSubject<string>('');
-  private usuarioLogado$ = new BehaviorSubject<Usuario>(null);
+  private usuarioLogado$ = new BehaviorSubject<Usuario>(new Usuario());
+  private usuarioLogado: Usuario = new Usuario();
 
   constructor(private httpClient: HttpClient,
               private usuariosService: UsuariosService,
@@ -40,7 +41,7 @@ export class UsuarioSesionService {
             const accessToken = this.obtenerAccessToken(response);
             this.accessToken$.next(accessToken);
             respuestaLogin$.next(response);
-            this.obtenerUsuario(accessToken);
+            this.obtenerUsuarioPorAccessToken(accessToken);
           },
           (errorResponse) => {
             console.error('UsuarioSesionService:login:responseError: ', errorResponse);
@@ -60,15 +61,23 @@ export class UsuarioSesionService {
 
   public logout(): void {
     this.accessToken$.next(undefined);
-    this.usuarioLogado$.next(undefined);
+    this.usuarioLogado$.next(new Usuario());
   }
 
   public obtenerAccessToken$(): Observable<string> {
     return this.accessToken$.asObservable();
   }
 
-  public obtenerUsuario$(): Observable<Usuario> {
+  public obtenerUsuarioLogado$(): Observable<Usuario> {
     return this.usuarioLogado$.asObservable();
+  }
+
+  public esAdministrador(): boolean {
+    return this.usuarioLogado.roles.includes('administrador');
+  }
+
+  public esUsuarioRegistrado(): boolean {
+    return this.usuarioLogado.roles.includes('usuario');
   }
 
   private generarBody(email: string, password: string): HttpParams {
@@ -82,7 +91,7 @@ export class UsuarioSesionService {
     return response.body['access_token'];
   }
 
-  private obtenerUsuario(accessToken: string): void {
+  private obtenerUsuarioPorAccessToken(accessToken: string): void {
 
     const arrayDatosToken = accessToken.split('.');
 
@@ -96,6 +105,7 @@ export class UsuarioSesionService {
     const idUsuario = JSON.parse(datosPayload)['user_name'];
 
     this.usuariosService.buscarUsuarioPorId(idUsuario).subscribe((usuario: Usuario) => {
+      this.usuarioLogado = usuario;
       this.usuarioLogado$.next(usuario);
     });
   }

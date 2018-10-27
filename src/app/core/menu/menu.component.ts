@@ -17,7 +17,6 @@ import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 export class MenuComponent implements OnInit {
 
   public usuarioLogado: boolean;
-  // private usuario: Usuario;
 
   constructor(private router: Router,
               private usuarioSesionService: UsuarioSesionService) { }
@@ -30,12 +29,6 @@ export class MenuComponent implements OnInit {
       console.log('MENUCOMP: usuarioLogado: ', this.usuarioLogado);
     });
 
-    /*
-    this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
-      this.usuario = usuario;
-      console.log('MENUCOMP: Usuario: ', this.usuario);
-    });
-*/
   }
 
   buscarActividades(clave: string) {

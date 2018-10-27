@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="borde">
+    <div *ngIf="usuarioSesionService.esUsuarioRegistrado()" class="borde">
         <p-slideMenu #menuUsuario [model]="itemsUsuario" [viewportHeight]="320" [popup]="true"></p-slideMenu>
         <img class="rounded-circle" [src]="usuario.avatar" alt="avatar" (mouseover)="menuUsuario.toggle($event)">
         <i class="pi pi-angle-double-down"></i>
@@ -7,7 +7,7 @@
     </div>
 
     <!-- PONER ICONO PARA ADMINISTRADOR-->
-    <div *ngIf="usuarioAdministrador">
+    <div *ngIf="usuarioSesionService.esAdministrador()">
         <p-slideMenu #menuAdmin [model]="itemsAdmin" [viewportHeight]="300" [popup]="true"></p-slideMenu>
         <i class="pi pi-users" (click)="logout()" (mouseover)="menuAdmin.toggle($event)"></i>
         <!--<button class="ui-button-icon-only" type="button" pButton class="pi pi-users" label="Show" (mouseover)="menuAdmin.toggle($event)"></button>

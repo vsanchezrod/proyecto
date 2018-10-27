@@ -35,7 +35,7 @@ export class PerfilComponent implements OnInit {
       this.usuarioLogado = accessToken ? true : false;
     });
 
-    this.usuarioSesionService.obtenerUsuario$().subscribe ( usuario => {
+    this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( usuario => {
       this.usuario = usuario;
     });
 

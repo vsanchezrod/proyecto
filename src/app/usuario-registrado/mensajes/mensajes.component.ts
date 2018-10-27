@@ -46,7 +46,7 @@ export class MensajesComponent implements OnInit {
       this.accessToken = accesToken;
     });
 
-    this.usuarioSesionService.obtenerUsuario$().subscribe ( (usuario: Usuario) => {
+    this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
       this.usuario = usuario;
 
       // Carga de los nombre de cada amigo en el select de mandar nuevo mensaje

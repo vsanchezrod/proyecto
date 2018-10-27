@@ -35,7 +35,7 @@ export class AmigosComponent implements OnInit {
       this.accessToken = accesToken;
     });
 
-    this.usuarioSesionService.obtenerUsuario$().subscribe ( (usuario: Usuario) => {
+    this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
       this.usuario = usuario;
       console.log('Amigos', this.usuario.amigos);
 

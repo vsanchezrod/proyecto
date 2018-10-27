@@ -17,25 +17,14 @@ export class Usuario {
   intereses?: Array<ActividadCategoria>;
   terminos: boolean;
   valoracion: number;
-  roles: Array<string>; /////////////////////////////////////
-  // roles?: Array<Rol>;
+  roles: Array<string>;
   amigos?: Array<string>;
 
   constructor() {
     this.intereses = [];
-  //  this.roles = [];
+    this.roles = [];
     this.amigos = [];
   }
-/*
-  private esUsuario(): boolean {
-    // TODO: implemtar
-    return false;
-  }
 
-  private esAdministrador(): boolean {
-    // TODO: implemtar
-    return true;
-  }
-  */
 }
 

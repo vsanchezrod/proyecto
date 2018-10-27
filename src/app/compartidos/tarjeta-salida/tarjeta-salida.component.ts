@@ -30,13 +30,11 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    console.log('111 Construyendo tarjeta: ', this.salida.nombre);
     this.usuario = new Usuario();
     this.idUsuario = this.salida.idUsuarioCreacion;
 
     this.suscripcionBuscarUsuarioPorId = this.usuariosService.buscarUsuarioPorId(this.idUsuario).subscribe(
       (usuarioCreacion: Usuario) => {
-        console.log('222 TarjetaSalida: UsuarioCreacion: ' + this.salida.nombre, usuarioCreacion);
         this.usuario = usuarioCreacion;
       }
     );
@@ -48,7 +46,6 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('333 TarjetaSalida: DESTRUYO TARJETA: ' + this.salida.nombre);
     this.suscripcionBuscarUsuarioPorId.unsubscribe();
   }
 

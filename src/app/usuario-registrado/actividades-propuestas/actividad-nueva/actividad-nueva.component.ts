@@ -58,7 +58,7 @@ export class ActividadNuevaComponent implements OnInit {
     });
 
     // Obtener el usuario logado
-    this.usuarioSesionService.obtenerUsuario$().subscribe(usuario => {
+    this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(usuario => {
       this.usuario = usuario;
     });
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Componentes de PrimeNG
 import { MenuItem } from 'primeng/api';
@@ -10,35 +10,32 @@ import { UsuarioSesionService } from '../../../servicios/usuario-sesion.service'
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/modelos/usuario.model';
 
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-info-sesion-menu',
   templateUrl: './info-sesion-menu.component.html',
   styleUrls: ['./info-sesion-menu.component.css']
 })
-export class InfoSesionMenuComponent implements OnInit {
+export class InfoSesionMenuComponent implements OnInit, OnDestroy {
 
-  // @Input() avatar: string;
   public usuario: Usuario;
-  public usuarioAdministrador: boolean;
   public itemsAdmin: MenuItem[];
   public itemsUsuario: MenuItem[];
+  private suscripcionObtenerUsuarioLogado: Subscription;
 
-  constructor(private usuarioSesionService: UsuarioSesionService,
+  constructor(public usuarioSesionService: UsuarioSesionService,
               private router: Router) { }
 
   ngOnInit() {
 
-    this.usuarioAdministrador = false;
+    console.log('INFOSESSION: ONINIT');
 
-    this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
-      this.usuario = usuario;
-      // console.log('INFOSESION: Usuario: ', this.usuario);
-
-      if (this.usuario != null && this.usuario.roles.includes('administrador')) {
-        this.usuarioAdministrador = true;
-        // console.log('INFOSESSION: ES ADMIN');
+    this.suscripcionObtenerUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
+      (usuario: Usuario) => {
+        this.usuario = usuario;
       }
-    });
+    );
 
     this.itemsUsuario = [
       {
@@ -111,10 +108,16 @@ export class InfoSesionMenuComponent implements OnInit {
     ];
   }
 
-  // TO DO - TERMINAR
+  ngOnDestroy(): void {
+    console.log('INFOSESSION: ONDESTROY');
+    this.suscripcionObtenerUsuarioLogado.unsubscribe();
+  }
+
   public logout(): void {
     this.usuarioSesionService.logout();
     this.router.navigate(['/inicio']);
   }
+
+
 
 }
