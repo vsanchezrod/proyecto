@@ -19,13 +19,6 @@ import { environment } from '../../environments/environment';
 })
 export class OpinionesService {
 
-  private listaOpiniones: Array<Opinion> = [];
-  private listaOpiniones$: BehaviorSubject<Array<Opinion>> = new BehaviorSubject<Array<Opinion>>(this.listaOpiniones);
-
-  private numeroOpiniones = 0;
-  private numeroOpiniones$: BehaviorSubject<number> = new BehaviorSubject<number>(this.numeroOpiniones);
-
-
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService) { }
 
@@ -37,19 +30,13 @@ export class OpinionesService {
 
   // Petición HTTP(GET) para recuperar las opiniones
   public obtenerOpiniones(): Observable<Array<Opinion>> {
-    this.httpClient.get<Array<Opinion>>(environment.host + '/public/opiniones',
-    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'response'}).subscribe(response => {
-      this.listaOpiniones$.next(response.body);
-    });
-    return this.listaOpiniones$.asObservable();
+    return this.httpClient.get<Array<Opinion>>(environment.host + '/public/opiniones',
+      {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
   }
 
   public obtenerNumeroOpiniones(accessToken: string): Observable<number> {
-    this.httpClient.get<number>(environment.host + '/opiniones',
-    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
-      this.numeroOpiniones$.next(response.body);
-    });
-    return this.numeroOpiniones$.asObservable();
+    return this.httpClient.get<number>(environment.host + '/opiniones',
+      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'body'});
   }
 
   // Petición HTTP(DELETE) para borrar las opiniones

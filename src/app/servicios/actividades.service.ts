@@ -21,9 +21,6 @@ export class ActividadesService {
   private numeroActividades = 0;
   private numeroActividades$: BehaviorSubject<number> = new BehaviorSubject<number>(this.numeroActividades);
 
-  private actividadesCreadasPorUsuario: Array<Actividad> = [];
-  private actividadesCreadasPorUsuario$: BehaviorSubject<Array<Actividad>> = new BehaviorSubject(this.actividadesCreadasPorUsuario);
-
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService ) {}
 
@@ -46,12 +43,10 @@ export class ActividadesService {
   }
 
   public buscarActividadesCreadasPorUsuario(idUsuario: string, accessToken: string): Observable<Array<Actividad>> {
-    this.httpClient.get<Array<Actividad>>(environment.host + `/actividades?id=${idUsuario}`,
-      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken)}).subscribe ( response => {
-        this.actividadesCreadasPorUsuario$.next(response);
-        console.log('RESPONSE. BUSCAR ACTIVIDADES: ', response);
-      });
-    return this.actividadesCreadasPorUsuario$.asObservable();
+    console.log('Voy a llamar a obtener actividades con el id!!!', idUsuario);
+    console.log('Con accesstoken: ', accessToken);
+    return this.httpClient.get<Array<Actividad>>(environment.host + `/actividades?id=${idUsuario}`,
+      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken)});
   }
 
   public obtenerNumeroActividades(accessToken: string): Observable<number> {
