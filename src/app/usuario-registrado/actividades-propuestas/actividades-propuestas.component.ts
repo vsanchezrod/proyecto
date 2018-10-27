@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Componentes
 import { Actividad } from '../../modelos/actividad.model';
@@ -10,19 +10,22 @@ import { Usuario } from '../../modelos/usuario.model';
 import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 import { ActividadesService } from '../../servicios/actividades.service';
 
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-actividades-propuestas',
   templateUrl: './actividades-propuestas.component.html',
   styleUrls: ['./actividades-propuestas.component.css']
 })
-export class ActividadesPropuestasComponent implements OnInit {
+export class ActividadesPropuestasComponent implements OnInit, OnDestroy {
 
   public salida: Actividad = new Actividad();
   public usuario: Usuario;
   public listaMisActividadesPropuestas: Array<Actividad>;
 
   private accessToken: string;
+  private subscriptionAccessToken: Subscription;
+  private subscriptionUsuarioLogado: Subscription;
 
   constructor(private usuarioSesionService: UsuarioSesionService,
               private actividadesService: ActividadesService) { }
@@ -30,12 +33,12 @@ export class ActividadesPropuestasComponent implements OnInit {
   ngOnInit() {
 
     // Obtener token de acceso
-    this.usuarioSesionService.obtenerAccessToken$().subscribe( (accessToken: string) => {
+    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe( (accessToken: string) => {
       this.accessToken = accessToken;
     });
 
     // Obtener el usuario logado
-    this.usuarioSesionService.obtenerUsuarioLogado$().subscribe( (usuario: Usuario) => {
+    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe( (usuario: Usuario) => {
       this.usuario = usuario;
     });
 
@@ -46,14 +49,20 @@ export class ActividadesPropuestasComponent implements OnInit {
     });
   }
 
-  private cargarActividad(actividad): void {
-    console.log('ACTIVIDAD PARA CARGAR: ' , actividad);
-    this.salida = actividad;
+  ngOnDestroy() {
+    this.subscriptionAccessToken.unsubscribe();
+    this.subscriptionUsuarioLogado.unsubscribe();
   }
 
   public cancelarSalida(actviidad): void {
     alert('SALIDA CANCELADA');
   }
+
+  private cargarActividad(actividad): void {
+    console.log('ACTIVIDAD PARA CARGAR: ' , actividad);
+    this.salida = actividad;
+  }
+
 
 
 }

@@ -1,6 +1,5 @@
 import { Provincia } from './provincia.model';
 import { ActividadCategoria } from './actividadCategoria.model';
-import { Rol } from './rol.model';
 
 export class Usuario {
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Servicio
 import { ViajesService } from '../../servicios/viajes.service';
@@ -12,12 +12,14 @@ import { Actividad } from '../../modelos/actividad.model';
 import { Categoria } from '../../modelos/categoria.model';
 import { Usuario } from '../../modelos/usuario.model';
 
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-actividades',
   templateUrl: './actividades.component.html',
   styleUrls: ['./actividades.component.css']
 })
-export class ActividadesComponent implements OnInit {
+export class ActividadesComponent implements OnInit, OnDestroy {
 
   public listaViajes: Array<Viaje> = [];
   public listaActividades: Array<Actividad> = [];
@@ -37,6 +39,9 @@ export class ActividadesComponent implements OnInit {
   private imagen: string | ArrayBuffer;
   private progreso: number;
   private mostrarSpinner: boolean;
+  
+  private subscriptionAccessToken: Subscription;
+  private subscriptionUsuarioLogado: Subscription;
 
   es: any;
 
@@ -57,11 +62,11 @@ export class ActividadesComponent implements OnInit {
     this.plazasMinimas = 1;
     this.plazasMaximas = 30;
 
-    this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
+    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
       this.accessToken = accessToken;
     });
 
-    this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( usuario => {
+    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( usuario => {
       this.usuario = usuario;
     });
 
@@ -89,6 +94,12 @@ export class ActividadesComponent implements OnInit {
     };
 
   }
+
+  ngOnDestroy() {
+    this.subscriptionAccessToken.unsubscribe();
+    this.subscriptionUsuarioLogado.unsubscribe();
+  }
+
 
   public cargarImagen(event: Event): void {
     console.log(event);

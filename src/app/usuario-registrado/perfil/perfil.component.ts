@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Modelos
 import { Usuario } from '../../modelos/usuario.model';
@@ -8,12 +8,14 @@ import { Provincia } from '../../modelos/provincia.model';
 import { ProvinciasService } from '../../servicios/provincias.service';
 import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent implements OnInit {
+export class PerfilComponent implements OnInit, OnDestroy {
 
   usuario: Usuario;
   accessToken: String;
@@ -24,24 +26,32 @@ export class PerfilComponent implements OnInit {
   progreso: number;
   mostrarSpinner: boolean;
 
+  private subscriptionAccessToken: Subscription;
+  private subscriptionUsuarioLogado: Subscription;
+
   constructor(private provinciasService: ProvinciasService,
               private usuarioSesionService: UsuarioSesionService) {}
 
   ngOnInit() {
 
-    this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
+    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
       this.accessToken = accessToken;
       // Si no es null, undefined o vacío
       this.usuarioLogado = accessToken ? true : false;
     });
 
-    this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( usuario => {
+    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( usuario => {
       this.usuario = usuario;
     });
 
     this.provinciasService.obtenerProvincias().subscribe(response => {
       this.listaProvincias = response.body;
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriptionAccessToken.unsubscribe();
+    this.subscriptionUsuarioLogado.unsubscribe();
   }
 
   public cargarImagen(event: Event): void {

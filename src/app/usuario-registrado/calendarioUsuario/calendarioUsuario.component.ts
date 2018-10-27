@@ -49,10 +49,9 @@ export class CalendarioUsuarioComponent implements OnInit {
  }
 
   public verActividad(evento: Evento): void {
-    if(evento.tipo = 'actividad') {
+    if (evento.tipo = 'actividad') {
       this.router.navigate(['salida', evento.id]);
-    }
-    else {
+    } else {
       this.router.navigate(['viaje', evento.id]);
     }
   }

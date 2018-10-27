@@ -19,14 +19,14 @@ import { Categoria } from '../../modelos/categoria.model';
 })
 export class RegistroComponent implements OnInit {
 
-  formularioRegistro: FormGroup;
+  public formularioRegistro: FormGroup;
 
-  listaProvincias: Array<Provincia> = [];
-  listaIntereses: Array<Categoria> = [];
+  public listaProvincias: Array<Provincia> = [];
+  public listaIntereses: Array<Categoria> = [];
 
-  imagenAvatar: string | ArrayBuffer;
-  progreso: number;
-  mostrarSpinner: boolean;
+  public imagenAvatar: string | ArrayBuffer;
+  public progreso: number;
+  public mostrarSpinner: boolean;
 
   constructor(private provinciasService: ProvinciasService,
               private categoriasService: CategoriasService,

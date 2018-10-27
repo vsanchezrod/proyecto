@@ -19,7 +19,7 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   public formularioLogin: FormGroup;
-  private suscripcion: Subscription;
+  private subscripcionLogin: Subscription;
 
   constructor(private usuarioSesionService: UsuarioSesionService,
               private router: Router) {
@@ -42,12 +42,12 @@ export class LoginComponent implements OnInit {
     const email = this.formularioLogin.controls['email'].value;
     const password = this.formularioLogin.controls['password'].value;
 
-    this.suscripcion = this.usuarioSesionService.login(email, password)
+    this.subscripcionLogin = this.usuarioSesionService.login(email, password)
       .subscribe(
         (response) => {
           console.log('LoginComponent:login:response: ', response);
           this.router.navigate(['/inicio']);
-          this.suscripcion.unsubscribe();
+          this.subscripcionLogin.unsubscribe();
         },
         (errorResponse) => {
           console.error('LoginComponent:login:responseError: ', errorResponse);

@@ -23,7 +23,7 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
   @Input() salida: Actividad;
   public usuario: Usuario;
   public idUsuario: string;
-  private suscripcionBuscarUsuarioPorId: Subscription;
+  private subscripcionBuscarUsuarioPorId: Subscription;
 
   constructor(private router: Router,
               private usuariosService: UsuariosService) {}
@@ -33,7 +33,7 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
     this.usuario = new Usuario();
     this.idUsuario = this.salida.idUsuarioCreacion;
 
-    this.suscripcionBuscarUsuarioPorId = this.usuariosService.buscarUsuarioPorId(this.idUsuario).subscribe(
+    this.subscripcionBuscarUsuarioPorId = this.usuariosService.buscarUsuarioPorId(this.idUsuario).subscribe(
       (usuarioCreacion: Usuario) => {
         this.usuario = usuarioCreacion;
       }
@@ -46,7 +46,7 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.suscripcionBuscarUsuarioPorId.unsubscribe();
+    this.subscripcionBuscarUsuarioPorId.unsubscribe();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Formularios
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -11,13 +11,14 @@ import { Usuario } from '../../modelos/usuario.model';
 import { OpinionesService } from '../../servicios/opiniones.service';
 import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-opinion',
   templateUrl: './opinion.component.html',
   styleUrls: ['./opinion.component.css']
 })
-export class OpinionComponent implements OnInit {
+export class OpinionComponent implements OnInit, OnDestroy {
 
   public formularioOpinion: FormGroup;
   public usuario: Usuario;
@@ -26,6 +27,8 @@ export class OpinionComponent implements OnInit {
 
   private accessToken: string;
   private opinion: Opinion;
+  private subscriptionAccessToken: Subscription;
+  private subscriptionUsuarioLogado: Subscription;
 
 
   constructor(private opinionesService: OpinionesService,
@@ -33,19 +36,20 @@ export class OpinionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
+    this.usuario = new Usuario();
+
+    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
       this.accessToken = accesToken;
     });
 
-    this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
+    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
       this.usuario = usuario;
-      console.log('OpinionComp: Usuario', this.usuario);
     });
 
     this.formularioOpinion = new FormGroup({
       'actividad': new FormControl('', Validators.required),
       'titulo': new FormControl('', Validators.required),
-      'detalle': new FormControl('', [Validators.required, Validators.minLength(20)]),
+      'detalle': new FormControl('', [Validators.required, Validators.minLength(15)]),
       'organizacionValoracion': new FormControl('', Validators.required),
       'ambienteValoracion': new FormControl('', Validators.required),
       'recorridoValoracion': new FormControl('', Validators.required),
@@ -58,6 +62,11 @@ export class OpinionComponent implements OnInit {
       {nombre: 'Ruta3'},
       {nombre: 'Ruta4'}
     ];
+  }
+
+  ngOnDestroy() {
+    this.subscriptionAccessToken.unsubscribe();
+    this.subscriptionUsuarioLogado.unsubscribe();
   }
 
   public enviarOpinion(): void {

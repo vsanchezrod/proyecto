@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Servicios
 import { ViajesService } from '../../servicios/viajes.service';
@@ -7,20 +7,21 @@ import { ActividadesService } from '../../servicios/actividades.service';
 import { OpinionesService } from '../../servicios/opiniones.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
 
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-estadisticas',
   templateUrl: './estadisticas.component.html',
   styleUrls: ['./estadisticas.component.css']
 })
-export class EstadisticasComponent implements OnInit {
+export class EstadisticasComponent implements OnInit, OnDestroy {
 
   public contadorViajes: number;
   public contadorActividades: number;
   public contadorUsuarios: number;
   public contadorOpiniones: number;
   private accessToken: string;
+  private subscriptionAccessToken: Subscription;
 
   constructor(private viajesService: ViajesService,
               private usuarioSesionService: UsuarioSesionService,
@@ -30,7 +31,7 @@ export class EstadisticasComponent implements OnInit {
 
   ngOnInit() {
 
-    this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
+    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
       this.accessToken = accessToken;
     });
 
@@ -52,4 +53,7 @@ export class EstadisticasComponent implements OnInit {
 
   }
 
+  ngOnDestroy() {
+    this.subscriptionAccessToken.unsubscribe();
+  }
 }

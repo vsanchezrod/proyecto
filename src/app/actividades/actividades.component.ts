@@ -16,21 +16,19 @@ import { Subscription } from 'rxjs';
 export class ActividadesComponent implements OnInit, OnDestroy {
 
   public listaActividades: Array<Actividad>;
-  private suscripcionObtenerListaActividades: Subscription;
+  private subscripcionObtenerListaActividades: Subscription;
 
   constructor(private actividadesService: ActividadesService) { }
 
   ngOnInit() {
 
-    console.log('ActividadesComponete: ONINIT');
-    this.suscripcionObtenerListaActividades = this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
+    this.subscripcionObtenerListaActividades = this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
       this.listaActividades = actividades;
     });
   }
 
   ngOnDestroy() {
-    this.suscripcionObtenerListaActividades.unsubscribe();
-    console.log('ActividadesComponete: ONDESTROY');
+    this.subscripcionObtenerListaActividades.unsubscribe();
   }
 
 }

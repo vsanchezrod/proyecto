@@ -1,4 +1,4 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy } from '@angular/core';
 
 // Servicios
 import { CategoriasService } from '../../servicios/categorias.service';
@@ -15,12 +15,15 @@ import { Usuario } from '../../modelos/usuario.model';
 // Servicios
 import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 
+import { Subscription } from 'rxjs';
+
+
 @Component({
   selector: 'app-categorias',
   templateUrl: './categorias.component.html',
   styleUrls: ['./categorias.component.css']
 })
-export class CategoriasComponent implements OnInit {
+export class CategoriasComponent implements OnInit, OnDestroy {
 
   public usuario: Usuario;
   public listaCategorias: Array<Categoria>;
@@ -29,6 +32,8 @@ export class CategoriasComponent implements OnInit {
   public cargando: boolean;
 
   private accessToken: string;
+  private subscriptionAccessToken: Subscription;
+  private subscriptionUsuarioLogado: Subscription;
 
   constructor(private categoriasService: CategoriasService,
               private usuarioSesionService: UsuarioSesionService) { }
@@ -36,12 +41,12 @@ export class CategoriasComponent implements OnInit {
   ngOnInit() {
 
     // Obtener token de acceso
-    this.usuarioSesionService.obtenerAccessToken$().subscribe( (accessToken: string) => {
+    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe( (accessToken: string) => {
       this.accessToken = accessToken;
     });
 
     // Obtener el usuario logado
-    this.usuarioSesionService.obtenerUsuarioLogado$().subscribe( (usuario: Usuario) => {
+    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe( (usuario: Usuario) => {
       this.usuario = usuario;
     });
 
@@ -56,6 +61,11 @@ export class CategoriasComponent implements OnInit {
       'descripcion': new FormControl('', Validators.required)
     });
 
+  }
+
+  ngOnDestroy() {
+    this.subscriptionAccessToken.unsubscribe();
+    this.subscriptionUsuarioLogado.unsubscribe();
   }
 
   public crearCategoria(datos: Categoria): void {

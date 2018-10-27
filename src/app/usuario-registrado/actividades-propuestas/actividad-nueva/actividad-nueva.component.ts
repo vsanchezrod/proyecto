@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Modelo de datos
 import { Actividad } from '../../../modelos/actividad.model';
@@ -13,13 +13,14 @@ import { UsuarioSesionService } from '../../../servicios/usuario-sesion.service'
 // Rutas
 import { Router } from '@angular/router';
 
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-actividad-nueva',
   templateUrl: './actividad-nueva.component.html',
   styleUrls: ['./actividad-nueva.component.css']
 })
-export class ActividadNuevaComponent implements OnInit {
+export class ActividadNuevaComponent implements OnInit, OnDestroy {
 
   public actividad: Actividad;
   public distanciaMinima: number;
@@ -34,6 +35,8 @@ export class ActividadNuevaComponent implements OnInit {
 
   public usuario: Usuario;
   private accessToken: string;
+  private subscriptionAccessToken: Subscription;
+  private subscriptionUsuarioLogado: Subscription;
 
   constructor(private categoriaService: CategoriasService,
               private actividadesService: ActividadesService,
@@ -53,12 +56,12 @@ export class ActividadNuevaComponent implements OnInit {
     });
 
     // Obtener token de acceso
-    this.usuarioSesionService.obtenerAccessToken$().subscribe(accessToken => {
+    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe(accessToken => {
       this.accessToken = accessToken;
     });
 
     // Obtener el usuario logado
-    this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(usuario => {
+    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(usuario => {
       this.usuario = usuario;
     });
 
@@ -73,6 +76,11 @@ export class ActividadNuevaComponent implements OnInit {
       today: 'Hoy',
       clear: 'Borrar'
     };
+  }
+
+  ngOnDestroy() {
+    this.subscriptionAccessToken.unsubscribe();
+    this.subscriptionUsuarioLogado.unsubscribe();
   }
 
   public cargarImagen(event: Event): void {
