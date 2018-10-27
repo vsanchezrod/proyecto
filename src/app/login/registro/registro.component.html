@@ -1,87 +1,90 @@
-<div class="container">
-  <div class="row">
-    <h3 class="text-center col-12">Únete a la comunidad!!</h3>
+<div class="jumbotron cajaRegistro">
+    <div class="row">
+        <h3 class="text-center col-12">Únete a la comunidad!!</h3>
 
-    <form class="col-12" [formGroup]="formularioRegistro" (ngSubmit)="enviarDatos(formularioRegistro.value)">
+        <form class="col-12" [formGroup]="formularioRegistro" (ngSubmit)="enviarDatos(formularioRegistro.value)">
 
-      <div class="col-12">
-        <h3>Avatar</h3>
-        <input class="ui-button" type="file" accept="image/*" (change)="cargarAvatar($event)">
-        <img class="rounded-circle" [src]="imagenAvatar">
-        <p-progressSpinner *ngIf="mostrarSpinner"></p-progressSpinner>
-      </div>
+            <div class="col-12">
+                <h3>Avatar</h3>
+                <input class="ui-button" type="file" accept="image/*" name="imagen" (change)="cargarAvatar($event)">
+                <img class="rounded-circle" [src]="imagenAvatar">
+                <p-progressSpinner *ngIf="mostrarSpinner"></p-progressSpinner>
+            </div>
 
-      <div class="col-12">
-        <h3>Nombre</h3>
-        <span class="ui-float-label">
-          <input [formControl]="formularioRegistro.controls['nombre']" id="nombre" type="text" size="30" pInputText>
-          <label for="nombre">Nombre</label>
-        </span>
-      </div>
+            <div class="col-12">
+                <h3>Nombre</h3>
+                <span class="ui-float-label">
+                    <input [formControl]="formularioRegistro.controls['nombre']" id="nombre" type="text" size="30" pInputText>
+                    <label for="nombre">Nombre</label>
+                </span>
+            </div>
 
-      <div class="col-12">
-        <h3>Apellido</h3>
-        <span class="ui-float-label">
-          <input [formControl]="formularioRegistro.controls['apellido']" id="apellido" type="text" size="30" pInputText>
-          <label for="apellido">Apellido</label>
-        </span>
-      </div>
+            <div class="col-12">
+                <h3>Apellido</h3>
+                <span class="ui-float-label">
+                    <input [formControl]="formularioRegistro.controls['apellido']" id="apellido" type="text" size="30" pInputText>
+                    <label for="apellido">Apellido</label>
+                 </span>
+            </div>
 
-      <div class="col-12">
-        <h3>Email</h3>
-        <span class="ui-float-label">
-          <input [formControl]="formularioRegistro.controls['email']" id="email" type="text" size="30" pInputText>
-          <label for="email">Email</label>
-        </span>
-      </div>
+            <div class="col-12">
+                <h3>Email</h3>
+                <span class="ui-float-label">
+                    <input [formControl]="formularioRegistro.controls['email']" id="email" type="text" size="30" pInputText>
+                    <label for="email">Email</label>
+                </span>
+            </div>
 
-      <div class="col-12">
-        <h3>Contraseña</h3>
-        <input [formControl]="formularioRegistro.controls['password']" pPassword type="password" />
-      </div>
+            <div class="col-12">
+                <h3>Contraseña</h3>
+                <input [formControl]="formularioRegistro.controls['password']" pPassword type="password" />
+            </div>
 
-      <div class="col-12">
-        <h3>Fecha de Nacimiento</h3>
-        <span class="ui-float-label">Date</span>
-        <p-inputMask [formControl]="formularioRegistro.controls['fechaNacimiento']" mask="99/99/9999" placeholder="dd/mm/yyyy" slotChar="dd/mm/yyyy"></p-inputMask>
-      </div>
+            <div class="col-12">
+                <h3>Fecha de Nacimiento</h3>
+                <span class="ui-float-label"></span>
+                <input [formControl]="formularioRegistro.controls['fechaNacimiento']" type="date" placeholder="mm/dd/yyyy">
+                <!--
+                <p-inputMask [formControl]="formularioRegistro.controls['fechaNacimiento']" mask="99/99/9999" placeholder="dd/mm/yyyy" slotChar="dd/mm/yyyy"></p-inputMask>
+                -->
+            </div>
 
 
-      <div class="col-12" style="width:250px;margin-bottom:10px">
-        <h3>Sexo</h3>
-        <p-radioButton [formControl]="formularioRegistro.controls['sexo']" name="sexo" value="Mujer" label="Mujer"></p-radioButton>
-        <p-radioButton [formControl]="formularioRegistro.controls['sexo']" name="sexo" value="Hombre" label="Hombre"></p-radioButton>
-      </div>
+            <div class="col-12 " style="width:250px;margin-bottom:10px ">
+                <h3>Sexo</h3>
+                <p-radioButton [formControl]="formularioRegistro.controls['sexo']" name="sexo" value="Mujer" label="Mujer"></p-radioButton>
+                <p-radioButton [formControl]="formularioRegistro.controls['sexo']" name="sexo" value="Hombre" label="Hombre"></p-radioButton>
+            </div>
 
-      <div class="col-12">
-        <h3>Provincia</h3>
-        <p-dropdown [formControl]="formularioRegistro.controls['provincia']" [options]="listaProvincias" placeholder="Selecciona una provincia" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
-      </div>
+            <div class="col-12 ">
+                <h3>Provincia</h3>
+                <p-dropdown [formControl]="formularioRegistro.controls['provincia'] " [options]="listaProvincias" placeholder="Selecciona una provincia" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
+            </div>
 
-      <div class="col-12">
-        <h3>Más sobre ti</h3>
-        <span class="ui-float-label">
-            <input [formControl]="formularioRegistro.controls['info']" id="info" type="text" size="30" pInputText>
-            <label for="info">Info</label>
-        </span>
-      </div>
+            <div class="col-12 ">
+                <h3>Más sobre ti</h3>
+                <span class="ui-float-label">
+                    <input [formControl]="formularioRegistro.controls['info']" id="info" type="text" size="30" pInputText>
+                    <label for="info">Info</label>
+                 </span>
+            </div>
 
-      <div class="col-12" style="width:250px;margin-bottom:10px">
-        <h3>Intereses</h3>
-        <p-checkbox class="ui-grid-row" *ngFor="let interes of listaIntereses" [formControl]="formularioRegistro.controls['intereses']" [value]="interes" [label]="interes.nombre"></p-checkbox>
-      </div>
+            <div class="col-12" style="width:250px;margin-bottom:10px">
+                <h3>Intereses</h3>
+                <p-checkbox class="ui-grid-row" *ngFor="let interes of listaIntereses" [formControl]="formularioRegistro.controls['intereses']" [value]="interes" [label]="interes.nombre"></p-checkbox>
+            </div>
 
-      <div class="col-12">
-        <h3>Términos</h3>
-        <p-inputSwitch [formControl]="formularioRegistro.controls['terminos']"></p-inputSwitch>
-        <span>Acepto los términos y condiciones</span>
-      </div>
+            <div class="col-12">
+                <h3>Términos</h3>
+                <p-inputSwitch [formControl]="formularioRegistro.controls['terminos']"></p-inputSwitch>
+                <span>Acepto los términos y condiciones</span>
+            </div>
 
-      <button pButton type="submit" label="REGISTRO" class="ui-button-info"></button>
+            <button pButton type="submit" label="REGISTRO" class="ui-button-info"></button>
 
-    </form>
-  </div>
+        </form>
+    </div>
 
 </div>
 
-{{ formularioRegistro.valid }} - {{formularioRegistro.value | json }}
+{{ formularioRegistro.valid }}

@@ -38,4 +38,13 @@ export class CabecerasHttpService {
     });
   }
 
+  public generarCabecerasLogin(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic dGVzdGp3dGNsaWVudGlkOlhZN2ttem9OemwxMDA=',
+      'Accept': 'application/json'
+    });
+  }
+
+
 }

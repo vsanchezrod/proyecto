@@ -34,7 +34,7 @@ export class UsuarioSesionService {
 
     this.httpClient.post<any>(environment.host + '/oauth/token',
       this.generarBody(email, password),
-      {headers: this.cabecerasHttpService.generarCabecerasPost(), observe: 'response'})
+      {headers: this.cabecerasHttpService.generarCabecerasLogin(), observe: 'response'})
         .subscribe(
 
           (response) => {

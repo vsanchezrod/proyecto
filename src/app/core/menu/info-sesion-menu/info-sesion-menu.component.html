@@ -7,14 +7,15 @@
 
     </div>
 
-
     <!-- PONER ICONO PARA ADMINISTRADOR-->
-    <div>
+    <div *ngIf="usuarioAdministrador">
         <p-slideMenu #menuAdmin [model]="itemsAdmin" [viewportHeight]="300" [popup]="true"></p-slideMenu>
-        <button class="ui-button-icon-only" type="button" pButton icon="pi pi-bars" label="Show" (mouseover)="menuAdmin.toggle($event)">ADM</button>
+        <i class="pi pi-check" style="font-size: 2em"></i>
+        <button class="ui-button-icon-only" type="button" pButton class="pi-users" label="Show" (mouseover)="menuAdmin.toggle($event)">ADMIN</button>
 
         <!-- (mouseleave)="menuUsuario.toggle($event) -->
     </div>
 
-    <button class="btn btn-outline-success my-2 my-sm-0" icon="pi-power-off" (click)="logout()" type="submit">Logout</button>
+    <i class="pi-power-off" style="font-size: 3em" (click)="logout()"></i>
+    <button class="btn btn-outline-success my-2 my-sm-0" class="pi-power-off" (click)="logout()">Logout</button>
 </nav>

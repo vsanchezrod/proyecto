@@ -17,12 +17,13 @@ export class Usuario {
   intereses?: Array<ActividadCategoria>;
   terminos: boolean;
   valoracion: number;
-  roles?: Array<Rol>;
+  roles: Array<string>; /////////////////////////////////////
+  // roles?: Array<Rol>;
   amigos?: Array<string>;
 
   constructor() {
     this.intereses = [];
-    this.roles = [];
+  //  this.roles = [];
     this.amigos = [];
   }
 /*

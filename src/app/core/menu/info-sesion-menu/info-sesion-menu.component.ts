@@ -19,17 +19,25 @@ export class InfoSesionMenuComponent implements OnInit {
 
   // @Input() avatar: string;
   public usuario: Usuario;
+  public usuarioAdministrador: boolean;
   public itemsAdmin: MenuItem[];
   public itemsUsuario: MenuItem[];
-  
+
   constructor(private usuarioSesionService: UsuarioSesionService,
               private router: Router) { }
 
   ngOnInit() {
 
+    this.usuarioAdministrador = false;
+
     this.usuarioSesionService.obtenerUsuario$().subscribe( (usuario: Usuario) => {
       this.usuario = usuario;
-      console.log('MENUCOMP: Usuario: ', this.usuario);
+      console.log('INFOSESION: Usuario: ', this.usuario);
+
+      if (this.usuario != null && this.usuario.roles.includes('administrador')) {
+        this.usuarioAdministrador = true;
+        console.log('INFOSESSION: ES ADMIN');
+      }
     });
 
     this.itemsUsuario = [

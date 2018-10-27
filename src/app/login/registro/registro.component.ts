@@ -38,6 +38,7 @@ export class RegistroComponent implements OnInit {
       .subscribe(response => {
         console.log('Respuesta de la petición de lista de provincias: ' + response.status);
         this.listaProvincias = response.body;
+        console.log('Provincias:', this.listaProvincias);
       });
 
     this.categoriasService.obtenerListaCategorias$()
