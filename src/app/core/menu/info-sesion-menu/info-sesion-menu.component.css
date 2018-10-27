@@ -5,6 +5,12 @@ img {
 }
 
 i {
+    font-size: 2em;
     color: white;
     cursor: pointer;
+    margin-left: 10px;
+}
+
+.borde {
+    border: 2px solid white;
 }

@@ -43,7 +43,7 @@ export class InfoSesionMenuComponent implements OnInit {
     this.itemsUsuario = [
       {
         label: 'Perfil',
-        icon: 'pi pi-fw pi-calendar',
+        icon: 'pi pi-user',
         routerLink: 'usuario/perfil'
       },
 
@@ -55,29 +55,26 @@ export class InfoSesionMenuComponent implements OnInit {
 
       {
         label: 'Actividades Propuestas',
-        icon: 'pi pi-fw pi-users',
+        icon: 'pi pi-tags',
         routerLink: 'usuario/actividades'
       },
 
       {
         label: 'Amigos',
-        icon: 'pi pi-fw pi-bars',
+        icon: 'pi pi-users',
         routerLink: 'usuario/amigos'
       },
 
       {
-        label: 'Opiniones',
-        icon: 'pi pi-fw pi-cog',
-        routerLink: 'usuario/opiniones'
+        label: 'Mensajes',
+        icon: 'pi pi-envelope',
+        routerLink: 'usuario/mensajes'
       },
 
-      {separator: true},
-
       {
-        // IMPLEMENTAR QUE SE DESLOGE
-        label: 'Logout',
-        icon: 'pi pi-fw pi-times',
-        routerLink: 'inicio'
+        label: 'Opiniones',
+        icon: 'pi pi-comments',
+        routerLink: 'usuario/opiniones'
       }
     ];
 
@@ -90,7 +87,7 @@ export class InfoSesionMenuComponent implements OnInit {
 
       {
         label: 'Categorias',
-        icon: 'pi pi-fw pi-calendar',
+        icon: 'pi pi-sitemap',
         routerLink: 'admin/categorias'
       },
 
@@ -102,23 +99,14 @@ export class InfoSesionMenuComponent implements OnInit {
 
       {
         label: 'Gestión de opiniones',
-        icon: 'pi pi-fw pi-bars',
+        icon: 'pi pi-comments',
         routerLink: 'admin/opiniones'
       },
 
       {
         label: 'Estadísticas',
-        icon: 'pi pi-fw pi-cog',
+        icon: 'pi pi-chart-bar',
         routerLink: 'admin/estadisticas'
-      },
-
-      {separator: true},
-
-      {
-        // IMPLEMENTAR QUE SE DESLOGE
-        label: 'Logout',
-        icon: 'pi pi-fw pi-times',
-        routerLink: 'inicio'
       }
     ];
   }

@@ -1,21 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div>
+    <div class="borde">
         <p-slideMenu #menuUsuario [model]="itemsUsuario" [viewportHeight]="320" [popup]="true"></p-slideMenu>
         <img class="rounded-circle" [src]="usuario.avatar" alt="avatar" (mouseover)="menuUsuario.toggle($event)">
-
+        <i class="pi pi-angle-double-down"></i>
         <!-- (mouseleave)="menuUsuario.toggle($event) -->
-
     </div>
 
     <!-- PONER ICONO PARA ADMINISTRADOR-->
     <div *ngIf="usuarioAdministrador">
         <p-slideMenu #menuAdmin [model]="itemsAdmin" [viewportHeight]="300" [popup]="true"></p-slideMenu>
-        <i class="pi pi-check" style="font-size: 2em"></i>
-        <button class="ui-button-icon-only" type="button" pButton class="pi-users" label="Show" (mouseover)="menuAdmin.toggle($event)">ADMIN</button>
-
+        <i class="pi pi-users" (click)="logout()" (mouseover)="menuAdmin.toggle($event)"></i>
+        <!--<button class="ui-button-icon-only" type="button" pButton class="pi pi-users" label="Show" (mouseover)="menuAdmin.toggle($event)"></button>
+        -->
         <!-- (mouseleave)="menuUsuario.toggle($event) -->
     </div>
 
-    <i class="pi-power-off" style="font-size: 3em" (click)="logout()"></i>
-    <button class="btn btn-outline-success my-2 my-sm-0" class="pi-power-off" (click)="logout()">Logout</button>
+    <i class="pi pi-sign-out" (click)="logout()"></i>
+    <!--<button class="btn btn-outline-success my-2 my-sm-0" class="pi pi-power-off" (click)="logout()">Logout</button>-->
 </nav>
