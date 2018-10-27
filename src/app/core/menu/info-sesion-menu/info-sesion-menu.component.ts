@@ -114,7 +114,7 @@ export class InfoSesionMenuComponent implements OnInit {
   // TO DO - TERMINAR
   public logout(): void {
     this.usuarioSesionService.logout();
-    this.router.navigate(['login']);
+    this.router.navigate(['/inicio']);
   }
 
 }

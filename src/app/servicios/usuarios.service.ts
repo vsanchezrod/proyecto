@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 // Peticiones Http
-import {HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {HttpClient, HttpResponse } from '@angular/common/http';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 // Componente
 import { Usuario } from '../modelos/usuario.model';
@@ -25,9 +25,6 @@ export class UsuariosService {
   private numeroUsuarios = 0;
   private numeroUsuarios$: BehaviorSubject<number> = new BehaviorSubject<number>(this.numeroUsuarios);
 
-  private usuarioCreacion = new Usuario();
-  private usuarioCreacion$: BehaviorSubject<Usuario> = new BehaviorSubject<Usuario>(this.usuarioCreacion);
-
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService) { }
 
@@ -47,16 +44,13 @@ export class UsuariosService {
   }
 
   public buscarUsuarioPorId(id: string): Observable<Usuario> {
-    this.httpClient.get<Usuario>(environment.host + `/public/usuarios/${id}`,
-      {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'response'}).subscribe ( response => {
-        this.usuarioCreacion$.next(response.body);
-      });
-    return this.usuarioCreacion$.asObservable();
+    return this.httpClient.get<Usuario>(environment.host + `/public/usuarios/${id}`,
+      {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
   }
 
   // REVISAR ESTE MÉTODO Y EL TIPO DE OBSERVABLE
   public buscarUsuarioPorNombre(nombre: string): Observable<Usuario> {
-    return this.httpClient.get<Usuario>(environment.host + `/public/usuarios?nombre=${nombre}`, 
+    return this.httpClient.get<Usuario>(environment.host + `/public/usuarios?nombre=${nombre}`,
       {headers: this.cabecerasHttpService.generarCabecerasGet()});
   }
 

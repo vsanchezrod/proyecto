@@ -18,9 +18,6 @@ import { environment } from '../../environments/environment';
 })
 export class ActividadesService {
 
-  private listaActividades: Array<Actividad> = [];
-  private listaActividades$: BehaviorSubject<Array<Actividad>> = new BehaviorSubject(this.listaActividades);
-
   private numeroActividades = 0;
   private numeroActividades$: BehaviorSubject<number> = new BehaviorSubject<number>(this.numeroActividades);
 
@@ -31,12 +28,9 @@ export class ActividadesService {
               private cabecerasHttpService: CabecerasHttpService ) {}
 
   public obtenerListaActividades$(): Observable<Array<Actividad>> {
-    this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
-    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'response'}).subscribe( response => {
-      this.listaActividades$.next(response.body);
-    });
+    return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
 
-    return this.listaActividades$.asObservable();
   }
 
   // Método para crear actividad y mandar la petición al API

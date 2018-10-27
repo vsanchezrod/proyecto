@@ -24,13 +24,13 @@ export class UsuarioSesionService {
 
   private accessToken$ = new BehaviorSubject<string>('');
   private usuarioLogado$ = new BehaviorSubject<Usuario>(null);
-  
+
   constructor(private httpClient: HttpClient,
               private usuariosService: UsuariosService,
               private cabecerasHttpService: CabecerasHttpService) { }
-    
+
   public login(email: string, password: string): Observable<HttpResponse<any>> {
-      
+
     const respuestaLogin$ = new Subject<HttpResponse<any>>();
     this.httpClient.post<any>(environment.host + '/oauth/token',
       this.generarBody(email, password),
@@ -42,15 +42,14 @@ export class UsuarioSesionService {
             respuestaLogin$.next(response);
             this.obtenerUsuario(accessToken);
           },
-
           (errorResponse) => {
             console.error('UsuarioSesionService:login:responseError: ', errorResponse);
             // Si la respuesta es de error, se usa NEXT en vez de ERROR para que el suscribe ejecute la 2 funcion (algo ha ido mal)
             respuestaLogin$.error(errorResponse);
           },
-
           () => {
             console.log('UsuarioSesionService:login:ON COMPLETE XD');
+            respuestaLogin$.complete();
           }
 
         );
@@ -59,10 +58,9 @@ export class UsuarioSesionService {
 
   }
 
-  // TO DO - TERMINAR!!!
   public logout(): void {
-    this.accessToken$.next(null);
-    this.usuarioLogado$.next(null);
+    this.accessToken$.next(undefined);
+    this.usuarioLogado$.next(undefined);
   }
 
   public obtenerAccessToken$(): Observable<string> {

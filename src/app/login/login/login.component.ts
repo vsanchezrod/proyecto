@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // Formularios - Aproximación por DATA
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
   public formularioLogin: FormGroup;
   private suscripcion: Subscription;
@@ -52,17 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         (errorResponse) => {
           console.error('LoginComponent:login:responseError: ', errorResponse);
           alert(errorResponse['error']['error_description']);
-        },
-        () => {
-          console.log('3 METODOOOOOOOOOOOOOOOOOOO');
         }
       );
   }
-
-  ngOnDestroy() {
-    console.log('Destruyendo LOGIN');
-    this.suscripcion.unsubscribe();
-    console.log('Destruyendo LOGIN2');
-  }
-
 }
