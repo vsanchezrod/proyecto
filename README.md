@@ -27,3 +27,25 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+# proyecto
+Proyecto Angular
+
+[![Build Status](https://travis-ci.org/vsanchezrod/proyecto.svg?branch=master)](https://travis-ci.org/vsanchezrod/proyecto)
+
+[![Build Status](https://sonarcloud.io/api/project_badges/measure?project=vsanchezrod_proyecto&metric=alert_status#.svg)](https://sonarcloud.io/dashboard?id=vsanchezrod_proyecto)
+[![Build Status](https://sonarcloud.io/api/project_badges/measure?project=vsanchezrod_proyecto&metric=sqale_rating#.svg)](https://sonarcloud.io/dashboard?id=vsanchezrod_proyecto)
+[![Build Status](https://sonarcloud.io/api/project_badges/measure?project=vsanchezrod_proyecto&metric=security_rating#.svg)](https://sonarcloud.io/dashboard?id=vsanchezrod_proyecto)
+[![Build Status](https://sonarcloud.io/api/project_badges/measure?project=vsanchezrod_proyecto&metric=reliability_rating#.svg)](https://sonarcloud.io/dashboard?id=vsanchezrod_proyecto)
+[![Build Status](https://sonarcloud.io/api/project_badges/measure?project=vsanchezrod_proyecto&metric=vulnerabilities#.svg)](https://sonarcloud.io/dashboard?id=vsanchezrod_proyecto)
+
+[![Build Status](https://sonarcloud.io/api/project_badges/measure?project=vsanchezrod_proyecto&metric=code_smells#.svg)](https://sonarcloud.io/dashboard?id=vsanchezrod_proyecto)
+[![Build Status](https://sonarcloud.io/api/project_badges/measure?project=vsanchezrod_proyecto&metric=bugs#.svg)](https://sonarcloud.io/dashboard?id=vsanchezrod_proyecto)
+[![Build Status](https://sonarcloud.io/api/project_badges/measure?project=vsanchezrod_proyecto&metric=coverage#.svg)](https://sonarcloud.io/dashboard?id=vsanchezrod_proyecto)
+[![Build Status](https://sonarcloud.io/api/project_badges/measure?project=vsanchezrod_proyecto&metric=duplicated_lines_density#.svg)](https://sonarcloud.io/dashboard?id=vsanchezrod_proyecto)
+
+[![Build Status](https://sonarcloud.io/api/project_badges/measure?project=vsanchezrod_proyecto&metric=ncloc#.svg)](https://sonarcloud.io/dashboard?id=vsanchezrod_proyecto)
+[![Build Status](https://sonarcloud.io/api/project_badges/measure?project=vsanchezrod_proyecto&metric=sqale_index#.svg)](https://sonarcloud.io/dashboard?id=vsanchezrod_proyecto)
+
+
