@@ -18,12 +18,11 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
   public listaOpiniones: Array<Opinion> = [];
   private subscriptionObtenerOpiniones: Subscription;
 
-
   constructor(private opinionesService: OpinionesService) { }
 
   ngOnInit() {
-
-    this.opinionesService.obtenerOpiniones().subscribe(
+    console.log('Acercade ON INIT');
+    this.subscriptionObtenerOpiniones = this.opinionesService.obtenerOpiniones().subscribe(
       (listaOpiniones: Array<Opinion>) => {
         this.listaOpiniones = listaOpiniones;
         console.log('Acercade: ObtenerListaOpin: ', this.listaOpiniones);
@@ -31,6 +30,7 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log('Acercade ONDESTROY');
      this.subscriptionObtenerOpiniones.unsubscribe();
   }
 

@@ -1,4 +1,5 @@
 <p class="col-12">Usuario {{ usuario.id }}</p>
+
 <div class="container">
     <h3 class="col-12">Crea una nueva actividad!!</h3>
     <button pButton type="button" label="CREAR" class="ui-button-info" routerLink="/usuario/actividades/nueva"></button>
@@ -13,9 +14,9 @@
 
         <p-dataScroller class="col-sm-12 col-md-6" [value]="listaMisActividadesPropuestas" [rows]="10">
             <p-header class="text-center col-sm-12 col-md-6">
-                Mis actividades propuestas
+                Mis actividades propuestas ({{ listaMisActividadesPropuestas.length }})
             </p-header>
-            <ng-template *ngIf="listaMisActividadesPropuestas.length > 0" let-actividad pTemplate="item" let-i="index">
+            <ng-template let-actividad pTemplate="item" let-i="index">
                 <div class="ui-g mensaje-item ui-button borde" (click)="cargarActividad(actividad)">
                     {{ actividad.nombre }}
                 </div>

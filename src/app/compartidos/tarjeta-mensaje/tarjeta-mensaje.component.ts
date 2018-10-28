@@ -16,4 +16,6 @@ export class TarjetaMensajeComponent implements OnInit {
 
   ngOnInit() {}
 
+
+
 }

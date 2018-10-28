@@ -14,3 +14,7 @@ i {
 .borde {
     border: 2px solid white;
 }
+
+span {
+    font-size: 15px;
+}

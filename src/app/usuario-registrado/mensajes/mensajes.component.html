@@ -1,5 +1,3 @@
-{{ usuario | json }}
-
 <div class="container">
     <button pButton type="button" label="Nuevo mensaje" icon="pi pi-pencil" class="ui-button-icon-only ui-button-info ui-editor-toolbar">
   </button>
@@ -9,7 +7,7 @@
 <div class="ui-g" style="z-index: 1000">
     <form class="ui-g-12 ui-megamenu-vertical">
         <label>Destinatario:</label>
-        <p-multiSelect [options]="listaAmigos" name="amigos" defaultLabel="Selecciona amigos" filterPlaceHolder="Amigos" optionLabel="nombre" filter="true"></p-multiSelect>
+        <p-dropdown [options]="listaAmigos" placeholder="Elige amigo" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
         <label>Asunto:</label>
         <input id="asunto" type="text" size="30" pInputText>
         <label>Mensaje:</label>
@@ -19,9 +17,6 @@
     </form>
 </div>
 
-<p>LISTA AMIGOS</p><br> {{ listaAmigos | json }}
-
-<!--
 <div class="container">
 
     <div class="row">
@@ -52,14 +47,13 @@
                 </div>
             </ng-template>
         </p-dataScroller>
-        
+
         <div class="col-md-12 col-lg-8">
-          
-          <app-tarjeta-mensaje *ngIf="listaMensajes.length > 0" [mensaje]="mensaje"></app-tarjeta-mensaje>
-          
-        -->
-<!-- Si el usuariuo no tiene ningún mensaje-->
-<!--<div class="row" *ngIf="listaMensajes.length == 0">
+
+            <app-tarjeta-mensaje *ngIf="listaMensajes.length > 0" [mensaje]="mensaje"></app-tarjeta-mensaje>
+
+            <!-- Si el usuariuo no tiene ningún mensaje-->
+            <div class="row" *ngIf="listaMensajes.length == 0">
                 <span class="col-12 badge-info text-center">No tienes ningún mensaje :(</span>
                 <img class="mx-auto d-block" src="../../../assets/imagenes/mail.png" alt="NO HAY MENSAJES">
             </div>

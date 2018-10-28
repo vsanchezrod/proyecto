@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Modelo de datos
 import { Usuario } from '../../modelos/usuario.model';
@@ -11,22 +11,28 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { MensajesService } from '../../servicios/mensajes.service';
 import { MessageService } from 'primeng/api';
 
+import { Subscription } from 'rxjs';
+
+
 @Component({
   selector: 'app-mensajes',
   templateUrl: './mensajes.component.html',
   styleUrls: ['./mensajes.component.css']
 })
-export class MensajesComponent implements OnInit {
+export class MensajesComponent implements OnInit, OnDestroy {
 
-  mensaje: Mensaje;
-  usuario: Usuario;
+  public mensaje: Mensaje;
+  public listaMensajes: Array<Mensaje> = [];
+  public listaAmigos: Array<Usuario> = [];
 
-  listaMensajes: Array<Mensaje> = [];
-  listaAmigos: Array<Usuario> = [];
+  public items: MenuItem[];
 
-  items: MenuItem[];
-
+  public usuario: Usuario;
   private accessToken: string;
+
+  private subscriptionAccessToken: Subscription;
+  private subscriptionUsuarioLogado: Subscription;
+  private subscriptionObtenerMensajes: Subscription;
 
   constructor(private usuarioSesionService: UsuarioSesionService,
               private mensajesService: MensajesService,
@@ -35,6 +41,8 @@ export class MensajesComponent implements OnInit {
 
   ngOnInit() {
 
+    this.mensaje = new Mensaje();
+
     this.items = [
       {label: 'Borrar', icon: 'fa fa-close', command: () => {
           this.borrarMensaje(this.mensaje.id);
@@ -42,11 +50,11 @@ export class MensajesComponent implements OnInit {
       }
     ];
 
-    this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
+    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
       this.accessToken = accesToken;
     });
 
-    this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
+    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
       this.usuario = usuario;
 
       // Carga de los nombre de cada amigo en el select de mandar nuevo mensaje
@@ -57,8 +65,9 @@ export class MensajesComponent implements OnInit {
       }
 
       // Buscar los mensajes para ese usuario
-      this.mensajesService.obtenerListaDeMensajes$(this.usuario.id, this.accessToken).subscribe( (mensajes: Array<Mensaje>) => {
-        this.listaMensajes = mensajes;
+      this.subscriptionObtenerMensajes = this.mensajesService.obtenerListaDeMensajes$(this.usuario.id, this.accessToken).subscribe(
+        (mensajes: Array<Mensaje>) => {
+          this.listaMensajes = mensajes;
       });
     });
 
@@ -66,6 +75,13 @@ export class MensajesComponent implements OnInit {
     this.mensaje = this.listaMensajes[0];
 
   }
+
+  ngOnDestroy() {
+    this.subscriptionAccessToken.unsubscribe();
+    this.subscriptionUsuarioLogado.unsubscribe();
+    this.subscriptionObtenerMensajes.unsubscribe();
+  }
+
 
   cargarMensaje(mensaje): void {
     this.mensaje = mensaje;
