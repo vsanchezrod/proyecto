@@ -14,7 +14,7 @@
         <p-rating class="ui-grid-col-12" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
         <button class="ui-grid-col-6" pButton (click)="verViaje()" type="button" icon="pi pi-check" iconPos="right" label="VER MAS"></button>
         <button class="ui-grid-col-6" [disabled]="viaje.listaParticipantes.length === viaje.plazas" pButton type="button" icon="pi pi-check" iconPos="right" label="APUNTARSE!!"></button>
-        <span class="ui-grid-col-12 text-center text-danger" *ngIf="viaje.listaParticipantes.length === viaje.plazas">Plazas agotadas :(</span>
+        <p-message class="ui-grid-col-12 text-center" *ngIf="viaje.listaParticipantes.length === viaje.plazas" severity="warn" text="Plazas agotadas :("></p-message>
     </p-footer>
 
 </p-card>

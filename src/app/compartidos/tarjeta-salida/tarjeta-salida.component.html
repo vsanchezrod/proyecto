@@ -24,6 +24,6 @@
 
         <button class="ui-grid-col-6" pButton (click)="verSalida()" type="button" icon="pi pi-check" iconPos="right" label="VER MAS"></button>
         <button class="ui-grid-col-6" pButton type="button" icon="pi pi-check" iconPos="right" label="APÚNTATE!"></button>
-        <span class="ui-grid-col-12 text-center badge-info letraBlanca">Ya somos {{ salida.listaParticipantes.length }}!!</span>
+        <p-message class="ui-grid-col-12 text-center" severity="success" [text]="mensaje"></p-message>
     </p-footer>
 </p-card>

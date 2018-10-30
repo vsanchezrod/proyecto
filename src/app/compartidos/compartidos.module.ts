@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+
 
 // Módulos
 import { FormsModule } from '@angular/forms';
@@ -22,7 +25,9 @@ import { TarjetaMensajeComponent } from './tarjeta-mensaje/tarjeta-mensaje.compo
     FormsModule,
     CardModule,
     RatingModule,
-    ButtonModule
+    ButtonModule,
+    MessagesModule,
+    MessageModule
   ],
   declarations: [
     TarjetaSalidaComponent,

@@ -23,6 +23,7 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
   @Input() salida: Actividad;
   public usuario: Usuario;
   public idUsuario: string;
+  public mensaje: string;
   private subscripcionBuscarUsuarioPorId: Subscription;
 
   constructor(private router: Router,
@@ -32,6 +33,7 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
 
     this.usuario = new Usuario();
     this.idUsuario = this.salida.idUsuarioCreacion;
+    this.mensaje = `Ya somos ${this.salida.listaParticipantes.length}`;
 
     this.subscripcionBuscarUsuarioPorId = this.usuariosService.buscarUsuarioPorId(this.idUsuario).subscribe(
       (usuarioCreacion: Usuario) => {
