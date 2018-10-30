@@ -15,6 +15,9 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+
 
 // Formularios
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,7 +42,9 @@ import { RegistroComponent } from './registro/registro.component';
     FileUploadModule,
     ButtonModule,
     InputSwitchModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    MessagesModule,
+    MessageModule
   ],
   declarations: [
     LoginComponent,

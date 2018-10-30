@@ -14,7 +14,7 @@ export class CalendarioUsuarioComponent implements OnInit {
   public listaEventos: Array<Evento>;
 
   // Configuración de la cabecera del calendario
-  cabeceraConfiguracion = {
+  public cabeceraConfiguracion = {
     left:   'today',
     center: 'title',
     right:  'prev,next'

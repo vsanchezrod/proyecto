@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 // Peticiones
-import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpResponse} from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 // Modelo de datos
 import { Actividad } from '../modelos/actividad.model';
@@ -17,9 +17,6 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ActividadesService {
-
-  private numeroActividades = 0;
-  private numeroActividades$: BehaviorSubject<number> = new BehaviorSubject<number>(this.numeroActividades);
 
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService ) {}
@@ -50,11 +47,8 @@ export class ActividadesService {
   }
 
   public obtenerNumeroActividades(accessToken: string): Observable<number> {
-    this.httpClient.get<number>(environment.host + '/actividades',
-    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
-      this.numeroActividades$.next(response.body);
-    });
-    return this.numeroActividades$.asObservable();
+    return this.httpClient.get<number>(environment.host + '/actividades',
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'body'});
   }
 
 }

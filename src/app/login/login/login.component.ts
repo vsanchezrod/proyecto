@@ -19,6 +19,7 @@ import { Subscription } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   public formularioLogin: FormGroup;
+  public credencialesValidas: boolean;
   private subscripcionLogin: Subscription;
 
   constructor(private usuarioSesionService: UsuarioSesionService,
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     console.log('ONINIT LOGIN');
+    this.credencialesValidas = true;
 
     this.formularioLogin = new FormGroup({
       'email': new FormControl('', [Validators.required , Validators.email]),
@@ -51,7 +53,7 @@ export class LoginComponent implements OnInit {
         },
         (errorResponse) => {
           console.error('LoginComponent:login:responseError: ', errorResponse);
-          alert(errorResponse['error']['error_description']);
+          this.credencialesValidas = false;
         }
       );
   }

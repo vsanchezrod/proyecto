@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Servicio
 import { ViajesService } from '../servicios/viajes.service';
@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 // Modelos
 import { Evento } from '../modelos/evento.model';
 
+import { Subscription } from 'rxjs';
+
 import * as moment from 'moment';
 
 
@@ -18,16 +20,19 @@ import * as moment from 'moment';
   templateUrl: './calendario.component.html',
   styleUrls: ['./calendario.component.css']
 })
-export class CalendarioComponent implements OnInit {
+export class CalendarioComponent implements OnInit, OnDestroy {
 
   public listaEventos: Array<Evento> = [];
 
   // Configuración de la cabecera del calendario
-  cabeceraConfiguracion = {
+  public cabeceraConfiguracion = {
     left:   'today',
     center: 'title',
     right:  'prev,next'
   };
+
+  private subscripcionViajes: Subscription;
+  private subscripcionSalidas: Subscription;
 
   constructor(private viajesService: ViajesService,
               private actividadesService: ActividadesService,
@@ -35,7 +40,7 @@ export class CalendarioComponent implements OnInit {
 
   ngOnInit() {
 
-    this.viajesService.obtenerListadoViajes$().subscribe(viajes => {
+    this.subscripcionViajes = this.viajesService.obtenerListadoViajes$().subscribe(viajes => {
       console.log('CALENDARIO: obtenerListadoViajes$: ', viajes);
 
       // Se crean eventos con los viajes
@@ -48,7 +53,7 @@ export class CalendarioComponent implements OnInit {
 
     });
 
-    this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
+    this.subscripcionSalidas = this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
       console.log('lista-actividades component. actividades: ', actividades);
 
       for (const actividad of actividades) {
@@ -59,6 +64,11 @@ export class CalendarioComponent implements OnInit {
 
     });
 
+  }
+
+  ngOnDestroy() {
+    this.subscripcionViajes.unsubscribe();
+    this.subscripcionSalidas.unsubscribe();
   }
 
   public visualizarEvento(evento): void {
