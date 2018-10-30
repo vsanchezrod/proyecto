@@ -25,25 +25,25 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   public listaActividades: Array<Actividad> = [];
   public listaCategorias: Array<Categoria> = [];
 
-  private usuario: Usuario;
+  public viaje: Viaje;
+  public distanciaMinima: number;
+  public distanciaMaxima: number;
+  public precioMinimo: number;
+  public precioMaximo: number;
+  public plazasMinimas: number;
+  public plazasMaximas: number;
+
+  public imagen: string | ArrayBuffer;
+  public progreso: number;
+  public mostrarSpinner: boolean;
+
+  public es: any;
+  public usuario: Usuario;
   private accessToken: string;
 
-  private viaje: Viaje;
-  private distanciaMinima: number;
-  private distanciaMaxima: number;
-  private precioMinimo: number;
-  private precioMaximo: number;
-  private plazasMinimas: number;
-  private plazasMaximas: number;
-
-  private imagen: string | ArrayBuffer;
-  private progreso: number;
-  private mostrarSpinner: boolean;
-  
   private subscriptionAccessToken: Subscription;
   private subscriptionUsuarioLogado: Subscription;
 
-  es: any;
 
   constructor(private viajesService: ViajesService,
               private actividadesService: ActividadesService,
