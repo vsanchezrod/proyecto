@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 
 // Modelos
 import { Viaje } from '../modelos/viaje.model';
+import { Total } from '../modelos/total.model';
 
 // Realizar peticiones
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 // Observables
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 // Servicios
 import { CabecerasHttpService } from './cabeceras-http.service';
@@ -34,8 +35,8 @@ export class ViajesService {
       {headers: this.cabecerasHttpService.generarCabecerasPost(), observe: 'response'});
   }
 
-  public obtenerNumeroViajes(accessToken: string): Observable<number> {
-    return this.httpClient.get<number>(environment.host + '/viajes',
+  public obtenerNumeroViajes(accessToken: string): Observable<Total> {
+    return this.httpClient.get<Total>(environment.host + '/viajes/numero',
     {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'body'});
   }
 

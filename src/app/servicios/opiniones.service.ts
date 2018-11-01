@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 
 // Peticiones
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 // Modelos
 import { Opinion } from '../modelos/opinion.model';
+import { Total } from '../modelos/total.model';
 
 // Servicios
 import { CabecerasHttpService } from './cabeceras-http.service';
@@ -34,8 +35,8 @@ export class OpinionesService {
       {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
   }
 
-  public obtenerNumeroOpiniones(accessToken: string): Observable<number> {
-    return this.httpClient.get<number>(environment.host + '/opiniones',
+  public obtenerNumeroOpiniones(accessToken: string): Observable<Total> {
+    return this.httpClient.get<Total>(environment.host + '/opiniones/numero',
       {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'body'});
   }
 

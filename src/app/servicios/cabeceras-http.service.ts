@@ -45,6 +45,4 @@ export class CabecerasHttpService {
       'Accept': 'application/json'
     });
   }
-
-
 }

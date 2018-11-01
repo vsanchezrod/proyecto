@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 
 // Peticiones Http
 import {HttpClient, HttpResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 // Componente
 import { Usuario } from '../modelos/usuario.model';
+import { Total } from '../modelos/total.model';
 
 // Producción
 import { environment } from '../../environments/environment';
@@ -21,9 +22,6 @@ export class UsuariosService {
 
   private listaUsuarios: Array<Usuario> = [];
   private listaUsuarios$: BehaviorSubject<Array<Usuario>> = new BehaviorSubject<Array<Usuario>>(this.listaUsuarios);
-
-  private numeroUsuarios = 0;
-  private numeroUsuarios$: BehaviorSubject<number> = new BehaviorSubject<number>(this.numeroUsuarios);
 
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService) { }
@@ -54,12 +52,9 @@ export class UsuariosService {
       {headers: this.cabecerasHttpService.generarCabecerasGet()});
   }
 
-  public obtenerNumeroUsuarios(accessToken: string): Observable<number> {
-    this.httpClient.get<number>(environment.host + '/viajes',
-    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
-      this.numeroUsuarios$.next(response.body);
-    });
-    return this.numeroUsuarios$.asObservable();
+  public obtenerNumeroUsuarios(accessToken: string): Observable<Total> {
+    return this.httpClient.get<Total>(environment.host + '/usuarios/numero',
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'body'});
   }
 
 }

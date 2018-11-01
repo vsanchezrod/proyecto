@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 // Modelo de datos
 import { Actividad } from '../modelos/actividad.model';
+import { Total } from '../modelos/total.model';
 
 // Servicios
 import { CabecerasHttpService } from './cabeceras-http.service';
@@ -46,8 +47,8 @@ export class ActividadesService {
       {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken)});
   }
 
-  public obtenerNumeroActividades(accessToken: string): Observable<number> {
-    return this.httpClient.get<number>(environment.host + '/actividades',
+  public obtenerNumeroActividades(accessToken: string): Observable<Total> {
+    return this.httpClient.get<Total>(environment.host + '/actividades/numero',
     {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'body'});
   }
 
