@@ -23,8 +23,8 @@ import { environment } from '../../environments/environment';
 export class UsuarioSesionService {
 
   private accessToken$ = new BehaviorSubject<string>('');
-  private usuarioLogado$ = new BehaviorSubject<Usuario>(new Usuario());
   private usuarioLogado: Usuario = new Usuario();
+  private usuarioLogado$ = new BehaviorSubject<Usuario>(new Usuario());
 
   constructor(private httpClient: HttpClient,
               private usuariosService: UsuariosService,
