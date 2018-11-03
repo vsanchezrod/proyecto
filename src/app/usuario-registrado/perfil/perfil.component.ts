@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import * as moment from 'moment';
 
 // Modelos
 import { Usuario } from '../../modelos/usuario.model';
@@ -22,9 +23,11 @@ import { Subscription } from 'rxjs';
 export class PerfilComponent implements OnInit, OnDestroy {
 
   public usuario: Usuario;
+  public fechaNacimientoParseada: string;
   public listaProvincias: Array<Provincia> = [];
   public usuarioLogado: boolean;
   public formularioActualizacion: FormGroup;
+  public rangoAnios: string;
 
   public imagenAvatar: string | ArrayBuffer;
   public progreso: number;
@@ -35,12 +38,19 @@ export class PerfilComponent implements OnInit, OnDestroy {
   private subscriptionProvincias: Subscription;
 
   private accessToken: string;
+  private anioDesde = 1920;
+  private edadMinima = 16;
 
   constructor(private provinciasService: ProvinciasService,
               private usuarioSesionService: UsuarioSesionService,
               private usuarioService: UsuariosService) {}
 
   ngOnInit() {
+
+    const anioHasta: string = moment().subtract(this.edadMinima, 'years').format('YYYY');
+    console.log(anioHasta);
+    this.rangoAnios = `${this.anioDesde}:${anioHasta}`;
+
 
     this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
       this.accessToken = accessToken;
@@ -50,6 +60,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( usuario => {
       this.usuario = usuario;
+      this.fechaNacimientoParseada = moment(this.usuario.fechaNacimiento).locale('es').format('L');
       this.formularioActualizacion = new FormGroup({
         'nombre': new FormControl(this.usuario.nombre),
         'apellido': new FormControl(this.usuario.apellido),

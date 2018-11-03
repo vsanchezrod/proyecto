@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import * as moment from 'moment';
 
 // Servicio
 import { ViajesService } from '../servicios/viajes.service';
@@ -11,9 +12,6 @@ import { Router } from '@angular/router';
 import { Evento } from '../modelos/evento.model';
 
 import { Subscription } from 'rxjs';
-
-import * as moment from 'moment';
-
 
 @Component({
   selector: 'app-calendario',
@@ -41,24 +39,24 @@ export class CalendarioComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.subscripcionViajes = this.viajesService.obtenerListadoViajes$().subscribe(viajes => {
-      console.log('CALENDARIO: obtenerListadoViajes$: ', viajes);
 
-      // Se crean eventos con los viajes
+      // Se mapean los viajes con el modelo evento
       for (const viaje of viajes) {
-        // viaje.fechaInicio = moment(viaje.fechaInicio).format('YYYY-MM-DD');
-        // viaje.fechaFin = ...........................
-        const nuevoEvento: Evento = new Evento(viaje.id, viaje.nombre, '2018-10-22', '2018-10-26');
+        const fechaInicio: string = moment(viaje.fechaInicio).format('YYYY-MM-DD HH:mm');
+        const fechaFin: string = moment(viaje.fechaFin).format('YYYY-MM-DD HH:mm');
+        const nuevoEvento: Evento = new Evento(viaje.id, viaje.nombre, fechaInicio, fechaFin, 'viaje');
         this.listaEventos.push(nuevoEvento);
       }
 
     });
 
     this.subscripcionSalidas = this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
-      console.log('lista-actividades component. actividades: ', actividades);
 
+      // Se mapean las actividades con el modelo event0
       for (const actividad of actividades) {
-        // salida.fechaInicio = moment(salida.fechaInicio).format('YYYY-MM-DD');
-        const nuevoEvento: Evento = new Evento(actividad.id, actividad.nombre, '2018-10-23');
+        const fechaInicio: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
+        const fechaFin: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
+        const nuevoEvento: Evento = new Evento(actividad.id, actividad.nombre, fechaInicio, fechaFin, 'actividad');
         this.listaEventos.push(nuevoEvento);
       }
 
