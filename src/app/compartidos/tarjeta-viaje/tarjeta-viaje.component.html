@@ -1,9 +1,9 @@
-<p-card class="ui-g" [title]="viaje.nombre" subtitle="Categorías" styleClass="ui-card-shadow">
+<p-card class="ui-g" [title]="viaje.nombre" styleClass="ui-card-shadow">
 
     <p-header class="ui-grid-col-12">
         <img alt="viaje" [src]="viaje.imagen">
     </p-header>
-
+    <button id="btnCategorias" class="text-center" *ngFor="let categoria of viaje.categorias" pButton type="button" [label]="categoria.nombre"></button>
     <div class="ui-grid-row">{{ viaje.descripcion }}</div>
 
     <p-footer>
@@ -12,8 +12,8 @@
         <span class="ui-grid-col-6">Dificultad:</span>
         <span class="ui-grid-col-6">Precio: <strong> {{ viaje.precio }} €</strong></span>
         <p-rating class="ui-grid-col-12" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
-        <button class="ui-grid-col-6" pButton (click)="verViaje()" type="button" icon="pi pi-check" iconPos="right" label="VER MAS"></button>
-        <button class="ui-grid-col-6" [disabled]="viaje.listaParticipantes.length === viaje.plazas" pButton type="button" icon="pi pi-check" iconPos="right" label="APUNTARSE!!"></button>
+        <button class="ui-grid-col-6" pButton (click)="verViaje()" type="button" icon="pi pi-search" iconPos="right" label="VER MAS"></button>
+        <button class="ui-grid-col-6" (click)="apuntarse()" [disabled]="viaje.listaParticipantes.length === viaje.plazas" pButton type="button" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
         <p-message class="ui-grid-col-12 text-center" *ngIf="viaje.listaParticipantes.length === viaje.plazas" severity="warn" text="Plazas agotadas :("></p-message>
     </p-footer>
 

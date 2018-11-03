@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import * as moment from 'moment';
 
 @Component({
@@ -10,12 +9,11 @@ import * as moment from 'moment';
 export class InicioComponent implements OnInit {
 
   public fecha: any;
-
   constructor() {}
 
   ngOnInit() {
 
     this.fecha = moment(new Date()).locale('es').format('LLLL');
- }
+  }
 
 }

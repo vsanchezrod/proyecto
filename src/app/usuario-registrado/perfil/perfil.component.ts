@@ -14,6 +14,7 @@ import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
 
 import { Subscription } from 'rxjs';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-perfil',
@@ -25,7 +26,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
   public usuario: Usuario;
   public fechaNacimientoParseada: string;
   public listaProvincias: Array<Provincia> = [];
-  public usuarioLogado: boolean;
   public formularioActualizacion: FormGroup;
   public rangoAnios: string;
 
@@ -37,7 +37,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
   private subscriptionUsuarioLogado: Subscription;
   private subscriptionProvincias: Subscription;
 
-  private accessToken: string;
   private anioDesde = 1920;
   private edadMinima = 16;
 
@@ -51,15 +50,9 @@ export class PerfilComponent implements OnInit, OnDestroy {
     console.log(anioHasta);
     this.rangoAnios = `${this.anioDesde}:${anioHasta}`;
 
-
-    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
-      this.accessToken = accessToken;
-      // Si no es null, undefined o vacío
-      this.usuarioLogado = accessToken ? true : false;
-    });
-
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( usuario => {
       this.usuario = usuario;
+      this.imagenAvatar = this.usuario.avatar;
       this.fechaNacimientoParseada = moment(this.usuario.fechaNacimiento).locale('es').format('L');
       this.formularioActualizacion = new FormGroup({
         'nombre': new FormControl(this.usuario.nombre),
@@ -102,10 +95,13 @@ export class PerfilComponent implements OnInit, OnDestroy {
     };
 
     fileReader.onloadend = (evento) => {
+      console.log('Entrando en el onloadend');
       this.imagenAvatar = fileReader.result;
-      this.usuario.avatar = this.imagenAvatar;
       this.progreso = 100;
       this.mostrarSpinner = false;
+      if (this.formularioActualizacion.contains('avatar')) {
+        this.formularioActualizacion.removeControl('avatar');
+      }
       this.formularioActualizacion.addControl('avatar', new FormControl(this.imagenAvatar));
     };
 
@@ -118,12 +114,13 @@ export class PerfilComponent implements OnInit, OnDestroy {
     this.mostrarSpinner = true;
   }
 
-  public actualizarUsuario(datos) {
+  public actualizarUsuario() {
     const usuarioActualizado: Usuario = this.formularioActualizacion.value;
     usuarioActualizado.id = this.usuario.id;
-
-    console.log('Actualizar usuario: ', this.formularioActualizacion.value);
-    this.usuarioService.actualizarUsuario(usuarioActualizado);
+    this.usuarioService.actualizarUsuario(usuarioActualizado).subscribe(
+      (response: HttpResponse<Usuario>) => {
+        console.log('Actualizar Usuario: ', response);
+    });
   }
 
 }

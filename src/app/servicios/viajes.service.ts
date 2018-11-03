@@ -5,7 +5,7 @@ import { Viaje } from '../modelos/viaje.model';
 import { Total } from '../modelos/total.model';
 
 // Realizar peticiones
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 
 // Observables
 import { Observable } from 'rxjs';
@@ -25,9 +25,15 @@ export class ViajesService {
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService) {}
 
-  public obtenerListadoViajes$(): Observable<Array<Viaje>> {
+  public obtenerListadoViajesActuales$(): Observable<Array<Viaje>> {
     return this.httpClient.get<Array<Viaje>>(environment.host + '/public/viajes',
       {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
+  }
+
+  public obtenerListadoViajesRealizados$(): Observable<Array<Viaje>> {
+    const params = new HttpParams().set('realizadas', 'true');
+    return this.httpClient.get<Array<Viaje>>(environment.host + '/public/viajes',
+      {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'});
   }
 
   public guardarViaje(viaje: Viaje): Observable<HttpResponse<Viaje>> {

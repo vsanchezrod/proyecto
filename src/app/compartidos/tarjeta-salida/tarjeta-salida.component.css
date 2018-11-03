@@ -16,3 +16,8 @@ p-card {
 button {
     margin-bottom: 10px;
 }
+
+#btnCategorias {
+    font-size: 10px;
+    background: green;
+}

@@ -34,7 +34,7 @@ export class BusquedaComponent implements OnInit {
     this.listaViajesBusqueda = [];
 
     // SE PODRÍA AHORRAR ESTA BUSQUEDA SI YA TUVIERAMOS LA LISTA??
-    this.actividadesService.obtenerListaActividades$().subscribe( response => {
+    this.actividadesService.obtenerListaActividadesActuales$().subscribe( response => {
       this.listaActividades = response;
       // Se recoge el parámetro y se usa suscribe
       this.activatedRoute.params.subscribe(params => {
@@ -44,7 +44,7 @@ export class BusquedaComponent implements OnInit {
     });
 
     // LO MISMO PARA VIAJES
-    this.viajesService.obtenerListadoViajes$().subscribe( response => {
+    this.viajesService.obtenerListadoViajesActuales$().subscribe( response => {
       this.listaViajesBusqueda = response;
       // Se recoge el parámetro y se usa suscribe
       this.activatedRoute.params.subscribe(params => {

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
 
-// Componentes
+// Modelos
 import {Viaje} from '../../modelos/viaje.model';
 
 // Router para poder navegar por las diferentes rutas
@@ -28,7 +28,12 @@ export class TarjetaViajeComponent implements OnInit {
   }
 
   // Método para mostrar la salida
-  verViaje() {
+  public verViaje(): void {
     this.router.navigate(['/viaje', this.viaje.id]);
   }
+
+  public apuntarse(): void {
+    console.log('Quiero apuntarme a la actividad: ');
+  }
 }
+

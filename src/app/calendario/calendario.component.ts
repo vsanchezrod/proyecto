@@ -38,7 +38,7 @@ export class CalendarioComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.subscripcionViajes = this.viajesService.obtenerListadoViajes$().subscribe(viajes => {
+    this.subscripcionViajes = this.viajesService.obtenerListadoViajesActuales$().subscribe(viajes => {
 
       // Se mapean los viajes con el modelo evento
       for (const viaje of viajes) {
@@ -50,7 +50,7 @@ export class CalendarioComponent implements OnInit, OnDestroy {
 
     });
 
-    this.subscripcionSalidas = this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
+    this.subscripcionSalidas = this.actividadesService.obtenerListaActividadesActuales$().subscribe(actividades => {
 
       // Se mapean las actividades con el modelo event0
       for (const actividad of actividades) {

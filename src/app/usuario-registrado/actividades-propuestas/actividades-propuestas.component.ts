@@ -39,17 +39,15 @@ export class ActividadesPropuestasComponent implements OnInit, OnDestroy {
       (usuario: Usuario) => {
         this.usuario = usuario;
         console.log('ActivProp: obtenerUsuario: usuario:', this.usuario);
+        // Obtener la lista de actividades creadas por el usuario
+        this.subscriptionActividadesUsuario = this.actividadesService.buscarActividadesCreadasPorUsuario(this.usuario.id).subscribe(
+          (listaActividades: Array<Actividad>) => {
+            this.listaMisActividadesPropuestas = listaActividades;
+            console.log('ActivProp: buscarActivUsuario: listaActividades: ', this.listaMisActividadesPropuestas);
+        });
+        // Para que cargue por defecto la primera salida
+        this.salida = this.salida[0];
     });
-
-    // Obtener la lista de actividades creadas por el usuario
-    this.subscriptionActividadesUsuario = this.actividadesService.buscarActividadesCreadasPorUsuario(this.usuario.id).subscribe(
-      (listaActividades: Array<Actividad>) => {
-        this.listaMisActividadesPropuestas = listaActividades;
-        console.log('ActivProp: buscarActivUsuario: listaActividades: ', this.listaMisActividadesPropuestas);
-    });
-
-    // Para que cargue por defecto la primera salida
-    this.salida = this.salida[0];
 
   }
 

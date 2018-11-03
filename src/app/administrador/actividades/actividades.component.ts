@@ -63,11 +63,11 @@ export class ActividadesComponent implements OnInit, OnDestroy {
       this.usuario = usuario;
     });
 
-    this.viajesService.obtenerListadoViajes$().subscribe(viajes => {
+    this.viajesService.obtenerListadoViajesActuales$().subscribe(viajes => {
       this.listaViajes = viajes;
     });
 
-    this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
+    this.actividadesService.obtenerListaActividadesActuales$().subscribe(actividades => {
       this.listaActividades = actividades;
     });
 

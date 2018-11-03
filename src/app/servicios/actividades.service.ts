@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 // Peticiones
-import { HttpClient, HttpResponse} from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // Modelo de datos
@@ -23,11 +23,17 @@ export class ActividadesService {
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService) {}
 
-  public obtenerListaActividades$(): Observable<Array<Actividad>> {
+  public obtenerListaActividadesActuales$(): Observable<Array<Actividad>> {
     return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
     {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
-
   }
+
+  public obtenerListaActividadesRealizadas$(): Observable<Array<Actividad>> {
+    const params = new HttpParams().set('realizadas', 'true');
+    return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'});
+  }
+
 
   // Método para crear actividad y mandar la petición al API
   public crearActividad(actividad: Actividad): Observable<HttpResponse<Actividad>> {

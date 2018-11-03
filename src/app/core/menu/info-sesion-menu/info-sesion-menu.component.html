@@ -14,7 +14,7 @@
     <!-- PONER ICONO PARA ADMINISTRADOR-->
     <div *ngIf="usuarioSesionService.esAdministrador()">
         <p-slideMenu #menuAdmin [model]="itemsAdmin" [viewportHeight]="300" [popup]="true"></p-slideMenu>
-        <i class="pi pi-users" (click)="logout()" (mouseover)="menuAdmin.toggle($event)"></i>
+        <i class="pi pi-cog" (click)="logout()" (mouseover)="menuAdmin.toggle($event)"></i>
         <!-- (mouseleave)="menuUsuario.toggle($event) -->
     </div>
 

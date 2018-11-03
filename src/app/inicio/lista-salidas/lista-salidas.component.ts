@@ -20,7 +20,7 @@ export class ListaSalidasComponent implements OnInit {
 
   ngOnInit() {
 
-    this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
+    this.actividadesService.obtenerListaActividadesActuales$().subscribe(actividades => {
       this.listaActividades = actividades;
     });
 

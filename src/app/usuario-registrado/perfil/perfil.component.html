@@ -1,20 +1,20 @@
 <p class="col-12">Usuario {{ usuario.id }}</p>
 <div class="container">
     <h3 class="text-center">PERFIL DE USUARIO</h3>
-
+    <img class="ui-grid-col-4 rounded-circle" [src]="usuario.avatar" name="avatar" alt="AVATAR">
     <div class="row">
 
-        <form class="col-12" [formGroup]="formularioActualizacion" (submit)="actualizarUsuario(formularioActualizacion.value)">
+        <form class="col-12" [formGroup]="formularioActualizacion" (submit)="actualizarUsuario()">
             <div class="ui-grid-col-12">
                 <p-inplace class="ui-grid-col-12" closable="true">
                     <span pInplaceDisplay class="ui-grid-col-12">
-                    <img class="ui-g-12 ui-md-6 ui-lg-3 rounded-circle mx-auto d-block ui-button" [src]="usuario.avatar" name="avatar" alt="AVATAR">
-                </span>
+                        <img class="ui-g-12 ui-md-6 ui-lg-3 rounded-circle mx-auto d-block ui-button" [src]="usuario.avatar" name="avatar">
+                    </span>
                     <span pInplaceContent class="ui-grid-col-10">
-                    <img class="ui-grid-col-4 rounded-circle" [src]="usuario.avatar" name="avatar" alt="AVATAR">
-                    <input name="avatar" class="ui-grid-col-6" type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
-                    <!--<p-dropdown class="ui-grid-col-6" [options]="" placeholder="Elige avatar" optionLabel="" [showClear]="true" filter="true"></p-dropdown>-->
-                </span>
+                        <img class="ui-grid-col-4 rounded-circle" [src]="imagenAvatar" name="avatar" alt="AVATAR">
+                        <input name="avatar" class="ui-grid-col-6" type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
+                        <!--<p-dropdown class="ui-grid-col-6" [options]="" placeholder="Elige avatar" optionLabel="" [showClear]="true" filter="true"></p-dropdown>-->
+                    </span>
                 </p-inplace>
             </div>
 
@@ -23,12 +23,14 @@
                 <span class="ui-grid-col-4">Nombre:</span>
                 <p-inplace class="ui-grid-col-8" closable="true">
                     <span pInplaceDisplay class="ui-grid-col-12">
-                    {{ usuario.nombre }} {{ usuario.apellido }}
-                </span>
+                        {{ usuario.nombre }} {{ usuario.apellido }}
+                    </span>
                     <span pInplaceContent class="ui-grid-col-8">
-                    <input [formControl]="formularioActualizacion.controls['nombre']" name="nombre" class="ui-grid-col-4" type="text" pInputText>
-                    <input [formControl]="formularioActualizacion.controls['apellido']" name="apellido" class="ui-grid-col-4" type="text" pInputText>
-                </span>
+                        <input [formControl]="formularioActualizacion.controls['nombre']" name="nombre" class="ui-grid-col-4"
+                            type="text" pInputText>
+                        <input [formControl]="formularioActualizacion.controls['apellido']" name="apellido" class="ui-grid-col-4"
+                            type="text" pInputText>
+                    </span>
                 </p-inplace>
             </div>
 
@@ -37,10 +39,10 @@
                 <span class="ui-grid-col-4">Fecha:</span>
                 <p-inplace closable="true">
                     <span pInplaceDisplay>
-                    {{ fechaNacimientoParseada }}
+                        {{ fechaNacimientoParseada }}
                     </span>
                     <span pInplaceContent>
-                   <p-calendar [formControl]="formularioActualizacion.controls['fechaNacimiento']" [showIcon]="true" dateFormat="dd.mm.yy" [yearNavigator]="true" [yearRange]="rangoAnios" [monthNavigator]="true"></p-calendar>
+                       <p-calendar [formControl]="formularioActualizacion.controls['fechaNacimiento']" [showIcon]="true" dateFormat="dd/mm/yy" [yearNavigator]="true" [yearRange]="rangoAnios" [monthNavigator]="true"></p-calendar>-->
                     </span>
                 </p-inplace>
             </div>
@@ -50,18 +52,20 @@
                 <span class="ui-grid-col-2">Sexo:</span>
                 <p-inplace class="ui-g-6" closable="true">
                     <span pInplaceDisplay>
-                    {{ usuario.sexo }}
-                </span>
+                        {{ usuario.sexo }}
+                    </span>
                     <span pInplaceContent>
-                    <div class="ui-g" style="width:250px;margin-bottom:10px">
-                        <div class="ui-g-12">
-                            <p-radioButton [formControl]="formularioActualizacion.controls['sexo']" name="sexo" value="Mujer" label="Mujer"></p-radioButton>
+                        <div class="ui-g" style="width:250px;margin-bottom:10px">
+                            <div class="ui-g-12">
+                                <p-radioButton [formControl]="formularioActualizacion.controls['sexo']" name="sexo"
+                                    value="Mujer" label="Mujer"></p-radioButton>
+                            </div>
+                            <div class="ui-g-12">
+                                <p-radioButton [formControl]="formularioActualizacion.controls['sexo']" name="sexo"
+                                    value="Hombre" label="Hombre"></p-radioButton>
+                            </div>
                         </div>
-                        <div class="ui-g-12">
-                            <p-radioButton [formControl]="formularioActualizacion.controls['sexo']" name="sexo" value="Hombre" label="Hombre"></p-radioButton>
-                        </div>
-                    </div>
-                </span>
+                    </span>
                 </p-inplace>
             </div>
 
@@ -70,11 +74,12 @@
                 <span class="ui-grid-col-2">Provincia:</span>
                 <p-inplace class="ui-g-6" closable="closable">
                     <span pInplaceDisplay>
-                    {{ usuario.provincia['nombre'] }}
-                </span>
+                        {{ usuario.provincia['nombre'] }}
+                    </span>
                     <span pInplaceContent>
-                    <p-dropdown [formControl]="formularioActualizacion.controls['provincia']" name="provincia" [options]="listaProvincias" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
-                </span>
+                        <p-dropdown [formControl]="formularioActualizacion.controls['provincia']" name="provincia"
+                            [options]="listaProvincias" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
+                    </span>
                 </p-inplace>
             </div>
 
@@ -82,10 +87,10 @@
                 <span class="ui-grid-col-2">Password:</span>
                 <p-inplace class="ui-g-6" closable="closable">
                     <span pInplaceDisplay>
-                ********
-            </span>
+                        ********
+                    </span>
                     <span pInplaceContent>
-                    <span>Nuevo password:</span><input [formControl]="formularioActualizacion.controls['password']" name="password" pPassword type="password" value="********" />
+                        <span>Nuevo password:</span><input [formControl]="formularioActualizacion.controls['password']" name="password" pPassword type="password" value="********" />
                     <!--<span>Repite password:</span><input formControlName="formularioActualizacion.controls['password2']" pPassword type="password" value="********" />-->
                     </span>
                 </p-inplace>
@@ -95,11 +100,12 @@
                 <span class="ui-grid-col-2">Sobre mi:</span>
                 <p-inplace class="ui-g-6" closable="closable">
                     <span pInplaceDisplay>
-                    {{ usuario.info }}
-                </span>
+                        {{ usuario.info }}
+                    </span>
                     <span pInplaceContent>
-                    <input [formControl]="formularioActualizacion.controls['info']" name="info" type="text" pInputText>
-                </span>
+                        <input [formControl]="formularioActualizacion.controls['info']" name="info" type="text"
+                            pInputText>
+                    </span>
                 </p-inplace>
             </div>
 

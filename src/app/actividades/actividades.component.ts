@@ -15,20 +15,29 @@ import { Subscription } from 'rxjs';
 })
 export class ActividadesComponent implements OnInit, OnDestroy {
 
-  public listaActividades: Array<Actividad>;
-  private subscripcionObtenerListaActividades: Subscription;
+  public listaActividadesActuales: Array<Actividad>;
+  public listaActividadesRealizadas: Array<Actividad>;
+  private subscripcionObtenerListaActividadesActuales: Subscription;
+  private subscripcionObtenerListaActividadesRealizadas: Subscription;
 
   constructor(private actividadesService: ActividadesService) { }
 
   ngOnInit() {
 
-    this.subscripcionObtenerListaActividades = this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
-      this.listaActividades = actividades;
+    this.listaActividadesActuales = [];
+    
+    this.subscripcionObtenerListaActividadesActuales = this.actividadesService.obtenerListaActividadesActuales$().subscribe(actividades => {
+      this.listaActividadesActuales = actividades;
+    });
+
+    this.subscripcionObtenerListaActividadesRealizadas = this.actividadesService.obtenerListaActividadesRealizadas$().subscribe(actividades => {
+      this.listaActividadesRealizadas = actividades;
     });
   }
 
   ngOnDestroy() {
-    this.subscripcionObtenerListaActividades.unsubscribe();
+    this.subscripcionObtenerListaActividadesActuales.unsubscribe();
+    this.subscripcionObtenerListaActividadesRealizadas.unsubscribe();
   }
 
 }

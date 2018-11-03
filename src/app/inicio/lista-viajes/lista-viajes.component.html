@@ -1,10 +1,9 @@
 <p-carousel numVisible="4" headerText="VIAJA CON NOSOTROS" effectDuration="slow" circular="true" autoplayInterval="5000" [value]="listaViajes">
-  <ng-template let-viaje pTemplate="item">
-    <div class="ui-grid ui-grid-responsive">
-      <div class="ui-grid-row">
-        <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
-      </div>
-    </div>
-  </ng-template>
+    <ng-template let-viaje pTemplate="item">
+        <div class="ui-grid ui-grid-responsive">
+            <div class="ui-grid-row">
+                <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
+            </div>
+        </div>
+    </ng-template>
 </p-carousel>
-

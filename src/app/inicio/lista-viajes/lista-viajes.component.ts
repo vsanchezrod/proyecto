@@ -13,13 +13,13 @@ import { ViajesService } from '../../servicios/viajes.service';
 })
 export class ListaViajesComponent implements OnInit {
 
-  listaViajes: Array<Viaje>;
+  public listaViajes: Array<Viaje>;
 
   constructor(private viajesService: ViajesService) {}
 
   ngOnInit() {
 
-    this.viajesService.obtenerListadoViajes$().subscribe(viajes => {
+    this.viajesService.obtenerListadoViajesActuales$().subscribe(viajes => {
       this.listaViajes = viajes;
     });
   }
