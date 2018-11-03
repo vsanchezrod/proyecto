@@ -7,8 +7,8 @@
     <div class="ui-grid-row">{{ viaje.descripcion }}</div>
 
     <p-footer>
-        <div class="ui-grid-col-6">Inicio: {{ viaje.fechaInicio }}</div>
-        <div class="ui-grid-col-6">Fin: {{ viaje.fechaFin }}</div>
+        <div class="ui-grid-col-6">Inicio: {{ fechaInicioParseada }}</div>
+        <div class="ui-grid-col-6">Fin: {{ fechaFinParseada }}</div>
         <span class="ui-grid-col-6">Dificultad:</span>
         <span class="ui-grid-col-6">Precio: <strong> {{ viaje.precio }} €</strong></span>
         <p-rating class="ui-grid-col-12" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>

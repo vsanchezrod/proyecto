@@ -43,10 +43,7 @@
             <div class="col-12">
                 <h3>Fecha de Nacimiento</h3>
                 <span class="ui-float-label"></span>
-                <input [formControl]="formularioRegistro.controls['fechaNacimiento']" type="date" placeholder="mm/dd/yyyy">
-                <!--
-                <p-inputMask [formControl]="formularioRegistro.controls['fechaNacimiento']" mask="99/99/9999" placeholder="dd/mm/yyyy" slotChar="dd/mm/yyyy"></p-inputMask>
-                -->
+                <p-calendar [formControl]="formularioRegistro.controls['fechaNacimiento']" [showIcon]="true" dateFormat="dd.mm.yy" [yearNavigator]="true" [yearRange]="rangoAnios" [monthNavigator]="true"></p-calendar>
             </div>
 
 

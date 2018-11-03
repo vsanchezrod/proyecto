@@ -8,13 +8,13 @@ import { RouterModule } from '@angular/router';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
-import { InputMaskModule } from 'primeng/inputmask';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { CalendarModule } from 'primeng/calendar';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 
@@ -36,7 +36,7 @@ import { RegistroComponent } from './registro/registro.component';
     CheckboxModule,
     InputTextModule,
     PasswordModule,
-    InputMaskModule,
+    CalendarModule,
     RadioButtonModule,
     DropdownModule,
     FileUploadModule,

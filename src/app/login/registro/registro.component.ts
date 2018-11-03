@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 // Formularios
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -20,6 +21,7 @@ import { Categoria } from '../../modelos/categoria.model';
 export class RegistroComponent implements OnInit {
 
   public formularioRegistro: FormGroup;
+  public rangoAnios: string;
 
   public listaProvincias: Array<Provincia> = [];
   public listaIntereses: Array<Categoria> = [];
@@ -28,11 +30,19 @@ export class RegistroComponent implements OnInit {
   public progreso: number;
   public mostrarSpinner: boolean;
 
+  private anioDesde = 1920;
+  private edadMinima = 16;
+
   constructor(private provinciasService: ProvinciasService,
               private categoriasService: CategoriasService,
               private usuariosService: UsuariosService) {}
 
   ngOnInit() {
+
+    const anioHasta: string = moment().subtract(this.edadMinima, 'years').format('YYYY');
+    console.log(anioHasta);
+
+    this.rangoAnios = `${this.anioDesde}:${anioHasta}`;
 
     this.provinciasService.obtenerProvincias()
       .subscribe(response => {
