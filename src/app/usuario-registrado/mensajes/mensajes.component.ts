@@ -28,9 +28,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
   public items: MenuItem[];
 
   public usuario: Usuario;
-  private accessToken: string;
 
-  private subscriptionAccessToken: Subscription;
   private subscriptionUsuarioLogado: Subscription;
   private subscriptionObtenerMensajes: Subscription;
 
@@ -50,10 +48,6 @@ export class MensajesComponent implements OnInit, OnDestroy {
       }
     ];
 
-    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
-      this.accessToken = accesToken;
-    });
-
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
       this.usuario = usuario;
 
@@ -65,7 +59,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
       }
 
       // Buscar los mensajes para ese usuario
-      this.subscriptionObtenerMensajes = this.mensajesService.obtenerListaDeMensajes$(this.usuario.id, this.accessToken).subscribe(
+      this.subscriptionObtenerMensajes = this.mensajesService.obtenerListaDeMensajes$(this.usuario.id).subscribe(
         (mensajes: Array<Mensaje>) => {
           this.listaMensajes = mensajes;
       });
@@ -77,7 +71,6 @@ export class MensajesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptionAccessToken.unsubscribe();
     this.subscriptionUsuarioLogado.unsubscribe();
     this.subscriptionObtenerMensajes.unsubscribe();
   }

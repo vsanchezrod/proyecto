@@ -34,8 +34,8 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
   public es: any;
 
   public usuario: Usuario;
-  private accessToken: string;
-  private subscriptionAccessToken: Subscription;
+  // private accessToken: string;
+  // private subscriptionAccessToken: Subscription;
   private subscriptionUsuarioLogado: Subscription;
 
   constructor(private categoriaService: CategoriasService,
@@ -56,9 +56,9 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
     });
 
     // Obtener token de acceso
-    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe(accessToken => {
+    /*this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe(accessToken => {
       this.accessToken = accessToken;
-    });
+    });*/
 
     // Obtener el usuario logado
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(usuario => {
@@ -79,7 +79,7 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptionAccessToken.unsubscribe();
+    // this.subscriptionAccessToken.unsubscribe();
     this.subscriptionUsuarioLogado.unsubscribe();
   }
 
@@ -120,9 +120,8 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
     this.actividad.imagen = this.imagen;
     this.actividad.idUsuarioCreacion = this.usuario.id;
     this.actividad.listaParticipantes = [];
-    this.actividad.listaParticipantes.push(this.actividad.idUsuarioCreacion);
     console.log('ACTIVIDAD A CREAR: ', this.actividad);
-    this.actividadesService.crearActividad(this.actividad, this.accessToken).subscribe( response => {
+    this.actividadesService.crearActividad(this.actividad).subscribe( response => {
       console.log('Respuesta: ' + response.status);
     });
 

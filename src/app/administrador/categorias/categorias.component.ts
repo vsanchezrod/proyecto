@@ -31,19 +31,12 @@ export class CategoriasComponent implements OnInit, OnDestroy {
   public imagen: string | ArrayBuffer;
   public cargando: boolean;
 
-  private accessToken: string;
-  private subscriptionAccessToken: Subscription;
   private subscriptionUsuarioLogado: Subscription;
 
   constructor(private categoriasService: CategoriasService,
               private usuarioSesionService: UsuarioSesionService) { }
 
   ngOnInit() {
-
-    // Obtener token de acceso
-    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe( (accessToken: string) => {
-      this.accessToken = accessToken;
-    });
 
     // Obtener el usuario logado
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe( (usuario: Usuario) => {
@@ -64,20 +57,19 @@ export class CategoriasComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptionAccessToken.unsubscribe();
     this.subscriptionUsuarioLogado.unsubscribe();
   }
 
   public crearCategoria(datos: Categoria): void {
     console.log(this.formularioCategoria.value);
 
-    this.categoriasService.crearCategoria(datos, this.accessToken).subscribe( response => {
+    this.categoriasService.crearCategoria(datos).subscribe( response => {
       console.log('CategoriasComp:CrearCategoria:Respuesta: ' + response.status);
     });
   }
 
   public borrarCategoria(idCategoria: string): void {
-    this.categoriasService.borrarCategoria(idCategoria, this.accessToken).subscribe( response => {
+    this.categoriasService.borrarCategoria(idCategoria).subscribe( response => {
       console.log('CategoriasComp:BorrarCategoria:Respuesta: ' + response.status);
 
     });

@@ -15,12 +15,11 @@ import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 })
 export class AmigosComponent implements OnInit {
 
-  listaUsuarios: Array<Usuario>;
-  listaUsuariosBusqueda: Array<Usuario>;
-  listaAmigos: Array<Usuario>;
+  public listaUsuarios: Array<Usuario>;
+  public listaUsuariosBusqueda: Array<Usuario>;
+  public listaAmigos: Array<Usuario>;
 
-  private accessToken: string;
-  usuario: Usuario;
+  public usuario: Usuario;
 
   constructor(private usuariosService: UsuariosService,
               private usuarioSesionService: UsuarioSesionService) { }
@@ -30,10 +29,6 @@ export class AmigosComponent implements OnInit {
     this.listaUsuarios = [];
     this.listaUsuariosBusqueda = [];
     this.listaAmigos = [];
-
-    this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
-      this.accessToken = accesToken;
-    });
 
     this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
       this.usuario = usuario;
@@ -49,7 +44,7 @@ export class AmigosComponent implements OnInit {
     });
 
     // Obtener lista de usuarios
-    this.usuariosService.obtenerListaUsuarios$(this.accessToken).subscribe( (listaUsuarios: Array<Usuario>) => {
+    this.usuariosService.obtenerListaUsuarios$().subscribe( (listaUsuarios: Array<Usuario>) => {
       this.listaUsuarios = listaUsuarios;
       console.log('AmigosUserComp: listaUsuarios', this.listaUsuarios);
     });

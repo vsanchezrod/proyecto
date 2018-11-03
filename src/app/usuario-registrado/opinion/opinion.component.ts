@@ -25,9 +25,7 @@ export class OpinionComponent implements OnInit, OnDestroy {
   // PENDIENTE
   public listaActividades: Array<any>;
 
-  private accessToken: string;
   private opinion: Opinion;
-  private subscriptionAccessToken: Subscription;
   private subscriptionUsuarioLogado: Subscription;
 
 
@@ -37,10 +35,6 @@ export class OpinionComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.usuario = new Usuario();
-
-    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe( (accesToken: string ) => {
-      this.accessToken = accesToken;
-    });
 
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
       this.usuario = usuario;
@@ -65,7 +59,6 @@ export class OpinionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptionAccessToken.unsubscribe();
     this.subscriptionUsuarioLogado.unsubscribe();
   }
 
@@ -77,7 +70,7 @@ export class OpinionComponent implements OnInit, OnDestroy {
 
     console.log('Opinion: ', this.opinion);
 
-    this.opinionesService.guardarOpinion(this.opinion, this.accessToken).subscribe(response => {
+    this.opinionesService.guardarOpinion(this.opinion).subscribe(response => {
         console.log('OpiniónComp: RespuestaGuardarOpinion ' + response.status);
       });
 

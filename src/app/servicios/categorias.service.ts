@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 // Peticiones HTTP
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 // Modelos
@@ -34,16 +34,16 @@ export class CategoriasService {
   }
 
   // Método para guardar una categoría
-  public crearCategoria (categoria: Categoria, accessToken: string): Observable<HttpResponse<Categoria>> {
+  public crearCategoria (categoria: Categoria): Observable<HttpResponse<Categoria>> {
     const body = categoria;
     return this.httpClient.post<Categoria>(environment.host + '/categorias',
-      body, {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(accessToken), observe: 'response'});
+      body, {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'});
   }
 
   // Método para borrar una categoría
-  public borrarCategoria (id: string, accessToken: string): Observable<HttpResponse<Categoria>> {
+  public borrarCategoria (id: string): Observable<HttpResponse<Categoria>> {
     return this.httpClient.delete<Categoria>(environment.host + `/categorias/${id}`,
-      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'response'});
+      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'});
   }
 
 }

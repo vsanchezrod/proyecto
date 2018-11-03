@@ -35,9 +35,9 @@ export class ViajesService {
       {headers: this.cabecerasHttpService.generarCabecerasPost(), observe: 'response'});
   }
 
-  public obtenerNumeroViajes(accessToken: string): Observable<Total> {
+  public obtenerNumeroViajes(): Observable<Total> {
     return this.httpClient.get<Total>(environment.host + '/viajes/numero',
-    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'body'});
   }
 
 }

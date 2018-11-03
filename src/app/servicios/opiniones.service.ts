@@ -24,9 +24,9 @@ export class OpinionesService {
               private cabecerasHttpService: CabecerasHttpService) { }
 
   // Petición HTTP(POST) para guardar una opinión
-  public guardarOpinion(opinion: Opinion, accessToken: string): Observable<HttpResponse<Opinion>> {
+  public guardarOpinion(opinion: Opinion): Observable<HttpResponse<Opinion>> {
     return this.httpClient.post<Opinion>(environment.host + '/opiniones', opinion,
-      {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(accessToken), observe: 'response'});
+      {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'});
   }
 
   // Petición HTTP(GET) para recuperar las opiniones
@@ -35,15 +35,15 @@ export class OpinionesService {
       {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
   }
 
-  public obtenerNumeroOpiniones(accessToken: string): Observable<Total> {
+  public obtenerNumeroOpiniones(): Observable<Total> {
     return this.httpClient.get<Total>(environment.host + '/opiniones/numero',
-      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'body'});
+      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'body'});
   }
 
   // Petición HTTP(DELETE) para borrar las opiniones
-  public borrarOpinion(id: string, accessToken: string): Observable<HttpResponse<any>> {
+  public borrarOpinion(id: string): Observable<HttpResponse<any>> {
     return this.httpClient.delete<Opinion>(environment.host + `/opiniones/${id}`,
-    {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(accessToken), observe: 'response'});
+    {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'});
   }
 
 }

@@ -3,12 +3,25 @@ import { Injectable } from '@angular/core';
 // Cabeceras
 import { HttpHeaders } from '@angular/common/http';
 
+// Servicio
+import { UsuarioSesionService } from './usuario-sesion.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CabecerasHttpService {
 
-  constructor() { }
+  private accessToken: string;
+
+  constructor(private usuarioSesionService: UsuarioSesionService) {
+
+    this.accessToken = '';
+    // Obtener token de acceso
+    this.usuarioSesionService.obtenerAccessToken$().subscribe(accessToken => {
+      this.accessToken = accessToken;
+    });
+
+  }
 
   public generarCabecerasGet(): HttpHeaders {
     return new HttpHeaders({
@@ -23,26 +36,19 @@ export class CabecerasHttpService {
     });
   }
 
-  public generarCabecerasGetConAccessToken(accessToken: string): HttpHeaders {
+  public generarCabecerasGetConAccessToken(): HttpHeaders {
     return new HttpHeaders({
       'Accept': 'application/json',
-      'Authorization' : `Bearer ${accessToken}`
+      'Authorization' : `Bearer ${this.accessToken}`
     });
   }
 
-  public generarCabecerasPostConAccessToken(accessToken: string): HttpHeaders {
+  public generarCabecerasPostConAccessToken(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization' : `Bearer ${accessToken}`
+      'Authorization' : `Bearer ${this.accessToken}`
     });
   }
 
-  public generarCabecerasLogin(): HttpHeaders {
-    return new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Basic dGVzdGp3dGNsaWVudGlkOlhZN2ttem9OemwxMDA=',
-      'Accept': 'application/json'
-    });
-  }
 }

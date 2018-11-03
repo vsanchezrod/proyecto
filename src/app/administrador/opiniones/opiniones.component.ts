@@ -19,8 +19,7 @@ import { Subscription } from 'rxjs';
 export class OpinionesComponent implements OnInit, OnDestroy {
 
   public listaOpiniones: Array<Opinion> = [];
-  private accessToken: string;
-  private subscriptionAccessToken: Subscription;
+
   private subscriptionUsuarioLogado: Subscription;
 
   constructor(private opinionesService: OpinionesService,
@@ -28,23 +27,18 @@ export class OpinionesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.usuarioSesionService.obtenerAccessToken$().subscribe( (accessToken: string) => {
-      this.accessToken = accessToken;
-    });
-
     this.opinionesService.obtenerOpiniones().subscribe( (listaOpiniones: Array<Opinion>) => {
       this.listaOpiniones = listaOpiniones;
     });
   }
 
   ngOnDestroy() {
-    this.subscriptionAccessToken.unsubscribe();
-    this.subscriptionUsuarioLogado.unsubscribe();
+     this.subscriptionUsuarioLogado.unsubscribe();
   }
 
 
-  public borrarOpinion(idOpinion: string, accessToken: string)  {
-    this.opinionesService.borrarOpinion(idOpinion, this.accessToken).subscribe( response => {
+  public borrarOpinion(idOpinion: string)  {
+    this.opinionesService.borrarOpinion(idOpinion).subscribe( response => {
       console.log('Response:', response.status);
     });
   }

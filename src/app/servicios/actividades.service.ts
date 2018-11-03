@@ -10,6 +10,7 @@ import { Total } from '../modelos/total.model';
 
 // Servicios
 import { CabecerasHttpService } from './cabeceras-http.service';
+import { UsuarioSesionService } from './usuario-sesion.service';
 
 // Producción
 import { environment } from '../../environments/environment';
@@ -20,7 +21,7 @@ import { environment } from '../../environments/environment';
 export class ActividadesService {
 
   constructor(private httpClient: HttpClient,
-              private cabecerasHttpService: CabecerasHttpService ) {}
+              private cabecerasHttpService: CabecerasHttpService) {}
 
   public obtenerListaActividades$(): Observable<Array<Actividad>> {
     return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
@@ -29,27 +30,26 @@ export class ActividadesService {
   }
 
   // Método para crear actividad y mandar la petición al API
-  public crearActividad(actividad: Actividad, accessToken: string): Observable<HttpResponse<Actividad>> {
+  public crearActividad(actividad: Actividad): Observable<HttpResponse<Actividad>> {
     const body = actividad;
     return this.httpClient.post<Actividad>(environment.host + '/actividades', body,
-     {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(accessToken), observe: 'response'});
+     {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'});
   }
 
-  public borrarActividad(id: string, accessToken: string): Observable<HttpResponse<Actividad>> {
+  public borrarActividad(id: string): Observable<HttpResponse<Actividad>> {
     return this.httpClient.delete<Actividad>(environment.host + `/actividades/${id}`,
-      {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(accessToken), observe: 'response'} );
+      {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'} );
   }
 
-  public buscarActividadesCreadasPorUsuario(idUsuario: string, accessToken: string): Observable<Array<Actividad>> {
+  public buscarActividadesCreadasPorUsuario(idUsuario: string): Observable<Array<Actividad>> {
     console.log('Voy a llamar a obtener actividades con el id!!!', idUsuario);
-    console.log('Con accesstoken: ', accessToken);
     return this.httpClient.get<Array<Actividad>>(environment.host + `/actividades?id=${idUsuario}`,
-      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken)});
+      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken()});
   }
 
-  public obtenerNumeroActividades(accessToken: string): Observable<Total> {
+  public obtenerNumeroActividades(): Observable<Total> {
     return this.httpClient.get<Total>(environment.host + '/actividades/numero',
-    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'body'});
   }
 
 }

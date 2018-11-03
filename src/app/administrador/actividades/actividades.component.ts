@@ -39,11 +39,8 @@ export class ActividadesComponent implements OnInit, OnDestroy {
 
   public es: any;
   public usuario: Usuario;
-  private accessToken: string;
 
-  private subscriptionAccessToken: Subscription;
   private subscriptionUsuarioLogado: Subscription;
-
 
   constructor(private viajesService: ViajesService,
               private actividadesService: ActividadesService,
@@ -61,10 +58,6 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     this.precioMaximo = 3000;
     this.plazasMinimas = 1;
     this.plazasMaximas = 30;
-
-    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe ( accessToken => {
-      this.accessToken = accessToken;
-    });
 
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( usuario => {
       this.usuario = usuario;
@@ -96,7 +89,6 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptionAccessToken.unsubscribe();
     this.subscriptionUsuarioLogado.unsubscribe();
   }
 
@@ -143,7 +135,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   }
 
   public borrarActividad(id): void {
-    this.actividadesService.borrarActividad(id, this.accessToken).subscribe(response => {
+    this.actividadesService.borrarActividad(id).subscribe(response => {
       console.log('ActividadesCompAdmin:BorrarActividad: ' + response.status);
       console.log('Borrada la actividad con id ' + id);
     });

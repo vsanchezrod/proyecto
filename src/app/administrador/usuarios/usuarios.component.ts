@@ -19,8 +19,6 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   public listaUsuarios: Array<Usuario> = [];
   public usuario: Usuario;
 
-  private accessToken: string;
-  private subscriptionAccessToken: Subscription;
   private subscriptionUsuarioLogado: Subscription;
 
 
@@ -29,25 +27,19 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    // Obtener token de acceso
-    this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe( (accessToken: string) => {
-      this.accessToken = accessToken;
-    });
-
     // Obtener el usuario logado
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe( (usuario: Usuario) => {
       this.usuario = usuario;
     });
 
     // Obtener lista de usuarios
-    this.usuariosService.obtenerListaUsuarios$(this.accessToken).subscribe( (listaUsuarios: Array<Usuario>) => {
+    this.usuariosService.obtenerListaUsuarios$().subscribe( (listaUsuarios: Array<Usuario>) => {
       this.listaUsuarios = listaUsuarios;
       console.log('AdminUsuariosComp: listaUsuarios', this.listaUsuarios);
     });
   }
 
   ngOnDestroy() {
-    this.subscriptionAccessToken.unsubscribe();
     this.subscriptionUsuarioLogado.unsubscribe();
   }
 }

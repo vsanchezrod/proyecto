@@ -26,9 +26,9 @@ export class MensajesService {
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService) {}
 
-  public obtenerListaDeMensajes$(id: string, accessToken: string): Observable<Array<Mensaje>> {
+  public obtenerListaDeMensajes$(id: string): Observable<Array<Mensaje>> {
     this.httpClient.get<Array<Mensaje>>(environment.host + `/mensajes/${id}`,
-      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe(response => {
+      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'}).subscribe(response => {
         this.listaMensajes$.next(response.body);
     });
     return this.listaMensajes$.asObservable();

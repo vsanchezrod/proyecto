@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 // Peticiones Http
-import {HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 // Componente
@@ -26,10 +26,10 @@ export class UsuariosService {
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService) { }
 
-  public obtenerListaUsuarios$(accessToken: string): Observable<Array<Usuario>> {
+  public obtenerListaUsuarios$(): Observable<Array<Usuario>> {
 
     this.httpClient.get<Array<Usuario>>(environment.host + '/usuarios',
-      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'response'}).subscribe( (response) => {
+      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'}).subscribe( (response) => {
       this.listaUsuarios$.next(response.body);
       console.log('ServicioUsuario: ListaUsuarios: ', response.body);
     });
@@ -46,20 +46,19 @@ export class UsuariosService {
       {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
   }
 
-  // REVISAR ESTE MÉTODO Y EL TIPO DE OBSERVABLE
   public buscarUsuarioPorNombre(nombre: string): Observable<Usuario> {
     return this.httpClient.get<Usuario>(environment.host + `/public/usuarios?nombre=${nombre}`,
       {headers: this.cabecerasHttpService.generarCabecerasGet()});
   }
 
-  public obtenerNumeroUsuarios(accessToken: string): Observable<Total> {
+  public obtenerNumeroUsuarios(): Observable<Total> {
     return this.httpClient.get<Total>(environment.host + '/usuarios/numero',
-    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'body'});
   }
 
-  public actualizarUsuario(usuario: Usuario, accessToken: string): Observable<HttpResponse<Usuario>> {
+  public actualizarUsuario(usuario: Usuario): Observable<HttpResponse<Usuario>> {
     return this.httpClient.patch<Usuario>(environment.host + +`/usuarios/${usuario.id}`, usuario,
-    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(accessToken), observe: 'response'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'});
   }
 
 }

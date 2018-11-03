@@ -1,18 +1,11 @@
 import { Injectable } from '@angular/core';
 
-// Encode y decode base64
-import { Base64 } from 'js-base64';
-
 // Modelo
 import { Usuario } from '../modelos/usuario.model';
 
 // Peticiones HTTP
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject} from 'rxjs';
-
-// Servicio
-import { UsuariosService } from './usuarios.service';
-import { CabecerasHttpService } from './cabeceras-http.service';
 
 // Producción
 import { environment } from '../../environments/environment';
@@ -26,16 +19,14 @@ export class UsuarioSesionService {
   private usuarioLogado: Usuario = new Usuario();
   private usuarioLogado$ = new BehaviorSubject<Usuario>(new Usuario());
 
-  constructor(private httpClient: HttpClient,
-              private usuariosService: UsuariosService,
-              private cabecerasHttpService: CabecerasHttpService) { }
+  constructor(private httpClient: HttpClient) { }
 
   public login(email: string, password: string): Observable<HttpResponse<any>> {
 
     const respuestaLogin$ = new Subject<HttpResponse<any>>();
     this.httpClient.post<any>(environment.host + '/oauth/token',
       this.generarBody(email, password),
-      {headers: this.cabecerasHttpService.generarCabecerasLogin(), observe: 'response'})
+      {headers: this.generarCabecerasLogin(), observe: 'response'})
         .subscribe(
           (response) => {
             const accessToken = this.obtenerAccessToken(response);
@@ -80,6 +71,14 @@ export class UsuarioSesionService {
     return this.usuarioLogado.roles.includes('usuario');
   }
 
+  private generarCabecerasLogin(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': `Basic ${environment.loginAuthorization}`,
+      'Accept': 'application/json'
+    });
+  }
+
   private generarBody(email: string, password: string): HttpParams {
     return new HttpParams()
       .set('grant_type' , 'password')
@@ -104,10 +103,19 @@ export class UsuarioSesionService {
     // Se parsea el string a JSON y se accede a la propiedad
     const idUsuario = JSON.parse(datosPayload)['user_name'];
 
-    this.usuariosService.buscarUsuarioPorId(idUsuario).subscribe((usuario: Usuario) => {
+    this.buscarUsuarioPorId(idUsuario).subscribe((usuario: Usuario) => {
       this.usuarioLogado = usuario;
       this.usuarioLogado$.next(usuario);
     });
+  }
+
+  private buscarUsuarioPorId(id: string): Observable<Usuario> {
+    const headers: HttpHeaders = new HttpHeaders ({
+      'Accept': 'application/json'
+    });
+
+    return this.httpClient.get<Usuario>(environment.host + `/public/usuarios/${id}`,
+      {headers: headers, observe: 'body'});
   }
 
 }

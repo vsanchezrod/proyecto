@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  host: 'http://localhost:8080/fitness/api'
+  host: 'http://localhost:8080/fitness/api',
+  loginAuthorization: 'dGVzdGp3dGNsaWVudGlkOlhZN2ttem9OemwxMDA='
 };
 
 /*

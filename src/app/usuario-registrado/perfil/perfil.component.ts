@@ -112,7 +112,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
     usuarioActualizado.id = this.usuario.id;
 
     console.log('Actualizar usuario: ', this.formularioActualizacion.value);
-    this.usuarioService.actualizarUsuario(usuarioActualizado, this.accessToken);
+    this.usuarioService.actualizarUsuario(usuarioActualizado);
   }
 
 }
