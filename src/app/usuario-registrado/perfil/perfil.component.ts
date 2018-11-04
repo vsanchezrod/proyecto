@@ -33,7 +33,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
   public progreso: number;
   public mostrarSpinner: boolean;
 
-  private subscriptionAccessToken: Subscription;
   private subscriptionUsuarioLogado: Subscription;
   private subscriptionProvincias: Subscription;
 
@@ -73,7 +72,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptionAccessToken.unsubscribe();
     this.subscriptionUsuarioLogado.unsubscribe();
     this.subscriptionProvincias.unsubscribe();
   }

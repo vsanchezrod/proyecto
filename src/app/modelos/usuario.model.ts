@@ -16,6 +16,8 @@ export class Usuario {
   intereses?: Array<ActividadCategoria>;
   terminos: boolean;
   valoracion: number;
+  valoracionTotal: number;
+  numeroValoraciones: number;
   roles: Array<string>;
   amigos?: Array<string>;
 

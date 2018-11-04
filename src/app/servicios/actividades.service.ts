@@ -24,8 +24,9 @@ export class ActividadesService {
               private cabecerasHttpService: CabecerasHttpService) {}
 
   public obtenerListaActividadesActuales$(): Observable<Array<Actividad>> {
+    const params = new HttpParams().set('realizadas', 'false');
     return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
-    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'});
   }
 
   public obtenerListaActividadesRealizadas$(): Observable<Array<Actividad>> {
@@ -33,7 +34,6 @@ export class ActividadesService {
     return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
     {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'});
   }
-
 
   // Método para crear actividad y mandar la petición al API
   public crearActividad(actividad: Actividad): Observable<HttpResponse<Actividad>> {
