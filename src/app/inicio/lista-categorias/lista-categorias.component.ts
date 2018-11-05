@@ -1,35 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
+// Servicios
 import { CategoriasService } from '../../servicios/categorias.service';
 
+// Modelos de datos
 import { Categoria } from '../../modelos/categoria.model';
 
 // Rutas
 import { Router } from '@angular/router';
+
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-lista-categorias',
   templateUrl: './lista-categorias.component.html',
   styleUrls: ['./lista-categorias.component.css']
 })
-export class ListaCategoriasComponent implements OnInit {
+export class ListaCategoriasComponent implements OnInit, OnDestroy {
 
   public listaCategorias: Array<Categoria>;
+
+  private subscripcionListaCategorias: Subscription;
 
   constructor(private categoriasService: CategoriasService,
               private router: Router) {}
 
   ngOnInit() {
 
-    this.categoriasService.obtenerListaCategorias$().subscribe(categorias => {
+    this.subscripcionListaCategorias = this.categoriasService.obtenerListaCategorias$().subscribe(categorias => {
       this.listaCategorias = categorias;
       }
     );
   }
 
+  ngOnDestroy() {
+    this.subscripcionListaCategorias.unsubscribe();
+  }
+
   // PENDIENTE
   public cargarActividades(categoria): void {
-    this.router.navigate(['/salidas', categoria.nombre ]);
+    this.router.navigate(['/salidas', categoria.id ]);
   }
 
 }
