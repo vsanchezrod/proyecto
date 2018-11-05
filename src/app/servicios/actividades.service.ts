@@ -62,7 +62,7 @@ export class ActividadesService {
   public obtenerListaActividadesDelUsuario$(id: string): Observable<Array<Actividad>> {
     const params = new HttpParams().set('participante', id);
     return this.httpClient.get<Array<Actividad>>(environment.host + '/actividades',
-    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'});
   }
 
   public obtenerListadoProximasActividadesDelUsuario$(id: string): Observable<Array<Actividad>> {
@@ -84,6 +84,3 @@ export class ActividadesService {
   }
 
 }
-
-
-

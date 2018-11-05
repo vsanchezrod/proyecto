@@ -62,7 +62,7 @@ export class ViajesService {
   public obtenerListaViajesDelUsuario$(id: string): Observable<Array<Viaje>> {
     const params = new HttpParams().set('participante', id);
     return this.httpClient.get<Array<Viaje>>(environment.host + '/viajes',
-    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'});
   }
 
   public obtenerListadoProximosViajesDelUsuario$(id: string): Observable<Array<Viaje>> {

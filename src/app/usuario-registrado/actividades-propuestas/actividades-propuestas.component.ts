@@ -31,14 +31,14 @@ export class ActividadesPropuestasComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.usuario = new Usuario();
+    // this.usuario = new Usuario();
     this.listaMisActividadesPropuestas = [];
 
     // Obtener el usuario logado
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
       (usuario: Usuario) => {
         this.usuario = usuario;
-        console.log('ActivProp: obtenerUsuario: usuario:', this.usuario);
+
         // Obtener la lista de actividades creadas por el usuario
         this.subscriptionActividadesUsuario = this.actividadesService.buscarActividadesCreadasPorUsuario(this.usuario.id).subscribe(
           (listaActividades: Array<Actividad>) => {
@@ -46,7 +46,10 @@ export class ActividadesPropuestasComponent implements OnInit, OnDestroy {
             console.log('ActivProp: buscarActivUsuario: listaActividades: ', this.listaMisActividadesPropuestas);
         });
         // Para que cargue por defecto la primera salida
-        this.salida = this.salida[0];
+        if (this.listaMisActividadesPropuestas.length > 0) {
+          console.log('Mis 1 actividades propuestas:', this.listaMisActividadesPropuestas[0]);
+          this.salida = this.listaMisActividadesPropuestas[0];
+        }
     });
 
   }

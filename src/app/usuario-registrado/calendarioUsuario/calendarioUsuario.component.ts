@@ -49,57 +49,56 @@ export class CalendarioUsuarioComponent implements OnInit, OnDestroy {
     this.subscripcionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
       (usuario: Usuario) => {
         this.usuario = usuario;
+
+        this.subscripcionViajes = this.viajesService.obtenerListaViajesDelUsuario$(this.usuario.id).subscribe(
+          (viajes: Array<Viaje>) => {
+            console.log('Usuario.id: ', this.usuario.id);
+            // Se mapean los viajes con el modelo evento
+            for (const viaje of viajes) {
+              const fechaInicio: string = moment(viaje.fechaInicio).format('YYYY-MM-DD HH:mm');
+              const fechaFin: string = moment(viaje.fechaFin).format('YYYY-MM-DD HH:mm');
+              const nuevoEvento: Evento = new Evento(viaje.id, viaje.nombre, fechaInicio, fechaFin, 'viaje');
+              this.listaEventos.push(nuevoEvento);
+            }
+        });
+
+        this.subscripcionSalidas = this.actividadesService.obtenerListaActividadesDelUsuario$(this.usuario.id).subscribe(actividades => {
+
+          // Se mapean las actividades con el modelo evento
+          for (const actividad of actividades) {
+            const fechaInicio: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
+            const fechaFin: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
+            const nuevoEvento: Evento = new Evento(actividad.id, actividad.nombre, fechaInicio, fechaFin, 'actividad');
+            this.listaEventos.push(nuevoEvento);
+          }
+
+        });
+
+        this.subscripcionSalidas = this.actividadesService.obtenerListadoProximasActividadesDelUsuario$(this.usuario.id).subscribe(actividades => {
+
+         // Se mapean las actividades con el modelo evento
+          for (const actividad of actividades) {
+            const fechaInicio: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
+            const fechaFin: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
+            const nuevoEvento: Evento = new Evento(actividad.id, actividad.nombre, fechaInicio, fechaFin, 'actividad');
+            this.listaProximosEventos.push(nuevoEvento);
+          }
+
+        });
+
+        this.subscripcionViajes = this.viajesService.obtenerListadoProximosViajesDelUsuario$(this.usuario.id).subscribe(
+          (viajes: Array<Viaje>) => {
+
+            // Se mapean los viajes con el modelo evento
+            for (const viaje of viajes) {
+              const fechaInicio: string = moment(viaje.fechaInicio).format('YYYY-MM-DD HH:mm');
+              const fechaFin: string = moment(viaje.fechaFin).format('YYYY-MM-DD HH:mm');
+              const nuevoEvento: Evento = new Evento(viaje.id, viaje.nombre, fechaInicio, fechaFin, 'viaje');
+              this.listaProximosEventos.push(nuevoEvento);
+            }
+        });
       }
     );
-
-    this.subscripcionViajes = this.viajesService.obtenerListaViajesDelUsuario$(this.usuario.id).subscribe(
-      (viajes: Array<Viaje>) => {
-
-        // Se mapean los viajes con el modelo evento
-        for (const viaje of viajes) {
-          const fechaInicio: string = moment(viaje.fechaInicio).format('YYYY-MM-DD HH:mm');
-          const fechaFin: string = moment(viaje.fechaFin).format('YYYY-MM-DD HH:mm');
-          const nuevoEvento: Evento = new Evento(viaje.id, viaje.nombre, fechaInicio, fechaFin, 'viaje');
-          this.listaEventos.push(nuevoEvento);
-        }
-    });
-
-    this.subscripcionSalidas = this.actividadesService.obtenerListadoProximasActividadesDelUsuario$(this.usuario.id).subscribe(actividades => {
-
-      // Se mapean las actividades con el modelo event0
-      for (const actividad of actividades) {
-        const fechaInicio: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
-        const fechaFin: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
-        const nuevoEvento: Evento = new Evento(actividad.id, actividad.nombre, fechaInicio, fechaFin, 'actividad');
-        this.listaProximosEventos.push(nuevoEvento);
-      }
-
-    });
-
-    this.subscripcionViajes = this.viajesService.obtenerListadoProximosViajesDelUsuario$(this.usuario.id).subscribe(
-      (viajes: Array<Viaje>) => {
-
-        // Se mapean los viajes con el modelo evento
-        for (const viaje of viajes) {
-          const fechaInicio: string = moment(viaje.fechaInicio).format('YYYY-MM-DD HH:mm');
-          const fechaFin: string = moment(viaje.fechaFin).format('YYYY-MM-DD HH:mm');
-          const nuevoEvento: Evento = new Evento(viaje.id, viaje.nombre, fechaInicio, fechaFin, 'viaje');
-          this.listaProximosEventos.push(nuevoEvento);
-        }
-    });
-
-    this.subscripcionSalidas = this.actividadesService.obtenerListaActividadesDelUsuario$(this.usuario.id).subscribe(actividades => {
-
-      // Se mapean las actividades con el modelo event0
-      for (const actividad of actividades) {
-        const fechaInicio: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
-        const fechaFin: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
-        const nuevoEvento: Evento = new Evento(actividad.id, actividad.nombre, fechaInicio, fechaFin, 'actividad');
-        this.listaEventos.push(nuevoEvento);
-      }
-
-    });
-
  }
 
   ngOnDestroy() {
