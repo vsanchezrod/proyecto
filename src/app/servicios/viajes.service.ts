@@ -25,9 +25,15 @@ export class ViajesService {
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService) {}
 
-  public obtenerListadoViajesActuales$(): Observable<Array<Viaje>> {
+  public obtenerListaViajes$(): Observable<Array<Viaje>> {
     return this.httpClient.get<Array<Viaje>>(environment.host + '/public/viajes',
-      {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
+  }
+
+  public obtenerListadoViajesActuales$(): Observable<Array<Viaje>> {
+    const params = new HttpParams().set('realizadas', 'false');
+    return this.httpClient.get<Array<Viaje>>(environment.host + '/public/viajes',
+      {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'});
   }
 
   public obtenerListadoViajesRealizados$(): Observable<Array<Viaje>> {
@@ -36,7 +42,7 @@ export class ViajesService {
       {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'});
   }
 
-  public guardarViaje(viaje: Viaje): Observable<HttpResponse<Viaje>> {
+  public crearViaje(viaje: Viaje): Observable<HttpResponse<Viaje>> {
     return this.httpClient.post<Viaje>(environment.host + '/public/viajes', viaje,
       {headers: this.cabecerasHttpService.generarCabecerasPost(), observe: 'response'});
   }
@@ -44,6 +50,17 @@ export class ViajesService {
   public obtenerNumeroViajes(): Observable<Total> {
     return this.httpClient.get<Total>(environment.host + '/viajes/numero',
     {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'body'});
+  }
+
+  public borrarViaje(id: string): Observable<HttpResponse<Viaje>> {
+    return this.httpClient.delete<Viaje>(environment.host + `/viajes/${id}`,
+      {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'} );
+  }
+
+  public buscarViajesCreadosPorUsuario(idUsuario: string): Observable<Array<Viaje>> {
+    console.log('Voy a llamar a obtener actividades con el id!!!', idUsuario);
+    return this.httpClient.get<Array<Viaje>>(environment.host + `/viaje?id=${idUsuario}`,
+      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken()});
   }
 
 }

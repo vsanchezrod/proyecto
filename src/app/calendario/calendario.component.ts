@@ -50,7 +50,7 @@ export class CalendarioComponent implements OnInit, OnDestroy {
 
     });
 
-    this.subscripcionSalidas = this.actividadesService.obtenerListaActividadesActuales$().subscribe(actividades => {
+    this.subscripcionSalidas = this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
 
       // Se mapean las actividades con el modelo event0
       for (const actividad of actividades) {

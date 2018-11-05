@@ -25,7 +25,8 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.listaActividadesActuales = [];
-    
+    this.listaActividadesRealizadas = [];
+
     this.subscripcionObtenerListaActividadesActuales = this.actividadesService.obtenerListaActividadesActuales$().subscribe(actividades => {
       this.listaActividadesActuales = actividades;
     });

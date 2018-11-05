@@ -23,6 +23,12 @@ export class ActividadesService {
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService) {}
 
+  // ¿ELIMINAR?
+  public obtenerListaActividades$(): Observable<Array<Actividad>> {
+    return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
+  }
+
   public obtenerListaActividadesActuales$(): Observable<Array<Actividad>> {
     const params = new HttpParams().set('realizadas', 'false');
     return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
