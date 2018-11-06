@@ -12,6 +12,7 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 // Modelos
 import { Provincia } from '../../modelos/provincia.model';
 import { Categoria } from '../../modelos/categoria.model';
+import { Usuario } from '../../modelos/usuario.model';
 
 @Component({
   selector: 'app-registro',
@@ -70,10 +71,12 @@ export class RegistroComponent implements OnInit {
     });
   }
 
-  public enviarDatos(datos): void {
+  public enviarDatos(datosFormulario): void {
     console.log(this.formularioRegistro.value);
+    const usuario: Usuario = datosFormulario;
+    usuario.amigos = [];
 
-    this.usuariosService.crearUsuario(datos).subscribe( response => {
+    this.usuariosService.crearUsuario(datosFormulario).subscribe( response => {
       console.log('Respuesta: ' + response.status);
     });
   }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 // Peticiones Http
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 // Componente
@@ -47,8 +47,9 @@ export class UsuariosService {
   }
 
   public buscarUsuarioPorNombre(nombre: string): Observable<Usuario> {
-    return this.httpClient.get<Usuario>(environment.host + `/public/usuarios?nombre=${nombre}`,
-      {headers: this.cabecerasHttpService.generarCabecerasGet()});
+    const params = new HttpParams().set('nombre', nombre);
+    return this.httpClient.get<Usuario>(environment.host + '/public/usuarios',
+      {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'});
   }
 
   public obtenerNumeroUsuarios(): Observable<Total> {
