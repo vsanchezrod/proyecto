@@ -25,6 +25,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   public listaActividades: Array<Actividad> = [];
   public listaCategorias: Array<Categoria> = [];
 
+  public mostrarFormularioViaje: boolean;
   public viaje: Viaje;
   public distanciaMinima: number;
   public distanciaMaxima: number;
@@ -50,6 +51,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.viaje = new Viaje();
+    this.mostrarFormularioViaje = false;
     console.log('LISTA PARTICIPANTES',  this.viaje.listaParticipantes);
 
     this.distanciaMinima = 0;
@@ -139,6 +141,10 @@ export class ActividadesComponent implements OnInit, OnDestroy {
       console.log('ActividadesCompAdmin:BorrarActividad: ' + response.status);
       console.log('Borrada la actividad con id ' + id);
     });
+  }
+
+  public mostrarFormularioCrearViaje(valor: boolean) {
+    this.mostrarFormularioViaje = valor;
   }
 
 }

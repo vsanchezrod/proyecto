@@ -23,6 +23,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { RatingModule } from 'primeng/rating';
 import { SliderModule } from 'primeng/slider';
 import { CalendarModule } from 'primeng/calendar';
+import { AccordionModule } from 'primeng/accordion';
 
 // Módulos propios
 import { CompartidosModule } from '../compartidos/compartidos.module';
@@ -42,7 +43,8 @@ import { CompartidosModule } from '../compartidos/compartidos.module';
     MultiSelectModule,
     RatingModule,
     SliderModule,
-    CalendarModule
+    CalendarModule,
+    AccordionModule
   ],
   declarations: [
     AdministradorComponent,

@@ -1,19 +1,19 @@
 <div class="container">
-    <button pButton type="button" label="Nuevo mensaje" icon="pi pi-pencil" class="ui-button-icon-only ui-button-info ui-editor-toolbar">
-  </button>
+    <button pButton type="button" *ngIf="crearMensaje == false" (click)="mostrarFormularioMensaje(true)" label="Nuevo mensaje" icon="pi pi-pencil" class="ui-button-icon-only ui-button-info ui-editor-toolbar"></button>
+    <button pButton type="button" *ngIf="crearMensaje == true" (click)="mostrarFormularioMensaje(false)" label="Cancelar" icon="pi pi-times" class="ui-button-icon-only ui-button-info ui-editor-toolbar"></button>
 </div>
 <!-- ui-widget-overlay-->
 
-<div class="ui-g" style="z-index: 1000">
+<div [formGroup]="formularioMensaje" *ngIf="crearMensaje" class="ui-g" style="z-index: 1000" (submit)="mandarMensaje()">
     <form class="ui-g-12 ui-megamenu-vertical">
         <label>Destinatario:</label>
-        <p-dropdown [options]="listaAmigos" placeholder="Elige amigo" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
+        <p-dropdown [formControl]="formularioMensaje.controls['idUsuarioReceptor']" [options]="listaAmigos" placeholder="Elige amigo" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
         <label>Asunto:</label>
-        <input id="asunto" type="text" size="30" pInputText>
+        <input [formControl]="formularioMensaje.controls['asunto']" id="asunto" type="text" size="30" pInputText>
         <label>Mensaje:</label>
-        <textarea name="mensaje" rows="5" cols="30" pInputTextarea></textarea>
-        <button pButton type="submit" label="Enviar" icon="pi pi-pencil" class="ui-button-icon-only ui-button-info ui-editor-toolbar"></button>
-        <button pButton type="button" label="Cancelar" icon="pi pi-file" class="ui-button-icon-only ui-button-info ui-editor-toolbar"></button>
+        <textarea [formControl]="formularioMensaje.controls['cuerpoMensaje']" name="mensaje" rows="5" cols="30" pInputTextarea></textarea>
+        <button pButton type="submit" label="Enviar" icon="pi pi-pencil" class="ui-button-info ui-editor-toolbar"></button>
+        <button pButton type="button" label="Cancelar" (click)="mostrarFormularioMensaje(false)" icon="pi pi-times" class="ui-button-info ui-editor-toolbar"></button>
     </form>
 </div>
 
@@ -25,14 +25,11 @@
             <p-header>
                 Tus mensajes ({{ listaMensajes.length }})
             </p-header>
-            <ng-template *ngIf="listaMensajes.length > 0" let-mensaje pTemplate="item" let-i="index">
-                <div class="ui-g mensaje-item ui-button" (click)="cargarMensaje(mensaje)">
-                    <div class="ui-md-3 d-none d-sm-block">
-                        <img class="rounded-circle mx-auto d-block" src="../../../assets/imagenes/avatars/7.png" alt="usuarioEmisor">
-                    </div>
-                    <div class="ui-g-12 ui-md-9">
-                        <div class="ui-g">
-                            <div class="ui-g-2 ui-sm-6 d-none d-sm-block">Fecha </div>
+            <ng-template let-mensaje pTemplate="item" let-i="index">
+                <div class="ui-g mensaje-item ui-button">
+                    <div class="ui-g-12">
+                        <div class="ui-g" (click)="cargarMensaje(mensaje)">
+                            <div class="ui-g-2 ui-sm-12 d-none d-sm-block">Fecha </div>
                             <div class="ui-g-10 ui-sm-12">{{ mensaje.fecha }}</div>
 
                             <div class="ui-g-2 ui-sm-6 d-none d-sm-block">Usuario: </div>
@@ -41,12 +38,14 @@
                             <div class="ui-g-2 ui-sm-6 d-none d-sm-block">Asunto: </div>
                             <div class="ui-g-10 ui-sm-6">{{ mensaje.asunto }}</div>
                         </div>
-                        <p-splitButton class="d-none d-sm-block" label="Responder" icon="pi pi-file" (click)="responderMensaje(mensaje.idUsuarioEmisor)" [model]="items"></p-splitButton>
+                        <button class="ui-g-12 ui-sm-6 d-none d-sm-block" pButton type="button" label="Responder" (click)="responderMensaje(mensaje.idUsuarioEmisor)" icon="pi pi-file" style="margin-right: .25em"></button>
+                        <button class="ui-g-12 ui-sm-6 d-none d-sm-block ui-button-secondary" pButton type="button" label="Borrar" (click)="borrarMensaje(mensaje.id)" icon="pi pi-times"></button>
                     </div>
 
                 </div>
             </ng-template>
         </p-dataScroller>
+
 
         <div class="col-md-12 col-lg-8">
 

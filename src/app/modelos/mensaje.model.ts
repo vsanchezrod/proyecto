@@ -5,6 +5,6 @@ export class Mensaje {
   idUsuarioReceptor: string;
   fecha: Date;
   asunto: string;
-  mensaje: string;
+  cuerpoMensaje: string;
   leido?: boolean;
 }

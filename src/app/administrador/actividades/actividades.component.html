@@ -1,49 +1,29 @@
 <div class="container">
-
-    <div class="row">
-
-        <p-dataScroller class="col-md-12 col-lg-6" [value]="listaViajes" [rows]="10" [inline]="true" scrollHeight="500px">
-
-            <p-header>
-                LISTA DE VIAJES
-            </p-header>
-
-            <ng-template let-viaje pTemplate="item">
-
+    <div class="ui-g">
+        <h3 class="text-center ui-g-4">Viajes</h3>
+        <p-accordion class="ui-g-8">
+            <p-accordionTab *ngFor="let viaje of listaViajes" [header]="viaje.nombre">
                 <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
-
-                <div>
-                    <button pButton type="button" label="EDITAR" class="ui-button-rounded ui-button-warning"></button>
-                    <button pButton type="button" label="BORRAR" class="ui-button-rounded ui-button-danger"></button>
-                </div>
-
-            </ng-template>
-
-        </p-dataScroller>
-
-
-        <p-dataScroller class="col-md-12 col-lg-6" [value]="listaActividades" [rows]="10" [inline]="true" scrollHeight="500px">
-
-            <p-header>
-                LISTA DE ACTIVIDADES
-            </p-header>
-
-            <ng-template let-salida pTemplate="item">
-
-                <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
                 <button pButton type="button" label="EDITAR" class="ui-button-rounded ui-button-warning"></button>
-                <button pButton type="button" label="BORRAR" class="ui-button-rounded ui-button-danger" (click)="borrarActividad(salida.id)"></button>
+                <button pButton type="button" label="BORRAR" class="ui-button-rounded ui-button-danger"></button>
+            </p-accordionTab>
+        </p-accordion>
 
-            </ng-template>
-
-        </p-dataScroller>
-
+        <h3 class="text-center ui-g-4">Actividades</h3>
+        <p-accordion class="ui-g-8">
+            <p-accordionTab *ngFor="let salida of listaActividades" [header]="salida.nombre">
+                <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
+                <button pButton type="button" label="BORRAR" class="ui-button-rounded ui-button-danger"></button>
+            </p-accordionTab>
+        </p-accordion>
     </div>
-
+</div>
+<div class="container">
+    <button pButton type="button" *ngIf="mostrarFormularioViaje == false" (click)="mostrarFormularioCrearViaje(true)" label="Crear viaje" icon="pi pi-pencil" class="ui-button-info ui-editor-toolbar"></button>
+    <button pButton type="button" *ngIf="mostrarFormularioViaje == true" (click)="mostrarFormularioCrearViaje(false)" label="Cancelar" icon="pi pi-times" class="ui-button-icon-only ui-button-info ui-editor-toolbar"></button>
 </div>
 
-
-<div class="container" style="z-index: 1000">
+<div class="container formularioViaje" *ngIf="mostrarFormularioViaje == true" style="z-index: 1000">
 
     <div class="row">
 
@@ -127,8 +107,6 @@
                 <button pButton type="submit" label="PUBLICAR ACTIVIDAD" class="ui-button-info"></button>
 
             </form>
-
-            {{ formularioActividadAdmin.value | json }} {{ imagen }}
 
 
         </div>

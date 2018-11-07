@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Mensaje } from '../modelos/mensaje.model';
 
 // Realizar peticiones
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 // Observables
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -32,6 +32,17 @@ export class MensajesService {
         this.listaMensajes$.next(response.body);
     });
     return this.listaMensajes$.asObservable();
+  }
+
+  public mandarMensaje(mensaje: Mensaje): Observable<HttpResponse<Mensaje>> {
+    return this.httpClient.post<Mensaje>(environment.host + '/mensajes', mensaje,
+      {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'});
+  }
+
+  public borrarMensaje (id: string): Observable<HttpResponse<Mensaje>> {
+    console.log('BORRAR MENSAJE, ', id);
+    return this.httpClient.delete<Mensaje>(environment.host + `/mensajes/${id}`,
+      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'});
   }
 
 }

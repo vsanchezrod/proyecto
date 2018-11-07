@@ -3,7 +3,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 // Modelo de datos
 import { Usuario } from '../../modelos/usuario.model';
 import { Mensaje } from '../../modelos/mensaje.model';
-import { MenuItem } from 'primeng/api';
+
+// Formularios
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 // Servicio
 import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
@@ -11,8 +13,10 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { MensajesService } from '../../servicios/mensajes.service';
 import { MessageService } from 'primeng/api';
 
-import { Subscription } from 'rxjs';
+// Peticiones Http
+import { HttpResponse } from '@angular/common/http';
 
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mensajes',
@@ -22,12 +26,13 @@ import { Subscription } from 'rxjs';
 export class MensajesComponent implements OnInit, OnDestroy {
 
   public mensaje: Mensaje;
-  public listaMensajes: Array<Mensaje> = [];
-  public listaAmigos: Array<Usuario> = [];
+  public listaMensajes: Array<Mensaje>;
+  public listaAmigos: Array<Usuario>;
 
-  public items: MenuItem[];
+  public crearMensaje: boolean;
+  public formularioMensaje: FormGroup;
 
-  public usuario: Usuario;
+  public usuario: Usuario = new Usuario();
 
   private subscriptionUsuarioLogado: Subscription;
   private subscriptionObtenerMensajes: Subscription;
@@ -39,14 +44,16 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+    this.crearMensaje = false;
     this.mensaje = new Mensaje();
+    this.listaMensajes = [];
+    this.listaAmigos = [];
 
-    this.items = [
-      {label: 'Borrar', icon: 'fa fa-close', command: () => {
-          this.borrarMensaje(this.mensaje.id);
-        }
-      }
-    ];
+    this.formularioMensaje = new FormGroup({
+      'idUsuarioReceptor': new FormControl('', Validators.required),
+      'asunto': new FormControl('', Validators.required),
+      'cuerpoMensaje': new FormControl('', Validators.required),
+    });
 
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
       this.usuario = usuario;
@@ -61,12 +68,13 @@ export class MensajesComponent implements OnInit, OnDestroy {
       // Buscar los mensajes para ese usuario
       this.subscriptionObtenerMensajes = this.mensajesService.obtenerListaDeMensajes$(this.usuario.id).subscribe(
         (mensajes: Array<Mensaje>) => {
+          console.log('La lista de mensajes es: ', this.listaMensajes);
           this.listaMensajes = mensajes;
       });
     });
 
     // Para que cargue por defecto el primer mensaje ordenado por fecha
-    this.mensaje = this.listaMensajes[0];
+    // this.mensaje = this.listaMensajes[0];
 
   }
 
@@ -75,26 +83,51 @@ export class MensajesComponent implements OnInit, OnDestroy {
     this.subscriptionObtenerMensajes.unsubscribe();
   }
 
+  public mandarMensaje(): void {
+    const mensaje: Mensaje = this.formularioMensaje.value;
+    mensaje.idUsuarioReceptor = this.formularioMensaje.controls['idUsuarioReceptor'].value['id'];
+    mensaje.idUsuarioEmisor = this.usuario.id;
+    mensaje.fecha = new Date();
+    mensaje.leido = false;
 
-  cargarMensaje(mensaje): void {
-    this.mensaje = mensaje;
+    this.mensajesService.mandarMensaje(mensaje).subscribe(
+      (response: HttpResponse<Mensaje>) => {
+        console.log(response);
+      }
+    );
+    this.mostrarFormularioMensaje(false);
+  }
 
+  public cargarMensaje(mensajeElegido: Mensaje): void {
+    this.mensaje = mensajeElegido;
     // Cuando se carga el mensaje cambia el estado a LEIDO
-    // TO DO - HACER UN PUT / PATCH DEL MENSAJE para cambiar el estado en la BBDD
+    // TO DO - PATCH DEL MENSAJE para cambiar el estado en la BBDD
     this.mensaje.leido = true;
   }
+
+  public mostrarFormularioMensaje(valor: boolean) {
+    this.crearMensaje = valor;
+  }
+
+
+
+  // OPCIONAL SI DA TIEMPO
 
   responderMensaje(idUsuarioEmisor) {
     this.messageService.add({severity: 'success', summary: 'Success', detail: 'Data Updated'});
     console.log('Quiero responder al mensaje de ' + idUsuarioEmisor);
   }
 
-  borrarMensaje(id): void {
-    this.messageService.add({severity: 'success', summary: 'Success', detail: 'Data Deleted'});
-    console.log('Quiero borrar el mensaje con id ' + id);
-  }
+  public borrarMensaje(idMensaje: string): void {
 
-  mostrarFormularioMensaje () {
+    this.mensajesService.borrarMensaje(idMensaje).subscribe(
+      (response: HttpResponse<Mensaje>) => {
+        console.log('Quiero borrar el mensaje con id ' + idMensaje);
+        console.log(response);
+      }
+    );
+
+    this.messageService.add({severity: 'success', summary: 'Success', detail: 'Data Deleted'});
 
   }
 

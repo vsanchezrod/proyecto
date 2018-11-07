@@ -63,7 +63,7 @@ export class ActividadesPropuestasComponent implements OnInit, OnDestroy {
     alert('SALIDA CANCELADA');
   }
 
-  private cargarActividad(actividad): void {
+  public cargarActividad(actividad): void {
     console.log('ACTIVIDAD PARA CARGAR: ' , actividad);
     this.salida = actividad;
   }
