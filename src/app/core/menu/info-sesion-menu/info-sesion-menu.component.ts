@@ -5,10 +5,14 @@ import { MenuItem } from 'primeng/api';
 
 // Servicio
 import { UsuarioSesionService } from '../../../servicios/usuario-sesion.service';
+import { UsuariosService } from '../../../servicios/usuarios.service';
 
 // Rutas
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/modelos/usuario.model';
+
+// Modelos
+import { Usuario } from '../../../modelos/usuario.model';
+import { Total } from '../../../modelos/total.model';
 
 import { Subscription } from 'rxjs';
 
@@ -22,9 +26,13 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
   public usuario: Usuario;
   public itemsAdmin: MenuItem[];
   public itemsUsuario: MenuItem[];
+  public numeroMensajesSinLeer: number;
+
   private suscripcionObtenerUsuarioLogado: Subscription;
+  private subscripcionObtenerMensajes: Subscription;
 
   constructor(public usuarioSesionService: UsuarioSesionService,
+              private usuariosService: UsuariosService,
               private router: Router) { }
 
   ngOnInit() {
@@ -34,6 +42,13 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
     this.suscripcionObtenerUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
       (usuario: Usuario) => {
         this.usuario = usuario;
+
+        this.subscripcionObtenerMensajes = this.usuariosService.obtenerNumeroMensajesNoLeidosDeUsuario(this.usuario.id).subscribe(
+          (total: Total) => {
+            this.numeroMensajesSinLeer = total.total;
+          }
+        );
+
       }
     );
 
@@ -111,6 +126,7 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log('INFOSESSION: ONDESTROY');
     this.suscripcionObtenerUsuarioLogado.unsubscribe();
+    this.subscripcionObtenerMensajes.unsubscribe();
   }
 
   public logout(): void {
@@ -118,6 +134,9 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
     this.router.navigate(['/inicio']);
   }
 
+  public verMensajes(): void {
+    this.router.navigate(['/usuario/mensajes']);
+  }
 
 
 }

@@ -67,4 +67,10 @@ export class UsuariosService {
       {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'});
   }
 
+  public obtenerNumeroMensajesNoLeidosDeUsuario(id: String): Observable<Total> {
+    const params = new HttpParams().set('estado', 'false');
+    return this.httpClient.get<Total>(environment.host + `/usuarios/${id}/mensajes/numero`,
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'});
+  }
+
 }

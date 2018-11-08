@@ -74,7 +74,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
     });
 
     // Para que cargue por defecto el primer mensaje ordenado por fecha
-    // this.mensaje = this.listaMensajes[0];
+    this.mensaje = this.listaMensajes[0];
 
   }
 
@@ -100,9 +100,12 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   public cargarMensaje(mensajeElegido: Mensaje): void {
     this.mensaje = mensajeElegido;
-    // Cuando se carga el mensaje cambia el estado a LEIDO
-    // TO DO - PATCH DEL MENSAJE para cambiar el estado en la BBDD
     this.mensaje.leido = true;
+    this.mensajesService.actualizarMensaje(this.mensaje).subscribe(
+      (response: HttpResponse<Mensaje>) => {
+        console.log(response);
+      }
+    );
   }
 
   public mostrarFormularioMensaje(valor: boolean) {

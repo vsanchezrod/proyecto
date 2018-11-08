@@ -45,4 +45,9 @@ export class MensajesService {
       {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'});
   }
 
+  public actualizarMensaje(mensaje: Mensaje): Observable<HttpResponse<Mensaje>> {
+    return this.httpClient.patch<Mensaje>(environment.host + `/mensaje/${mensaje.id}`, mensaje,
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'});
+  }
+
 }

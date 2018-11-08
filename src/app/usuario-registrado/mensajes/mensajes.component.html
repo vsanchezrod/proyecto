@@ -2,7 +2,48 @@
     <button pButton type="button" *ngIf="crearMensaje == false" (click)="mostrarFormularioMensaje(true)" label="Nuevo mensaje" icon="pi pi-pencil" class="ui-button-icon-only ui-button-info ui-editor-toolbar"></button>
     <button pButton type="button" *ngIf="crearMensaje == true" (click)="mostrarFormularioMensaje(false)" label="Cancelar" icon="pi pi-times" class="ui-button-icon-only ui-button-info ui-editor-toolbar"></button>
 </div>
-<!-- ui-widget-overlay-->
+
+
+<!-- Button trigger modal -->
+<div class="container">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formMensaje">
+        Crear nuevo mensaje
+    </button>
+</div>
+
+<!-- Modal 
+<div class="modal fade" id="formMensaje" tabindex="-1" role="dialog" aria-labelledby="mensajeTitulo" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mensajeTitulo">Nuevo mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <div [formGroup]="formularioMensaje" *ngIf="crearMensaje" class="ui-g" style="z-index: 1000" (submit)="mandarMensaje()">
+                    <form class="ui-g-12 ui-megamenu-vertical">
+                        <label>Destinatario:</label>
+                        <p-dropdown [formControl]="formularioMensaje.controls['idUsuarioReceptor']" [options]="listaAmigos" placeholder="Elige amigo" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
+                        <label>Asunto:</label>
+                        <input [formControl]="formularioMensaje.controls['asunto']" id="asunto" type="text" size="30" pInputText>
+                        <label>Mensaje:</label>
+                        <textarea [formControl]="formularioMensaje.controls['cuerpoMensaje']" name="mensaje" rows="5" cols="30" pInputTextarea></textarea>
+                        <button pButton type="submit" label="Enviar" icon="pi pi-pencil" class="ui-button-info ui-editor-toolbar"></button>
+                        <button pButton type="button" label="Cancelar" (click)="mostrarFormularioMensaje(false)" icon="pi pi-times" class="ui-button-info ui-editor-toolbar"></button>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
 
 <div [formGroup]="formularioMensaje" *ngIf="crearMensaje" class="ui-g" style="z-index: 1000" (submit)="mandarMensaje()">
     <form class="ui-g-12 ui-megamenu-vertical">
@@ -63,4 +104,4 @@
     </div>
 
 
-</div> -->
+</div>
