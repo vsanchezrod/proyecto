@@ -4,6 +4,11 @@ import * as moment from 'moment';
 // Componente
 import { Usuario } from '../../modelos/usuario.model';
 
+// Servicios
+import { UsuariosService } from '../../servicios/usuarios.service';
+
+import { HttpResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-tarjeta-usuario',
@@ -16,7 +21,7 @@ export class TarjetaUsuarioComponent implements OnInit {
   public fechaNacimientoUsuario: string;
   public esAdministrador: boolean;
 
-  constructor() { }
+  constructor(private usuariosService: UsuariosService) { }
 
   ngOnInit() {
 
@@ -26,6 +31,33 @@ export class TarjetaUsuarioComponent implements OnInit {
     if (this.usuario.roles.includes('administrador')) {
       this.esAdministrador = true;
     }
+  }
+
+  public actualizarAAdmin(admin: boolean): void {
+    console.log('ADMIN:', admin);
+    if (admin) {
+      this.usuario.roles.push('administrador');
+      console.log('ROLES TRUW: ', this.usuario.roles);
+    } else {
+      const posicionRolAdministrador = this.usuario.roles.indexOf('administrador');
+      this.usuario.roles.splice(posicionRolAdministrador, 1);
+      console.log('POSICION: ', posicionRolAdministrador);
+      console.log('ROLES FALSE: ', this.usuario.roles);
+    }
+
+    this.usuariosService.actualizarUsuario(this.usuario).subscribe(
+      (response: HttpResponse<any>) => {
+        console.log(response);
+      }
+    );
+  }
+
+  public borrarUsuario(idUsuario: string) {
+    this.usuariosService.borrarUsuario(idUsuario).subscribe(
+      (response: HttpResponse<any>) => {
+        console.log(response);
+      }
+    );
   }
 
 }

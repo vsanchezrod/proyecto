@@ -62,4 +62,9 @@ export class UsuariosService {
     {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'});
   }
 
+  public borrarUsuario (id: string): Observable<HttpResponse<Usuario>> {
+    return this.httpClient.delete<Usuario>(environment.host + `/usuarios/${id}`,
+      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'});
+  }
+
 }
