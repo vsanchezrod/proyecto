@@ -70,11 +70,12 @@ export class MensajesComponent implements OnInit, OnDestroy {
         (mensajes: Array<Mensaje>) => {
           console.log('La lista de mensajes es: ', this.listaMensajes);
           this.listaMensajes = mensajes;
+          
+          // Para que cargue por defecto el primer mensaje ordenado por fecha
+          this.mensaje = this.listaMensajes[0];
       });
     });
 
-    // Para que cargue por defecto el primer mensaje ordenado por fecha
-    this.mensaje = this.listaMensajes[0];
 
   }
 

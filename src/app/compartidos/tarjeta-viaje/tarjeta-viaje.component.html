@@ -14,12 +14,13 @@
         <p-rating class="ui-grid-col-12" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
         <!--<button class="ui-grid-col-6" pButton (click)="verViaje()" type="button" icon="pi pi-search" iconPos="right" label="VER MAS"></button>-->
         <button class="ui-grid-col-12 btn btn-primary" pButton type="button" icon="pi pi-user-plus" iconPos="right" (click)="apuntarse()" data-toggle="modal" data-target="#prueba" [disabled]="viaje.listaParticipantes.length === viaje.plazas" label="APÚNTATE"></button>
-        <p-message class="ui-grid-col-12 text-center" *ngIf="viaje.listaParticipantes.length === viaje.plazas" severity="warn" text="Plazas agotadas :("></p-message>
+        <p-message class="ui-grid-col-12 text-center" *ngIf="viaje.listaParticipantes.length == viaje.plazas" severity="warn" text="Plazas agotadas :("></p-message>
     </p-footer>
 
 </p-card>
 
 <!-- Modal -->
+<!--
 <div class="modal fade" id="prueba" tabindex="-1" role="dialog" aria-labelledby="viaje.nombre" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -39,3 +40,4 @@
         </div>
     </div>
 </div>
+-->

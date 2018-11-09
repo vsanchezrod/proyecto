@@ -15,7 +15,7 @@ import {Router} from '@angular/router';
 export class TarjetaViajeComponent implements OnInit {
 
   // Se recibe el valor de salida desde fuera (elemento padre)
-  @Input() viaje: Viaje;
+  @Input() viaje: Viaje = new Viaje();
   public fechaInicioParseada: string;
   public fechaFinParseada: string;
 
@@ -23,8 +23,9 @@ export class TarjetaViajeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.fechaInicioParseada = moment(this.viaje.fechaInicio).locale('es').format('d/MM/YYYY HH:mm');
-    this.fechaFinParseada = moment(this.viaje.fechaInicio).locale('es').format('L');
+    this.viaje.listaParticipantes = [];
+    this.fechaInicioParseada = moment(this.viaje.fechaInicio).locale('es').format('DD/MM/YYYY HH:mm');
+    this.fechaFinParseada = moment(this.viaje.fechaFin).locale('es').format('DD/MM/YYYY HH:mm');
   }
 
   // Método para mostrar la salida

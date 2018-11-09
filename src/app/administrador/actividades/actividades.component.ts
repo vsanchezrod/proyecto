@@ -5,14 +5,17 @@ import { ViajesService } from '../../servicios/viajes.service';
 import { ActividadesService } from '../../servicios/actividades.service';
 import { CategoriasService } from '../../servicios/categorias.service';
 import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
+import { MensajesService } from '../../servicios/mensajes.service';
 
 // Modelos de datos
 import { Viaje } from '../../modelos/viaje.model';
 import { Actividad } from '../../modelos/actividad.model';
 import { Categoria } from '../../modelos/categoria.model';
 import { Usuario } from '../../modelos/usuario.model';
+import { Mensaje } from 'src/app/modelos/mensaje.model';
 
 import { Subscription } from 'rxjs';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-actividades',
@@ -46,7 +49,8 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   constructor(private viajesService: ViajesService,
               private actividadesService: ActividadesService,
               private categoriasService: CategoriasService,
-              private usuarioSesionService: UsuarioSesionService) { }
+              private usuarioSesionService: UsuarioSesionService,
+              private mensajesService: MensajesService) { }
 
   ngOnInit() {
 
@@ -130,18 +134,45 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   public crearViaje(datos) {
     this.viaje = datos;
     this.viaje.imagen = this.imagen;
-    console.log(this.viaje);
+    this.viaje.idUsuarioCreacion = this.usuario.id;
     this.viajesService.crearViaje(this.viaje).subscribe(response => {
       console.log('Respuesta: ' + response.status);
     });
   }
 
-  public borrarActividad(id): void {
-    this.actividadesService.borrarActividad(id).subscribe(response => {
+  public borrarActividad(id: string, motivo: string): void {
+    this.actividadesService.borrarActividad(id, motivo).subscribe(response => {
       console.log('ActividadesCompAdmin:BorrarActividad: ' + response.status);
       console.log('Borrada la actividad con id ' + id);
     });
   }
+
+  /*public cancelarActividad(actividad: any): void {
+
+    const motivo = prompt('¿Por qué motivo va a ser suspendida la actividad?');
+    console.log('Lista participantes: ', actividad.listaParticipantes);
+    for (const usuarioActividad of actividad.listaParticipantes) {
+      const mensaje: Mensaje = new Mensaje();
+      mensaje.idUsuarioEmisor = this.usuario.id;
+      mensaje.idUsuarioReceptor = usuarioActividad;
+      mensaje.fecha = new Date();
+      mensaje.asunto = `${actividad.nombre}`;
+      mensaje.cuerpoMensaje = motivo;
+
+      this.mensajesService.mandarMensaje(mensaje).subscribe(
+        (response: HttpResponse<Mensaje>) => {
+          console.log(response);
+        }
+      );
+    }
+
+    this.actividadesService.borrarActividad(actividad.id).subscribe(
+      (response: HttpResponse<Actividad>) => {
+        console.log(response);
+      }
+    );
+  }*/
+
 
   public mostrarFormularioCrearViaje(valor: boolean) {
     this.mostrarFormularioViaje = valor;

@@ -16,13 +16,14 @@ export class Actividad {
   listaParticipantes: Array<string>;
   puntuacion: number;
 
-  constructor() {
+  constructor(datos?: any) {
     this.categorias = [];
     this.listaParticipantes = [];
     this.coordendas = {
       latitud: 0,
       longitud: 0
     };
+    Object.assign(this, datos);
   }
 
 }

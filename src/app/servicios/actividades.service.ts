@@ -10,10 +10,11 @@ import { Total } from '../modelos/total.model';
 
 // Servicios
 import { CabecerasHttpService } from './cabeceras-http.service';
-import { UsuarioSesionService } from './usuario-sesion.service';
 
 // Producción
 import { environment } from '../../environments/environment';
+
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,19 +27,34 @@ export class ActividadesService {
   // GENERALES
   public obtenerListaActividades$(): Observable<Array<Actividad>> {
     return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
-    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'})
+      .pipe(map(response => {
+        const actividades = response.map(actividad => new Actividad(actividad));
+        return actividades;
+      })
+    );
   }
 
   public obtenerListaActividadesActuales$(): Observable<Array<Actividad>> {
     const params = new HttpParams().set('realizadas', 'false');
     return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
-    {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'})
+      .pipe(map(response => {
+        const actividades = response.map(actividad => new Actividad(actividad));
+        return actividades;
+      })
+    );
   }
 
   public obtenerListaActividadesRealizadas$(): Observable<Array<Actividad>> {
     const params = new HttpParams().set('realizadas', 'true');
     return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
-    {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'})
+      .pipe(map(response => {
+        const actividades = response.map(actividad => new Actividad(actividad));
+        return actividades;
+      })
+    );
   }
 
   public crearActividad(actividad: Actividad): Observable<HttpResponse<Actividad>> {
@@ -47,9 +63,11 @@ export class ActividadesService {
      {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'});
   }
 
-  public borrarActividad(id: string): Observable<HttpResponse<Actividad>> {
+  public borrarActividad(id: string, motivo: string): Observable<HttpResponse<Actividad>> {
+    let headers = this.cabecerasHttpService.generarCabecerasGetConAccessToken();
+    headers = headers.append('X-Motivo', motivo);
     return this.httpClient.delete<Actividad>(environment.host + `/actividades/${id}`,
-      {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'} );
+      {headers: headers, observe: 'response'} );
   }
 
   public obtenerNumeroActividades(): Observable<Total> {
@@ -62,25 +80,44 @@ export class ActividadesService {
   public obtenerListaActividadesDelUsuario$(id: string): Observable<Array<Actividad>> {
     const params = new HttpParams().set('participante', id);
     return this.httpClient.get<Array<Actividad>>(environment.host + '/actividades',
-    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'})
+      .pipe(map(response => {
+        const actividades = response.map(actividad => new Actividad(actividad));
+        return actividades;
+      })
+    );
   }
 
   public obtenerListadoProximasActividadesDelUsuario$(id: string): Observable<Array<Actividad>> {
     const params = new HttpParams().set('realizadas', 'false').set('participante', id);
     return this.httpClient.get<Array<Actividad>>(environment.host + '/actividades',
-      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'})
+      .pipe(map(response => {
+        const actividades = response.map(actividad => new Actividad(actividad));
+        return actividades;
+      })
+    );
   }
 
   public obtenerListadoActividadesRealizadasPorUsuario$(id: string): Observable<Array<Actividad>> {
     const params = new HttpParams().set('realizadas', 'true').set('participante', id);
-    return this.httpClient.get<Array<Actividad>>(environment.host + '/viajes',
-      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'});
+    return this.httpClient.get<Array<Actividad>>(environment.host + '/actividades',
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'})
+      .pipe(map(response => {
+        const actividades = response.map(actividad => new Actividad(actividad));
+        return actividades;
+      })
+    );
   }
 
-  public buscarActividadesCreadasPorUsuario(idUsuario: string): Observable<Array<Actividad>> {
+  public obtenerActividadesCreadasPorUsuario(idUsuario: string): Observable<Array<Actividad>> {
     const params = new HttpParams().set('creador', idUsuario);
     return this.httpClient.get<Array<Actividad>>(environment.host + '/actividades',
-      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'})
+      .pipe(map(response => {
+        const actividades = response.map(actividad => new Actividad(actividad));
+        return actividades;
+      })
+    );
   }
-
 }

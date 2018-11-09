@@ -1,0 +1,26 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cancelacion">Eliminar</button>
+<div class="modal fade" id="cancelacion" tabindex="-1" role="dialog" aria-labelledby="motivoCancelacion" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="motivoCancelacion">Notificación al usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <h4>{{ actividad.nombre }}</h4>
+                <form #formularioCancelacion="ngForm">
+                    <div class="form-group">
+                        <label for="motivo" class="col-form-label">Motivo:</label>
+                        <input type="text" [(ngModel)]="motivoCancelacion" name='motivo' class="form-control" id="motivo">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" (click)="cancelarActividad()" class="btn btn-danger" data-dismiss="modal">Eliminar actividad</button>
+            </div>
+        </div>
+    </div>
+</div>

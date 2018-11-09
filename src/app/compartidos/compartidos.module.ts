@@ -18,6 +18,7 @@ import { TarjetaViajeComponent } from './tarjeta-viaje/tarjeta-viaje.component';
 import { TarjetaOpinionComponent } from './tarjeta-opinion/tarjeta-opinion.component';
 import { TarjetaUsuarioComponent } from './tarjeta-usuario/tarjeta-usuario.component';
 import { TarjetaMensajeComponent } from './tarjeta-mensaje/tarjeta-mensaje.component';
+import { ModalCancelacionActividadesComponent } from './modal-cancelacion-actividades/modal-cancelacion-actividades.component';
 
 @NgModule({
   imports: [
@@ -34,14 +35,16 @@ import { TarjetaMensajeComponent } from './tarjeta-mensaje/tarjeta-mensaje.compo
     TarjetaViajeComponent,
     TarjetaOpinionComponent,
     TarjetaUsuarioComponent,
-    TarjetaMensajeComponent
+    TarjetaMensajeComponent,
+    ModalCancelacionActividadesComponent
   ],
   exports: [
     TarjetaSalidaComponent,
     TarjetaViajeComponent,
     TarjetaOpinionComponent,
     TarjetaUsuarioComponent,
-    TarjetaMensajeComponent
+    TarjetaMensajeComponent,
+    ModalCancelacionActividadesComponent
   ]
 })
 export class CompartidosModule { }

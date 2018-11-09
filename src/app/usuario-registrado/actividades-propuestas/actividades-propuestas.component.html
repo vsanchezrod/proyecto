@@ -1,5 +1,3 @@
-<p class="col-12">Usuario {{ usuario.id }}</p>
-
 <div class="container">
     <h3 class="col-12">Crea una nueva actividad!!</h3>
     <button pButton type="button" label="CREAR" class="ui-button-info" routerLink="/usuario/actividades/nueva"></button>
@@ -23,11 +21,11 @@
             </ng-template>
         </p-dataScroller>
 
-        <div class="col-sm-12 col-md-6">
+        <div *ngIf="listaMisActividadesPropuestas.length > 0" class="col-sm-12 col-md-6">
             <h3 class="text-center col-12">Resumen de la actividad</h3>
-            <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
+            <app-tarjeta-salida [salida]="salidaSeleccionada"></app-tarjeta-salida>
             <button pButton type="button" label="Editar" class="ui-button-warning" routerLink="/usuario/actividades/editar"></button>
-            <button pButton type="button" label="Cancelar" class="ui-button-danger" (click)="cancelarSalida(salida)"></button>
+            <app-modal-cancelacion-actividades [actividad]="salidaSeleccionada"></app-modal-cancelacion-actividades>
         </div>
 
     </div>

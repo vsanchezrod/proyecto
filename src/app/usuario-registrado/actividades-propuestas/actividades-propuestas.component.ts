@@ -19,9 +19,10 @@ import { Subscription } from 'rxjs';
 })
 export class ActividadesPropuestasComponent implements OnInit, OnDestroy {
 
-  public salida: Actividad = new Actividad();
-  public usuario: Usuario;
+  public salidaSeleccionada: Actividad = new Actividad();
+  public usuario: Usuario = new Usuario();
   public listaMisActividadesPropuestas: Array<Actividad>;
+  public motivoCancelacion = '';
 
   private subscriptionUsuarioLogado: Subscription;
   private subscriptionActividadesUsuario: Subscription;
@@ -40,18 +41,18 @@ export class ActividadesPropuestasComponent implements OnInit, OnDestroy {
         this.usuario = usuario;
 
         // Obtener la lista de actividades creadas por el usuario
-        this.subscriptionActividadesUsuario = this.actividadesService.buscarActividadesCreadasPorUsuario(this.usuario.id).subscribe(
+        this.subscriptionActividadesUsuario = this.actividadesService.obtenerActividadesCreadasPorUsuario(this.usuario.id).subscribe(
           (listaActividades: Array<Actividad>) => {
             this.listaMisActividadesPropuestas = listaActividades;
             console.log('ActivProp: buscarActivUsuario: listaActividades: ', this.listaMisActividadesPropuestas);
-        });
-        // Para que cargue por defecto la primera salida
-        if (this.listaMisActividadesPropuestas.length > 0) {
-          console.log('Mis 1 actividades propuestas:', this.listaMisActividadesPropuestas[0]);
-          this.salida = this.listaMisActividadesPropuestas[0];
-        }
-    });
 
+            // Para que cargue por defecto la primera salida
+            if (this.listaMisActividadesPropuestas.length > 0) {
+              console.log('Mis 1 actividades propuestas:', this.listaMisActividadesPropuestas[0]);
+              this.salidaSeleccionada = this.listaMisActividadesPropuestas[0];
+            }
+        });
+    });
   }
 
   ngOnDestroy() {
@@ -59,13 +60,9 @@ export class ActividadesPropuestasComponent implements OnInit, OnDestroy {
     this.subscriptionActividadesUsuario.unsubscribe();
   }
 
-  public cancelarSalida(actividad): void {
-    alert('SALIDA CANCELADA');
-  }
-
-  public cargarActividad(actividad): void {
+  public cargarActividad(actividad: Actividad): void {
     console.log('ACTIVIDAD PARA CARGAR: ' , actividad);
-    this.salida = actividad;
+    this.salidaSeleccionada = actividad;
   }
 
 }

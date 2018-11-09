@@ -1,5 +1,5 @@
 import { Coordenada } from './coordenada.model';
-import {ActividadCategoria} from './actividadCategoria.model';
+import { ActividadCategoria } from './actividadCategoria.model';
 
 export class Viaje {
 
@@ -19,13 +19,13 @@ export class Viaje {
   precio: number;
   plazas: number;
 
-  constructor() {
+  constructor(datos?: any) {
     this.categorias = [];
     this.listaParticipantes = [];
     this.coordendas = {
       latitud: 0,
       longitud: 0
     };
+    Object.assign(this, datos);
   }
-
 }

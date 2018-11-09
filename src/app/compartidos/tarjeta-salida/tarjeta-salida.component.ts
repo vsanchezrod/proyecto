@@ -33,7 +33,7 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.fechaInicioParseada = moment(this.salida.fechaInicio).locale('es').format('d/MM/YYYY HH:mm');
+    this.fechaInicioParseada = moment(this.salida.fechaInicio).locale('es').format('DD/MM/YYYY HH:mm');
     this.usuario = new Usuario();
     this.idUsuario = this.salida.idUsuarioCreacion;
     this.mensaje = `(Ya somos ${this.salida.listaParticipantes.length + 1})`;

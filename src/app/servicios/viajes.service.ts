@@ -16,6 +16,8 @@ import { CabecerasHttpService } from './cabeceras-http.service';
 // Producción
 import { environment } from '../../environments/environment';
 
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,29 +30,46 @@ export class ViajesService {
   // GENERALES
   public obtenerListaViajes$(): Observable<Array<Viaje>> {
     return this.httpClient.get<Array<Viaje>>(environment.host + '/public/viajes',
-    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'})
+      .pipe(map(response => {
+        const viajes = response.map(viaje => new Viaje(viaje));
+        return viajes;
+      })
+    );
   }
 
   public obtenerListadoViajesActuales$(): Observable<Array<Viaje>> {
     const params = new HttpParams().set('realizadas', 'false');
     return this.httpClient.get<Array<Viaje>>(environment.host + '/public/viajes',
-      {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'})
+      .pipe(map(response => {
+        const viajes = response.map(viaje => new Viaje(viaje));
+        return viajes;
+      })
+    );
   }
 
   public obtenerListadoViajesRealizados$(): Observable<Array<Viaje>> {
     const params = new HttpParams().set('realizadas', 'true');
     return this.httpClient.get<Array<Viaje>>(environment.host + '/public/viajes',
-      {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'})
+      .pipe(map(response => {
+        const viajes = response.map(viaje => new Viaje(viaje));
+        return viajes;
+      })
+    );
   }
 
   public crearViaje(viaje: Viaje): Observable<HttpResponse<Viaje>> {
-    return this.httpClient.post<Viaje>(environment.host + '/public/viajes', viaje,
+    return this.httpClient.post<Viaje>(environment.host + '/viajes', viaje,
       {headers: this.cabecerasHttpService.generarCabecerasPost(), observe: 'response'});
   }
 
-  public borrarViaje(id: string): Observable<HttpResponse<Viaje>> {
-      return this.httpClient.delete<Viaje>(environment.host + `/viajes/${id}`,
-        {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'} );
+  public borrarViaje(id: string, motivo: string): Observable<HttpResponse<Viaje>> {
+    let headers = this.cabecerasHttpService.generarCabecerasGetConAccessToken();
+    headers = headers.append('X-Motivo', motivo);
+    return this.httpClient.delete<Viaje>(environment.host + `/viajes/${id}`,
+      {headers: headers, observe: 'response'} );
   }
 
   public obtenerNumeroViajes(): Observable<Total> {
@@ -59,28 +78,48 @@ export class ViajesService {
   }
 
   // POR USUARIO
+
   public obtenerListaViajesDelUsuario$(id: string): Observable<Array<Viaje>> {
     const params = new HttpParams().set('participante', id);
     return this.httpClient.get<Array<Viaje>>(environment.host + '/viajes',
-    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'})
+      .pipe(map(response => {
+        const viajes = response.map(viaje => new Viaje(viaje));
+        return viajes;
+      })
+    );
   }
 
   public obtenerListadoProximosViajesDelUsuario$(id: string): Observable<Array<Viaje>> {
     const params = new HttpParams().set('realizadas', 'false').set('participante', id);
     return this.httpClient.get<Array<Viaje>>(environment.host + '/viajes',
-      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'})
+      .pipe(map(response => {
+        const viajes = response.map(viaje => new Viaje(viaje));
+        return viajes;
+      })
+    );
   }
 
   public obtenerListadoViajesRealizadosPorUsuario$(id: string): Observable<Array<Viaje>> {
     const params = new HttpParams().set('realizadas', 'true').set('participante', id);
     return this.httpClient.get<Array<Viaje>>(environment.host + '/viajes',
-      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'})
+        .pipe(map(response => {
+          const viajes = response.map(viaje => new Viaje(viaje));
+          return viajes;
+        })
+    );
   }
 
   public buscarViajesCreadosPorUsuario$(idUsuario: string): Observable<Array<Viaje>> {
     const params = new HttpParams().set('creador', idUsuario);
     return this.httpClient.get<Array<Viaje>>(environment.host + '/viajes',
-      {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), params: params, observe: 'body'})
+        .pipe(map(response => {
+          const viajes = response.map(viaje => new Viaje(viaje));
+          return viajes;
+        })
+    );
   }
-
 }
