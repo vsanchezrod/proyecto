@@ -38,7 +38,7 @@ export class CalendarioComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.subscripcionViajes = this.viajesService.obtenerListadoViajesActuales$().subscribe(viajes => {
+    this.subscripcionViajes = this.viajesService.obtenerListaViajes$().subscribe(viajes => {
 
       // Se mapean los viajes con el modelo evento
       for (const viaje of viajes) {

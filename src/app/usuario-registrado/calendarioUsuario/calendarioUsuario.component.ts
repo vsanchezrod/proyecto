@@ -25,7 +25,8 @@ import { Subscription } from 'rxjs';
 export class CalendarioUsuarioComponent implements OnInit, OnDestroy {
 
   public listaEventos: Array<Evento> = [];
-  public listaProximosEventos: Array<Evento> = [];
+  public listaProximosEventosViajes: Array<Evento> = [];
+  public listaProximosEventosSalidas: Array<Evento> = [];
 
   // Configuración de la cabecera del calendario
   public cabeceraConfiguracion = {
@@ -81,7 +82,7 @@ export class CalendarioUsuarioComponent implements OnInit, OnDestroy {
             const fechaInicio: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
             const fechaFin: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
             const nuevoEvento: Evento = new Evento(actividad.id, actividad.nombre, fechaInicio, fechaFin, 'actividad');
-            this.listaProximosEventos.push(nuevoEvento);
+            this.listaProximosEventosSalidas.push(nuevoEvento);
           }
 
         });
@@ -94,7 +95,7 @@ export class CalendarioUsuarioComponent implements OnInit, OnDestroy {
               const fechaInicio: string = moment(viaje.fechaInicio).format('YYYY-MM-DD HH:mm');
               const fechaFin: string = moment(viaje.fechaFin).format('YYYY-MM-DD HH:mm');
               const nuevoEvento: Evento = new Evento(viaje.id, viaje.nombre, fechaInicio, fechaFin, 'viaje');
-              this.listaProximosEventos.push(nuevoEvento);
+              this.listaProximosEventosViajes.push(nuevoEvento);
             }
         });
       }

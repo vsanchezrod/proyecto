@@ -9,9 +9,19 @@
         <div class="col-sm-12 col-md-4">
             <h3 class="col-12 text-center">Mis próximas actividades</h3>
 
-            <ul class="col-12 list-group">
+            <ul class="col-12 list-group text-center" *ngIf="listaProximosEventosSalidas.length > 0">
+                <p>Salidas</p>
+                <li *ngFor="let evento of listaProximosEventosSalidas" class="row list-group-item d-flex justify-content-between align-items-center btn" (click)="verActividad(evento)">
+                    <span class="col-12">{{ evento.title }}</span>
+                    <span class="col-sm-12 col-md-10 col-lg-4 badge badge-success badge-pill">{{ evento.start }}</span>
+                    <span *ngIf="evento.end" class="col-sm-12 col-md-10 col-lg-4 badge badge-primary badge-pill"> {{ evento.end }}</span>
+                </li>
 
-                <li *ngFor="let evento of listaProximosEventos" class="row list-group-item d-flex justify-content-between align-items-center btn" (click)="verActividad(evento)">
+            </ul>
+
+            <ul class="col-12 list-group text-center" *ngIf="listaProximosEventosViajes.length > 0">
+                <p>Viajes</p>
+                <li *ngFor="let evento of listaProximosEventosViajes" class="row list-group-item d-flex justify-content-between align-items-center btn" (click)="verActividad(evento)">
                     <span class="col-12">{{ evento.title }}</span>
                     <span class="col-sm-12 col-md-10 col-lg-4 badge badge-success badge-pill">{{ evento.start }}</span>
                     <span *ngIf="evento.end" class="col-sm-12 col-md-10 col-lg-4 badge badge-primary badge-pill"> {{ evento.end }}</span>

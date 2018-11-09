@@ -8,6 +8,7 @@ import { Opinion } from '../../modelos/opinion.model';
 import { Usuario } from '../../modelos/usuario.model';
 import { Viaje } from '../../modelos/viaje.model';
 import { Actividad } from '../../modelos/actividad.model';
+import { SelectItem } from 'primeng/components/common/selectitem';
 
 // Servicios
 import { OpinionesService } from '../../servicios/opiniones.service';
@@ -33,14 +34,13 @@ export class OpinionComponent implements OnInit, OnDestroy {
   private subscripcionListaViajes: Subscription;
   private subscripcionListaActividades: Subscription;
 
+
   constructor(private opinionesService: OpinionesService,
               private usuarioSesionService: UsuarioSesionService,
               private viajesService: ViajesService,
               private actividadesService: ActividadesService) { }
 
   ngOnInit() {
-
-    // this.usuario = new Usuario();
 
     this.formularioOpinion = new FormGroup({
       'actividad': new FormControl('', Validators.required),
@@ -51,36 +51,40 @@ export class OpinionComponent implements OnInit, OnDestroy {
       'recorridoValoracion': new FormControl('', Validators.required),
     });
 
-    this.subscripcionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
+    this.subscripcionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
+      (usuario: Usuario) => {
       this.usuario = usuario;
 
       this.subscripcionListaViajes = this.subscripcionListaViajes = this.viajesService.obtenerListadoViajesRealizadosPorUsuario$(this.usuario.id).subscribe(
         (listaViajes: Array<Viaje>) => {
-            for (const viaje of listaViajes) {
-              this.listaActividadesDelUsuario.push(viaje);
-            }
-            console.log('Lista de viajes del usuario: ', listaViajes);
+          for (const viaje of listaViajes) {
+            const viajeEtiquetado: SelectItem = {
+              label: viaje.nombre,
+              value: viaje
+            };
+            this.listaActividadesDelUsuario.push(viajeEtiquetado);
+          }
         }
       );
 
       this.subscripcionListaActividades = this.actividadesService.obtenerListadoActividadesRealizadasPorUsuario$(this.usuario.id).subscribe(
         (listaActividades: Array<Actividad>) => {
-            for (const actividad of listaActividades) {
-              this.listaActividadesDelUsuario.push(actividad);
-            }
-            console.log('Lista de actividades del usuario: ', listaActividades);
+          for (const actividad of listaActividades) {
+            const actividadEtiquetado: SelectItem = {
+              label: actividad.nombre,
+              value: actividad
+            };
+            this.listaActividadesDelUsuario.push(actividadEtiquetado);
+          }
         }
       );
-
-      console.log('Lista de actividades del usuario: ', this.listaActividadesDelUsuario);
-
     });
   }
 
   ngOnDestroy() {
-    this.subscripcionUsuarioLogado.unsubscribe();
-    this.subscripcionListaViajes.unsubscribe();
-    this.subscripcionListaActividades.unsubscribe();
+    // this.subscripcionUsuarioLogado.unsubscribe();
+    // this.subscripcionListaViajes.unsubscribe();
+    // this.subscripcionListaActividades.unsubscribe();
   }
 
   public enviarOpinion(): void {
@@ -98,5 +102,6 @@ export class OpinionComponent implements OnInit, OnDestroy {
     // MOSTRAR MENSAJE DE QUE SE HA ENVIADO!!
 
   }
+
 
 }

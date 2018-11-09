@@ -35,13 +35,16 @@ export class AmigosComponent implements OnInit, OnDestroy {
     this.listaUsuariosBusqueda = [];
     this.listaAmigos = [];
 
-    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
-      this.usuario = usuario;
+    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
+      (usuario: Usuario) => {
+        this.usuario = usuario;
 
       // Carga de los datos de cada amigo
       for (const idAmigo of this.usuario.amigos) {
-        this.subscriptionListaAmigos = this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe( (amigo: Usuario) => {
-          this.listaAmigos.push(amigo);
+        this.subscriptionListaAmigos = this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe(
+          (amigo: Usuario) => {
+            this.listaAmigos.push(amigo);
+
         });
       }
 
