@@ -40,7 +40,7 @@ export class ListaCategoriasComponent implements OnInit, OnDestroy {
 
   // PENDIENTE
   public cargarActividades(categoria): void {
-    this.router.navigate(['/salidas', categoria.id ]);
+    this.router.navigate(['/busqueda', categoria.id ]);
   }
 
 }

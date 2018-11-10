@@ -77,6 +77,22 @@ export class ViajesService {
     {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'body'});
   }
 
+  public obtenerListaViajesPorCategoria$(idCategoria: string): Observable<Array<Viaje>> {
+    const params = new HttpParams().set('categoria', idCategoria);
+    return this.httpClient.get<Array<Viaje>>(environment.host + '/public/viajes',
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'})
+      .pipe(map(response => {
+        const viajes = response.map(viaje => new Viaje(viaje));
+        return viajes;
+      })
+    );
+  }
+
+  public obtenerViajePorId$(idViaje: string): Observable<Viaje> {
+    return this.httpClient.get<Viaje>(environment.host + `/public/viajes/${idViaje}`,
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
+  }
+
   // POR USUARIO
 
   public obtenerListaViajesDelUsuario$(id: string): Observable<Array<Viaje>> {

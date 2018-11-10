@@ -54,8 +54,8 @@ export class BusquedaComponent implements OnInit {
         // TODO: implementar
       });
     });
-
   }
+
 
   // AQUI O EN EL SERVICIO???
 
@@ -66,7 +66,7 @@ export class BusquedaComponent implements OnInit {
     for (const actividad of this.listaActividades) {
       actividad.nombre = actividad.nombre.toLowerCase();
 
-      if(actividad.nombre.indexOf(clave) >= 0 ) {
+      if (actividad.nombre.indexOf(clave) >= 0 ) {
         this.listaActividadesBusqueda.push(actividad);
       }
 

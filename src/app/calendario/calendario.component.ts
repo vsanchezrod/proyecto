@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { Evento } from '../modelos/evento.model';
 
 import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-calendario',
@@ -38,29 +39,33 @@ export class CalendarioComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.subscripcionViajes = this.viajesService.obtenerListaViajes$().subscribe(viajes => {
+    this.subscripcionViajes = this.viajesService.obtenerListaViajes$().subscribe(
+      viajes => {
 
-      // Se mapean los viajes con el modelo evento
-      for (const viaje of viajes) {
-        const fechaInicio: string = moment(viaje.fechaInicio).format('YYYY-MM-DD HH:mm');
-        const fechaFin: string = moment(viaje.fechaFin).format('YYYY-MM-DD HH:mm');
-        const nuevoEvento: Evento = new Evento(viaje.id, viaje.nombre, fechaInicio, fechaFin, 'viaje');
-        this.listaEventos.push(nuevoEvento);
-      }
+        // Se mapean los viajes con el modelo evento
+        for (const viaje of viajes) {
+          const fechaInicio: string = moment(viaje.fechaInicio).format('YYYY-MM-DD HH:mm');
+          const fechaFin: string = moment(viaje.fechaFin).format('YYYY-MM-DD HH:mm');
+          const nuevoEvento: Evento = new Evento(viaje.id, viaje.nombre, fechaInicio, fechaFin, 'viaje');
+          this.listaEventos.push(nuevoEvento);
+        }
+
+    });
+
+    this.subscripcionSalidas = this.actividadesService.obtenerListaActividades$().subscribe
+      (actividades => {
+
+        // Se mapean las actividades con el modelo event0
+        for (const actividad of actividades) {
+          const fechaInicio: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
+          const fechaFin: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
+          const nuevoEvento: Evento = new Evento(actividad.id, actividad.nombre, fechaInicio, fechaFin, 'salida');
+          this.listaEventos.push(nuevoEvento);
+        }
 
     });
 
-    this.subscripcionSalidas = this.actividadesService.obtenerListaActividades$().subscribe(actividades => {
-
-      // Se mapean las actividades con el modelo event0
-      for (const actividad of actividades) {
-        const fechaInicio: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
-        const fechaFin: string = moment(actividad.fechaInicio).format('YYYY-MM-DD HH:mm');
-        const nuevoEvento: Evento = new Evento(actividad.id, actividad.nombre, fechaInicio, fechaFin, 'actividad');
-        this.listaEventos.push(nuevoEvento);
-      }
-
-    });
+    console.log(this.listaEventos);
 
   }
 
@@ -69,15 +74,22 @@ export class CalendarioComponent implements OnInit, OnDestroy {
     this.subscripcionSalidas.unsubscribe();
   }
 
-  public visualizarEvento(evento): void {
-    for (evento of this.listaEventos) {
-      console.log(evento);
-    }
+  public visualizarEvento(event: any): void {
 
-    if (evento.end == null ) {
+    console.log('Event:', event);
+    const evento: Evento = {
+      id: event.calEvent.id,
+      tipo: event.calEvent.tipo
+    };
+
+    console.log('evento: ', evento);
+
+    if (evento.tipo === 'salida' ) {
+      console.log(evento.tipo);
       this.router.navigate(['/salida', evento.id]);
     }
-    else {
+    if (evento.tipo === 'viaje') {
+      console.log(evento.tipo);
       this.router.navigate(['/viaje', evento.id]);
     }
 

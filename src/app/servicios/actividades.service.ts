@@ -75,6 +75,17 @@ export class ActividadesService {
     {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'body'});
   }
 
+  public obtenerListaActividadesPorCategoria$(idCategoria: string): Observable<Array<Actividad>> {
+    const params = new HttpParams().set('categoria', idCategoria);
+    return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), params: params, observe: 'body'})
+      .pipe(map(response => {
+        const actividades = response.map(actividad => new Actividad(actividad));
+        return actividades;
+      })
+    );
+  }
+
   // POR USUARIO
 
   public obtenerListaActividadesDelUsuario$(id: string): Observable<Array<Actividad>> {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Componentes
 import { Viaje} from '../../modelos/viaje.model';
@@ -9,26 +9,34 @@ import { ViajesService } from '../../servicios/viajes.service';
 // Recoger parámetros de la URL
 import { ActivatedRoute } from '@angular/router';
 
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-viaje',
   templateUrl: './viaje.component.html',
   styleUrls: ['./viaje.component.css']
 })
-export class ViajeComponent implements OnInit {
+export class ViajeComponent implements OnInit, OnDestroy {
 
-  viaje: Viaje;
+  public viaje: Viaje = new Viaje();
+  private subscripcionViaje: Subscription;
 
   constructor(private viajesService: ViajesService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     /* Params regresa un observador, que está pendiente de los cambios y para que funcione se necesita suscribirse a ese observador*/
-    /*this.activatedRoute.params.subscribe(parametro => {
+    this.activatedRoute.params.subscribe(parametro => {
       console.log(parametro);
-      this.viaje = this.viajesService.obtenerViaje(parametro['id']);
-      console.log(this.viaje);
-    });*/
+      this.subscripcionViaje = this.viajesService.obtenerViajePorId$(parametro['id']).subscribe(
+        (response => {
+          this.viaje = response;
+        })
+      );
+    });
+  }
 
-    // this.viaje = this.viajesService.obtenerViaje();
+  ngOnDestroy() {
+    this.subscripcionViaje.unsubscribe();
   }
 }

@@ -1,13 +1,6 @@
-<h3>VIAJE {{ viaje.nombre }}</h3>
-
-{{ viaje | json }}
-
 <div>
+    <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
 
-  <a class="btn btn-outline-danger btn-block" [routerLink]="['/viajes']">Regresar a viajes</a>
-
-  <app-tarjeta-viaje [viaje]= "viaje"></app-tarjeta-viaje>
-
+    <a class="btn btn-outline-danger btn-block" [routerLink]="['/calendario']">Regresar a calendario</a>
 
 </div>
-
