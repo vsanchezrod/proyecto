@@ -1,0 +1,11 @@
+.caja {
+    margin-bottom: 20px;
+}
+
+button {
+    margin-right: 20px;
+}
+
+#cajaActualizado {
+    border: 2px solid black;
+}

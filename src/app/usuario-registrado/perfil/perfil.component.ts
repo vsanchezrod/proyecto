@@ -46,22 +46,23 @@ export class PerfilComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     const anioHasta: string = moment().subtract(this.edadMinima, 'years').format('YYYY');
-    console.log(anioHasta);
     this.rangoAnios = `${this.anioDesde}:${anioHasta}`;
 
-    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( usuario => {
-      this.usuario = usuario;
-      this.imagenAvatar = this.usuario.avatar;
-      this.fechaNacimientoParseada = moment(this.usuario.fechaNacimiento).locale('es').format('L');
-      this.formularioActualizacion = new FormGroup({
-        'nombre': new FormControl(this.usuario.nombre),
-        'apellido': new FormControl(this.usuario.apellido),
-        'password': new FormControl(this.usuario.password, [Validators.minLength(8), Validators.maxLength(20)]),
-        // 'password2': new FormControl(this.usuario.password, [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
-        'fechaNacimiento': new FormControl(this.usuario.fechaNacimiento),
-        'sexo': new FormControl(this.usuario.sexo),
-        'provincia': new FormControl(this.usuario.provincia),
-        'info': new FormControl(this.usuario.info),
+    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
+      usuario => {
+        this.usuario = usuario;
+        this.imagenAvatar = this.usuario.avatar;
+        this.fechaNacimientoParseada = moment(this.usuario.fechaNacimiento).locale('es').format('L');
+
+        this.formularioActualizacion = new FormGroup({
+          'nombre': new FormControl(this.usuario.nombre),
+          'apellido': new FormControl(this.usuario.apellido),
+          'password': new FormControl(this.usuario.password, [Validators.minLength(8), Validators.maxLength(20)]),
+          // 'password2': new FormControl(this.usuario.password, [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
+          'fechaNacimiento': new FormControl(''),
+          'sexo': new FormControl(this.usuario.sexo),
+          'provincia': new FormControl(this.usuario.provincia),
+          'info': new FormControl(this.usuario.info),
       });
     });
 
