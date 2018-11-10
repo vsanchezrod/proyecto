@@ -8,6 +8,7 @@ import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 
 import { Subscription } from 'rxjs';
 
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -36,6 +37,6 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
 
   public buscarActividades(clave: string) {
-    this.router.navigate(['/busqueda', clave]);
+    this.router.navigate(['/busqueda'], {queryParams: { nombre: clave }});
   }
 }

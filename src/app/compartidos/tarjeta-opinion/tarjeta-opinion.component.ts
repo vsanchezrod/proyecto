@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import * as moment from 'moment';
 
 // Modelos
 import { Opinion } from '../../modelos/opinion.model';
@@ -20,6 +21,7 @@ export class TarjetaOpinionComponent implements OnInit, OnDestroy {
   @Input() opinion: Opinion;
   public usuario: Usuario;
   public idUsuario: string;
+  public fechaInicioParseada: string;
   private subscripcionBuscarUsuarioPorId: Subscription;
 
   constructor(private usuariosService: UsuariosService) { }
@@ -28,6 +30,7 @@ export class TarjetaOpinionComponent implements OnInit, OnDestroy {
 
     this.usuario = new Usuario();
     this.idUsuario = this.opinion.usuarioOpinion;
+    this.fechaInicioParseada = moment(this.opinion.fecha).locale('es').format('DD/MM/YYYY HH:mm');
 
     this.subscripcionBuscarUsuarioPorId = this.usuariosService.buscarUsuarioPorId(this.idUsuario).subscribe(
       (usuarioCreacion: Usuario) => {

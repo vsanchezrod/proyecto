@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 // Servicios
 import { ActividadesService } from '../servicios/actividades.service';
 import { ViajesService } from '../servicios/viajes.service';
+import { QueryParamsHandling } from '@angular/router/src/config';
 
 @Component({
   selector: 'app-busqueda',
@@ -18,11 +19,11 @@ import { ViajesService } from '../servicios/viajes.service';
 })
 export class BusquedaComponent implements OnInit {
 
-  listaActividades: Array<Actividad>;
+  public clave: string;
+  public listaActividades: Array<Viaje | Actividad> = [];
 
-  clave: string;
-  listaActividadesBusqueda: Array<Actividad>;
-  listaViajesBusqueda: Array<Viaje>;
+  public listaActividadesBusqueda: Array<Actividad>;
+  public listaViajesBusqueda: Array<Viaje>;
 
   constructor(private actividadesService: ActividadesService,
               private activatedRoute: ActivatedRoute,
@@ -30,52 +31,66 @@ export class BusquedaComponent implements OnInit {
 
   ngOnInit() {
 
-    this.listaActividadesBusqueda = [];
-    this.listaViajesBusqueda = [];
+    this.activatedRoute.queryParams.subscribe(
+      (queryParams) => {
+        this.listaActividadesBusqueda = [];
+        this.listaViajesBusqueda = [];
+        console.log('QUERYPARAMS: ', queryParams);
+        if (queryParams.categoria !== undefined) {
+          this.actividadesService.obtenerListaActividadesPorCategoria$(queryParams.categoria).subscribe(
+            (listaActividadesCategoria: Array<Actividad>) => {
+              this.listaActividadesBusqueda = listaActividadesCategoria;
+          });
 
-    // SE PODRÍA AHORRAR ESTA BUSQUEDA SI YA TUVIERAMOS LA LISTA??
-    this.actividadesService.obtenerListaActividadesActuales$().subscribe( response => {
-      this.listaActividades = response;
-      // Se recoge el parámetro y se usa suscribe
-      this.activatedRoute.params.subscribe(params => {
-        this.clave = params['clave'];
-        this.buscarActividades(params['clave']);
-      });
-    });
+          this.viajesService.obtenerListaViajesPorCategoria$(queryParams.categoria).subscribe(
+            (listaViajesCategoria: Array<Viaje>) => {
+              this.listaViajesBusqueda = listaViajesCategoria;
+          });
+        }
 
-    // LO MISMO PARA VIAJES
-    this.viajesService.obtenerListadoViajesActuales$().subscribe( response => {
-      this.listaViajesBusqueda = response;
-      // Se recoge el parámetro y se usa suscribe
-      this.activatedRoute.params.subscribe(params => {
-        this.clave = params['clave'];
-
-        // MÉTODO BUSCAR VIAJE POR IDE
-        // TODO: implementar
-      });
+        if (queryParams.nombre !== undefined) {
+          this.listaActividadesBusqueda = [];
+          this.listaViajesBusqueda = [];
+          console.log('Viene nombre');
+          this.listaActividadesBusqueda = this.buscarActividadesPorNombre(queryParams.nombre);
+          this.listaViajesBusqueda = this.buscarViajesPorNombre(queryParams.nombre);
+        }
     });
   }
 
+  private buscarActividadesPorNombre(nombre: string): Array<Actividad> {
 
-  // AQUI O EN EL SERVICIO???
+    nombre = nombre.toLowerCase();
 
-  public buscarActividades(clave: string): Array<Actividad> {
+    this.actividadesService.obtenerListaActividadesActuales$().subscribe(
+      (listaActividadesPorNombre: Array<Actividad>) => {
+        for (const actividad of listaActividadesPorNombre) {
 
-    clave = clave.toLowerCase();
-
-    for (const actividad of this.listaActividades) {
-      actividad.nombre = actividad.nombre.toLowerCase();
-
-      if (actividad.nombre.indexOf(clave) >= 0 ) {
-        this.listaActividadesBusqueda.push(actividad);
+          if (actividad.nombre.toLocaleLowerCase().indexOf(nombre) >= 0 ) {
+            this.listaActividadesBusqueda.push(actividad);
+          }
+        }
       }
-
-    }
-
+    );
     return this.listaActividadesBusqueda;
 
   }
 
+  private buscarViajesPorNombre(nombre: string): Array<Viaje> {
 
+    nombre = nombre.toLowerCase();
 
+    this.viajesService.obtenerListadoViajesActuales$().subscribe(
+      (listaViajesPorNombre: Array<Viaje>) => {
+        for (const viaje of listaViajesPorNombre) {
+
+          if (viaje.nombre.toLocaleLowerCase().indexOf(nombre) >= 0 ) {
+            this.listaViajesBusqueda.push(viaje);
+          }
+        }
+      }
+    );
+    return this.listaViajesBusqueda;
+
+  }
 }
