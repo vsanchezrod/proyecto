@@ -43,7 +43,7 @@ export class CabecerasHttpService {
     });
   }
 
-  public generarCabecerasPostConAccessToken(): HttpHeaders {
+  public generarCabecerasPostPutPatchConAccessToken(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',

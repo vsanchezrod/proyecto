@@ -1,10 +1,4 @@
-<h3>SALIDA</h3>
-
-<div>
-
-  <p>{{ salida.nombre }}</p>
-  <a class="btn btn-outline-danger btn-block" [routerLink]="['/salidas']">Regresar a salidas</a>
-
-
+<div class="container">
+    <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
+    <a class="btn btn-outline-danger btn-block" [routerLink]="['/calendario']">Regresar a calendario</a>
 </div>
-

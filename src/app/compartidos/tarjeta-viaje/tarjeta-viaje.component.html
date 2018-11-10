@@ -13,31 +13,9 @@
         <span class="ui-grid-col-6">Precio: <strong> {{ viaje.precio }} €</strong></span>
         <p-rating class="ui-grid-col-12" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
         <!--<button class="ui-grid-col-6" pButton (click)="verViaje()" type="button" icon="pi pi-search" iconPos="right" label="VER MAS"></button>-->
-        <button class="ui-grid-col-12 btn btn-primary" pButton type="button" icon="pi pi-user-plus" iconPos="right" (click)="apuntarse()" data-toggle="modal" data-target="#prueba" [disabled]="viaje.listaParticipantes.length === viaje.plazas" label="APÚNTATE"></button>
-        <p-message class="ui-grid-col-12 text-center" *ngIf="viaje.listaParticipantes.length == viaje.plazas" severity="warn" text="Plazas agotadas :("></p-message>
+        <button pButton *ngIf="mostrarBotonApuntarse()" class="ui-grid-col-12" type="button" (click)="apuntarseAViaje(viaje.id)" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
+        <button pButton *ngIf="usuarioYaApuntado()" class="ui-grid-col-12 ui-button-warning" type="button" icon="pi pi-user-minus" iconPos="right" label="YA APUNTADO!"></button>
+        <p-message class="ui-grid-col-12 text-center" *ngIf="plazasAgotadas()" severity="warn" text="Plazas agotadas :("></p-message>
     </p-footer>
 
 </p-card>
-
-<!-- Modal -->
-<!--
-<div class="modal fade" id="prueba" tabindex="-1" role="dialog" aria-labelledby="viaje.nombre" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{ viaje.nombre }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
--->

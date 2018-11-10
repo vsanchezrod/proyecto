@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 // Modelos
 import { Viaje } from '../modelos/viaje.model';
 import { Total } from '../modelos/total.model';
+import { NuevoParticipante } from '../modelos/nuevoParticipante.model';
 
 // Realizar peticiones
 import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
@@ -94,6 +95,14 @@ export class ViajesService {
   }
 
   // POR USUARIO
+
+  public apuntarseAViaje(idViaje: string, idUsuario: string): Observable<HttpResponse<Viaje>> {
+    const nuevoParticipante: NuevoParticipante = {
+      idParticipante: idUsuario
+    };
+    return this.httpClient.put<HttpResponse<Viaje>>(environment.host + `/viajes/${idViaje}/participantes`, nuevoParticipante,
+    {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'body'});
+  }
 
   public obtenerListaViajesDelUsuario$(id: string): Observable<Array<Viaje>> {
     const params = new HttpParams().set('participante', id);

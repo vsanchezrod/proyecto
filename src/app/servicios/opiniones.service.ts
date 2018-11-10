@@ -26,7 +26,7 @@ export class OpinionesService {
   // Petición HTTP(POST) para guardar una opinión
   public guardarOpinion(opinion: Opinion): Observable<HttpResponse<Opinion>> {
     return this.httpClient.post<Opinion>(environment.host + '/opiniones', opinion,
-      {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'});
+      {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
   }
 
   // Petición HTTP(GET) para recuperar las opiniones
@@ -43,7 +43,7 @@ export class OpinionesService {
   // Petición HTTP(DELETE) para borrar las opiniones
   public borrarOpinion(id: string): Observable<HttpResponse<any>> {
     return this.httpClient.delete<Opinion>(environment.host + `/opiniones/${id}`,
-    {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'});
+    {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
   }
 
 }

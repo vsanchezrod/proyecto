@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 // Modelo de datos
 import { Actividad } from '../modelos/actividad.model';
 import { Total } from '../modelos/total.model';
+import { NuevoParticipante } from '../modelos/nuevoParticipante.model';
 
 // Servicios
 import { CabecerasHttpService } from './cabeceras-http.service';
@@ -60,7 +61,7 @@ export class ActividadesService {
   public crearActividad(actividad: Actividad): Observable<HttpResponse<Actividad>> {
     const body = actividad;
     return this.httpClient.post<Actividad>(environment.host + '/actividades', body,
-     {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'});
+     {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
   }
 
   public borrarActividad(id: string, motivo: string): Observable<HttpResponse<Actividad>> {
@@ -86,7 +87,21 @@ export class ActividadesService {
     );
   }
 
+  public obtenerActividadPorId$(idActividad: string): Observable<Actividad> {
+    return this.httpClient.get<Actividad>(environment.host + `/public/actividades/${idActividad}`,
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
+  }
+
+
   // POR USUARIO
+
+  public apuntarseAActividad(idActividad: string, idUsuario: string): Observable<HttpResponse<Actividad>> {
+    const nuevoParticipante: NuevoParticipante = {
+      idParticipante: idUsuario
+    };
+    return this.httpClient.put<HttpResponse<Actividad>>(environment.host + `/actividades/${idActividad}/participantes`, nuevoParticipante,
+    {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'body'});
+  }
 
   public obtenerListaActividadesDelUsuario$(id: string): Observable<Array<Actividad>> {
     const params = new HttpParams().set('participante', id);

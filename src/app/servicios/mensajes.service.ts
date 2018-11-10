@@ -36,7 +36,7 @@ export class MensajesService {
 
   public mandarMensaje(mensaje: Mensaje): Observable<HttpResponse<Mensaje>> {
     return this.httpClient.post<Mensaje>(environment.host + '/mensajes', mensaje,
-      {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'});
+      {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
   }
 
   public borrarMensaje (id: string): Observable<HttpResponse<Mensaje>> {

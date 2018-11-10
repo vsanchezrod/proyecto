@@ -23,7 +23,8 @@
         </div>
 
         <!--<button class="ui-grid-col-6" pButton (click)="verSalida()" type="button" icon="pi pi-search" iconPos="right" label="VER MAS"></button>-->
-        <button class="ui-grid-col-12" pButton type="button" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
+        <button pButton *ngIf="mostrarBotonApuntarse()" class="ui-grid-col-12" type="button" (click)="apuntarAActividad(salida.id)" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
+        <button pButton *ngIf="usuarioYaApuntado()" class="ui-grid-col-12 ui-button-warning" type="button" icon="pi pi-user-minus" iconPos="right" label="YA APUNTADO!"></button>
         <p-message class="ui-grid-col-12 text-center" severity="success" [text]="mensaje"></p-message>
     </p-footer>
 

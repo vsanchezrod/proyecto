@@ -37,7 +37,7 @@ export class CategoriasService {
   public crearCategoria (categoria: Categoria): Observable<HttpResponse<Categoria>> {
     const body = categoria;
     return this.httpClient.post<Categoria>(environment.host + '/categorias',
-      body, {headers: this.cabecerasHttpService.generarCabecerasPostConAccessToken(), observe: 'response'});
+      body, {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
   }
 
   // Método para borrar una categoría
