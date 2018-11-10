@@ -41,8 +41,9 @@ export class UsuariosService {
       {headers: this.cabecerasHttpService.generarCabecerasPost(), observe: 'response'});
   }
 
-  public buscarUsuarioPorId(id: string): Observable<Usuario> {
-    return this.httpClient.get<Usuario>(environment.host + `/public/usuarios/${id}`,
+  public buscarUsuarioPorId(idUsuario: string): Observable<Usuario> {
+    console.log('buscarUsuarioPorId: ', idUsuario);
+    return this.httpClient.get<Usuario>(environment.host + `/public/usuarios/${idUsuario}`,
       {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
   }
 

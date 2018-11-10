@@ -25,6 +25,7 @@ export class Usuario {
     this.intereses = [];
     this.roles = [];
     this.amigos = [];
+    this.avatar = '/assets/imagenes/user.png';
   }
 
 }
