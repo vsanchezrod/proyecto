@@ -1,6 +1,6 @@
 <p-card class="ui-g" [title]="salida.nombre" styleClass="ui-card-shadow">
     <p-header class="ui-grid-col-12">
-        <img alt="SALIDA" [src]="salida.imagen">
+        <img alt="Elige una imagen para la actividad" [src]="salida.imagen">
     </p-header>
     <button id="btnCategorias" class="text-center" *ngFor="let categoria of salida.categorias" pButton type="button" [label]="categoria.nombre"></button>
 

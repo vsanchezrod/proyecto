@@ -1,6 +1,5 @@
 <div class="container fondoTransparente" style="z-index: 1000">
 
-    <p class="col-12">Usuario {{ usuario.id }}</p>
     <div class="row">
 
         <h3 class="text-center col-12">Nueva actividad!</h3>
@@ -55,10 +54,10 @@
                     <p-calendar [locale]="es" name="fechaInicio" [(ngModel)]="actividad.fechaInicio" dateFormat="dd/mm/yyyy" [showTime]="true" [showIcon]="true" hourFormat="24"></p-calendar>
                 </div>
 
-                <div class="col-12">
+                <!--<div class="col-12">
                     <h4>Punto de encuentro</h4>
                     <div><img class="col-12" src="../../../../assets/imagenes/map.png" alt="AGREGAR MAPA DE GMAPS"></div>
-                </div>
+                </div>-->
 
                 <button (click)="crearActividad(formularioActividad.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button-info"></button>
 

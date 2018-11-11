@@ -24,7 +24,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 export class TarjetaSalidaComponent implements OnInit, OnDestroy {
 
   // Se recibe el valor de salida desde fuera (elemento padre)
-  @Input() salida: Actividad;
+  @Input() salida: Actividad = new Actividad();
   public usuario: Usuario;
   public idUsuario: string;
   public mensaje: string;
@@ -49,14 +49,23 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
     this.subscripcionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
       (usuarioLogado: Usuario) => {
         this.usuarioLogado = usuarioLogado;
+        if (this.idUsuario !== undefined) {
+          this.subscripcionBuscarUsuarioPorId = this.usuariosService.buscarUsuarioPorId(this.idUsuario).subscribe(
+            (usuarioCreacion: Usuario) => {
+              this.usuario = usuarioCreacion;
+            }
+          );
+        } else {
+          this.subscripcionBuscarUsuarioPorId = this.usuariosService.buscarUsuarioPorId(this.usuarioLogado.id).subscribe(
+            (usuarioCreacion: Usuario) => {
+              this.usuario = usuarioCreacion;
+            }
+          );
+        }
       }
     );
 
-    this.subscripcionBuscarUsuarioPorId = this.usuariosService.buscarUsuarioPorId(this.idUsuario).subscribe(
-      (usuarioCreacion: Usuario) => {
-        this.usuario = usuarioCreacion;
-      }
-    );
+
   }
 
   // Método para mostrar la salida

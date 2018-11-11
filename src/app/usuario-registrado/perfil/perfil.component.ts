@@ -28,6 +28,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
   public listaProvincias: Array<Provincia> = [];
   public formularioActualizacion: FormGroup;
   public rangoAnios: string;
+  public es: any;
 
   public imagenAvatar: string | ArrayBuffer;
   public progreso: number;
@@ -47,6 +48,18 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
     const anioHasta: string = moment().subtract(this.edadMinima, 'years').format('YYYY');
     this.rangoAnios = `${this.anioDesde}:${anioHasta}`;
+
+    this.es = {
+      firstDayOfWeek: 1,
+      dayNames: [ 'domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado' ],
+      dayNamesShort: [ 'dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb' ],
+      dayNamesMin: [ 'D', 'L', 'M', 'X', 'J', 'V', 'S' ],
+      monthNames: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
+        'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
+      monthNamesShort: [ 'ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic' ],
+      today: 'Hoy',
+      clear: 'Borrar'
+    };
 
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
       usuario => {

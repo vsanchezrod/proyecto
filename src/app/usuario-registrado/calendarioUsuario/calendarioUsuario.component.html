@@ -3,7 +3,7 @@
 
     <div class="row">
         <div class="col-sm-12 col-md-8">
-            <p-schedule class="col-12" [header]="cabeceraConfiguracion" [events]="listaEventos"></p-schedule>
+            <p-schedule class="col-12" [header]="cabeceraConfiguracion" [events]="listaEventos" (onEventClick)="visualizarEvento($event)"></p-schedule>
         </div>
 
         <div class="col-sm-12 col-md-4">

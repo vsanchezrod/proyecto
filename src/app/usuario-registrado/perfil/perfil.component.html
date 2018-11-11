@@ -41,7 +41,7 @@
                             {{ fechaNacimientoParseada }}
                         </span>
                         <span pInplaceContent class="col-12">
-                            <p-calendar class="col-12" [formControl]="formularioActualizacion.controls['fechaNacimiento']" [showIcon]="true" dateFormat="dd/mm/yy" [yearNavigator]="true" [yearRange]="rangoAnios" [monthNavigator]="true"></p-calendar>
+                            <p-calendar class="col-12" [locale]="es" [formControl]="formularioActualizacion.controls['fechaNacimiento']" [showIcon]="true" dateFormat="dd/mm/yy" [yearNavigator]="true" [yearRange]="rangoAnios" [monthNavigator]="true"></p-calendar>
                         </span>
                     </p-inplace>
                 </div>

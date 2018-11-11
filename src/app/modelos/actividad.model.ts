@@ -23,6 +23,7 @@ export class Actividad {
       latitud: 0,
       longitud: 0
     };
+    this.imagen = '/assets/imagenes/fondo.jpg';
     Object.assign(this, datos);
   }
 

@@ -76,13 +76,10 @@ export class CalendarioComponent implements OnInit, OnDestroy {
 
   public visualizarEvento(event: any): void {
 
-    console.log('Event:', event);
     const evento: Evento = {
       id: event.calEvent.id,
       tipo: event.calEvent.tipo
     };
-
-    console.log('evento: ', evento);
 
     if (evento.tipo === 'salida' ) {
       console.log(evento.tipo);

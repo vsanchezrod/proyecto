@@ -34,8 +34,6 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
   public es: any;
 
   public usuario: Usuario;
-  // private accessToken: string;
-  // private subscriptionAccessToken: Subscription;
   private subscriptionUsuarioLogado: Subscription;
 
   constructor(private categoriaService: CategoriasService,
@@ -55,12 +53,6 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
        this.listaCategorias = categorias;
     });
 
-    // Obtener token de acceso
-    /*this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe(accessToken => {
-      this.accessToken = accessToken;
-    });*/
-
-    // Obtener el usuario logado
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(usuario => {
       this.usuario = usuario;
     });
@@ -79,7 +71,6 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.subscriptionAccessToken.unsubscribe();
     this.subscriptionUsuarioLogado.unsubscribe();
   }
 
