@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output } from '@angular/core';
 import * as moment from 'moment';
 
 // Modelo de datos
@@ -15,6 +15,8 @@ import { UsuarioSesionService } from '../../../servicios/usuario-sesion.service'
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
+import { EventEmitter } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-actividad-nueva',
@@ -28,6 +30,7 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
   public distanciaMaxima: number;
   public listaCategorias: Array<Categoria> = [];
   public fechaInicioParseada: string;
+  @Output() eventoNuevaSalida = new EventEmitter();
 
   public imagen: string | ArrayBuffer;
   public progreso: number;
@@ -78,6 +81,10 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
 
   public cambiarFechaParseada(fechaInicio: Date): void {
     this.fechaInicioParseada = moment(fechaInicio).locale('es').format('DD/MM/YYYY HH:mm');
+
+    console.log('mandando evento: ', 'nueva-salida');
+    this.eventoNuevaSalida.emit('nueva-salida');
+
   }
 
   public cargarImagen(event: Event): void {
@@ -117,9 +124,13 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
     this.actividad.imagen = this.imagen;
     this.actividad.idUsuarioCreacion = this.usuario.id;
     this.actividad.listaParticipantes = [];
-    this.actividadesService.crearActividad(this.actividad).subscribe( response => {
-      console.log('Respuesta: ' + response.status);
-    });
+
+    this.actividadesService.crearActividad(this.actividad).subscribe(
+      (response: HttpResponse<any>) => {
+        console.log('Respuesta: ' + response.status);
+        this.eventoNuevaSalida.emit('nueva-salida');
+      }
+    );
 
     this.redirigirAActividadesPropuestas();
 

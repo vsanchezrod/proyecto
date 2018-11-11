@@ -32,6 +32,7 @@ export class ActividadesPropuestasComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+    console.log('OnInit');
     // this.usuario = new Usuario();
     this.listaMisActividadesPropuestas = [];
 
@@ -41,17 +42,7 @@ export class ActividadesPropuestasComponent implements OnInit, OnDestroy {
         this.usuario = usuario;
 
         // Obtener la lista de actividades creadas por el usuario
-        this.subscriptionActividadesUsuario = this.actividadesService.obtenerActividadesCreadasPorUsuario(this.usuario.id).subscribe(
-          (listaActividades: Array<Actividad>) => {
-            this.listaMisActividadesPropuestas = listaActividades;
-            console.log('ActivProp: buscarActivUsuario: listaActividades: ', this.listaMisActividadesPropuestas);
-
-            // Para que cargue por defecto la primera salida
-            if (this.listaMisActividadesPropuestas.length > 0) {
-              console.log('Mis 1 actividades propuestas:', this.listaMisActividadesPropuestas[0]);
-              this.salidaSeleccionada = this.listaMisActividadesPropuestas[0];
-            }
-        });
+        this.actualizarMisSalidas();
     });
   }
 
@@ -61,8 +52,22 @@ export class ActividadesPropuestasComponent implements OnInit, OnDestroy {
   }
 
   public cargarActividad(actividad: Actividad): void {
-    console.log('ACTIVIDAD PARA CARGAR: ' , actividad);
     this.salidaSeleccionada = actividad;
   }
 
+  public actualizarMisSalidas(event?): void {
+    console.log('ACTUALIZAR MIS PROPUESTAS: ', event);
+    this.subscriptionActividadesUsuario = this.actividadesService.obtenerActividadesCreadasPorUsuario(this.usuario.id).subscribe(
+      (listaActividades: Array<Actividad>) => {
+        this.listaMisActividadesPropuestas = [];
+        this.listaMisActividadesPropuestas = listaActividades;
+        console.log('ActivProp: buscarActivUsuario: listaActividades: ', this.listaMisActividadesPropuestas);
+
+        // Para que cargue por defecto la primera salida
+        if (this.listaMisActividadesPropuestas.length > 0) {
+          console.log('Mis 1 actividades propuestas:', this.listaMisActividadesPropuestas[0]);
+          this.salidaSeleccionada = this.listaMisActividadesPropuestas[0];
+        }
+    });
+  }
 }

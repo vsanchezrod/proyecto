@@ -58,7 +58,7 @@ export class ActividadesService {
     );
   }
 
-  public crearActividad(actividad: Actividad): Observable<HttpResponse<Actividad>> {
+  public crearActividad(actividad: Actividad): Observable<HttpResponse<any>> {
     const body = actividad;
     return this.httpClient.post<Actividad>(environment.host + '/actividades', body,
      {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
