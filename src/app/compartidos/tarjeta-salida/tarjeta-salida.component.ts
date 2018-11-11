@@ -29,7 +29,6 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
   public usuario: Usuario;
   public idUsuario: string;
   public mensaje: string;
-  // public fechaInicioParseada: string;
   public usuarioLogado: Usuario;
 
   private subscripcionBuscarUsuarioPorId: Subscription;

@@ -25,6 +25,9 @@ export class Actividad {
     };
     this.imagen = '/assets/imagenes/fondo.jpg';
     Object.assign(this, datos);
+    if ( datos !== undefined && datos.fechaInicio !== undefined ) {
+      this.fechaInicio = new Date(datos.fechaInicio);
+    }
   }
 
 }

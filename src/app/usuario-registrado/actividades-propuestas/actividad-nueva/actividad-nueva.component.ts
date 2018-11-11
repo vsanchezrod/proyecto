@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import * as moment from 'moment';
 
 // Modelo de datos
@@ -12,10 +12,9 @@ import { ActividadesService } from '../../../servicios/actividades.service';
 import { UsuarioSesionService } from '../../../servicios/usuario-sesion.service';
 
 // Rutas
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
-import { EventEmitter } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 
 @Component({
@@ -30,8 +29,9 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
   public distanciaMaxima: number;
   public listaCategorias: Array<Categoria> = [];
   public fechaInicioParseada: string;
-  @Output() eventoNuevaSalida = new EventEmitter();
 
+  public esNuevaActividad: boolean;
+  public titulo: string;
   public imagen: string | ArrayBuffer;
   public progreso: number;
   public mostrarSpinner: boolean;
@@ -44,18 +44,57 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
   constructor(private categoriaService: CategoriasService,
               private actividadesService: ActividadesService,
               private usuarioSesionService: UsuarioSesionService,
+              private activatedRoute: ActivatedRoute,
               private router: Router) {
   }
 
   ngOnInit() {
 
     this.actividad = new Actividad();
-
     this.distanciaMinima = 0;
     this.distanciaMaxima = 150;
 
+    this.activatedRoute.url.subscribe(
+      (url) => {
+        console.log('URL: ', url);
+        if (url[0]['path'] === 'nueva') {
+          this.titulo = 'Nueva Actividad';
+          this.esNuevaActividad = true;
+        }
+
+        if (url[0]['path'] === 'editar') {
+          this.activatedRoute.params.subscribe(
+            (param) => {
+              console.log('Param EDitar: ', param);
+              const idActividad = param.id;
+              this.actividadesService.obtenerActividadPorId$(idActividad).subscribe(
+                (actividadAEditar: Actividad) => {
+                  this.titulo = `Editar Actividad: ${actividadAEditar.nombre}`;
+                  this.actividad = actividadAEditar;
+                  this.esNuevaActividad = false;
+
+                  /// PENDIENTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                  this.actividad.categorias.forEach(categoria => {
+                    categoria['label'] = categoria.id;
+                  });
+
+                  console.log('ACTIV CATEGORIA: ', this.actividad.categorias[0]);
+                }
+              );
+            }
+          );
+        }
+    });
+
     this.categoriaService.obtenerListaCategorias$().subscribe(categorias => {
-       this.listaCategorias = categorias;
+      this.listaCategorias = [];
+      /// PENDIENTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+      categorias.forEach(categoria => {
+        categoria['label'] = categoria.id;
+        this.listaCategorias.push(categoria);
+      });
+
+      console.log('CAT:', this.listaCategorias[0]);
     });
 
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(usuario => {
@@ -81,10 +120,6 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
 
   public cambiarFechaParseada(fechaInicio: Date): void {
     this.fechaInicioParseada = moment(fechaInicio).locale('es').format('DD/MM/YYYY HH:mm');
-
-    console.log('mandando evento: ', 'nueva-salida');
-    this.eventoNuevaSalida.emit('nueva-salida');
-
   }
 
   public cargarImagen(event: Event): void {
@@ -127,12 +162,33 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
 
     this.actividadesService.crearActividad(this.actividad).subscribe(
       (response: HttpResponse<any>) => {
-        console.log('Respuesta: ' + response.status);
-        this.eventoNuevaSalida.emit('nueva-salida');
+        console.log('Respuesta: ', response.status);
+        this.redirigirAActividadesPropuestas();
+      },
+      (error) => {
+        console.error('Error: ', error);
       }
     );
+  }
 
-    this.redirigirAActividadesPropuestas();
+  public actualizarActividad(datosFormularioActividad): void {
+    const actividadEditada: Actividad = datosFormularioActividad;
+    actividadEditada.imagen = this.imagen;
+    actividadEditada.idUsuarioCreacion = this.usuario.id;
+    actividadEditada.id = this.actividad.id;
+
+    console.log('ACTIVIDAD EDITADA: ', actividadEditada);
+
+    this.actividadesService.actualizarActividad(actividadEditada).subscribe(
+      (response) => {
+        console.log('Actividad Editada: ', actividadEditada);
+        console.log(response);
+        this.redirigirAActividadesPropuestas();
+      },
+      (error) => {
+        console.error('Actividad no pudo ser editada: ', error);
+      }
+    );
 
   }
 

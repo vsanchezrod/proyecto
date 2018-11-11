@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, OnDestroy} from '@angular/core';
 import * as moment from 'moment';
 
 // Modelos
@@ -20,7 +20,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
   templateUrl: './tarjeta-viaje.component.html',
   styleUrls: ['./tarjeta-viaje.component.css']
 })
-export class TarjetaViajeComponent implements OnInit {
+export class TarjetaViajeComponent implements OnInit, OnDestroy {
 
   // Se recibe el valor de salida desde fuera (elemento padre)
   @Input() viaje: Viaje = new Viaje();
@@ -44,6 +44,10 @@ export class TarjetaViajeComponent implements OnInit {
         this.usuarioLogado = usuarioLogado;
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.subscripcionUsuarioLogado.unsubscribe();
   }
 
   public mostrarBotonApuntarse(): boolean {

@@ -36,7 +36,7 @@ import { AmigosComponent } from './amigos/amigos.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
 import { OpinionComponent } from './opinion/opinion.component';
 import { ActividadNuevaComponent } from './actividades-propuestas/actividad-nueva/actividad-nueva.component';
-import { ActividadEditarComponent } from './actividades-propuestas/actividad-editar/actividad-editar.component';
+import { ActividadesListaComponent } from './actividades-propuestas/actividades-lista/actividades-lista.component';
 
 @NgModule({
   imports: [
@@ -69,7 +69,7 @@ import { ActividadEditarComponent } from './actividades-propuestas/actividad-edi
     MensajesComponent,
     OpinionComponent,
     ActividadNuevaComponent,
-    ActividadEditarComponent
+    ActividadesListaComponent
   ],
   exports: [
     UsuarioRegistradoComponent

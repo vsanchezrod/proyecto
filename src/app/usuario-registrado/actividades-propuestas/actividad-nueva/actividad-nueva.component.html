@@ -2,7 +2,7 @@
 
     <div class="row">
 
-        <h3 class="text-center col-12">Nueva actividad!</h3>
+        <h3 class="text-center col-12">{{ titulo }}</h3>
 
         <div class="col-sm-12 col-md-6">
 
@@ -59,7 +59,8 @@
                     <div><img class="col-12" src="../../../../assets/imagenes/map.png" alt="AGREGAR MAPA DE GMAPS"></div>
                 </div>-->
 
-                <button (click)="crearActividad(formularioActividad.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button-info"></button>
+                <button *ngIf="esNuevaActividad" (click)="crearActividad(formularioActividad.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button-info"></button>
+                <button *ngIf="!esNuevaActividad" (click)="actualizarActividad(formularioActividad.value)" pButton type="button" label="ACTUALIZAR ACTIVIDAD" class="col-12 ui-button-info"></button>
 
             </form>
 

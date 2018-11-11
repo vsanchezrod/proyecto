@@ -89,9 +89,11 @@ export class ActividadesService {
 
   public obtenerActividadPorId$(idActividad: string): Observable<Actividad> {
     return this.httpClient.get<Actividad>(environment.host + `/public/actividades/${idActividad}`,
-    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'})
+      .pipe(map(actividad => {
+        return new Actividad(actividad);
+      }));
   }
-
 
   // POR USUARIO
 
@@ -145,5 +147,10 @@ export class ActividadesService {
         return actividades;
       })
     );
+  }
+
+  public actualizarActividad(actividad: Actividad): Observable<HttpResponse<Actividad>> {
+    return this.httpClient.patch<Actividad>(environment.host + `/actividades/${actividad.id}`, actividad,
+    {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
   }
 }

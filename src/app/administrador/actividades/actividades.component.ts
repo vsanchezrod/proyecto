@@ -147,33 +147,6 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     });
   }
 
-  /*public cancelarActividad(actividad: any): void {
-
-    const motivo = prompt('¿Por qué motivo va a ser suspendida la actividad?');
-    console.log('Lista participantes: ', actividad.listaParticipantes);
-    for (const usuarioActividad of actividad.listaParticipantes) {
-      const mensaje: Mensaje = new Mensaje();
-      mensaje.idUsuarioEmisor = this.usuario.id;
-      mensaje.idUsuarioReceptor = usuarioActividad;
-      mensaje.fecha = new Date();
-      mensaje.asunto = `${actividad.nombre}`;
-      mensaje.cuerpoMensaje = motivo;
-
-      this.mensajesService.mandarMensaje(mensaje).subscribe(
-        (response: HttpResponse<Mensaje>) => {
-          console.log(response);
-        }
-      );
-    }
-
-    this.actividadesService.borrarActividad(actividad.id).subscribe(
-      (response: HttpResponse<Actividad>) => {
-        console.log(response);
-      }
-    );
-  }*/
-
-
   public mostrarFormularioCrearViaje(valor: boolean) {
     this.mostrarFormularioViaje = valor;
   }

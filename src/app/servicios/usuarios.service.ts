@@ -60,7 +60,7 @@ export class UsuariosService {
 
   public actualizarUsuario(usuario: Usuario): Observable<HttpResponse<Usuario>> {
     return this.httpClient.patch<Usuario>(environment.host + `/usuarios/${usuario.id}`, usuario,
-    {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'});
+    {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
   }
 
   public borrarUsuario (id: string): Observable<HttpResponse<Usuario>> {
