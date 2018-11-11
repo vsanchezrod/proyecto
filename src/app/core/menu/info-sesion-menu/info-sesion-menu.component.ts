@@ -137,6 +137,4 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
   public verMensajes(): void {
     this.router.navigate(['/usuario/mensajes']);
   }
-
-
 }

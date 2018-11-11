@@ -72,7 +72,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
           'apellido': new FormControl(this.usuario.apellido),
           'password': new FormControl(this.usuario.password, [Validators.minLength(8), Validators.maxLength(20)]),
           // 'password2': new FormControl(this.usuario.password, [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
-          'fechaNacimiento': new FormControl(''),
+          'fechaNacimiento': new FormControl(new Date(this.usuario.fechaNacimiento)),
           'sexo': new FormControl(this.usuario.sexo),
           'provincia': new FormControl(this.usuario.provincia),
           'info': new FormControl(this.usuario.info),

@@ -21,11 +21,15 @@ export class Usuario {
   roles: Array<string>;
   amigos?: Array<string>;
 
-  constructor() {
+  constructor(datos?: any) {
     this.intereses = [];
     this.roles = [];
     this.amigos = [];
     this.avatar = '/assets/imagenes/user.png';
+    Object.assign(this, datos);
+    if ( datos !== undefined && datos.fechaNacimiento !== undefined ) {
+      this.fechaNacimiento = new Date(datos.fechaNacimiento);
+    }
   }
 
 }

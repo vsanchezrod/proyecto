@@ -16,6 +16,9 @@ import { MessageService } from 'primeng/api';
 // Peticiones Http
 import { HttpResponse } from '@angular/common/http';
 
+// Rutas
+import { Router } from '@angular/router';
+
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -40,7 +43,8 @@ export class MensajesComponent implements OnInit, OnDestroy {
   constructor(private usuarioSesionService: UsuarioSesionService,
               private mensajesService: MensajesService,
               private messageService: MessageService,
-              private usuariosService: UsuariosService) { }
+              private usuariosService: UsuariosService,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -75,8 +79,6 @@ export class MensajesComponent implements OnInit, OnDestroy {
           this.mensaje = this.listaMensajes[0];
       });
     });
-
-
   }
 
   ngOnDestroy() {
@@ -128,6 +130,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
       (response: HttpResponse<Mensaje>) => {
         console.log('Quiero borrar el mensaje con id ' + idMensaje);
         console.log(response);
+        this.router.navigate(['/usuario/mensajes']);
       }
     );
 

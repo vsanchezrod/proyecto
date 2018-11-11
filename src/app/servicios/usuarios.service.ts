@@ -10,6 +10,7 @@ import { Total } from '../modelos/total.model';
 
 // Producción
 import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
 
 // Servicios
 import { CabecerasHttpService } from './cabeceras-http.service';
@@ -44,7 +45,10 @@ export class UsuariosService {
   public buscarUsuarioPorId(idUsuario: string): Observable<Usuario> {
     console.log('buscarUsuarioPorId: ', idUsuario);
     return this.httpClient.get<Usuario>(environment.host + `/public/usuarios/${idUsuario}`,
-      {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
+      {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'})
+      .pipe(map(usuario => {
+        return new Usuario(usuario);
+      }));
   }
 
   public buscarUsuarioPorNombre(nombre: string): Observable<Usuario> {
