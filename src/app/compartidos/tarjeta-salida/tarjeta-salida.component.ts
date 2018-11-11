@@ -25,10 +25,11 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
 
   // Se recibe el valor de salida desde fuera (elemento padre)
   @Input() salida: Actividad = new Actividad();
+  @Input() fechaInicioParseada?: string;
   public usuario: Usuario;
   public idUsuario: string;
   public mensaje: string;
-  public fechaInicioParseada: string;
+  // public fechaInicioParseada: string;
   public usuarioLogado: Usuario;
 
   private subscripcionBuscarUsuarioPorId: Subscription;

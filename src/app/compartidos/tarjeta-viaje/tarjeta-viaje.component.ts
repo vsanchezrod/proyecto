@@ -27,7 +27,7 @@ export class TarjetaViajeComponent implements OnInit {
   public fechaInicioParseada: string;
   public fechaFinParseada: string;
   public usuarioLogado: Usuario;
-  
+
   private subscripcionUsuarioLogado: Subscription;
 
   constructor(private usuarioSesionService: UsuarioSesionService,

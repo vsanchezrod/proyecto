@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import * as moment from 'moment';
 
 // Modelo de datos
 import { Actividad } from '../../../modelos/actividad.model';
@@ -26,6 +27,7 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
   public distanciaMinima: number;
   public distanciaMaxima: number;
   public listaCategorias: Array<Categoria> = [];
+  public fechaInicioParseada: string;
 
   public imagen: string | ArrayBuffer;
   public progreso: number;
@@ -74,6 +76,10 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
     this.subscriptionUsuarioLogado.unsubscribe();
   }
 
+  public cambiarFechaParseada(fechaInicio: Date): void {
+    this.fechaInicioParseada = moment(fechaInicio).locale('es').format('DD/MM/YYYY HH:mm');
+  }
+
   public cargarImagen(event: Event): void {
     console.log(event);
     const inputValue: any = event.target;
@@ -111,7 +117,6 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
     this.actividad.imagen = this.imagen;
     this.actividad.idUsuarioCreacion = this.usuario.id;
     this.actividad.listaParticipantes = [];
-    console.log('ACTIVIDAD A CREAR: ', this.actividad);
     this.actividadesService.crearActividad(this.actividad).subscribe( response => {
       console.log('Respuesta: ' + response.status);
     });
