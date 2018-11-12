@@ -10,7 +10,7 @@ import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 import { ViajesService } from '../../servicios/viajes.service';
 
 // Router para poder navegar por las diferentes rutas
-import {Router} from '@angular/router';
+import { Router} from '@angular/router';
 
 import { Subscription } from 'rxjs';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
@@ -51,7 +51,6 @@ export class TarjetaViajeComponent implements OnInit, OnDestroy {
   }
 
   public mostrarBotonApuntarse(): boolean {
-
     if (new Date() < this.viaje.fechaInicio && !this.usuarioYaApuntado() && !this.plazasAgotadas()) {
       return true;
     }
@@ -62,7 +61,7 @@ export class TarjetaViajeComponent implements OnInit, OnDestroy {
     return this.viaje.listaParticipantes.length >= this.viaje.plazas;
   }
 
-  public usuarioYaApuntado() {
+  public usuarioYaApuntado(): boolean {
     if (this.usuarioLogado.id !== undefined) {
       return this.viaje.listaParticipantes.includes(this.usuarioLogado.id);
     }

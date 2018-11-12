@@ -63,7 +63,7 @@ export class ViajesService {
 
   public crearViaje(viaje: Viaje): Observable<HttpResponse<Viaje>> {
     return this.httpClient.post<Viaje>(environment.host + '/viajes', viaje,
-      {headers: this.cabecerasHttpService.generarCabecerasPost(), observe: 'response'});
+      {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
   }
 
   public borrarViaje(id: string, motivo: string): Observable<HttpResponse<Viaje>> {

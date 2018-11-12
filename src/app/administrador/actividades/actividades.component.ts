@@ -135,9 +135,14 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     this.viaje = datos;
     this.viaje.imagen = this.imagen;
     this.viaje.idUsuarioCreacion = this.usuario.id;
+    this.viaje.listaParticipantes = [];
     this.viajesService.crearViaje(this.viaje).subscribe(response => {
       console.log('Respuesta: ' + response.status);
       this.mostrarFormularioCrearViaje(false);
+      this.viajesService.obtenerListadoViajesActuales$().subscribe(viajes => {
+        this.listaViajes = viajes;
+        this.viaje = new Viaje;
+      });
     });
   }
 
