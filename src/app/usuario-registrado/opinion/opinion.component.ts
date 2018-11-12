@@ -10,6 +10,8 @@ import { Viaje } from '../../modelos/viaje.model';
 import { Actividad } from '../../modelos/actividad.model';
 import { SelectItem } from 'primeng/components/common/selectitem';
 
+import { Router } from '@angular/router';
+
 // Servicios
 import { OpinionesService } from '../../servicios/opiniones.service';
 import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
@@ -38,7 +40,8 @@ export class OpinionComponent implements OnInit, OnDestroy {
   constructor(private opinionesService: OpinionesService,
               private usuarioSesionService: UsuarioSesionService,
               private viajesService: ViajesService,
-              private actividadesService: ActividadesService) { }
+              private actividadesService: ActividadesService,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -82,9 +85,9 @@ export class OpinionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.subscripcionUsuarioLogado.unsubscribe();
-    // this.subscripcionListaViajes.unsubscribe();
-    // this.subscripcionListaActividades.unsubscribe();
+    this.subscripcionUsuarioLogado.unsubscribe();
+    this.subscripcionListaViajes.unsubscribe();
+    this.subscripcionListaActividades.unsubscribe();
   }
 
   public enviarOpinion(): void {
@@ -97,7 +100,9 @@ export class OpinionComponent implements OnInit, OnDestroy {
 
     this.opinionesService.guardarOpinion(this.opinion).subscribe(response => {
         console.log('OpiniónComp: RespuestaGuardarOpinion ' + response.status);
+        this.router.navigate(['acerca']);
       });
+
 
     // MOSTRAR MENSAJE DE QUE SE HA ENVIADO!!
 

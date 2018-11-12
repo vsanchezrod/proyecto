@@ -22,11 +22,11 @@
     </div>
 </div>
 <div class="container">
-    <button pButton type="button" *ngIf="mostrarFormularioViaje == false" (click)="mostrarFormularioCrearViaje(true)" label="Crear viaje" icon="pi pi-pencil" class="ui-button-info ui-editor-toolbar"></button>
-    <button pButton type="button" *ngIf="mostrarFormularioViaje == true" (click)="mostrarFormularioCrearViaje(false)" label="Cancelar" icon="pi pi-times" class="ui-button-icon-only ui-button-info ui-editor-toolbar"></button>
+    <button pButton type="button" *ngIf="!mostrarFormularioViaje" (click)="mostrarFormularioCrearViaje(true)" label="Crear viaje" icon="pi pi-pencil" class="ui-button-info ui-editor-toolbar"></button>
+    <button pButton type="button" *ngIf="mostrarFormularioViaje" (click)="mostrarFormularioCrearViaje(false)" label="Cancelar" icon="pi pi-times" class="ui-button-icon-only ui-button-info ui-editor-toolbar"></button>
 </div>
 
-<div class="container formularioViaje" *ngIf="mostrarFormularioViaje == true" style="z-index: 1000">
+<div class="container formularioViaje" *ngIf="mostrarFormularioViaje" style="z-index: 1000">
 
     <div class="row">
 

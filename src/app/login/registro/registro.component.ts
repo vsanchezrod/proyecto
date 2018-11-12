@@ -4,6 +4,9 @@ import * as moment from 'moment';
 // Formularios
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+// Rutas
+import { Router } from '@angular/router';
+
 // Servicios
 import { ProvinciasService } from '../../servicios/provincias.service';
 import { CategoriasService } from '../../servicios/categorias.service';
@@ -36,7 +39,8 @@ export class RegistroComponent implements OnInit {
 
   constructor(private provinciasService: ProvinciasService,
               private categoriasService: CategoriasService,
-              private usuariosService: UsuariosService) {}
+              private usuariosService: UsuariosService,
+              private router: Router) {}
 
   ngOnInit() {
 
@@ -76,9 +80,15 @@ export class RegistroComponent implements OnInit {
     const usuario: Usuario = datosFormulario;
     usuario.amigos = [];
 
-    this.usuariosService.crearUsuario(datosFormulario).subscribe( response => {
+    this.usuariosService.crearUsuario(usuario).subscribe(
+      response => {
       console.log('Respuesta: ' + response.status);
-    });
+      this.router.navigate(['/login']);
+    },
+    (error) => {
+      console.error('No se ha podido llevar a cabo el registro ', error);
+    }
+    );
   }
 
   public cargarAvatar(event: Event): void {
@@ -101,6 +111,9 @@ export class RegistroComponent implements OnInit {
       this.imagenAvatar = fileReader.result;
       this.progreso = 100;
       this.mostrarSpinner = false;
+      if (this.formularioRegistro.contains('avatar')) {
+        this.formularioRegistro.removeControl('avatar');
+      }
       this.formularioRegistro.addControl('avatar', new FormControl(this.imagenAvatar, Validators.required));
     };
 

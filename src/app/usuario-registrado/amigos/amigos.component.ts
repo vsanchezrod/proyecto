@@ -24,7 +24,7 @@ export class AmigosComponent implements OnInit, OnDestroy {
   public usuario: Usuario;
 
   private subscriptionUsuarioLogado: Subscription;
-  private subscriptionListaAmigos: Subscription;
+  private subscriptionListaUsuarios: Subscription;
 
   constructor(private usuariosService: UsuariosService,
               private usuarioSesionService: UsuarioSesionService) { }
@@ -41,7 +41,7 @@ export class AmigosComponent implements OnInit, OnDestroy {
 
       // Carga de los datos de cada amigo
       for (const idAmigo of this.usuario.amigos) {
-        this.subscriptionListaAmigos = this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe(
+        this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe(
           (amigo: Usuario) => {
             this.listaAmigos.push(amigo);
 
@@ -51,7 +51,7 @@ export class AmigosComponent implements OnInit, OnDestroy {
     });
 
     // Obtener lista de usuarios
-    this.usuariosService.obtenerListaUsuarios$().subscribe( (listaUsuarios: Array<Usuario>) => {
+    this.subscriptionListaUsuarios = this.usuariosService.obtenerListaUsuarios$().subscribe( (listaUsuarios: Array<Usuario>) => {
       this.listaUsuarios = listaUsuarios;
       console.log('Lista de USUARIOS: listaUsuarios', this.listaUsuarios);
     });
@@ -60,7 +60,7 @@ export class AmigosComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptionUsuarioLogado.unsubscribe();
-    this.subscriptionListaAmigos.unsubscribe();
+    this.subscriptionListaUsuarios.unsubscribe();
   }
 
   // VER DE CUAL DE LAS DOS MANERAS LO HAGO
@@ -76,11 +76,6 @@ export class AmigosComponent implements OnInit, OnDestroy {
         }
       }
     }
-
-    // BEHAVIOR SUBJECT????
-    /*this.usuariosService.buscarUsuarioPorNombre(clave).subscribe( response => {
-      console.log(response);
-    });*/
   }
 
   public agregarAmigo(idUsuarioAAgregar: string): void {
@@ -111,4 +106,5 @@ export class AmigosComponent implements OnInit, OnDestroy {
       }
     );
   }
+
 }

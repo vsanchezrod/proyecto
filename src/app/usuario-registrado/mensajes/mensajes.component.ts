@@ -96,6 +96,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
     this.mensajesService.mandarMensaje(mensaje).subscribe(
       (response: HttpResponse<Mensaje>) => {
         console.log(response);
+        this.router.navigate(['/acerca']);
       }
     );
     this.mostrarFormularioMensaje(false);
@@ -128,9 +129,12 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
     this.mensajesService.borrarMensaje(idMensaje).subscribe(
       (response: HttpResponse<Mensaje>) => {
-        console.log('Quiero borrar el mensaje con id ' + idMensaje);
         console.log(response);
-        this.router.navigate(['/usuario/mensajes']);
+        this.mensajesService.obtenerListaDeMensajes$(this.usuario.id).subscribe(
+          (mensajes: Array<Mensaje>) => {
+            this.listaMensajes = mensajes;
+            this.mensaje = this.listaMensajes[0];
+        });
       }
     );
 

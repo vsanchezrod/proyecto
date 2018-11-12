@@ -40,6 +40,7 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
 
   public usuario: Usuario;
   private subscriptionUsuarioLogado: Subscription;
+  private subscriptionObtenerActividades: Subscription;
 
   constructor(private categoriaService: CategoriasService,
               private actividadesService: ActividadesService,

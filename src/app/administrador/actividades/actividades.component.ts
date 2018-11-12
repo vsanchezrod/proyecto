@@ -137,6 +137,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     this.viaje.idUsuarioCreacion = this.usuario.id;
     this.viajesService.crearViaje(this.viaje).subscribe(response => {
       console.log('Respuesta: ' + response.status);
+      this.mostrarFormularioCrearViaje(false);
     });
   }
 

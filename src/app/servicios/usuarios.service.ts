@@ -32,7 +32,6 @@ export class UsuariosService {
     this.httpClient.get<Array<Usuario>>(environment.host + '/usuarios',
       {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'}).subscribe( (response) => {
       this.listaUsuarios$.next(response.body);
-      console.log('ServicioUsuario: ListaUsuarios: ', response.body);
     });
     return this.listaUsuarios$.asObservable();
   }
@@ -43,7 +42,6 @@ export class UsuariosService {
   }
 
   public buscarUsuarioPorId(idUsuario: string): Observable<Usuario> {
-    console.log('buscarUsuarioPorId: ', idUsuario);
     return this.httpClient.get<Usuario>(environment.host + `/public/usuarios/${idUsuario}`,
       {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'})
       .pipe(map(usuario => {
