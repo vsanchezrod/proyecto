@@ -66,10 +66,10 @@ export class ViajesService {
       {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
   }
 
-  public borrarViaje(id: string, motivo: string): Observable<HttpResponse<Viaje>> {
+  public borrarViaje(idViaje: string, motivo: string): Observable<HttpResponse<Viaje>> {
     let headers = this.cabecerasHttpService.generarCabecerasGetConAccessToken();
     headers = headers.append('X-Motivo', motivo);
-    return this.httpClient.delete<Viaje>(environment.host + `/viajes/${id}`,
+    return this.httpClient.delete<Viaje>(environment.host + `/viajes/${idViaje}`,
       {headers: headers, observe: 'response'} );
   }
 

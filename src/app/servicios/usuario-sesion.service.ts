@@ -36,23 +36,15 @@ export class UsuarioSesionService {
           },
           (errorResponse) => {
             console.error('UsuarioSesionService:login:responseError: ', errorResponse);
-            // Si la respuesta es de error, se usa NEXT en vez de ERROR para que el suscribe ejecute la 2 funcion (algo ha ido mal)
+            // Error en el proceso de login
             respuestaLogin$.error(errorResponse);
           },
           () => {
-            console.log('UsuarioSesionService:login:ON COMPLETE XD');
+            console.log('UsuarioSesionService:login:complete');
             respuestaLogin$.complete();
           }
-
         );
-
     return respuestaLogin$.asObservable();
-
-  }
-
-  public logout(): void {
-    this.accessToken$.next(undefined);
-    this.usuarioLogado$.next(new Usuario());
   }
 
   public obtenerAccessToken$(): Observable<string> {
@@ -61,6 +53,11 @@ export class UsuarioSesionService {
 
   public obtenerUsuarioLogado$(): Observable<Usuario> {
     return this.usuarioLogado$.asObservable();
+  }
+
+  public logout(): void {
+    this.accessToken$.next(undefined);
+    this.usuarioLogado$.next(new Usuario());
   }
 
   public esAdministrador(): boolean {

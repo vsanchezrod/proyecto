@@ -5,17 +5,14 @@ import { ViajesService } from '../../servicios/viajes.service';
 import { ActividadesService } from '../../servicios/actividades.service';
 import { CategoriasService } from '../../servicios/categorias.service';
 import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
-import { MensajesService } from '../../servicios/mensajes.service';
 
 // Modelos de datos
 import { Viaje } from '../../modelos/viaje.model';
 import { Actividad } from '../../modelos/actividad.model';
 import { Categoria } from '../../modelos/categoria.model';
 import { Usuario } from '../../modelos/usuario.model';
-import { Mensaje } from 'src/app/modelos/mensaje.model';
 
 import { Subscription } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-actividades',
@@ -49,8 +46,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
   constructor(private viajesService: ViajesService,
               private actividadesService: ActividadesService,
               private categoriasService: CategoriasService,
-              private usuarioSesionService: UsuarioSesionService,
-              private mensajesService: MensajesService) { }
+              private usuarioSesionService: UsuarioSesionService) { }
 
   ngOnInit() {
 
@@ -69,13 +65,7 @@ export class ActividadesComponent implements OnInit, OnDestroy {
       this.usuario = usuario;
     });
 
-    this.viajesService.obtenerListadoViajesActuales$().subscribe(viajes => {
-      this.listaViajes = viajes;
-    });
-
-    this.actividadesService.obtenerListaActividadesActuales$().subscribe(actividades => {
-      this.listaActividades = actividades;
-    });
+    this.obtenerListadoDeActividades();
 
     this.categoriasService.obtenerListaCategorias$().subscribe( response => {
       this.listaCategorias = response;
@@ -146,15 +136,18 @@ export class ActividadesComponent implements OnInit, OnDestroy {
     });
   }
 
-  public borrarActividad(id: string, motivo: string): void {
-    this.actividadesService.borrarActividad(id, motivo).subscribe(response => {
-      console.log('ActividadesCompAdmin:BorrarActividad: ' + response.status);
-      console.log('Borrada la actividad con id ' + id);
-    });
-  }
-
   public mostrarFormularioCrearViaje(valor: boolean) {
     this.mostrarFormularioViaje = valor;
+  }
+
+  private obtenerListadoDeActividades(): void {
+    this.viajesService.obtenerListadoViajesActuales$().subscribe(viajes => {
+      this.listaViajes = viajes;
+    });
+
+    this.actividadesService.obtenerListaActividadesActuales$().subscribe(actividades => {
+      this.listaActividades = actividades;
+    });
   }
 
 }

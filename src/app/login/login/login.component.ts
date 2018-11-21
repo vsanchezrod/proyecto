@@ -23,15 +23,13 @@ export class LoginComponent implements OnInit {
   private subscripcionLogin: Subscription;
 
   constructor(private usuarioSesionService: UsuarioSesionService,
-              private router: Router) {
-                console.log('CONSTRUCTOR LOGIN');
-               }
+              private router: Router) {}
 
   ngOnInit() {
 
-    console.log('ONINIT LOGIN');
     this.credencialesValidas = true;
 
+    // Formulario de login
     this.formularioLogin = new FormGroup({
       'email': new FormControl('', [Validators.required , Validators.email]),
       'password': new FormControl('', Validators.required),
@@ -47,12 +45,12 @@ export class LoginComponent implements OnInit {
     this.subscripcionLogin = this.usuarioSesionService.login(email, password)
       .subscribe(
         (response) => {
-          console.log('LoginComponent:login:response: ', response);
+          console.log('Login response: ', response);
           this.router.navigate(['/inicio']);
           this.subscripcionLogin.unsubscribe();
         },
         (errorResponse) => {
-          console.error('LoginComponent:login:responseError: ', errorResponse);
+          console.error('Login error: ', errorResponse);
           this.credencialesValidas = false;
         }
       );

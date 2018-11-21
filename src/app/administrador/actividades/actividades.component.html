@@ -6,7 +6,7 @@
                 <p-accordionTab *ngFor="let viaje of listaViajes" [header]="viaje.nombre">
                     <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
                     <button pButton type="button" label="EDITAR" class="ui-button-rounded ui-button-warning"></button>
-                    <button pButton type="button" label="BORRAR" class="ui-button-rounded ui-button-danger"></button>
+                    <app-modal-cancelacion-actividades [actividad]="viaje"></app-modal-cancelacion-actividades>
                 </p-accordionTab>
             </p-accordion>
         </div>
@@ -15,7 +15,7 @@
             <p-accordion class="ui-g-12">
                 <p-accordionTab *ngFor="let salida of listaActividades" [header]="salida.nombre">
                     <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
-                    <button pButton type="button" label="BORRAR" class="ui-button-rounded ui-button-danger"></button>
+                    <app-modal-cancelacion-actividades [actividad]="salida"></app-modal-cancelacion-actividades>
                 </p-accordionTab>
             </p-accordion>
         </div>
