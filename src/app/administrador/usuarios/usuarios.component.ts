@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 export class UsuariosComponent implements OnInit, OnDestroy {
 
   public listaUsuarios: Array<Usuario> = [];
-  public usuario: Usuario;
+  public usuarioLogado: Usuario;
 
   private subscriptionUsuarioLogado: Subscription;
 
@@ -29,7 +29,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
     // Obtener el usuario logado
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe( (usuario: Usuario) => {
-      this.usuario = usuario;
+      this.usuarioLogado = usuario;
+      console.log('Usuario Logado: ', this.usuarioLogado.id);
     });
 
     // Obtener lista de usuarios

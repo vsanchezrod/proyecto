@@ -1,27 +1,4 @@
 <div class="container">
-    <div class="ui-g">
-        <div class="ui-g-6">
-            <h3 class="text-center ui-g-12">Viajes</h3>
-            <p-accordion class="ui-g-12">
-                <p-accordionTab *ngFor="let viaje of listaViajes" [header]="viaje.nombre">
-                    <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
-                    <button pButton type="button" label="EDITAR" class="ui-button-rounded ui-button-warning"></button>
-                    <app-modal-cancelacion-actividades [actividad]="viaje"></app-modal-cancelacion-actividades>
-                </p-accordionTab>
-            </p-accordion>
-        </div>
-        <div class="ui-g-6">
-            <h3 class="text-center ui-g-12">Actividades</h3>
-            <p-accordion class="ui-g-12">
-                <p-accordionTab *ngFor="let salida of listaActividades" [header]="salida.nombre">
-                    <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
-                    <app-modal-cancelacion-actividades [actividad]="salida"></app-modal-cancelacion-actividades>
-                </p-accordionTab>
-            </p-accordion>
-        </div>
-    </div>
-</div>
-<div class="container">
     <button pButton type="button" *ngIf="!mostrarFormularioViaje" (click)="mostrarFormularioCrearViaje(true)" label="Crear viaje" icon="pi pi-pencil" class="ui-button-info ui-editor-toolbar"></button>
     <button pButton type="button" *ngIf="mostrarFormularioViaje" (click)="mostrarFormularioCrearViaje(false)" label="Cancelar" icon="pi pi-times" class="ui-button-icon-only ui-button-info ui-editor-toolbar"></button>
 </div>
@@ -44,9 +21,9 @@
                 <div class="col-12">
                     <h4>Nombre</h4>
                     <span class="ui-float-label">
-                  <input id="nombre" name="nombre" [(ngModel)]="viaje.nombre" type="text" size="30" pInputText>
-                  <label for="nombre">Nombre</label>
-              </span>
+                      <input id="nombre" name="nombre" [(ngModel)]="viaje.nombre" type="text" size="30" pInputText>
+                      <label for="nombre">Nombre</label>
+                  </span>
                 </div>
 
                 <div class="col-12">
@@ -67,9 +44,9 @@
                 <div class="col-12">
                     <h4>Distancia {{ viaje.distancia }} km:</h4>
                     <span class="ui-float-label">
-                  <p-slider [(ngModel)]="viaje.distancia" name="distancia" [min]="distanciaMinima" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true"></p-slider>
-                  <label for="distancia">Km</label>
-               </span>
+                      <p-slider [(ngModel)]="viaje.distancia" name="distancia" [min]="distanciaMinima" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true"></p-slider>
+                      <label for="distancia">Km</label>
+                   </span>
                 </div>
 
                 <div class="col-12"></div>
@@ -90,16 +67,16 @@
                     <h4>Precio {{ viaje.precio }} €:</h4>
                     <input type="number" [(ngModel)]="viaje.precio" name="precio">
                     <span class="ui-float-label">
-        <p-slider [(ngModel)]="viaje.precio" name="precio" [min]="precioMinimo" [max]="precioMaximo" id="precio" [style]="{'width':'14em'}" [animate]="true"></p-slider>
-        <label for="precio">€</label>
-      </span>
+            <p-slider [(ngModel)]="viaje.precio" name="precio" [min]="precioMinimo" [max]="precioMaximo" id="precio" [style]="{'width':'14em'}" [animate]="true"></p-slider>
+            <label for="precio">€</label>
+          </span>
                 </div>
 
                 <div class="col-12">
                     <h4>Plazas {{ viaje.plazas }}:</h4>
                     <span class="ui-float-label">
-        <p-slider [(ngModel)]="viaje.plazas" name="plazas" [min]="plazasMinimas" [max]="plazasMaximas" id="plazas" [style]="{'width':'14em'}" [animate]="true"></p-slider>
-      </span>
+            <p-slider [(ngModel)]="viaje.plazas" name="plazas" [min]="plazasMinimas" [max]="plazasMaximas" id="plazas" [style]="{'width':'14em'}" [animate]="true"></p-slider>
+          </span>
                 </div>
 
 
@@ -119,4 +96,28 @@
             <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
         </div>
 
+    </div>
+
+    <div class="container">
+        <div class="ui-g">
+            <div class="ui-g-6">
+                <h3 class="text-center ui-g-12">Viajes</h3>
+                <p-accordion class="ui-g-12">
+                    <p-accordionTab *ngFor="let viaje of listaViajes" [header]="viaje.nombre">
+                        <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
+                        <button pButton type="button" label="EDITAR" class="ui-button-rounded ui-button-warning"></button>
+                        <app-modal-cancelacion-actividades [actividad]="viaje"></app-modal-cancelacion-actividades>
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+            <div class="ui-g-6">
+                <h3 class="text-center ui-g-12">Actividades</h3>
+                <p-accordion class="ui-g-12">
+                    <p-accordionTab *ngFor="let salida of listaActividades" [header]="salida.nombre">
+                        <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
+                        <app-modal-cancelacion-actividades [actividad]="salida"></app-modal-cancelacion-actividades>
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+        </div>
     </div>

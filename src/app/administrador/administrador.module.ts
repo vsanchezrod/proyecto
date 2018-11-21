@@ -28,8 +28,6 @@ import { AccordionModule } from 'primeng/accordion';
 // Módulos propios
 import { CompartidosModule } from '../compartidos/compartidos.module';
 
-
-
 @NgModule({
   imports: [
     CommonModule,

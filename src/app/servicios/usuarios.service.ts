@@ -65,6 +65,11 @@ export class UsuariosService {
     {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
   }
 
+  public editarRolUsuario(usuario: Usuario): Observable<HttpResponse<Usuario>> {
+    return this.httpClient.put<Usuario>(environment.host + `/usuarios/${usuario.id}/roles`, usuario,
+    {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
+  }
+
   public borrarUsuario (id: string): Observable<HttpResponse<Usuario>> {
     return this.httpClient.delete<Usuario>(environment.host + `/usuarios/${id}`,
       {headers: this.cabecerasHttpService.generarCabecerasGetConAccessToken(), observe: 'response'});

@@ -9,9 +9,8 @@
         <p class="ui-grid-col-12" *ngIf="esAdministrador"><span>Admin</span></p>
         <p-rating class="ui-grid-col-12" [ngModel]="usuario.valoracion" readonly="true" id="valoracion" stars="5" [cancel]="false"></p-rating>
 
-        <button pButton class="ui-grid-col-4" type="button" label="Agregar" icon="pi pi-check" style="margin-right: .25em"></button>
         <button pButton class="ui-grid-col-4" type="button" label="Eliminar" (click)="borrarUsuario(usuario.id)" icon="pi pi-times" class="ui-button-secondary"></button>
-        <button pButton class="ui-grid-col-4" *ngIf="esAdministrador" (click)="actualizarAAdmin(false)" type="button" label="Quitar admin" icon="pi pi-user-minus" style="margin-right: .25em"></button>
+        <button pButton class="ui-grid-col-4" [disabled]="usuarioLogado.id === usuario.id" *ngIf="esAdministrador" (click)="actualizarAAdmin(false)" type="button" label="Quitar admin" icon="pi pi-user-minus" style="margin-right: .25em"></button>
         <button pButton class="ui-grid-col-4" *ngIf="!esAdministrador" (click)="actualizarAAdmin(true)" type="button" label="Hacer admin" icon="pi pi-user-plus" style="margin-right: .25em"></button>
     </p-footer>
 </p-card>

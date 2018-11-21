@@ -6,7 +6,7 @@
         </p-header>
         <ng-template let-usuario pTemplate="item">
 
-            <app-tarjeta-usuario class="col-4" [usuario]="usuario"></app-tarjeta-usuario>
+            <app-tarjeta-usuario class="col-4" [usuarioLogado]="usuarioLogado" [usuario]="usuario"></app-tarjeta-usuario>
 
         </ng-template>
     </p-dataScroller>
