@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 import { Evento } from '../modelos/evento.model';
 
 import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-calendario',
