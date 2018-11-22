@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import * as moment from 'moment';
 
 // Modelo de datos
 import { Usuario } from '../../modelos/usuario.model';
 import { Mensaje } from '../../modelos/mensaje.model';
+import { SelectItem } from 'primeng/components/common/selectitem';
 
 // Formularios
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -30,7 +32,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   public mensaje: Mensaje;
   public listaMensajes: Array<Mensaje>;
-  public listaAmigos: Array<Usuario>;
+  public listaAmigos: Array<any>;
 
   public crearMensaje: boolean;
   public formularioMensaje: FormGroup;
@@ -64,8 +66,15 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
       // Carga de los nombre de cada amigo en el select de mandar nuevo mensaje
       for (const idAmigo of this.usuario.amigos) {
-        this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe( (amigo: Usuario) => {
-          this.listaAmigos.push(amigo);
+        this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe(
+          (amigo: Usuario) => {
+
+            const amigoUsuario: SelectItem = {
+              label: amigo.nombre,
+              value: amigo
+          };
+          console.log('AmigoUsuario: ', amigoUsuario);
+          this.listaAmigos.push(amigoUsuario);
         });
       }
 
@@ -88,6 +97,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   public mandarMensaje(): void {
     const mensaje: Mensaje = this.formularioMensaje.value;
+    console.log('Mensaje: ', this.mostrarFormularioMensaje);
     mensaje.idUsuarioReceptor = this.formularioMensaje.controls['idUsuarioReceptor'].value['id'];
     mensaje.idUsuarioEmisor = this.usuario.id;
     mensaje.fecha = new Date();
@@ -96,7 +106,6 @@ export class MensajesComponent implements OnInit, OnDestroy {
     this.mensajesService.mandarMensaje(mensaje).subscribe(
       (response: HttpResponse<Mensaje>) => {
         console.log(response);
-        this.router.navigate(['/acerca']);
       }
     );
     this.mostrarFormularioMensaje(false);
@@ -104,25 +113,18 @@ export class MensajesComponent implements OnInit, OnDestroy {
 
   public cargarMensaje(mensajeElegido: Mensaje): void {
     this.mensaje = mensajeElegido;
-    this.mensaje.leido = true;
-    this.mensajesService.actualizarMensaje(this.mensaje).subscribe(
-      (response: HttpResponse<Mensaje>) => {
-        console.log(response);
-      }
-    );
+    if (!mensajeElegido.leido) {
+      this.mensaje.leido = true;
+      this.mensajesService.actualizarMensaje(this.mensaje).subscribe(
+        (response: HttpResponse<Mensaje>) => {
+          console.log(response);
+        }
+      );
+    }
   }
 
   public mostrarFormularioMensaje(valor: boolean) {
     this.crearMensaje = valor;
-  }
-
-
-
-  // OPCIONAL SI DA TIEMPO
-
-  responderMensaje(idUsuarioEmisor) {
-    this.messageService.add({severity: 'success', summary: 'Success', detail: 'Data Updated'});
-    console.log('Quiero responder al mensaje de ' + idUsuarioEmisor);
   }
 
   public borrarMensaje(idMensaje: string): void {

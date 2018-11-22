@@ -35,20 +35,7 @@ export class AmigosComponent implements OnInit, OnDestroy {
     this.listaUsuariosBusqueda = [];
     this.listaAmigos = [];
 
-    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
-      (usuario: Usuario) => {
-        this.usuario = usuario;
-
-      // Carga de los datos de cada amigo
-      for (const idAmigo of this.usuario.amigos) {
-        this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe(
-          (amigo: Usuario) => {
-            this.listaAmigos.push(amigo);
-
-        });
-      }
-
-    });
+    this.actualizarListaAmigos();
 
     // Obtener lista de usuarios
     this.subscriptionListaUsuarios = this.usuariosService.obtenerListaUsuarios$().subscribe( (listaUsuarios: Array<Usuario>) => {
@@ -71,7 +58,7 @@ export class AmigosComponent implements OnInit, OnDestroy {
     if (clave !== '') {
       for (const usuarioBuscado of this.listaUsuarios) {
         console.log(usuarioBuscado.nombre);
-        if (usuarioBuscado.nombre.includes(clave)) {
+        if (usuarioBuscado.nombre.includes(clave) && usuarioBuscado.id !== this.usuario.id) {
           this.listaUsuariosBusqueda.push(usuarioBuscado);
         }
       }
@@ -80,20 +67,13 @@ export class AmigosComponent implements OnInit, OnDestroy {
 
   public agregarAmigo(idUsuarioAAgregar: string): void {
 
-    if (this.usuario.amigos.includes(idUsuarioAAgregar)) {
-      alert('Ese usuario ya es tu amigo');
-    } else {
-      if (this.usuario.id === idUsuarioAAgregar) {
-        alert('No te puedes agregar a ti mismo!!!');
-      } else {
-        this.usuario.amigos.push(idUsuarioAAgregar);
-        this.usuariosService.actualizarUsuario(this.usuario).subscribe(
-          (response: HttpResponse<Usuario>) => {
-            console.log(response);
-          }
-        );
+    this.usuario.amigos.push(idUsuarioAAgregar);
+    this.usuariosService.actualizarUsuario(this.usuario).subscribe(
+      (response: HttpResponse<Usuario>) => {
+        console.log(response);
+        this.actualizarListaAmigos();
       }
-    }
+    );
   }
 
   public borrarAmigo(idUsuarioAAgregar: string): void {
@@ -103,8 +83,28 @@ export class AmigosComponent implements OnInit, OnDestroy {
     this.usuariosService.actualizarUsuario(this.usuario).subscribe(
       (response: HttpResponse<Usuario>) => {
         console.log(response);
+
+        this.actualizarListaAmigos();
       }
     );
+  }
+
+  private actualizarListaAmigos(): void {
+
+    this.listaAmigos = [];
+    // Actualizado usuario
+    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
+      (usuario: Usuario) => {
+        this.usuario = usuario;
+
+      // Carga de los datos de cada amigo
+      for (const idAmigo of this.usuario.amigos) {
+        this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe(
+          (amigo: Usuario) => {
+            this.listaAmigos.push(amigo);
+        });
+      }
+    });
   }
 
 }

@@ -1,5 +1,3 @@
-<p class="col-12">Usuario {{ usuario.id }} </p>
-
 <div class="container card-body">
     <input #textoBusqueda class="form-control mr-sm-2" type="search" (keyup)="buscarAtletas(textoBusqueda.value)" placeholder="Nombre del atleta" aria-label="Search">
 </div>
@@ -19,7 +17,7 @@
                         </div>
                         <div class="ui-g-6 ui-md-9 ">
                             <span class="ui-g-12">{{ amigo.nombre }}</span>
-                            <button pButton type="button" label="Mensaje" icon="pi pi-check" style="margin-right: .25em"></button>
+                            <button pButton type="button" label="Mensaje" routerLink="/usuario/mensajes" icon="pi pi-check" style="margin-right: .25em"></button>
                             <button pButton type="button" (click)="borrarAmigo(amigo.id)" label="Eliminar" icon="pi pi-times" class="ui-button-secondary"></button>
                         </div>
                     </div>
@@ -40,7 +38,7 @@
                         </div>
                         <div class="ui-g-12 ">
                             <p>{{ usuarioBusqueda.nombre }}</p>
-                            <button pButton type="button" (click)="agregarAmigo(usuarioBusqueda.id)" label="Agregar" icon="pi pi-check" style="margin-right: .25em"></button>
+                            <button pButton type="button" [disabled]="usuario.amigos.includes(usuarioBusqueda.id)" (click)="agregarAmigo(usuarioBusqueda.id)" label="Agregar" icon="pi pi-check" style="margin-right: .25em"></button>
                         </div>
                     </div>
                 </ng-template>

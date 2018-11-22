@@ -26,7 +26,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ScheduleModule } from 'primeng/schedule';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
