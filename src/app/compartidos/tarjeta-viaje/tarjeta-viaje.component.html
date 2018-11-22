@@ -7,15 +7,51 @@
     <div class="ui-grid-row">{{ viaje.descripcion }}</div>
 
     <p-footer>
-        <div class="ui-grid-col-6">Inicio: {{ fechaInicioParseada }}</div>
-        <div class="ui-grid-col-6">Fin: {{ fechaFinParseada }}</div>
+        <div class="ui-grid-col-12">Inicio: {{ fechaInicioParseada }}</div>
+        <div class="ui-grid-col-12">Fin: {{ fechaFinParseada }}</div>
         <span class="ui-grid-col-6">Dificultad:</span>
+        <p-rating class="ui-grid-col-6" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
+        <div class="ui-grid-col-6">Distancia: {{ viaje.distancia }}</div>
         <span class="ui-grid-col-6">Precio: <strong> {{ viaje.precio }} €</strong></span>
-        <p-rating class="ui-grid-col-12" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
 
-        <button pButton *ngIf="mostrarBotonApuntarse()" class="ui-grid-col-12" type="button" (click)="apuntarseAViaje(viaje.id)" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
-        <button pButton *ngIf="usuarioYaApuntado()" class="ui-grid-col-12 ui-button-warning" type="button" icon="pi pi-user-minus" iconPos="right" label="YA APUNTADO!"></button>
+        <button pButton *ngIf="mostrarBotonApuntarse()" class="ui-grid-col-12 btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#pagoViaje" type="button" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
+        <button pButton *ngIf="usuarioYaApuntado()" class="ui-grid-col-12 ui-button-warning" type="button" icon="pi pi-user-plus" iconPos="right" label="YA APUNTADO!"></button>
         <p-message class="ui-grid-col-12 text-center" *ngIf="plazasAgotadas()" severity="warn" text="Plazas agotadas :("></p-message>
     </p-footer>
 
 </p-card>
+
+<div class="modal fade" id="pagoViaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="col-12 modal-title w-100 font-weight-bold">Pago Viaje: {{ viaje.nombre }}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="col-12 modal-body">
+                <img class="col-12" src="../../../assets/imagenes/tarjeta.png">
+                <div class="col-12 md-form mb-5">
+                    <i class="col-2 fa fa-address-card prefix grey-text"></i>
+                    <input class="col-8" placeholder="NÚMERO DE TARJETA" id="numeroTarjeta" type="text" size="30" pInputText>
+                </div>
+
+                <div class="col-12 md-form mb-5">
+                    <i class="col-2 fa fa-user-tie prefix grey-text"></i>
+                    <input class="col-8" placeholder="NOMBRE DE LA TARJETA" id="nombreTarjeta" type="text" size="30" pInputText>
+                </div>
+
+                <div class="col-12 md-form mb-4">
+                    <i class="col-2 fa fa-lock prefix grey-text"></i>
+                    <input class="col-3" placeholder="MM/YY" id="caducidad" type="text" size="30" pInputText>
+                    <input class="col-2" placeholder="CVC" id="cvc" type="text" size="30" pInputText>
+                </div>
+                <h5 class="col-5">Importe: {{ viaje.precio}} €</h5>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="col-6 btn btn-default btn-primary" data-dismiss="modal" (click)="apuntarseAViaje(viaje.id)">Realizar Pago</button>
+            </div>
+        </div>
+    </div>
+</div>
