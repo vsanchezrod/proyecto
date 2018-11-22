@@ -14,6 +14,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { OpinionesComponent } from './opiniones/opiniones.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { CategoriasComponent } from './categorias/categorias.component';
+import { ActividadesAdministradorListaComponent } from './actividades/actividades-administrador-lista/actividades-administrador-lista.component';
+import { ActividadesAdministradorNuevaComponent } from './actividades/actividades-administrador-nueva/actividades-administrador-nueva.component';
 
 // Módulos para Componentes de PrimeNG
 import { FileUploadModule } from 'primeng/fileupload';
@@ -50,7 +52,9 @@ import { CompartidosModule } from '../compartidos/compartidos.module';
     UsuariosComponent,
     OpinionesComponent,
     EstadisticasComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    ActividadesAdministradorListaComponent,
+    ActividadesAdministradorNuevaComponent
   ]
 })
 export class AdministradorModule { }

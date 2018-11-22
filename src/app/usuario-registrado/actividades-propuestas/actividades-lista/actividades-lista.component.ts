@@ -69,7 +69,6 @@ export class ActividadesListaComponent implements OnInit, OnDestroy {
   }
 
   public redirigirEditarAct() {
-    console.log('QUIERO REDIRIGIR');
     this.router.navigate(['usuario/actividades/editar/' + this.salidaSeleccionada.id]);
   }
 }

@@ -1,0 +1,87 @@
+<div class="container formularioViaje" style="z-index: 1000">
+
+    <div class="row">
+
+        <h3 class="text-center col-12">Nuevo viaje!</h3>
+        <div class="col-sm-12 col-md-6">
+
+            <form #formularioActividadAdmin="ngForm" (submit)="crearViaje(formularioActividadAdmin.value)">
+                <div class="col-12">
+                    <h4>Imágen para actividad</h4>
+                    <input type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
+                </div>
+
+                <div class="col-12">
+                    <h4>Nombre</h4>
+                    <span class="ui-float-label">
+                    <input id="nombre" name="nombre" [(ngModel)]="viaje.nombre" type="text" size="30" pInputText>
+                    <label for="nombre">Nombre</label>
+                </span>
+                </div>
+
+                <div class="col-12">
+                    <h4>Categoría</h4>
+                    <p-multiSelect [options]="listaCategorias" name="categorias" [(ngModel)]="viaje.categorias" defaultLabel="Selecciona una categoría" filterPlaceHolder="Busca aquí" optionLabel="nombre" filter="true"></p-multiSelect>
+                </div>
+
+                <div class="col-12">
+                    <h4 class="first">Descripción</h4>
+                    <textarea name="descripcion" [(ngModel)]="viaje.descripcion" rows="5" cols="30" pInputTextarea></textarea>
+                </div>
+
+                <div class="col-12">
+                    <h4>Nivel</h4>
+                    <p-rating stars="3" [(ngModel)]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
+                </div>
+
+                <div class="col-12">
+                    <h4>Distancia {{ viaje.distancia }} km:</h4>
+                    <span class="ui-float-label">
+                    <p-slider [(ngModel)]="viaje.distancia" name="distancia" [min]="distanciaMinima" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true"></p-slider>
+                    <label for="distancia">Km</label>
+                  </span>
+                </div>
+
+                <div class="col-12"></div>
+
+                <div class="col-12">
+                    <h4>Fecha Inicio:</h4>
+                    <span class="ui-float-label">Día</span>
+                    <p-calendar [locale]="es" name="fechaInicio" (onSelect)="cambiarFechaParseadaInicio(viaje.fechaInicio)" [(ngModel)]="viaje.fechaInicio" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true" hourFormat="24"></p-calendar>
+                </div>
+
+                <div class="col-12">
+                    <h4>Fecha Fin:</h4>
+                    <span class="ui-float-label">Día</span>
+                    <p-calendar [locale]="es" name="fechaFin" (onSelect)="cambiarFechaParseadaFin(viaje.fechaFin)" [(ngModel)]="viaje.fechaFin" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true" hourFormat="24"></p-calendar>
+                </div>
+
+                <div class="col-12">
+                    <h4>Precio {{ viaje.precio }} €:</h4>
+                    <input type="number" [(ngModel)]="viaje.precio" name="precio">
+                    <span class="ui-float-label">
+                    <p-slider [(ngModel)]="viaje.precio" name="precio" [min]="precioMinimo" [max]="precioMaximo" id="precio" [style]="{'width':'14em'}" [animate]="true"></p-slider>
+                    <label for="precio">€</label>
+                  </span>
+                </div>
+
+                <div class="col-12">
+                    <h4>Plazas {{ viaje.plazas }}:</h4>
+                    <span class="ui-float-label">
+                    <p-slider [(ngModel)]="viaje.plazas" name="plazas" [min]="plazasMinimas" [max]="plazasMaximas" id="plazas" [style]="{'width':'14em'}" [animate]="true"></p-slider>
+                  </span>
+                </div>
+
+                <button *ngIf="esNuevoViaje" (click)="crearViaje(formularioActividadAdmin.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button-info"></button>
+                <button *ngIf="!esNuevoViaje" (click)="actualizarViaje(formularioActividadAdmin.value)" pButton type="button" label="ACTUALIZAR ACTIVIDAD" class="col-12 ui-button-info"></button>
+
+            </form>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+            <h3 class="col-12 text-center">Vista preliminar!</h3>
+            <app-tarjeta-viaje [viaje]="viaje" [fechaInicioParseada]="fechaInicioParseada" [fechaFinParseada]="fechaFinParseada"></app-tarjeta-viaje>
+        </div>
+
+    </div>
+</div>

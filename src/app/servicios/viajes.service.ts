@@ -91,7 +91,10 @@ export class ViajesService {
 
   public obtenerViajePorId$(idViaje: string): Observable<Viaje> {
     return this.httpClient.get<Viaje>(environment.host + `/public/viajes/${idViaje}`,
-    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'});
+    {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'})
+      .pipe(map(viaje => {
+        return new Viaje(viaje);
+      }));
   }
 
   // POR USUARIO
@@ -146,5 +149,10 @@ export class ViajesService {
           return viajes;
         })
     );
+  }
+
+  public actualizarViaje(viaje: Viaje): Observable<HttpResponse<Viaje>> {
+    return this.httpClient.patch<Viaje>(environment.host + `/viajes/${viaje.id}`, viaje,
+    {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
   }
 }

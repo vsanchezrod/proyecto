@@ -28,5 +28,9 @@ export class Viaje {
     };
     this.imagen = '/assets/imagenes/fondo.jpg';
     Object.assign(this, datos);
+    if ( datos !== undefined && datos.fechaInicio !== undefined ) {
+      this.fechaInicio = new Date(datos.fechaInicio);
+      this.fechaFin = new Date(datos.fechaFin);
+    }
   }
 }

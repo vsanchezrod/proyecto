@@ -12,7 +12,7 @@
         <span class="ui-grid-col-6">Dificultad:</span>
         <span class="ui-grid-col-6">Precio: <strong> {{ viaje.precio }} €</strong></span>
         <p-rating class="ui-grid-col-12" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
-        <!--<button class="ui-grid-col-6" pButton (click)="verViaje()" type="button" icon="pi pi-search" iconPos="right" label="VER MAS"></button>-->
+
         <button pButton *ngIf="mostrarBotonApuntarse()" class="ui-grid-col-12" type="button" (click)="apuntarseAViaje(viaje.id)" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
         <button pButton *ngIf="usuarioYaApuntado()" class="ui-grid-col-12 ui-button-warning" type="button" icon="pi pi-user-minus" iconPos="right" label="YA APUNTADO!"></button>
         <p-message class="ui-grid-col-12 text-center" *ngIf="plazasAgotadas()" severity="warn" text="Plazas agotadas :("></p-message>

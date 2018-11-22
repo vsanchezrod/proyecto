@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="ui-g">
+        <div class="ui-g-6">
+            <h3 class="text-center ui-g-12">Viajes</h3>
+            <p-accordion class="ui-g-12">
+                <p-accordionTab *ngFor="let viaje of listaViajes" [header]="viaje.nombre">
+                    <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
+                    <button pButton type="button" label="EDITAR" (click)="redirigirEditarViaje(viaje)" class="ui-button-rounded ui-button-warning"></button>
+                    <app-modal-cancelacion-actividades [actividad]="viaje"></app-modal-cancelacion-actividades>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+        <div class="ui-g-6">
+            <h3 class="text-center ui-g-12">Actividades</h3>
+            <p-accordion class="ui-g-12">
+                <p-accordionTab *ngFor="let salida of listaActividades" [header]="salida.nombre">
+                    <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
+                    <app-modal-cancelacion-actividades [actividad]="salida"></app-modal-cancelacion-actividades>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+    </div>
+</div>

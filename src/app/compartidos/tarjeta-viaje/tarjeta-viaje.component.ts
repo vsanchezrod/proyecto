@@ -24,8 +24,8 @@ export class TarjetaViajeComponent implements OnInit, OnDestroy {
 
   // Se recibe el valor de salida desde fuera (elemento padre)
   @Input() viaje: Viaje = new Viaje();
-  public fechaInicioParseada: string;
-  public fechaFinParseada: string;
+  @Input() public fechaInicioParseada?: string;
+  @Input() public fechaFinParseada?: string;
   public usuarioLogado: Usuario;
 
   private subscripcionUsuarioLogado: Subscription;
