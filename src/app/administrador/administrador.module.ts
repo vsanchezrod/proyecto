@@ -26,6 +26,7 @@ import { RatingModule } from 'primeng/rating';
 import { SliderModule } from 'primeng/slider';
 import { CalendarModule } from 'primeng/calendar';
 import { AccordionModule } from 'primeng/accordion';
+import { ChartModule } from 'primeng/chart';
 
 // Módulos propios
 import { CompartidosModule } from '../compartidos/compartidos.module';
@@ -44,7 +45,8 @@ import { CompartidosModule } from '../compartidos/compartidos.module';
     RatingModule,
     SliderModule,
     CalendarModule,
-    AccordionModule
+    AccordionModule,
+    ChartModule
   ],
   declarations: [
     AdministradorComponent,

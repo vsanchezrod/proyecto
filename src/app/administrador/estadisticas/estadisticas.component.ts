@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 // Modelo
 import { Total } from '../../modelos/total.model';
@@ -17,12 +17,19 @@ import { Subscription } from 'rxjs';
   templateUrl: './estadisticas.component.html',
   styleUrls: ['./estadisticas.component.css']
 })
-export class EstadisticasComponent implements OnInit {
+export class EstadisticasComponent implements OnInit, OnDestroy {
 
   public contadorViajes: number;
   public contadorActividades: number;
   public contadorUsuarios: number;
   public contadorOpiniones: number;
+
+  public data: any;
+
+  private subscripcionContadorViajes: Subscription;
+  private subscripcionContadorActividades: Subscription;
+  private subscripcionContadorUsuarios: Subscription;
+  private subscripcionContadorOpiniones: Subscription;
 
   constructor(private viajesService: ViajesService,
               private actividadesService: ActividadesService,
@@ -31,23 +38,38 @@ export class EstadisticasComponent implements OnInit {
 
   ngOnInit() {
 
-
-    this.viajesService.obtenerNumeroViajes().subscribe( (totalViajes: Total) => {
+    this.subscripcionContadorViajes = this.viajesService.obtenerNumeroViajes().subscribe( (totalViajes: Total) => {
       this.contadorViajes = totalViajes.total;
     });
 
-    this.actividadesService.obtenerNumeroActividades().subscribe( (totalActividades: Total) => {
+    this.subscripcionContadorActividades = this.actividadesService.obtenerNumeroActividades().subscribe( (totalActividades: Total) => {
       this.contadorActividades = totalActividades.total;
     });
 
-    this.usuariosService.obtenerNumeroUsuarios().subscribe( (totalUsuarios: Total) => {
+    this.subscripcionContadorUsuarios = this.usuariosService.obtenerNumeroUsuarios().subscribe( (totalUsuarios: Total) => {
       this.contadorUsuarios = totalUsuarios.total;
     });
 
-    this.opinionesService.obtenerNumeroOpiniones().subscribe( (totalOpiniones: Total) => {
+    this.subscripcionContadorOpiniones = this.opinionesService.obtenerNumeroOpiniones().subscribe( (totalOpiniones: Total) => {
       this.contadorOpiniones = totalOpiniones.total;
+      this.data = {
+        labels: ['Viajes', 'Actividades', 'Usuarios', 'Opiniones'],
+        datasets: [
+            {
+                label: 'Estadísticas',
+                backgroundColor: '#9CCC65',
+                borderColor: '#7CB342',
+                data: [this.contadorViajes, this.contadorActividades, this.contadorUsuarios, this.contadorOpiniones]
+            }
+        ]
+      };
     });
-
   }
 
+  ngOnDestroy() {
+    this.subscripcionContadorActividades.unsubscribe();
+    this.subscripcionContadorOpiniones.unsubscribe();
+    this.subscripcionContadorUsuarios.unsubscribe();
+    this.subscripcionContadorViajes.unsubscribe();
+  }
 }
