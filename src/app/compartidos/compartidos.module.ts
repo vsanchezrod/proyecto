@@ -8,7 +8,6 @@ import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 
-
 // Módulos
 import { FormsModule } from '@angular/forms';
 
@@ -36,7 +35,7 @@ import { ModalCancelacionActividadesComponent } from './modal-cancelacion-activi
     TarjetaOpinionComponent,
     TarjetaUsuarioComponent,
     TarjetaMensajeComponent,
-    ModalCancelacionActividadesComponent
+    ModalCancelacionActividadesComponent,
   ],
   exports: [
     TarjetaSalidaComponent,
@@ -44,7 +43,7 @@ import { ModalCancelacionActividadesComponent } from './modal-cancelacion-activi
     TarjetaOpinionComponent,
     TarjetaUsuarioComponent,
     TarjetaMensajeComponent,
-    ModalCancelacionActividadesComponent
+    ModalCancelacionActividadesComponent,
   ]
 })
 export class CompartidosModule { }

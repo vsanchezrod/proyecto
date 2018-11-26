@@ -18,6 +18,8 @@ import { LoginModule } from './login/login.module';
 import { UsuarioRegistradoModule } from './usuario-registrado/usuario-registrado.module';
 import { AdministradorModule } from './administrador/administrador.module';
 
+import { ValidacionPersonificadaDirective } from './compartidos/validacion-personificada.directive';
+
 // Otros módulos
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,7 +31,8 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 @NgModule({
   declarations: [
     AppComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    ValidacionPersonificadaDirective
   ],
   imports: [
     BrowserModule,

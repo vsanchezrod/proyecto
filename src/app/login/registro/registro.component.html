@@ -37,12 +37,24 @@
 
             <div class="col-12">
                 <h3>Contraseña</h3>
-                <input formControlName="password" pPassword type="password" />
+                <input formControlName="password" name="password" pPassword type="password" />
+                <div *ngIf="formularioRegistro.get('password').dirty && formularioRegistro.get('password').hasError('required')">
+                    <p>*La contraseña de confirmación es requerida</p>
+                </div>
             </div>
 
             <div class="col-12">
                 <h3>Repetir contraseña</h3>
-                <input formControlName="password2" pPassword type="password" />
+                <input appValidacion="password" formControlName="confirmacionPassword" pPassword type="password" />
+                <div *ngIf="formularioRegistro.get('confirmacionPassword').dirty && !formularioRegistro.get('confirmacionPassword').valid">
+                    <p>MAL</p>
+                    <div *ngIf="formularioRegistro.get('confirmacionPassword').dirty && formularioRegistro.get('confirmacionPassword').hasError('required')">
+                        <p>*La contraseña de confirmación es requerida</p>
+                    </div>
+                    <div *ngIf="formularioRegistro.get('confirmacionPassword').dirty && formularioRegistro.get('confirmacionPassword').hasError('noSonIguales') && !formularioRegistro.get('confirmacionPassword').hasError('required')">
+                        <p>*Las contraseñas no coinciden</p>
+                    </div>
+                </div>
             </div>
 
             <div class="col-12">

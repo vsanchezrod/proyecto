@@ -65,15 +65,18 @@ export class RegistroComponent implements OnInit {
       'nombre': new FormControl('', Validators.required),
       'apellido': new FormControl('', Validators.required),
       'email': new FormControl('', [Validators.required, Validators.email]),
-      'password': new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
+      'password': new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]),
+      'confirmacionPassword': new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]),
       'fechaNacimiento': new FormControl('', Validators.required),
       'sexo': new FormControl('', Validators.required),
       'provincia': new FormControl(),
       'info': new FormControl('', Validators.minLength(20) ),
       'intereses': new FormControl(),
       'terminos': new FormControl('', Validators.requiredTrue),
-    });
+    }
+    );
   }
+
 
   public enviarDatos(datosFormulario): void {
     console.log(this.formularioRegistro.value);
