@@ -14,7 +14,7 @@
             <div class="col-12">
                 <h3>Nombre</h3>
                 <span class="ui-float-label">
-                    <input [formControl]="formularioRegistro.controls['nombre']" id="nombre" type="text" size="30" pInputText>
+                    <input formControlName="nombre" id="nombre" type="text" size="30" pInputText>
                     <label for="nombre">Nombre</label>
                 </span>
             </div>
@@ -22,7 +22,7 @@
             <div class="col-12">
                 <h3>Apellido</h3>
                 <span class="ui-float-label">
-                    <input [formControl]="formularioRegistro.controls['apellido']" id="apellido" type="text" size="30" pInputText>
+                    <input formControlName="apellido" id="apellido" type="text" size="30" pInputText>
                     <label for="apellido">Apellido</label>
                  </span>
             </div>
@@ -30,54 +30,59 @@
             <div class="col-12">
                 <h3>Email</h3>
                 <span class="ui-float-label">
-                    <input [formControl]="formularioRegistro.controls['email']" id="email" type="text" size="30" pInputText>
+                    <input formControlName="email" id="email" type="text" size="30" pInputText>
                     <label for="email">Email</label>
                 </span>
             </div>
 
             <div class="col-12">
                 <h3>Contraseña</h3>
-                <input [formControl]="formularioRegistro.controls['password']" pPassword type="password" />
+                <input formControlName="password" pPassword type="password" />
+            </div>
+
+            <div class="col-12">
+                <h3>Repetir contraseña</h3>
+                <input formControlName="password2" pPassword type="password" />
             </div>
 
             <div class="col-12">
                 <h3>Fecha de Nacimiento</h3>
                 <span class="ui-float-label"></span>
-                <p-calendar [formControl]="formularioRegistro.controls['fechaNacimiento']" [showIcon]="true" dateFormat="dd.mm.yy" [yearNavigator]="true" [yearRange]="rangoAnios" [monthNavigator]="true"></p-calendar>
+                <p-calendar formControlName="fechaNacimiento" [showIcon]="true" dateFormat="dd.mm.yy" [yearNavigator]="true" [yearRange]="rangoAnios" [monthNavigator]="true"></p-calendar>
             </div>
 
 
             <div class="col-12 " style="width:250px;margin-bottom:10px ">
                 <h3>Sexo</h3>
-                <p-radioButton [formControl]="formularioRegistro.controls['sexo']" name="sexo" value="Mujer" label="Mujer"></p-radioButton>
-                <p-radioButton [formControl]="formularioRegistro.controls['sexo']" name="sexo" value="Hombre" label="Hombre"></p-radioButton>
+                <p-radioButton formControlName="sexo" name="sexo" value="Mujer" label="Mujer"></p-radioButton>
+                <p-radioButton formControlName="sexo" name="sexo" value="Hombre" label="Hombre"></p-radioButton>
             </div>
 
             <div class="col-12 ">
                 <h3>Provincia</h3>
-                <p-dropdown [formControl]="formularioRegistro.controls['provincia']" [options]="listaProvincias" placeholder="Selecciona una provincia" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
+                <p-dropdown formControlName="provincia" [options]="listaProvincias" placeholder="Selecciona una provincia" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
             </div>
 
             <div class="col-12 ">
                 <h3>Más sobre ti</h3>
                 <span class="ui-float-label">
-                    <input [formControl]="formularioRegistro.controls['info']" id="info" type="text" size="30" pInputText>
+                    <input formControlName="info" id="info" type="text" size="30" pInputText>
                     <label for="info">Info</label>
                  </span>
             </div>
 
             <div class="col-12" style="width:250px;margin-bottom:10px">
                 <h3>Intereses</h3>
-                <p-checkbox class="ui-grid-row" *ngFor="let interes of listaIntereses" [formControl]="formularioRegistro.controls['intereses']" [value]="interes" [label]="interes.nombre"></p-checkbox>
+                <p-checkbox class="ui-grid-row" *ngFor="let interes of listaIntereses" formControlName="intereses" [value]="interes" [label]="interes.nombre"></p-checkbox>
             </div>
 
             <div class="col-12">
                 <h3>Términos</h3>
-                <p-inputSwitch [formControl]="formularioRegistro.controls['terminos']"></p-inputSwitch>
+                <p-inputSwitch formControlName="terminos"></p-inputSwitch>
                 <span>Acepto los términos y condiciones</span>
             </div>
 
-            <button pButton type="submit" label="REGISTRO" class="ui-button-info"></button>
+            <button pButton type="submit" [disabled]="!formularioRegistro.valid" label="REGISTRO" class="ui-button-info"></button>
 
         </form>
     </div>

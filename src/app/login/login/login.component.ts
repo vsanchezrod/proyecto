@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
         },
         (errorResponse) => {
           console.error('Login error: ', errorResponse);
+          this.formularioLogin.reset();
           this.credencialesValidas = false;
         }
       );

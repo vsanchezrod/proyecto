@@ -8,14 +8,21 @@
             <form #formularioActividadAdmin="ngForm" (submit)="crearViaje(formularioActividadAdmin.value)">
                 <div class="col-12">
                     <h4>Imágen para actividad</h4>
-                    <input type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
+                    <input type="file" accept="image/*" name="imagen" id="imagen" (change)="cargarImagen($event)" required>
+                    <!--<div class="col-12" *ngIf="imagen.touched && !imagen.valid">
+                        <div *ngIf="imagen.errors?.required">La imagen es requerida</div>
+                    </div>-->
                 </div>
 
                 <div class="col-12">
                     <h4>Nombre</h4>
                     <span class="ui-float-label">
-                    <input id="nombre" name="nombre" [(ngModel)]="viaje.nombre" type="text" size="30" pInputText>
+                    <input id="nombre" name="nombre" #nombre="ngModel" [(ngModel)]="viaje.nombre" type="text" size="30" pInputText required minlength="5" maxlength="40">
                     <label for="nombre">Nombre</label>
+                    <div class="col-12" *ngIf="nombre.touched && !nombre.valid">
+                        <div *ngIf="nombre.errors?.required">*El nombre es requerido</div>
+                        <div *ngIf="nombre.errors?.minlength">*El nombre debe tener al menos {{nombre.errors.minlength.requiredLength}} caracteres</div>            
+                    </div>
                 </span>
                 </div>
 
@@ -26,19 +33,29 @@
 
                 <div class="col-12">
                     <h4 class="first">Descripción</h4>
-                    <textarea name="descripcion" [(ngModel)]="viaje.descripcion" rows="5" cols="30" pInputTextarea></textarea>
+                    <textarea name="descripcion" id="descripcion" #descripcion="ngModel" [(ngModel)]="viaje.descripcion" rows="5" cols="30" pInputTextarea required minlength="50"></textarea>
+                    <div class="col-12" *ngIf="descripcion.touched && !descripcion.valid">
+                        <div *ngIf="descripcion.errors?.required">*La descripción es requerida</div>
+                        <div *ngIf="descripcion.errors?.minlength">*Debe tener al menos {{descripcion.errors.minlength.requiredLength}} caracteres</div>
+                    </div>
                 </div>
 
                 <div class="col-12">
                     <h4>Nivel</h4>
-                    <p-rating stars="3" [(ngModel)]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
+                    <p-rating stars="3" [(ngModel)]="viaje.nivel" id="nivel" name="nivel" #nivel="ngModel" [cancel]="false" required></p-rating>
+                    <div class="col-12" *ngIf="nivel.touched && !nivel.valid">
+                        <div *ngIf="nivel.errors?.required">*El nivel es requerido</div>
+                    </div>
                 </div>
 
                 <div class="col-12">
                     <h4>Distancia {{ viaje.distancia }} km:</h4>
                     <span class="ui-float-label">
-                    <p-slider [(ngModel)]="viaje.distancia" name="distancia" [min]="distanciaMinima" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true"></p-slider>
+                    <p-slider [(ngModel)]="viaje.distancia" name="distancia" id="distancia" #distancia="ngModel" [min]="distanciaMinima" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true" required minlength="1"></p-slider>
                     <label for="distancia">Km</label>
+                    <div class="col-12" *ngIf="distancia.touched && !distancia.valid">
+                        <div *ngIf="distancia.errors?.required">*La distancia es requerida</div>
+                    </div>
                   </span>
                 </div>
 
@@ -47,13 +64,19 @@
                 <div class="col-12">
                     <h4>Fecha Inicio:</h4>
                     <span class="ui-float-label">Día</span>
-                    <p-calendar [locale]="es" name="fechaInicio" (onSelect)="cambiarFechaParseadaInicio(viaje.fechaInicio)" [(ngModel)]="viaje.fechaInicio" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true" hourFormat="24"></p-calendar>
+                    <p-calendar [locale]="es" name="fechaInicio" id="fechaInicio" #fechaInicio="ngModel" (onSelect)="cambiarFechaParseadaInicio(viaje.fechaInicio)" [(ngModel)]="viaje.fechaInicio" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true" hourFormat="24" required></p-calendar>
+                    <div class="col-12" *ngIf="fechaInicio.touched && !fechaInicio.valid">
+                        <div *ngIf="fechaInicio.errors?.required">*La fecha es requerida</div>
+                    </div>
                 </div>
 
                 <div class="col-12">
                     <h4>Fecha Fin:</h4>
                     <span class="ui-float-label">Día</span>
-                    <p-calendar [locale]="es" name="fechaFin" (onSelect)="cambiarFechaParseadaFin(viaje.fechaFin)" [(ngModel)]="viaje.fechaFin" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true" hourFormat="24"></p-calendar>
+                    <p-calendar [locale]="es" name="fechaFin" id="fechaFin" #fechaFin="ngModel" (onSelect)="cambiarFechaParseadaFin(viaje.fechaFin)" [(ngModel)]="viaje.fechaFin" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true" hourFormat="24" required></p-calendar>
+                    <div class="col-12" *ngIf="fechaFin.touched && !fechaFin.valid">
+                        <div *ngIf="fechaFin.errors?.required">*La fecha es requerida</div>
+                    </div>
                 </div>
 
                 <div class="col-12">
@@ -72,8 +95,8 @@
                   </span>
                 </div>
 
-                <button *ngIf="esNuevoViaje" (click)="crearViaje(formularioActividadAdmin.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button-info"></button>
-                <button *ngIf="!esNuevoViaje" (click)="actualizarViaje(formularioActividadAdmin.value)" pButton type="button" label="ACTUALIZAR ACTIVIDAD" class="col-12 ui-button-info"></button>
+                <button *ngIf="esNuevoViaje" [disabled]="formularioActividadAdmin.invalid" (click)="crearViaje(formularioActividadAdmin.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button-info"></button>
+                <button *ngIf="!esNuevoViaje" [disabled]="formularioActividadAdmin.invalid" (click)="actualizarViaje(formularioActividadAdmin.value)" pButton type="button" label="ACTUALIZAR ACTIVIDAD" class="col-12 ui-button-info"></button>
 
             </form>
         </div>

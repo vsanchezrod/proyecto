@@ -195,4 +195,5 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
   private redirigirAActividadesPropuestas(): void {
     this.router.navigate(['/usuario/actividades']);
   }
+
 }
