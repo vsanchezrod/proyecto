@@ -1,21 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg">
 
-    <i class="pi pi-envelope" (click)="verMensajes()"><span class="badge badge-pill badge-warning">{{ numeroMensajesSinLeer }}</span></i>
 
-    <div *ngIf="usuarioSesionService.esUsuarioRegistrado()" class="borde">
+    <div *ngIf="usuarioSesionService.esUsuarioRegistrado()" (mouseover)="menuUsuario.toggle($event)" class="borde">
         <p-slideMenu #menuUsuario [model]="itemsUsuario" [viewportHeight]="320" [popup]="true"></p-slideMenu>
-        <img class="rounded-circle" [src]="usuario.avatar" alt="avatar" (mouseover)="menuUsuario.toggle($event)">
-        <i class="pi pi-angle-double-down"></i>
+        <img class="rounded-circle" [src]="usuario.avatar" alt="avatar">
+        <!--<i class="pi pi-angle-double-down"></i>-->
         <!-- (mouseleave)="menuUsuario.toggle($event) -->
     </div>
+    <i class="pi pi-envelope" (click)="verMensajes()"><span class="badge badge-pill badge-warning">{{ numeroMensajesSinLeer }}</span></i>
 
     <!-- PONER ICONO PARA ADMINISTRADOR-->
     <div *ngIf="usuarioSesionService.esAdministrador()">
         <p-slideMenu #menuAdmin [model]="itemsAdmin" [viewportHeight]="300" [popup]="true"></p-slideMenu>
-        <i class="pi pi-cog" (click)="logout()" (mouseover)="menuAdmin.toggle($event)"></i>
+        <i class="pi pi-cog" (mouseover)="menuAdmin.toggle($event)"></i>
         <!-- (mouseleave)="menuUsuario.toggle($event) -->
     </div>
 
-    <i class="pi pi-sign-out" (click)="logout()"></i>
+    <div>
+        <i class="pi pi-sign-out" (click)="logout()"></i>
+    </div>
 
 </nav>

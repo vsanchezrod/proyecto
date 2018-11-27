@@ -1,9 +1,25 @@
 footer {
-    background: #2d2d32;
+    border-top: 4px solid #F5AE15;
+    background: black;
     width: 100%;
 }
 
 p,
 h6 {
     color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+i {
+    font-size: 20px;
+}
+
+a {
+    color: #F5AE15;
+    font-size: 15px;
+}
+
+a:hover {
+    font-size: 18px;
 }
