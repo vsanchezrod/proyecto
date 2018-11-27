@@ -7,6 +7,8 @@ import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { CalendarModule } from 'primeng/calendar';
+
 
 // Módulos
 import { FormsModule } from '@angular/forms';
@@ -27,7 +29,8 @@ import { ModalCancelacionActividadesComponent } from './modal-cancelacion-activi
     RatingModule,
     ButtonModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    CalendarModule
   ],
   declarations: [
     TarjetaSalidaComponent,

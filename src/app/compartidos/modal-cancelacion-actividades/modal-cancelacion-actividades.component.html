@@ -13,7 +13,8 @@
                 <form #formularioCancelacion="ngForm">
                     <div class="form-group">
                         <label for="motivo" class="col-form-label">Motivo:</label>
-                        <input type="text" [(ngModel)]="motivoCancelacion" name='motivo' class="form-control" id="motivo">
+                        <input type="text" [(ngModel)]="motivoCancelacion" name='motivoCancelacion' class="form-control" id="motivoCancelacion" required>
+                        <div *ngIf="motivoCancelacion.errors?.required">*El motivo es requerido</div>
                     </div>
                 </form>
             </div>

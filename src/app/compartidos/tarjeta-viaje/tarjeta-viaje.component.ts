@@ -4,6 +4,7 @@ import * as moment from 'moment';
 // Modelos
 import { Viaje } from '../../modelos/viaje.model';
 import { Usuario } from '../../modelos/usuario.model';
+import { Pago } from '../../modelos/pago.model';
 
 // Servicios
 import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
@@ -27,6 +28,7 @@ export class TarjetaViajeComponent implements OnInit, OnDestroy {
   @Input() public fechaInicioParseada?: string;
   @Input() public fechaFinParseada?: string;
   public usuarioLogado: Usuario;
+  public pago: Pago;
 
   private subscripcionUsuarioLogado: Subscription;
 
@@ -35,6 +37,8 @@ export class TarjetaViajeComponent implements OnInit, OnDestroy {
               private router: Router) { }
 
   ngOnInit() {
+
+    this.pago = new Pago();
 
     this.fechaInicioParseada = moment(this.viaje.fechaInicio).locale('es').format('DD/MM/YYYY HH:mm');
     this.fechaFinParseada = moment(this.viaje.fechaFin).locale('es').format('DD/MM/YYYY HH:mm');
@@ -75,24 +79,26 @@ export class TarjetaViajeComponent implements OnInit, OnDestroy {
 
   public apuntarseAViaje(idViaje: string): void {
 
-    console.log('Usuario: ', this.usuarioLogado);
-    if (this.usuarioLogado.id !== undefined) {
-      this.viajesService.apuntarseAViaje(idViaje, this.usuarioLogado.id).subscribe(
-        (response: HttpResponse<Viaje>) => {
-          console.log('APUNTADO!!', response);
-          this.viajesService.obtenerViajePorId$(idViaje).subscribe(
-            (viajeActualizado: Viaje) => {
-              this.viaje = viajeActualizado;
-            }
-          );
-        },
-        (error: HttpErrorResponse) => {
-          console.error(error);
-        }
-      );
-    } else {
+    this.viajesService.apuntarseAViaje(idViaje, this.usuarioLogado.id).subscribe(
+      (response: HttpResponse<Viaje>) => {
+        console.log('APUNTADO!!', response);
+        this.viajesService.obtenerViajePorId$(idViaje).subscribe(
+          (viajeActualizado: Viaje) => {
+            this.viaje = viajeActualizado;
+          }
+        );
+      },
+      (error: HttpErrorResponse) => {
+        console.error(error);
+      }
+    );
+  }
+
+  public verificarLogin() {
+    if (this.usuarioLogado.id === undefined) {
       this.router.navigate(['/login']);
     }
   }
+
 }
 

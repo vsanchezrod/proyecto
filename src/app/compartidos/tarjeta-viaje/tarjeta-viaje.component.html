@@ -14,7 +14,7 @@
         <div class="ui-grid-col-6">Distancia: {{ viaje.distancia }}</div>
         <span class="ui-grid-col-6">Precio: <strong> {{ viaje.precio }} €</strong></span>
 
-        <button pButton *ngIf="mostrarBotonApuntarse()" class="ui-grid-col-12 btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#pagoViaje" type="button" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
+        <button pButton *ngIf="mostrarBotonApuntarse()" (click)="verificarLogin()" class="ui-grid-col-12 btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#pagoViaje" type="button" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
         <button pButton *ngIf="usuarioYaApuntado()" class="ui-grid-col-12 ui-button-warning" type="button" icon="pi pi-user-plus" iconPos="right" label="YA APUNTADO!"></button>
         <p-message class="ui-grid-col-12 text-center" *ngIf="plazasAgotadas()" severity="warn" text="Plazas agotadas :("></p-message>
     </p-footer>
@@ -34,18 +34,32 @@
                 <img class="col-12" src="../../../assets/imagenes/tarjeta.png">
                 <div class="col-12 md-form mb-5">
                     <i class="col-2 fa fa-address-card prefix grey-text"></i>
-                    <input class="col-8" placeholder="NÚMERO DE TARJETA" id="numeroTarjeta" type="text" size="30" pInputText>
+                    <input class="col-8" #numeroTarjeta="ngModel" [(ngModel)]="pago.numeroTarjeta" placeholder="NÚMERO DE TARJETA" id="numeroTarjeta" type="number" pInputText required minlength="16" maxlength="16">
+                    <div class="col-12" *ngIf="numeroTarjeta.touched && !numeroTarjeta.valid">
+                        <div *ngIf="numeroTarjeta.errors?.required">*El número de tarjeta es obligatorio</div>
+                        <div *ngIf="numeroTarjeta.errors?.minlength || numeroTarjeta.errors?.maxlength ">*El número debe tener {{numeroTarjeta.errors.minlength.requiredLength}} números</div>
+                    </div>
                 </div>
 
                 <div class="col-12 md-form mb-5">
                     <i class="col-2 fa fa-user-tie prefix grey-text"></i>
-                    <input class="col-8" placeholder="NOMBRE DE LA TARJETA" id="nombreTarjeta" type="text" size="30" pInputText>
+                    <input class="col-8" #nombreTarjeta="ngModel" [(ngModel)]="pago.nombre" placeholder="NOMBRE DE DE TARJETA" id="nombreTarjeta" type="text" pInputText required>
+                    <div class="col-12" *ngIf="nombreTarjeta.touched && !nombreTarjeta.valid">
+                        <div *ngIf="nombreTarjeta.errors?.required">*El nombre de la tarjeta es obligatorio</div>
+                    </div>
                 </div>
 
                 <div class="col-12 md-form mb-4">
                     <i class="col-2 fa fa-lock prefix grey-text"></i>
-                    <input class="col-3" placeholder="MM/YY" id="caducidad" type="text" size="30" pInputText>
-                    <input class="col-2" placeholder="CVC" id="cvc" type="text" size="30" pInputText>
+                    <p-calendar class="col-12" [(ngModel)]="pago.caducidad" #caducidad="ngModel" view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2000:2030" required></p-calendar>
+                    <input class="col-3" #CVC="ngModel" [(ngModel)]="pago.CVC" placeholder="CVC" id="cvc" type="number" pInputText required minlength="3" maxlength="3">
+                    <div class="col-12" *ngIf="caducidad.touched && !caducidad.valid">
+                        <div *ngIf="caducidad.errors?.required">*La caducidad de la tarjeta es obligatoria</div>
+                    </div>
+                    <div class="col-12" *ngIf="CVC.touched && !caducidad.valid">
+                        <div *ngIf="CVC.errors?.required">*El CVC de la tarjeta es obligatorio</div>
+                        <div *ngIf="CVC.errors?.minlength || CVC.errors?.maxlength ">*El número debe tener {{CVC.errors.minlength.requiredLength}} números</div>
+                    </div>
                 </div>
                 <h5 class="col-5">Importe: {{ viaje.precio}} €</h5>
             </div>
