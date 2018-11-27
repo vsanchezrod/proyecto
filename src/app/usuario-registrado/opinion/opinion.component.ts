@@ -48,7 +48,7 @@ export class OpinionComponent implements OnInit, OnDestroy {
     this.formularioOpinion = new FormGroup({
       'actividad': new FormControl('', Validators.required),
       'titulo': new FormControl('', Validators.required),
-      'detalle': new FormControl('', [Validators.required, Validators.minLength(15)]),
+      'detalle': new FormControl('', [Validators.required, Validators.minLength(25)]),
       'organizacionValoracion': new FormControl('', Validators.required),
       'ambienteValoracion': new FormControl('', Validators.required),
       'recorridoValoracion': new FormControl('', Validators.required),

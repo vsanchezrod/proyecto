@@ -21,6 +21,9 @@ import { USUARIO_RUTAS } from './usuario-registrado/usuario-registrado.routes';
 // Rutas de administrador
 import { ADMINISTRADOR_RUTAS } from './administrador/administrador.routes';
 
+// Servicio
+import { GuardianDeRutasService } from './servicios/guardian-de-rutas.service';
+
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
   { path: 'busqueda', component: BusquedaComponent },
@@ -36,12 +39,14 @@ const routes: Routes = [
   {
     path: 'usuario',
     component: UsuarioRegistradoComponent,
-    children: USUARIO_RUTAS
+    children: USUARIO_RUTAS,
+    canActivate : [GuardianDeRutasService]
   },
   {
     path: 'admin',
     component: AdministradorComponent,
-    children: ADMINISTRADOR_RUTAS
+    children: ADMINISTRADOR_RUTAS,
+    canActivate : [GuardianDeRutasService]
   },
   { path: '', pathMatch: 'full', redirectTo: 'inicio' },
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' }

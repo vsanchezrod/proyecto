@@ -68,14 +68,14 @@ export class PerfilComponent implements OnInit, OnDestroy {
         this.fechaNacimientoParseada = moment(this.usuario.fechaNacimiento).locale('es').format('L');
 
         this.formularioActualizacion = new FormGroup({
-          'nombre': new FormControl(this.usuario.nombre),
-          'apellido': new FormControl(this.usuario.apellido),
-          'password': new FormControl(this.usuario.password, [Validators.minLength(8), Validators.maxLength(20)]),
+          'nombre': new FormControl(this.usuario.nombre, Validators.required),
+          'apellido': new FormControl(this.usuario.apellido, Validators.required),
+          'password': new FormControl(this.usuario.password, [Validators.minLength(8), Validators.maxLength(12)]),
           // 'password2': new FormControl(this.usuario.password, [Validators.required, Validators.minLength(8), Validators.maxLength(20)]),
-          'fechaNacimiento': new FormControl(new Date(this.usuario.fechaNacimiento)),
-          'sexo': new FormControl(this.usuario.sexo),
-          'provincia': new FormControl(this.usuario.provincia),
-          'info': new FormControl(this.usuario.info),
+          'fechaNacimiento': new FormControl(new Date(this.usuario.fechaNacimiento), Validators.required),
+          'sexo': new FormControl(this.usuario.sexo, Validators.required),
+          'provincia': new FormControl(this.usuario.provincia, Validators.required),
+          'info': new FormControl(this.usuario.info, Validators.required),
       });
     });
 
@@ -129,6 +129,8 @@ export class PerfilComponent implements OnInit, OnDestroy {
   public actualizarUsuario() {
     const usuarioActualizado: Usuario = this.formularioActualizacion.value;
     usuarioActualizado.id = this.usuario.id;
+    usuarioActualizado.avatar = this.imagenAvatar;
+    usuarioActualizado.email = this.usuario.email;
     this.usuarioService.actualizarUsuario(usuarioActualizado).subscribe(
       (response: HttpResponse<Usuario>) => {
         console.log('Actualizar Usuario: ', response);

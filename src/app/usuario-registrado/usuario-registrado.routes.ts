@@ -10,7 +10,6 @@ import { OpinionComponent } from './opinion/opinion.component';
 import { ActividadNuevaComponent } from './actividades-propuestas/actividad-nueva/actividad-nueva.component';
 import { ActividadesListaComponent } from './actividades-propuestas/actividades-lista/actividades-lista.component';
 
-
 export const USUARIO_RUTAS: Routes = [
     { path: 'perfil', component: PerfilComponent },
     { path: 'calendario', component: CalendarioUsuarioComponent },
@@ -26,7 +25,7 @@ export const USUARIO_RUTAS: Routes = [
     },
     { path: 'amigos', component: AmigosComponent },
     { path: 'mensajes', component: MensajesComponent },
-    { path: 'opiniones', component: OpinionComponent },
+    { path: 'opiniones', component: OpinionComponent, },
     { path: '**', pathMatch: 'full', redirectTo: 'calendario' }
 ];
 

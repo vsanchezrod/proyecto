@@ -33,6 +33,7 @@ export class RegistroComponent implements OnInit {
   public imagenAvatar: string | ArrayBuffer;
   public progreso: number;
   public mostrarSpinner: boolean;
+  public esNecesarioRellenarTodosLosCampos: boolean;
 
   private anioDesde = 1920;
   private edadMinima = 16;
@@ -44,6 +45,7 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit() {
 
+    this.esNecesarioRellenarTodosLosCampos = false;
     const anioHasta: string = moment().subtract(this.edadMinima, 'years').format('YYYY');
     console.log(anioHasta);
 
@@ -69,29 +71,36 @@ export class RegistroComponent implements OnInit {
       'confirmacionPassword': new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]),
       'fechaNacimiento': new FormControl('', Validators.required),
       'sexo': new FormControl('', Validators.required),
-      'provincia': new FormControl(),
+      'provincia': new FormControl(Validators.required),
       'info': new FormControl('', Validators.minLength(20) ),
       'intereses': new FormControl(),
       'terminos': new FormControl('', Validators.requiredTrue),
-    }
-    );
+    });
   }
-
 
   public enviarDatos(datosFormulario): void {
     console.log(this.formularioRegistro.value);
-    const usuario: Usuario = datosFormulario;
-    usuario.amigos = [];
 
-    this.usuariosService.crearUsuario(usuario).subscribe(
-      response => {
-      console.log('Respuesta: ' + response.status);
-      this.router.navigate(['/login']);
-    },
-    (error) => {
-      console.error('No se ha podido llevar a cabo el registro ', error);
+    if (this.formularioRegistro.valid) {
+
+      this.esNecesarioRellenarTodosLosCampos = false;
+      const usuario: Usuario = datosFormulario;
+      usuario.amigos = [];
+
+      this.usuariosService.crearUsuario(usuario).subscribe(
+        response => {
+        console.log('Respuesta: ' + response.status);
+        this.router.navigate(['/login']);
+      },
+      (error) => {
+        console.error('No se ha podido llevar a cabo el registro ', error);
+      }
+      );
+    } else {
+      this.esNecesarioRellenarTodosLosCampos = true;
+      console.log(this.formularioRegistro);
     }
-    );
+
   }
 
   public cargarAvatar(event: Event): void {

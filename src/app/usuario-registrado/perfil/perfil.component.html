@@ -12,7 +12,6 @@
                     <span pInplaceContent class="col-10">
                         <img class="col-4 " [src]="imagenAvatar" name="avatar" alt="AVATAR">
                         <input name="avatar" class="col-6" type="file" accept="image/*" name="imagen" (change)="cargarImagen($event)">
-                        <!--<p-dropdown class="ui-grid-col-6" [options]="" placeholder="Elige avatar" optionLabel="" [showClear]="true" filter="true"></p-dropdown>-->
                     </span>
                 </p-inplace>
             </div>
@@ -29,6 +28,12 @@
                             <input [formControl]="formularioActualizacion.controls['nombre']" name="nombre" type="text" pInputText>
                             <input [formControl]="formularioActualizacion.controls['apellido']" name="apellido" type="text" pInputText>
                         </span>
+                        <div *ngIf="formularioActualizacion.get('nombre').touched && !formularioActualizacion.get('nombre').valid" class="form-control-feedback">
+                            <p *ngIf="formularioActualizacion.get('nombre').hasError('required')">*El nombre es un campo requerido</p>
+                        </div>
+                        <div *ngIf="formularioActualizacion.get('apellido').touched && !formularioActualizacion.get('apellido').valid" class="form-control-feedback">
+                            <p *ngIf="formularioActualizacion.get('apellido').hasError('required')">*El apellido es un campo requerido</p>
+                        </div>
                     </p-inplace>
                 </div>
 
@@ -43,6 +48,10 @@
                         <span pInplaceContent class="col-12">
                             <p-calendar class="col-12" [locale]="es" [formControl]="formularioActualizacion.controls['fechaNacimiento']" [showIcon]="true" dateFormat="dd/mm/yy" [yearNavigator]="true" [yearRange]="rangoAnios" [monthNavigator]="true"></p-calendar>
                         </span>
+                        <div *ngIf="formularioActualizacion.get('fechaNacimiento').touched && !formularioActualizacion.get('fechaNacimiento').valid" class="form-control-feedback">
+                            <p *ngIf="formularioActualizacion.get('fechaNacimiento').hasError('required')">*El fecha de nacimiento es un campo requerido</p>
+                        </div>
+
                     </p-inplace>
                 </div>
 
@@ -60,6 +69,9 @@
                                 <p-radioButton class="col-12" [formControl]="formularioActualizacion.controls['sexo']" name="sexo" value="hombre" label="Hombre"></p-radioButton>
                             </div>
                         </span>
+                        <div *ngIf="formularioActualizacion.get('sexo').touched && !formularioActualizacion.get('sexo').valid" class="form-control-feedback">
+                            <p *ngIf="formularioActualizacion.get('sexo').hasError('required')">*El fecha de nacimiento es un campo requerido</p>
+                        </div>
                     </p-inplace>
                 </div>
 
@@ -74,9 +86,12 @@
                         <span pInplaceContent class="col-12">
                             <p-dropdown [formControl]="formularioActualizacion.controls['provincia']" name="provincia" [options]="listaProvincias" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
                         </span>
+                        <div *ngIf="formularioActualizacion.get('provincia').touched && !formularioActualizacion.get('provincia').valid" class="form-control-feedback">
+                            <p *ngIf="formularioActualizacion.get('provincia').hasError('required')">*El fecha de nacimiento es un campo requerido</p>
+                        </div>
                     </p-inplace>
                 </div>
-
+                <!--
                 <div class="row caja">
                     <span class="col-2">Password:</span>
                     <p-inplace class="col-10" closable="closable">
@@ -86,10 +101,11 @@
                         </span>
                         <span pInplaceContent class="col-12" t>
                             <span>Nuevo password:</span><input [formControl]="formularioActualizacion.controls['password']" name="password" pPassword type="password" value="********" />
-                        <!--<span>Repite password:</span><input formControlName="formularioActualizacion.controls['password2']" pPassword type="password" value="********" />-->
+                            <span>Repite password:</span><input formControlName="formularioActualizacion.controls['password2']" pPassword type="password" value="********" />
                         </span>
                     </p-inplace>
                 </div>
+            -->
 
                 <div class="row caja">
                     <span class="col-2">Sobre mi:</span>

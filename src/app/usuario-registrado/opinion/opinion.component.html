@@ -7,16 +7,17 @@
                 <img class="ui-grid-col-2 mx-auto d-block" [src]="usuario.avatar" alt="avatar">
 
                 <div class="ui-g-12 ui-md-12 ui-lg-10">
-                    <p-dropdown [formControl]="formularioOpinion.controls['actividad']" [options]="listaActividadesDelUsuario" placeholder="Selecciona una actividad" [showClear]="true" filter="true"></p-dropdown>
+                    <p-dropdown formControlName="actividad" [options]="listaActividadesDelUsuario" placeholder="Selecciona una actividad" [showClear]="true" filter="true"></p-dropdown>
+
 
                     <span class="ui-float-label ui-g-12 ui-md-10">
-                        <input [formControl]="formularioOpinion.controls['titulo']" id="titulo" type="text" size="30"
+                        <input formControlName="titulo" id="titulo" type="text" size="30"
                             pInputText>
                         <label for="titulo">Título de tu opinión*</label>
                     </span>
 
                     <span class="ui-float-label ui-g-12 ui-md-10">
-                        <textarea [formControl]="formularioOpinion.controls['detalle']" id="descripcion" rows="5" cols="15"
+                        <textarea formControlName="detalle" id="detalle" rows="5" cols="15"
                             pInputTextarea autoResize="autoResize"></textarea>
                         <label for="descripcion">Escribe tu opinión*</label>
                     </span>
@@ -24,17 +25,17 @@
 
                 <div class="ui-g-12">
                     <div class="ui-g-12 ui-md-12 ui-lg-4">
-                        <p-rating [formControl]="formularioOpinion.controls['organizacionValoracion']" class="ui-g-4" id="ratingOrganizacion" stars="5" [cancel]="false"></p-rating>
+                        <p-rating formControlName="organizacionValoracion" class="ui-g-4" id="ratingOrganizacion" stars="5" [cancel]="false"></p-rating>
                         <label for="ratingOrganizacion">Organización</label>
                     </div>
 
                     <div class="ui-g-12 ui-md-12 ui-lg-4">
-                        <p-rating [formControl]="formularioOpinion.controls['ambienteValoracion']" class="ui-g-4" id="ratingBuenRollo" stars="5" [cancel]="false"></p-rating>
+                        <p-rating formControlName="ambienteValoracion" class="ui-g-4" id="ratingBuenRollo" stars="5" [cancel]="false"></p-rating>
                         <label for="ratingBuenRollo">Buen rollo</label>
                     </div>
 
                     <div class="ui-g-12 ui-md-12 ui-lg-4">
-                        <p-rating [formControl]="formularioOpinion.controls['recorridoValoracion']" class="ui-g-4" id="ratingRecorrido" stars="5" [cancel]="false"></p-rating>
+                        <p-rating formControlName="recorridoValoracion" class="ui-g-4" id="ratingRecorrido" stars="5" [cancel]="false"></p-rating>
                         <label for="ratingRecorrido">Recorrido</label>
                     </div>
                 </div>

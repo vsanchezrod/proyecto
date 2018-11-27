@@ -16,7 +16,7 @@ export class ValidacionPersonificadaDirective implements Validators {
 
     @Input() appValidacion: string;
 
-    validacionPassword(control: AbstractControl): {[key: string]: any} | null {
+    public validacionPassword(control: AbstractControl): {[key: string]: any} | null {
 
         const controlAComparar = control.parent.get(this.appValidacion);
 
