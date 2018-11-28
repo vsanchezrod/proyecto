@@ -1,15 +1,10 @@
-<h4 class="col-12">ESTADÍSTICAS</h4>
-
+<h4>ESTADÍSTICAS</h4>
 <div class="container">
     <div class="row">
-
         <div class="col-sm-12 col-md-6">
             <h5 class="col-12">USUARIOS</h5>
             <div class="col-12">
                 <p>Nº Usuarios Registrados: <span>{{ contadorUsuarios }}</span></p>
-                <p>Usuario con mayor puntuación</p>
-                <p>Categoría mas interesante</p>
-                <p>Puntuación media de los usuarios:</p>
             </div>
         </div>
 
@@ -17,10 +12,6 @@
             <h5 class="col-12">ACTIVIDADES</h5>
             <div class="col-12">
                 <p>Nº Actividades Creadas: <span>{{ contadorActividades }}</span> </p>
-                <p>Nº Medio de participantes por actividad</p>
-                <p>Actividad con más participantes</p>
-                <p>Usuario que ha creado más actividades</p>
-                <p>GRÁFICO: Categoría con más salidas</p>
             </div>
         </div>
 
@@ -28,8 +19,6 @@
             <h5 class="col-12">VIAJES</h5>
             <div class="col-12">
                 <p>Nº Viajes Creados: <span>{{ contadorViajes }}</span> </p>
-                <p>Nº Medio de participantes por viaje</p>
-                <p>GRÁFICO: Categoría con más salidas</p>
             </div>
         </div>
 
@@ -39,9 +28,11 @@
                 <p>Nº Opiniones Creadas: <span>{{ contadorOpiniones }}</span> </p>
             </div>
         </div>
-
-        <h3>GRÁFICA</h3>
-        <p-chart type="bar" [data]="data" width="500" height="500"></p-chart>
-
     </div>
+</div>
+
+<h4>GRÁFICA</h4>
+<div class="container">
+    <p-chart type="bar" [data]="data" [options]="options" width="40vw" height="80vh"></p-chart>
+    <p-chart type="bar" [data]="data2" [options]="options2" width="40vw" height="80vh"></p-chart>
 </div>
