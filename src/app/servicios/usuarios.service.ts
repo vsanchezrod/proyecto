@@ -27,6 +27,7 @@ export class UsuariosService {
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService) { }
 
+
   public obtenerListaUsuarios$(): Observable<Array<Usuario>> {
 
     this.httpClient.get<Array<Usuario>>(environment.host + '/usuarios',

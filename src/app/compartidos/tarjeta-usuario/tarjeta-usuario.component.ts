@@ -49,20 +49,29 @@ export class TarjetaUsuarioComponent implements OnInit {
       console.log('ROLES FALSE: ', this.usuario.roles);
     }
 
-    // CAMBIAR ESTO
     this.usuariosService.editarRolUsuario(this.usuario).subscribe(
       (response: HttpResponse<any>) => {
         console.log(response);
+        this.usuariosService.obtenerListaUsuarios$().subscribe(
+          (usuarios) => {
+            console.log('Usuario editado');
+          }
+        );
       }
     );
   }
 
   public borrarUsuario(idUsuario: string) {
+
     this.usuariosService.borrarUsuario(idUsuario).subscribe(
-      (response: HttpResponse<any>) => {
-        console.log(response);
+        (response: HttpResponse<any>) => {
+          console.log(response);
+          this.usuariosService.obtenerListaUsuarios$().subscribe(
+            (usuarios) => {
+              console.log('Usuario borrado');
+          }
+        );
       }
     );
   }
-
 }

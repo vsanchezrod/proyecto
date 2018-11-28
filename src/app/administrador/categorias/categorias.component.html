@@ -3,11 +3,11 @@
     <div class="row">
         <h3 class="col-12 text-center">CREAR CATEGORÍA</h3>
 
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-6 center-block">
             <h4 class="col-12">Añade con una imagen</h4>
             <img *ngIf="imagen == undefined" src="../../../assets/imagenes/logo2">
             <img *ngIf="imagen !== undefined" [src]="imagen">
-            <input class="col-6" type="file" accept="image/*" (change)="changeListener($event)">
+            <input class="col-12" type="file" accept="image/*" (change)="changeListener($event)">
         </div>
 
         <form class="col-sm-12 col-md-6" [formGroup]="formularioCategoria" (ngSubmit)="crearCategoria(formularioCategoria.value)">
@@ -15,19 +15,19 @@
             <div class="col-12">
                 <h4 class="col-12">Nombre de la categoría</h4>
                 <span class="ui-float-label">
-                    <input [formControl]="formularioCategoria.controls['nombre']" id="nombre" name="nombre" type="text" size="30" pInputText>
+                    <input formControlName="nombre" id="nombre" name="nombre" type="text" size="30" pInputText>
                     <label for="nombre">Nombre</label>
                 </span>
 
                 <h4 class="col-12">Añade una descripción</h4>
                 <span class="ui-float-label">
-                    <input [formControl]="formularioCategoria.controls['descripcion']" id="descripcion" name="descripcion" type="text" size="30" pInputText>
+                    <input formControlName="descripcion" id="descripcion" name="descripcion" type="text" size="30" pInputText>
                     <label for="descripcion">Nombre</label>
                 </span>
             </div>
 
 
-            <button pButton type="submit" label="CREAR" class="col-12 ui-button-info"></button>
+            <button pButton type="submit" [disabled]="formularioCategoria.invalid" label="CREAR" class="col-6 ui-button-info"></button>
         </form>
 
     </div>

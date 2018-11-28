@@ -1,13 +1,11 @@
 <div class="container">
 
     <p-dataScroller class="col-12" [value]="listaUsuarios" [rows]="10" [inline]="true" scrollHeight="500px">
-        <p-header>
+        <p-header class="col-12">
             LISTA DE USUARIOS
         </p-header>
-        <ng-template let-usuario pTemplate="item">
-
+        <ng-template class="col-12" let-usuario pTemplate="item">
             <app-tarjeta-usuario class="col-4" [usuarioLogado]="usuarioLogado" [usuario]="usuario"></app-tarjeta-usuario>
-
         </ng-template>
     </p-dataScroller>
 
