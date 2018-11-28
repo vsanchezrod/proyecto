@@ -9,7 +9,7 @@ import { NuevoParticipante } from '../modelos/nuevoParticipante.model';
 import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 
 // Observables
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 // Servicios
 import { CabecerasHttpService } from './cabeceras-http.service';
@@ -25,10 +25,17 @@ import { map } from 'rxjs/operators';
 })
 export class ViajesService {
 
+  private cambioEnViajes$: Subject<string> = new Subject<string>();
+
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService) {}
 
   // GENERALES
+
+  public cambioEnViajes(): Observable<string> {
+    return this.cambioEnViajes$.asObservable();
+  }
+
   public obtenerListaViajes$(): Observable<Array<Viaje>> {
     return this.httpClient.get<Array<Viaje>>(environment.host + '/public/viajes',
     {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'})
@@ -70,7 +77,13 @@ export class ViajesService {
     let headers = this.cabecerasHttpService.generarCabecerasGetConAccessToken();
     headers = headers.append('X-Motivo', motivo);
     return this.httpClient.delete<Viaje>(environment.host + `/viajes/${idViaje}`,
-      {headers: headers, observe: 'response'} );
+      {headers: headers, observe: 'response'}
+      ).pipe(
+        map(borrado => {
+          this.cambioEnViajes$.next('Actualizar');
+          return borrado;
+        })
+    );
   }
 
   public obtenerNumeroViajes(): Observable<Total> {
@@ -153,6 +166,12 @@ export class ViajesService {
 
   public actualizarViaje(viaje: Viaje): Observable<HttpResponse<Viaje>> {
     return this.httpClient.patch<Viaje>(environment.host + `/viajes/${viaje.id}`, viaje,
-    {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
+    {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'}
+    ).pipe(
+      map(borrado => {
+        this.cambioEnViajes$.next('Actualizar');
+        return borrado;
+      })
+  );
   }
 }

@@ -173,7 +173,13 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
 
   public actualizarActividad(datosFormularioActividad): void {
     const actividadEditada: Actividad = datosFormularioActividad;
-    actividadEditada.imagen = this.imagen;
+
+    if (this.imagen !== undefined) {
+      actividadEditada.imagen = this.imagen;
+    } else {
+      actividadEditada.imagen = this.actividad.imagen;
+    }
+
     actividadEditada.idUsuarioCreacion = this.usuario.id;
     actividadEditada.id = this.actividad.id;
 

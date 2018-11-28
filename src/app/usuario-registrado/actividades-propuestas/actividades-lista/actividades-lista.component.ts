@@ -44,6 +44,12 @@ export class ActividadesListaComponent implements OnInit, OnDestroy {
         // Obtener la lista de actividades creadas por el usuario
         this.actualizarMisSalidas();
     });
+
+    this.actividadesService.cambioEnActividades().subscribe(
+      (borrado => {
+        this.actualizarMisSalidas();
+      })
+    );
   }
 
   ngOnDestroy() {

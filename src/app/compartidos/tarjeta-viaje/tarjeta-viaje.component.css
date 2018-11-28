@@ -7,9 +7,9 @@ p-card {
     border-radius: 10px;
 }
 
-img {
+#actividad {
     width: 100%;
-    height: 200px;
+    height: 250px;
     border-bottom: 4px solid #F5AE15;
 }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 // Peticiones
 import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject} from 'rxjs';
 
 // Modelo de datos
 import { Actividad } from '../modelos/actividad.model';
@@ -22,10 +22,18 @@ import { map } from 'rxjs/operators';
 })
 export class ActividadesService {
 
+  private cambioEnActividades$: Subject<string> = new Subject<string>();
+
   constructor(private httpClient: HttpClient,
               private cabecerasHttpService: CabecerasHttpService) {}
 
   // GENERALES
+
+  public cambioEnActividades(): Observable<string> {
+    return this.cambioEnActividades$.asObservable();
+  }
+
+
   public obtenerListaActividades$(): Observable<Array<Actividad>> {
     return this.httpClient.get<Array<Actividad>>(environment.host + '/public/actividades',
     {headers: this.cabecerasHttpService.generarCabecerasGet(), observe: 'body'})
@@ -64,11 +72,17 @@ export class ActividadesService {
      {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
   }
 
-  public borrarActividad(id: string, motivo: string): Observable<HttpResponse<Actividad>> {
+  public borrarActividad(id: string, motivo: string): Observable<HttpResponse<any>> {
     let headers = this.cabecerasHttpService.generarCabecerasGetConAccessToken();
     headers = headers.append('X-Motivo', motivo);
-    return this.httpClient.delete<Actividad>(environment.host + `/actividades/${id}`,
-      {headers: headers, observe: 'response'} );
+    return this.httpClient.delete(environment.host + `/actividades/${id}`,
+      {headers: headers, observe: 'response'}
+      ).pipe(
+          map(borrado => {
+            this.cambioEnActividades$.next('Actualizar');
+            return borrado;
+          })
+      );
   }
 
   public obtenerNumeroActividades(): Observable<Total> {
@@ -151,6 +165,12 @@ export class ActividadesService {
 
   public actualizarActividad(actividad: Actividad): Observable<HttpResponse<Actividad>> {
     return this.httpClient.patch<Actividad>(environment.host + `/actividades/${actividad.id}`, actividad,
-    {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'});
+    {headers: this.cabecerasHttpService.generarCabecerasPostPutPatchConAccessToken(), observe: 'response'}
+    ).pipe(
+      map(borrado => {
+        this.cambioEnActividades$.next('Actualizar');
+        return borrado;
+      })
+    );
   }
 }

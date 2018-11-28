@@ -1,6 +1,6 @@
 <nav class="col navbar navbar-expand-lg">
 
-    <app-info-sesion-menu class="col-2" *ngIf="usuarioLogado"></app-info-sesion-menu>
+    <app-info-sesion-menu class="collapse navbar-collapse" *ngIf="usuarioLogado"></app-info-sesion-menu>
     <button id="botonLogin" *ngIf="!usuarioLogado" routerLink="login" class="btn btn-outline-success my-2 my-sm-0" type="submit">Inicia Sesión</button>
 
     <a class="navbar-brand" routerLink="inicio"><img src="../../../assets/imagenes/logo2"></a>
@@ -8,7 +8,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="mx-auto d-block collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">

@@ -12,15 +12,14 @@
                 <h4>{{ actividad.nombre }}</h4>
                 <form #formularioCancelacion="ngForm">
                     <div class="form-group">
-                        <label for="motivo" class="col-form-label">Motivo:</label>
+                        <label for="motivo" class="col-form-label">Por favor, indica el motivo de cancelación:</label>
                         <input type="text" [(ngModel)]="motivoCancelacion" name='motivoCancelacion' class="form-control" id="motivoCancelacion" required>
-                        <div *ngIf="motivoCancelacion.errors?.required">*El motivo es requerido</div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" (click)="cancelarActividad()" class="btn btn-danger" data-dismiss="modal">Eliminar actividad</button>
+                <button type="button" [disabled]="formularioCancelacion.invalid" (click)="cancelarActividad()" class="btn btn-danger" data-dismiss="modal">Eliminar actividad</button>
             </div>
         </div>
     </div>

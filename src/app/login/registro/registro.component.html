@@ -2,16 +2,16 @@
     <div class="row">
         <h3 class="text-center col-12">Únete a la comunidad!!</h3>
 
-        <form class="col-12" [formGroup]="formularioRegistro" (ngSubmit)="enviarDatos(formularioRegistro.value)">
+        <form class="row" [formGroup]="formularioRegistro" (ngSubmit)="enviarDatos(formularioRegistro.value)">
 
             <div class="col-12">
-                <h3>Avatar</h3>
-                <input class="ui-button" type="file" accept="image/*" name="imagen" (change)="cargarAvatar($event)">
-                <img class="rounded-circle" [src]="imagenAvatar">
+                <h3 class="col-2">Avatar</h3>
+                <input class="col-6 ui-button" type="file" accept="image/*" name="imagen" (change)="cargarAvatar($event)">
+                <img class="col-4 rounded-circle" [src]="imagenAvatar">
                 <p-progressSpinner *ngIf="mostrarSpinner"></p-progressSpinner>
             </div>
 
-            <div class="col-12">
+            <div class="col-6">
                 <h3>Nombre</h3>
                 <span class="ui-float-label">
                     <input formControlName="nombre" id="nombre" name="nombre" type="text" size="30" pInputText>
@@ -22,7 +22,7 @@
                 </span>
             </div>
 
-            <div class="col-12">
+            <div class="col-6">
                 <h3>Apellido</h3>
                 <span class="ui-float-label">
                     <input formControlName="apellido" id="apellido" type="text" size="30" pInputText>
@@ -33,7 +33,7 @@
                  </span>
             </div>
 
-            <div class="col-12">
+            <div class="col-6">
                 <h3>Email</h3>
                 <span class="ui-float-label">
                     <input formControlName="email" id="email" type="text" size="30" pInputText>
@@ -45,7 +45,7 @@
                 </span>
             </div>
 
-            <div class="col-12">
+            <div class="col-6">
                 <h3>Contraseña</h3>
                 <input formControlName="password" name="password" pPassword type="password" />
                 <div *ngIf="formularioRegistro.get('password').touched && !formularioRegistro.get('password').valid">
@@ -55,16 +55,7 @@
                 </div>
             </div>
 
-            <div class="col-12">
-                <h3>Repetir contraseña</h3>
-                <input appValidacion="password" formControlName="confirmacionPassword" pPassword type="password" />
-                <div *ngIf="formularioRegistro.get('confirmacionPassword').touched && !formularioRegistro.get('confirmacionPassword').valid">
-                    <p *ngIf="formularioRegistro.get('confirmacionPassword').hasError('required')">*La contraseña de confirmación es requerida</p>
-                    <p *ngIf="formularioRegistro.get('confirmacionPassword').hasError('noSonIguales')">*Las contraseñas no coinciden</p>
-                </div>
-            </div>
-
-            <div class="col-12">
+            <div class="col-6">
                 <h3>Fecha de Nacimiento</h3>
                 <span class="ui-float-label"></span>
                 <p-calendar formControlName="fechaNacimiento" [showIcon]="true" dateFormat="dd.mm.yy" [yearNavigator]="true" [yearRange]="rangoAnios" [monthNavigator]="true"></p-calendar>
@@ -73,8 +64,17 @@
                 </div>
             </div>
 
+            <div class="col-6">
+                <h3>Repetir contraseña</h3>
+                <input appValidacion="password" formControlName="confirmacionPassword" pPassword type="password" />
+                <div *ngIf="formularioRegistro.get('confirmacionPassword').touched && !formularioRegistro.get('confirmacionPassword').valid">
+                    <p *ngIf="formularioRegistro.get('confirmacionPassword').hasError('required')">*La contraseña de confirmación es requerida</p>
+                    <p *ngIf="formularioRegistro.get('confirmacionPassword').hasError('noSonIguales')">*Las contraseñas no coinciden</p>
+                </div>
+            </div>
 
-            <div class="col-12 " style="width:250px;margin-bottom:10px ">
+
+            <div class="col-6" style="width:250px;margin-bottom:10px ">
                 <h3>Sexo</h3>
                 <p-radioButton formControlName="sexo" name="sexo" value="Mujer" label="Mujer"></p-radioButton>
                 <p-radioButton formControlName="sexo" name="sexo" value="Hombre" label="Hombre"></p-radioButton>
@@ -83,7 +83,7 @@
                 </div>
             </div>
 
-            <div class="col-12 ">
+            <div class="col-6">
                 <h3>Provincia</h3>
                 <p-dropdown formControlName="provincia" [options]="listaProvincias" placeholder="Selecciona una provincia" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
                 <div *ngIf="formularioRegistro.get('provincia').touched && !formularioRegistro.get('provincia').valid" class="form-control-feedback">
@@ -91,7 +91,7 @@
                 </div>
             </div>
 
-            <div class="col-12 ">
+            <div class="col-6 ">
                 <h3>Más sobre ti</h3>
                 <span class="ui-float-label">
                     <input formControlName="info" id="info" type="text" size="30" pInputText>
@@ -99,12 +99,12 @@
                  </span>
             </div>
 
-            <div class="col-12" style="width:250px;margin-bottom:10px">
+            <div class="col-6" style="width:250px;margin-bottom:10px">
                 <h3>Intereses</h3>
                 <p-checkbox class="ui-grid-row" *ngFor="let interes of listaIntereses" formControlName="intereses" [value]="interes" [label]="interes.nombre"></p-checkbox>
             </div>
 
-            <div class="col-12">
+            <div class="col-6">
                 <h3>Términos</h3>
                 <p-inputSwitch formControlName="terminos"></p-inputSwitch>
                 <span>Acepto los términos y condiciones</span>
@@ -112,7 +112,7 @@
                     <p *ngIf="formularioRegistro.get('terminos').hasError('required')">*Debes aceptar los términos</p>
                 </div>
             </div>
-            <div class="col-12">
+            <div class="col-6">
                 <p *ngIf="esNecesarioRellenarTodosLosCampos">** Es necesario rellenar todos los campos **</p>
             </div>
             <button pButton type="submit" label="REGISTRO" class="ui-button-info"></button>

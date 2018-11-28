@@ -5,7 +5,8 @@
 
         <div class="col-sm-12 col-md-6">
             <h4 class="col-12">Añade con una imagen</h4>
-            <img [src]="imagen">
+            <img *ngIf="imagen == undefined" src="../../../assets/imagenes/logo2">
+            <img *ngIf="imagen !== undefined" [src]="imagen">
             <input class="col-6" type="file" accept="image/*" (change)="changeListener($event)">
         </div>
 

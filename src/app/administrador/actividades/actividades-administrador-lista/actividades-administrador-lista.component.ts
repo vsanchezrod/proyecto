@@ -27,6 +27,18 @@ export class ActividadesAdministradorListaComponent implements OnInit {
   ngOnInit() {
 
     this.obtenerListadoDeActividades();
+
+    this.actividadesService.cambioEnActividades().subscribe(
+      (borrado => {
+        this.obtenerListadoDeActividades();
+      })
+    );
+
+    this.viajesService.cambioEnViajes().subscribe(
+      (borrado => {
+        this.obtenerListadoDeActividades();
+      })
+    );
   }
 
   private obtenerListadoDeActividades(): void {
@@ -43,4 +55,5 @@ export class ActividadesAdministradorListaComponent implements OnInit {
     console.log('QUIERO REDIRIGIR');
     this.router.navigate(['admin/actividades/editar/' + viaje.id]);
   }
+
 }

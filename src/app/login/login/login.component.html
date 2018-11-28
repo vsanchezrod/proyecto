@@ -5,7 +5,7 @@
 
         <div class="form-group" [ngClass]="{ 'has-danger': !formularioLogin.get('email').valid}">
             <label for="email">Email</label>
-            <input [ngClass]="{'has-danger': formularioLogin.get('email').dirty && !formularioLogin.get('email').valid}" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Introduce tu email">
+            <input [ngStyle]="{'border-color': formularioLogin.valid || formularioLogin.get('email').priscine ? 'green' : 'red' }" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Introduce tu email">
         </div>
         <div *ngIf="formularioLogin.get('email').dirty && !formularioLogin.get('email').valid" class="form-control-feedback">
             <p *ngIf="formularioLogin.get('email').hasError('required')">*Introduce tu email</p>
@@ -14,15 +14,15 @@
 
         <div class="form-group">
             <label for="password">Contraseña</label>
-            <input [ngClass]="{'has-danger': formularioLogin.get('password').dirty && !formularioLogin.get('password').valid}" formControlName="password" type="password" class="form-control" id="password" placeholder="Contraseña">
+            <input [ngStyle]="{'border-color': formularioLogin.valid ? 'green' : 'red' }" formControlName="password" type="password" class="form-control" id="password" placeholder="Contraseña">
         </div>
         <div *ngIf="formularioLogin.get('password').dirty && !formularioLogin.get('password').valid" class="form-control-feedback">
             <p *ngIf="formularioLogin.get('password').hasError('password')">*Introduce una contraseña</p>
         </div>
 
 
-        <button class="col-6 btn btn-outline-primary" [disabled]="!formularioLogin.valid" type="submit">INICIA</button>
-        <button class="col-6 btn btn-outline-danger" type="button"><a routerLink="/registro" routerLinkActive="active">REGÍSTRATE</a></button>
+        <button class="col-6 btn" [disabled]="!formularioLogin.valid" type="submit">INICIA</button>
+        <button class="col-6 btn" routerLink="/registro" type="button">REGISTRO</button>
 
         <p-message class="ui-g-12" *ngIf="!credencialesValidas" severity="warn" text="Credenciales Inválidas"></p-message>
 

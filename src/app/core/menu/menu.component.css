@@ -13,3 +13,11 @@ a {
     text-shadow: 2px 2px black;
     font-size: 30px;
 }
+
+navbar-toggler-icon {
+    color: black;
+}
+
+icon-bar {
+    color: black;
+}
