@@ -47,7 +47,7 @@ export class CategoriasComponent implements OnInit, OnDestroy {
 
     this.formularioCategoria = new FormGroup({
       'nombre': new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),
-      'descripcion': new FormControl('', [Validators.required, Validators.minLength(5)])
+      'descripcion': new FormControl('', [Validators.required, Validators.minLength(20)])
     });
 
   }

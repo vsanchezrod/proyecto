@@ -73,7 +73,7 @@ export class RegistroComponent implements OnInit {
       'fechaNacimiento': new FormControl('', Validators.required),
       'sexo': new FormControl('', Validators.required),
       'provincia': new FormControl(Validators.required),
-      'info': new FormControl('', Validators.minLength(20) ),
+      'info': new FormControl(''),
       'intereses': new FormControl(),
       'terminos': new FormControl('', Validators.requiredTrue),
     });
