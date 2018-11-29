@@ -118,14 +118,22 @@ export class CalendarioUsuarioComponent implements OnInit, OnDestroy {
 
     if (evento.tipo === 'actividad' ) {
       console.log(evento.tipo);
-      this.router.navigate(['/salida', evento.id]);
+      this.verActividad(evento.id);
+
     }
     if (evento.tipo === 'viaje') {
       console.log(evento.tipo);
-      this.router.navigate(['/viaje', evento.id]);
+      this.verViaje(evento.id);
     }
 
   }
 
+  public verActividad(idEvento: string): void {
+    this.router.navigate(['/salida', idEvento]);
+  }
+
+  public verViaje(idEvento: string): void {
+    this.router.navigate(['/viaje', idEvento]);
+  }
 
 }

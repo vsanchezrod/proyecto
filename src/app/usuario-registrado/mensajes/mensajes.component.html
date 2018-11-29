@@ -42,7 +42,7 @@
                 Tus mensajes ({{ listaMensajes.length }})
             </p-header>
             <ng-template let-mensaje pTemplate="item" let-i="index">
-                <div class="ui-g mensaje-item ui-button">
+                <div [ngClass]="{ 'leido': mensaje.leido }" class="ui-g mensaje-item ui-button">
                     <div class="ui-g-12">
                         <div class="ui-g" (click)="cargarMensaje(mensaje)">
                             <div class="ui-g-2 ui-sm-12 d-none d-sm-block">Fecha </div>

@@ -21,7 +21,7 @@ export class ValidacionPersonificadaDirective implements Validators {
         const controlAComparar = control.parent.get(this.appValidacion);
 
         if (controlAComparar && controlAComparar.value !== control.value) {
-            return { 'noSonIguales': true };
+            return { 'noSonIguales': 'true asi' };
         }
         return null;
     }

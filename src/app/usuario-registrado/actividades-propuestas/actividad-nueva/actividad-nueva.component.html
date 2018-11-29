@@ -77,6 +77,7 @@
                     </div>
                 </div>
 
+                <p class="alerta alert-danger" *ngIf="formularioActividad.invalid">* Todos los campos tienen que estar rellenos!!</p>
                 <button *ngIf="esNuevaActividad" [disabled]="formularioActividad.invalid" (click)="crearActividad(formularioActividad.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button-info"></button>
                 <button *ngIf="!esNuevaActividad" [disabled]="formularioActividad.invalid" (click)="actualizarActividad(formularioActividad.value)" pButton type="button" label="ACTUALIZAR ACTIVIDAD" class="col-12 ui-button-info"></button>
 

@@ -16,6 +16,7 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { Provincia } from '../../modelos/provincia.model';
 import { Categoria } from '../../modelos/categoria.model';
 import { Usuario } from '../../modelos/usuario.model';
+import { ValidacionPersonificadaDirective } from '../../compartidos/validacion-personificada.directive';
 
 @Component({
   selector: 'app-registro',

@@ -42,13 +42,12 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
     this.suscripcionObtenerUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
       (usuario: Usuario) => {
         this.usuario = usuario;
-
-        this.subscripcionObtenerMensajes = this.usuariosService.obtenerNumeroMensajesNoLeidosDeUsuario(this.usuario.id).subscribe(
-          (total: Total) => {
-            this.numeroMensajesSinLeer = total.total;
-          }
-        );
-
+        if ('id' in this.usuario && this.usuario.id !== undefined) {
+          this.comprobarMensajes();
+          setInterval(() => {
+            this.comprobarMensajes();
+          }, 15000);
+        }
       }
     );
 
@@ -126,7 +125,15 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log('INFOSESSION: ONDESTROY');
     this.suscripcionObtenerUsuarioLogado.unsubscribe();
-    this.subscripcionObtenerMensajes.unsubscribe();
+  }
+
+  private comprobarMensajes(): void {
+    this.subscripcionObtenerMensajes = this.usuariosService.obtenerNumeroMensajesNoLeidosDeUsuario(this.usuario.id).subscribe(
+      (total: Total) => {
+        this.numeroMensajesSinLeer = total.total;
+        this.subscripcionObtenerMensajes.unsubscribe();
+      }
+    );
   }
 
   public logout(): void {
