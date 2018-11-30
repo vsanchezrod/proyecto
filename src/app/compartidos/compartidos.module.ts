@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { CalendarModule } from 'primeng/calendar';
+import { InputMaskModule } from 'primeng/inputmask';
 
 
 // Módulos
@@ -30,7 +31,8 @@ import { ModalCancelacionActividadesComponent } from './modal-cancelacion-activi
     ButtonModule,
     MessagesModule,
     MessageModule,
-    CalendarModule
+    CalendarModule,
+    InputMaskModule
   ],
   declarations: [
     TarjetaSalidaComponent,

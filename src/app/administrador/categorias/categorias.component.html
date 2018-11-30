@@ -8,6 +8,7 @@
             <img *ngIf="imagen == undefined" src="../../../assets/imagenes/logo2">
             <img *ngIf="imagen !== undefined" [src]="imagen">
             <input class="col-12" type="file" accept="image/*" (change)="changeListener($event)">
+            <p>Elige una imagen!!</p>
         </div>
 
         <form class="col-sm-12 col-md-6" [formGroup]="formularioCategoria" (ngSubmit)="crearCategoria(formularioCategoria.value)">

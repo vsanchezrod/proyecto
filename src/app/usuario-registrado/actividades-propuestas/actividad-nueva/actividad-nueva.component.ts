@@ -167,6 +167,9 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
       },
       (error) => {
         console.error('Error: ', error);
+
+        // PENDIENTEEEEEEEEEEEEEEEEEEEEEE
+        console.error(error.error.errors[0].defaultMessage);
       }
     );
   }

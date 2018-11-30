@@ -9,17 +9,23 @@
                 <div class="ui-g-12 ui-md-12 ui-lg-10">
                     <p-dropdown formControlName="actividad" [options]="listaActividadesDelUsuario" placeholder="Selecciona una actividad" [showClear]="true" filter="true"></p-dropdown>
 
-
                     <span class="ui-float-label ui-g-12 ui-md-10">
                         <input formControlName="titulo" id="titulo" type="text" size="30"
                             pInputText>
-                        <label for="titulo">Título de tu opinión*</label>
+                        <label for="titulo">Título de tu opinión</label>
+                        <div *ngIf="formularioOpinion.get('titulo').dirty && !formularioOpinion.get('titulo').valid" class="form-control-feedback">
+                            <p *ngIf="formularioOpinion.get('titulo').hasError('required')">*Introduce un título</p>
+                        </div>
                     </span>
 
                     <span class="ui-float-label ui-g-12 ui-md-10">
                         <textarea formControlName="detalle" id="detalle" rows="5" cols="15"
                             pInputTextarea autoResize="autoResize"></textarea>
-                        <label for="descripcion">Escribe tu opinión*</label>
+                        <label for="descripcion">Escribe tu opinión</label>
+                        <div *ngIf="formularioOpinion.get('detalle').dirty && !formularioOpinion.get('detalle').valid" class="form-control-feedback">
+                            <p *ngIf="formularioOpinion.get('detalle').hasError('required')">*Introduce una opinión</p>
+                            <p *ngIf="formularioOpinion.get('detalle').hasError('minlength')">*Introduce al menos 25 caracteres</p>
+                        </div>
                     </span>
                 </div>
 

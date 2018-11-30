@@ -5,31 +5,39 @@
 <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-weight-bold">Mensaje</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="col-12 modal-body">
-                <div class="col-12 md-form mb-5">
-                    <label class="col-sm-12 col-md-6" for="destinatario"><i class="fa fa-user-circle prefix grey-text"></i> Destinatario</label>
-                    <p-dropdown class="col-sm-12 col-md-6" id="destinatario" [formControl]="formularioMensaje.controls['idUsuarioReceptor']" [options]="listaAmigos" placeholder="Elige amigo" [showClear]="true" filter="true"></p-dropdown>
+            <form [formGroup]="formularioMensaje">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Mensaje</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <div class="col-12 modal-body">
+                    <div class="col-12 md-form mb-5">
+                        <label class="col-sm-12 col-md-6" for="destinatario"><i class="fa fa-user-circle prefix grey-text"></i> Destinatario</label>
+                        <p-dropdown class="col-sm-12 col-md-6" id="destinatario" formControlName="idUsuarioReceptor" [options]="listaAmigos" placeholder="Elige amigo" [showClear]="true" filter="true" [ngStyle]="{'border-color': formularioMensaje.get('idUsuarioReceptor').valid || formularioMensaje.get('idUsuarioReceptor').pristine ? 'gray' : 'red'}"></p-dropdown>
+                    </div>
 
-                <div class="col-12 md-form mb-5">
-                    <label class="col-12" for="asunto"><i class="fa fa-envelope prefix grey-text"></i> Asunto</label>
-                    <input class="col-12" [formControl]="formularioMensaje.controls['asunto']" id="asunto" type="text" size="30" pInputText>
-                </div>
+                    <div class="col-12 md-form mb-5">
+                        <label class="col-12" for="asunto"><i class="fa fa-envelope prefix grey-text"></i> Asunto</label>
+                        <input class="col-12" formControlName="asunto" name="asunto" id="asunto" type="text" size="30" [ngStyle]="{'border-color': formularioMensaje.get('asunto').valid || formularioMensaje.get('asunto').pristine ? 'gray' : 'red'}" pInputText>
+                        <div *ngIf="formularioMensaje.get('asunto').dirty && !formularioMensaje.get('asunto').valid" class="form-control-feedback">
+                            <p *ngIf="formularioMensaje.get('asunto').hasError('required')">*Introduce asunto</p>
+                        </div>
+                    </div>
 
-                <div class="col-12 md-form mb-4">
-                    <label class="col-12" for="mensaje"><i class="fa fa-envelope prefix grey-text"></i> Mensaje</label>
-                    <textarea class="col-12" [formControl]="formularioMensaje.controls['cuerpoMensaje']" name="mensaje" rows="5" cols="30" pInputTextarea></textarea>
+                    <div class="col-12 md-form mb-4">
+                        <label class="col-12" for="mensaje"><i class="fa fa-envelope prefix grey-text"></i> Mensaje</label>
+                        <textarea class="col-12" formControlName="cuerpoMensaje" name="cuerpoMensaje" id="cuerpoMensaje" rows="5" cols="30" pInputTextarea [ngStyle]="{'border-color': formularioMensaje.get('cuerpoMensaje').valid || formularioMensaje.get('cuerpoMensaje').pristine ? 'gray' : 'red'}"></textarea>
+                        <div *ngIf="formularioMensaje.get('cuerpoMensaje').dirty && !formularioMensaje.get('cuerpoMensaje').valid" class="form-control-feedback">
+                            <p *ngIf="formularioMensaje.get('cuerpoMensaje').hasError('required')">*Introduce asunto</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button class="col-6 btn btn-default btn-primary" data-dismiss="modal" (click)="mandarMensaje()">Enviar</button>
-            </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="col-6 btn btn-default btn-primary" [disabled]="formularioMensaje.invalid" data-dismiss="modal" (click)="mandarMensaje()">Enviar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
