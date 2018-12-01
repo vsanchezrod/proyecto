@@ -58,7 +58,7 @@ export class AmigosComponent implements OnInit, OnDestroy {
     if (clave !== '') {
       for (const usuarioBuscado of this.listaUsuarios) {
         console.log(usuarioBuscado.nombre);
-        if (usuarioBuscado.nombre.includes(clave) && usuarioBuscado.id !== this.usuario.id) {
+        if (usuarioBuscado.nombre.toUpperCase().includes(clave.toUpperCase()) && usuarioBuscado.id !== this.usuario.id) {
           this.listaUsuariosBusqueda.push(usuarioBuscado);
         }
       }

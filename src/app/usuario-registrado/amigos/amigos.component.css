@@ -1,4 +1,40 @@
+img,
 .imgBusqueda {
-    width: 150px;
-    height: 150px;
+    width: 50%;
+    border-bottom: 4px solid #F5AE15;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+img:hover {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+}
+
+button {
+    background-color: #dedede;
+    border-radius: 5px;
+    border-bottom: 4px solid #F5AE15;
+    font-weight: bolder;
+}
+
+.borrar {
+    background: #e7aa00;
+    border-bottom: 4px solid black;
+}
+
+span {
+    color: black;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+p-header {
+    color: white;
+    font-weight: bolder;
+    font-size: 20px;
 }

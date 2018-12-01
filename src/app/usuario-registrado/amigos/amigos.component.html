@@ -6,19 +6,19 @@
     <div class="row">
 
         <div class="col-sm-12 col-md-6">
-            <p-dataScroller class="ui-g" [value]="listaAmigos" [rows]="10">
-                <p-header>
+            <p-dataScroller [value]="listaAmigos" [rows]="10">
+                <p-header class="u-g-12">
                     Tus contactos ({{ listaAmigos.length }})
                 </p-header>
                 <ng-template ngIf*="listaAmigos.length> 0" let-amigo pTemplate="item">
                     <div class="ui-g-12 car-item">
-                        <div class="ui-g-6 ui-md-3">
+                        <div class="ui-g-6 ui-md-6">
                             <img class="ui-g-12" [src]=" amigo.avatar ">
                         </div>
-                        <div class="ui-g-6 ui-md-9 ">
+                        <div class="ui-g-6 ui-md-6 ">
                             <span class="ui-g-12">{{ amigo.nombre }}</span>
-                            <button pButton type="button" label="Mensaje" routerLink="/usuario/mensajes" icon="pi pi-check" style="margin-right: .25em"></button>
-                            <button pButton type="button" (click)="borrarAmigo(amigo.id)" label="Eliminar" icon="pi pi-times" class="ui-button-secondary"></button>
+                            <button pButton type="button" label="Mensaje" routerLink="/usuario/mensajes" icon="pi pi-envelope" style="margin-right: .25em"></button>
+                            <button pButton type="button" (click)="borrarAmigo(amigo.id)" label="Eliminar" icon="pi pi pi-trash" class="ui-button borrar"></button>
                         </div>
                     </div>
                 </ng-template>
@@ -27,14 +27,14 @@
 
         <div class="col-sm-12 col-md-6 ">
 
-            <p-dataScroller class="ui-g" [value]="listaUsuariosBusqueda " [rows]="10 ">
+            <p-dataScroller [value]="listaUsuariosBusqueda" [rows]="10 ">
                 <p-header class="u-g-12">
                     Contactos encontrados!
                 </p-header>
                 <ng-template let-usuarioBusqueda pTemplate="item ">
-                    <div class="ui-g car-item ">
+                    <div class="ui-g car-item">
                         <div class="ui-g-12 ">
-                            <img class="imgBusqueda mx-auto d-block " [src]="usuarioBusqueda.avatar ">
+                            <img class="imgBusqueda mx-auto d-block " [src]="usuarioBusqueda.avatar">
                         </div>
                         <div class="ui-g-12 ">
                             <p>{{ usuarioBusqueda.nombre }}</p>

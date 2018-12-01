@@ -34,3 +34,11 @@ button {
     background: #e7aa00;
     border-bottom: 4px solid black;
 }
+
+i {
+    font-size: 150px;
+}
+
+p {
+    font-size: 50px;
+}
