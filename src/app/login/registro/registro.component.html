@@ -7,7 +7,7 @@
             <div class="col-12">
                 <h3 class="col-2">Avatar</h3>
                 <input class="col-6 ui-button" type="file" accept="image/*" name="imagen" (change)="cargarAvatar($event)">
-                <img class="col-4 rounded-circle" [src]="imagenAvatar">
+                <img *ngIf="imagenAvatar !== undefined" class="col-6 avatar" [src]="imagenAvatar">
                 <p-progressSpinner *ngIf="mostrarSpinner"></p-progressSpinner>
                 <div class="form-control-feedback">
                     <p>Elige un avatar!</p>
@@ -118,8 +118,8 @@
                     <p *ngIf="formularioRegistro.get('terminos').hasError('required')">*Debes aceptar los términos</p>
                 </div>
             </div>
-            <div class="col-6">
-                <p *ngIf="esNecesarioRellenarTodosLosCampos">** Es necesario rellenar todos los campos **</p>
+            <div class="col-12 error">
+                <p *ngIf="esNecesarioRellenarTodosLosCampos">** Es necesario rellenar todos los campos. No olvides elegir una imagen **</p>
             </div>
             <button pButton [disabled]="formularioRegistro.invalid" type="submit" label="REGISTRO" class="ui-button-info"></button>
 

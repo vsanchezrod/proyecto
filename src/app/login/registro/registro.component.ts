@@ -72,7 +72,7 @@ export class RegistroComponent implements OnInit {
       'confirmacionPassword': new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]),
       'fechaNacimiento': new FormControl('', Validators.required),
       'sexo': new FormControl('', Validators.required),
-      'provincia': new FormControl(Validators.required),
+      'provincia': new FormControl('', Validators.required),
       'info': new FormControl(''),
       'intereses': new FormControl(),
       'terminos': new FormControl('', Validators.requiredTrue),
@@ -82,7 +82,7 @@ export class RegistroComponent implements OnInit {
   public enviarDatos(datosFormulario): void {
     console.log(this.formularioRegistro.value);
 
-    if (this.formularioRegistro.valid) {
+    if (this.formularioRegistro.valid && this.imagenAvatar !== undefined) {
 
       this.esNecesarioRellenarTodosLosCampos = false;
       const usuario: Usuario = datosFormulario;
