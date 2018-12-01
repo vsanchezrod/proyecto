@@ -1,0 +1,149 @@
+/***************** CARRUSEL **********************/
+
+body .ui-carousel {
+    padding: 5px;
+}
+
+body .ui-carousel .ui-carousel-header {
+    background-color: #191919;
+    color: #F5AE15;
+    padding: 0.571em 1em;
+    border: 1px solid #191919;
+    margin: 0;
+    font-weight: bolder;
+    font-size: 20px;
+    text-shadow: 1px 1px #e6bf14;
+}
+
+body .ui-carousel .ui-carousel-header .ui-carousel-header-title {
+    padding: 0;
+}
+
+body .ui-carousel .ui-carousel-viewport {
+    border: 1px solid #191919;
+    background-color: #323232;
+    color: #dedede;
+    padding: 0;
+}
+
+body .ui-carousel .ui-carousel-viewport .ui-carousel-items .ui-carousel-item {
+    border: 1px solid #191919;
+}
+
+body .ui-carousel .ui-carousel-footer {
+    background-color: #191919;
+    color: #dedede;
+    padding: 0.571em 1em;
+    border: 1px solid #191919;
+    margin: 0;
+}
+
+body .ui-carousel .ui-carousel-button {
+    color: #dedede;
+    -moz-transition: color 0.2s;
+    -o-transition: color 0.2s;
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+}
+
+body .ui-carousel .ui-carousel-button.ui-carousel-next-button:before {
+    content: "";
+}
+
+body .ui-carousel .ui-carousel-button.ui-carousel-prev-button:before {
+    content: "";
+}
+
+body .ui-carousel .ui-carousel-button:not(.ui-state-disabled):hover {
+    color: #F5AE15;
+}
+
+body .ui-carousel .ui-carousel-page-links {
+    margin: 0.125em 0.5em;
+}
+
+body .ui-carousel .ui-carousel-page-links .ui-carousel-page-link {
+    color: #dedede;
+    -moz-transition: color 0.2s;
+    -o-transition: color 0.2s;
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+}
+
+body .ui-carousel .ui-carousel-page-links .ui-carousel-page-link:hover {
+    color: #F5AE15;
+}
+
+
+/***************TAB MENU***************************/
+
+body .ui-tabmenu {
+    border: 0 none;
+    margin-bottom: 2px;
+    align-content: center;
+}
+
+body .ui-tabmenu .ui-tabmenu-nav {
+    padding: 0;
+    background: transparent;
+    border-bottom: 1px solid #191919;
+}
+
+body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem {
+    position: static;
+    border: 1px solid #191919;
+    background-color: #191919;
+    margin-right: 2px;
+    margin-bottom: -1px;
+    -moz-transition: background-color 0.2s;
+    -o-transition: background-color 0.2s;
+    -webkit-transition: background-color 0.2s;
+    transition: background-color 0.2s;
+    align-content: flex-end;
+}
+
+body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem .ui-menuitem-link {
+    color: #dedede;
+    font-size: 17px;
+    padding: 0.571em 1em;
+    margin-right: 2px;
+}
+
+body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem .ui-menuitem-link .ui-menuitem-text {
+    color: #dedede;
+    margin-right: 0.5em;
+}
+
+body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem .ui-menuitem-link .ui-menuitem-icon {
+    color: #888888;
+    margin-right: 0.5em;
+}
+
+body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem:not(.ui-state-active):not(.ui-state-disabled):hover {
+    background-color: #191919;
+    border: 1px solid #191919;
+}
+
+body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem:not(.ui-state-active):not(.ui-state-disabled):hover .ui-menuitem-link .ui-menuitem-text {
+    color: #FFB300;
+    font-weight: bolder;
+    font-size: 19px;
+}
+
+body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem:not(.ui-state-active):not(.ui-state-disabled):hover .ui-menuitem-link .ui-menuitem-icon {
+    color: #dedede;
+}
+
+body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active {
+    background-color: #FFB300;
+    border: 1px solid black;
+    font-weight: bolder;
+}
+
+body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active .ui-menuitem-link .ui-menuitem-text {
+    color: black;
+}
+
+body .ui-tabmenu .ui-tabmenu-nav .ui-tabmenuitem.ui-state-active .ui-menuitem-link .ui-menuitem-icon {
+    color: black;
+}

@@ -13,16 +13,19 @@
 }
 
 .btn {
-    background-color: #27c2a5;
+    background-color: #e6bf14;
     color: #FFFFFF;
     font-size: 19px;
     border-radius: 5px;
-    border-bottom: 4px solid #219882;
+    border-bottom: 4px solid black;
     margin-top: 10px;
+    color: black;
 }
 
 .btn:hover,
 .btn:focus {
-    background-color: #25a890!important;
-    border-bottom: 4px solid #25a890!important;
+    background-color: black!important;
+    color: #e6bf14;
+    font-weight: bolder;
+    border-bottom: 4px solid #e6bf14!important;
 }

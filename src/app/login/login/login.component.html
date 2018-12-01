@@ -1,31 +1,32 @@
-<div class="jumbotron cajaLogin">
+<div class="jumbotron cajaLogin col-12">
 
-    <h3 class="text-center">INICIA SESIÓN</h3>
-    <form class="col-12" [formGroup]="formularioLogin" (ngSubmit)="login()">
+    <div class="container">
+        <h3 class="text-center">INICIA SESIÓN</h3>
+        <form class="col-12" [formGroup]="formularioLogin" (ngSubmit)="login()">
 
-        <div class="form-group" [ngClass]="{ 'has-danger': !formularioLogin.get('email').valid}">
-            <label for="email">Email</label>
-            <input [ngStyle]="{'border-color': formularioLogin.valid || formularioLogin.get('email').pristine ? 'gray' : 'red' }" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Introduce tu email">
-        </div>
-        <div *ngIf="formularioLogin.get('email').dirty && !formularioLogin.get('email').valid" class="form-control-feedback">
-            <p *ngIf="formularioLogin.get('email').hasError('required')">*Introduce tu email</p>
-            <p *ngIf="formularioLogin.get('email').hasError('email')">*Formato de email inválido</p>
-        </div>
+            <div class="form-group" [ngClass]="{ 'has-danger': !formularioLogin.get('email').valid}">
+                <label for="email">Email</label>
+                <input [ngStyle]="{'border-color': formularioLogin.valid || formularioLogin.get('email').pristine ? 'gray' : 'red' }" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Introduce tu email">
+            </div>
+            <div *ngIf="formularioLogin.get('email').dirty && !formularioLogin.get('email').valid" class="form-control-feedback">
+                <p *ngIf="formularioLogin.get('email').hasError('required')">*Introduce tu email</p>
+                <p *ngIf="formularioLogin.get('email').hasError('email')">*Formato de email inválido</p>
+            </div>
 
-        <div class="form-group">
-            <label for="password">Contraseña</label>
-            <input [ngStyle]="{'border-color': formularioLogin.valid || formularioLogin.get('password').pristine ? 'gray' : 'red' }" formControlName="password" type="password" class="form-control" id="password" placeholder="Contraseña">
-        </div>
-        <div *ngIf="formularioLogin.get('password').dirty && !formularioLogin.get('password').valid" class="form-control-feedback">
-            <p *ngIf="formularioLogin.get('password').hasError('required')">*Introduce una contraseña</p>
-        </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input [ngStyle]="{'border-color': formularioLogin.valid || formularioLogin.get('password').pristine ? 'gray' : 'red' }" formControlName="password" type="password" class="form-control" id="password" placeholder="Contraseña">
+            </div>
+            <div *ngIf="formularioLogin.get('password').dirty && !formularioLogin.get('password').valid" class="form-control-feedback">
+                <p *ngIf="formularioLogin.get('password').hasError('required')">*Introduce una contraseña</p>
+            </div>
 
 
-        <button class="col-6 btn" [disabled]="!formularioLogin.valid" type="submit">INICIA</button>
-        <button class="col-6 btn" routerLink="/registro" type="button">REGISTRO</button>
+            <button class="col-6 btn" [disabled]="!formularioLogin.valid" type="submit">INICIA</button>
+            <button class="col-6 btn" routerLink="/registro" type="button">REGISTRO</button>
 
-        <p-message class="ui-g-12" *ngIf="!credencialesValidas" severity="warn" text="Credenciales Inválidas"></p-message>
+            <p-message class="ui-g-12" *ngIf="!credencialesValidas" severity="warn" text="Credenciales Inválidas"></p-message>
 
-    </form>
-
+        </form>
+    </div>
 </div>

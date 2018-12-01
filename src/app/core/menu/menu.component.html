@@ -1,14 +1,11 @@
 <nav class="col navbar navbar-expand-lg">
 
-    <app-info-sesion-menu class="collapse navbar-collapse" *ngIf="usuarioLogado"></app-info-sesion-menu>
-    <button id="botonLogin" *ngIf="!usuarioLogado" routerLink="login" class="btn btn-outline-success my-2 my-sm-0" type="submit">Inicia Sesión</button>
-
-    <a class="navbar-brand" routerLink="inicio"><img src="../../../assets/imagenes/logo2"></a>
+    <img class="col-sm-12 col-md-6 col-lg-3" routerLink="inicio" src="../../../assets/imagenes/logo2">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="col-9 collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -34,4 +31,14 @@
         </form>
 
     </div>
+
 </nav>
+
+<div class="row menuUsuario">
+    <div class="col">
+        <div class="col-12">
+            <button id="botonLogin" *ngIf="!usuarioLogado" routerLink="login" class="col-sm-12 col-md-6 col-lg-2 btn btn-outline-success my-2 my-sm-0" type="submit">Inicia sesión</button>
+            <app-info-sesion-menu class="col-6" *ngIf="usuarioLogado"></app-info-sesion-menu>
+        </div>
+    </div>
+</div>

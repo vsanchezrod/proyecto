@@ -1,7 +1,7 @@
 <p-card class="ui-g" [title]="viaje.nombre" styleClass="ui-card-shadow">
 
     <p-header class="ui-grid-col-12">
-        <img id="actividad" alt="viaje" [src]="viaje.imagen">
+        <img class="ui-grid-col-12" id="actividad" alt="viaje" [src]="viaje.imagen">
     </p-header>
     <button id="btnCategorias" class="text-center" *ngFor="let categoria of viaje.categorias" pButton type="button" [label]="categoria.nombre"></button>
     <div class="ui-grid-col-12">{{ viaje.descripcion }}</div>

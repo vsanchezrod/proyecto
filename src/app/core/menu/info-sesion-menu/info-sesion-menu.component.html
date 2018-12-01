@@ -1,22 +1,23 @@
 <nav class="navbar navbar-expand-lg">
 
+    <div class="container">
+        <div *ngIf="usuarioSesionService.esAdministrador()">
+            <p-slideMenu #menuAdmin [model]="itemsAdmin" [viewportHeight]="300" [popup]="true"></p-slideMenu>
+            <i class="pi pi-cog" (mouseover)="menuAdmin.toggle($event)"></i>
+            <!-- (mouseleave)="menuUsuario.toggle($event) -->
+        </div>
 
-    <div *ngIf="usuarioSesionService.esUsuarioRegistrado()" (click)="menuUsuario.toggle($event)" class="borde">
-        <p-slideMenu #menuUsuario [model]="itemsUsuario" [viewportHeight]="320" [popup]="true"></p-slideMenu>
-        <img class="rounded-circle" [src]="usuario.avatar" alt="avatar">
-        <!--<i class="pi pi-angle-double-down"></i>-->
-        <!-- (mouseleave)="menuUsuario.toggle($event) -->
-    </div>
-    <i class="pi pi-envelope" (click)="verMensajes()"><span class="badge badge-pill badge-warning">{{ numeroMensajesSinLeer }}</span></i>
+        <i class="pi pi-envelope" (click)="verMensajes()"><span class="badge badge-pill badge-warning">{{ numeroMensajesSinLeer }}</span></i>
 
-    <!-- PONER ICONO PARA ADMINISTRADOR-->
-    <div *ngIf="usuarioSesionService.esAdministrador()">
-        <p-slideMenu #menuAdmin [model]="itemsAdmin" [viewportHeight]="300" [popup]="true"></p-slideMenu>
-        <i class="pi pi-cog" (mouseover)="menuAdmin.toggle($event)"></i>
-        <!-- (mouseleave)="menuUsuario.toggle($event) -->
+
     </div>
 
-    <div>
+    <div class="container">
+        <div *ngIf="usuarioSesionService.esUsuarioRegistrado()" (click)="menuUsuario.toggle($event)" class="borde">
+            <p-slideMenu #menuUsuario [model]="itemsUsuario" [viewportHeight]="320" [popup]="true"></p-slideMenu>
+            <img class="rounded-circle" [src]="usuario.avatar" alt="avatar">
+            <!-- (mouseleave)="menuUsuario.toggle($event) -->
+        </div>
         <i class="pi pi-sign-out" (click)="logout()"></i>
     </div>
 
