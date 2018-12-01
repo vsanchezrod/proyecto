@@ -7,7 +7,7 @@
                 Mis actividades propuestas ({{ listaMisActividadesPropuestas.length }})
             </p-header>
             <ng-template let-actividad pTemplate="item" let-i="index">
-                <div class="ui-g mensaje-item ui-button borde" (click)="cargarActividad(actividad)">
+                <div class="ui-g mensaje-item ui-button actividad" (click)="cargarActividad(actividad)">
                     {{ actividad.nombre }}
                 </div>
             </ng-template>
@@ -16,8 +16,8 @@
         <div *ngIf="listaMisActividadesPropuestas.length > 0" class="col-sm-12 col-md-6">
             <h3 class="text-center col-12">Resumen de la actividad</h3>
             <app-tarjeta-salida [salida]="salidaSeleccionada"></app-tarjeta-salida>
-            <button pButton type="button" label="Editar" class="ui-button-warning" (click)="redirigirEditarAct()"></button>
-            <app-modal-cancelacion-actividades [actividad]="salidaSeleccionada"></app-modal-cancelacion-actividades>
+            <button pButton type="button" class="btn" label="Editar" icon="pi pi-pencil" (click)="redirigirEditarAct()"></button>
+            <app-modal-cancelacion-actividades icon="pi pi-trash" [actividad]="salidaSeleccionada"></app-modal-cancelacion-actividades>
         </div>
 
     </div>
