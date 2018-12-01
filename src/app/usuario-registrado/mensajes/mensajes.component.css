@@ -1,3 +1,9 @@
+p-header {
+    color: white;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
 img {
     width: 50px;
     height: 50px;
@@ -7,6 +13,24 @@ i {
     font-size: 40px;
 }
 
+.noLeido {
+    background: rgb(241, 229, 117);
+    border: 4px solid black;
+}
+
 .leido {
-    background: grey;
+    background: gray;
+    border: 4px solid black;
+}
+
+button {
+    background-color: #dedede;
+    border-radius: 5px;
+    border-bottom: 4px solid #F5AE15;
+    font-weight: bolder;
+}
+
+.borrar {
+    background: #e7aa00;
+    border-bottom: 4px solid black;
 }

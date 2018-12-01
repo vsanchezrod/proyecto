@@ -1,5 +1,5 @@
 <div class="text-center">
-    <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalMessage">Mandar mensaje nuevo</a>
+    <button class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalMessage">Mandar mensaje nuevo</button>
 </div>
 
 <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -50,7 +50,7 @@
                 Tus mensajes ({{ listaMensajes.length }})
             </p-header>
             <ng-template let-mensaje pTemplate="item" let-i="index">
-                <div [ngClass]="{ 'leido': mensaje.leido }" class="ui-g mensaje-item ui-button">
+                <div [ngClass]="{'leido': mensaje.leido, 'noLeido': '!mensaje.leido'  }" class="ui-g mensaje-item ui-button">
                     <div class="ui-g-12">
                         <div class="ui-g" (click)="cargarMensaje(mensaje)">
                             <div class="ui-g-2 ui-sm-12 d-none d-sm-block">Fecha </div>
@@ -59,8 +59,8 @@
                             <div class="ui-g-2 ui-sm-6 d-none d-sm-block">Asunto: </div>
                             <div class="ui-g-10 ui-sm-6">{{ mensaje.asunto }}</div>
                         </div>
-                        <button class="ui-g-12 ui-sm-6 d-none d-sm-block" pButton type="button" label="Responder" data-toggle="modal" data-target="#modalMessage" icon="pi pi-file" style="margin-right: .25em"></button>
-                        <button class="ui-g-12 ui-sm-6 d-none d-sm-block ui-button-secondary" pButton type="button" label="Borrar" (click)="borrarMensaje(mensaje.id)" icon="pi pi-times"></button>
+                        <button class="ui-g-5 d-none d-sm-block btn" pButton type="button" label="Responder" data-toggle="modal" data-target="#modalMessage" icon="pi pi-envelope" style="margin-right: .25em"></button>
+                        <button class="ui-g-5 d-none d-sm-block btn borrar" pButton type="button" label="Borrar" (click)="borrarMensaje(mensaje.id)" icon="pi pi-trash"></button>
                     </div>
 
                 </div>

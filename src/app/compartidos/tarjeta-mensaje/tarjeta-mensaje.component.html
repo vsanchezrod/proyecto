@@ -1,10 +1,11 @@
-<p-card class="ui-g" [title]="mensaje.asunto" [subtitle]="fechaParseada">
-    <img class="ui-grid-col-1 img-thumbnail mx-auto d-block" src="" alt="Avatar" [src]="usuario.avatar">
-    <p>{{ usuario.nombre }}</p>
-    <div class="ui-grid-col-11">
-        <p class="ui-grid-col-12">
-            {{ mensaje.cuerpoMensaje }}
-        </p>
+<p-card class="ui-g-12" [title]="mensaje.asunto" [subtitle]="fechaParseada">
+    <div class="ui-g-2">
+        <img class="avatar" src="" alt="Avatar" [src]="usuario.avatar">
     </div>
-
+    <div class="ui-g-10">
+        <p class="ui-g-12">{{ usuario.nombre }}</p>
+        <div class="ui-g-12">
+            {{ mensaje.cuerpoMensaje }}
+        </div>
+    </div>
 </p-card>
