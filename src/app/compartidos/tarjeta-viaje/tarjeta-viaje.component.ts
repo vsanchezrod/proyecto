@@ -77,12 +77,13 @@ export class TarjetaViajeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/viaje', this.viaje.id]);
   }
 
-  public apuntarseAViaje(idViaje: string): void {
-
-    this.viajesService.apuntarseAViaje(idViaje, this.usuarioLogado.id).subscribe(
+  public apuntarseAViaje(): void {
+    console.log('Usuario q quiere apuntarse: ', this.usuarioLogado.id);
+    console.log('Viaje id: ', this.viaje.id);
+    this.viajesService.apuntarseAViaje(this.viaje.id, this.usuarioLogado.id).subscribe(
       (response: HttpResponse<Viaje>) => {
         console.log('APUNTADO!!', response);
-        this.viajesService.obtenerViajePorId$(idViaje).subscribe(
+        this.viajesService.obtenerViajePorId$(this.viaje.id).subscribe(
           (viajeActualizado: Viaje) => {
             this.viaje = viajeActualizado;
           }

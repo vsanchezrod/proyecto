@@ -14,14 +14,14 @@
         <div class="ui-grid-col-6">Distancia: {{ viaje.distancia }} Km</div>
         <span class="ui-grid-col-6">Precio: <strong> {{ viaje.precio }} €</strong></span>
 
-        <button pButton *ngIf="mostrarBotonApuntarse()" (click)="verificarLogin()" class="ui-grid-col-12 btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#pagoViaje" type="button" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
+        <button pButton *ngIf="mostrarBotonApuntarse()" (click)="verificarLogin()" class="ui-grid-col-12 btn btn-default btn-rounded mb-4" data-toggle="modal" [attr.data-target]="'#id' + viaje.id" type="button" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
         <button pButton *ngIf="usuarioYaApuntado()" class="ui-grid-col-12 ui-button-warning" type="button" icon="pi pi-user-plus" iconPos="right" label="YA APUNTADO!"></button>
         <p-message class="ui-grid-col-12 text-center" *ngIf="plazasAgotadas()" severity="warn" text="Plazas agotadas :("></p-message>
     </p-footer>
 
 </p-card>
 
-<div class="modal fade" id="pagoViaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" [attr.id]="'id'+viaje.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -64,7 +64,7 @@
                 <h5 class="col-5">Importe: {{ viaje.precio}} €</h5>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button class="col-6 btn btn-default btn-primary" [disabled]="CVC.invalid || caducidad.invalid || nombreTarjeta.invalid || numeroTarjeta.invalid" data-dismiss="modal" (click)="apuntarseAViaje(viaje.id)">Realizar Pago</button>
+                <button class="col-6 btn btn-default btn-primary" [disabled]="CVC.invalid || caducidad.invalid || nombreTarjeta.invalid || numeroTarjeta.invalid" data-dismiss="modal" (click)="apuntarseAViaje()">Realizar Pago</button>
             </div>
         </div>
     </div>

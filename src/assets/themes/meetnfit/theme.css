@@ -316,59 +316,16 @@ body .ui-widget-content p {
 }
 
 
-/***************************SLIDE MENU****************************************/
+/***************************INPUT MENU****************************************/
 
-body .ui-slidemenu .ui-menuitem-link {
-    padding: 0.714em 0.857em;
-    color: #dedede;
-    font-weight: normal;
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-}
 
-body .ui-menu .ui-menuitem-link .ui-menuitem-text,
-body .ui-menubar .ui-menuitem-link .ui-menuitem-text,
-body .ui-tieredmenu .ui-menuitem-link .ui-menuitem-text,
-body .ui-contextmenu .ui-menuitem-link .ui-menuitem-text,
-body .ui-megamenu .ui-menuitem-link .ui-menuitem-text,
-body .ui-slidemenu .ui-menuitem-link .ui-menuitem-text {
-    color: #dedede;
-}
-
-body .ui-menu .ui-menuitem-link .ui-menuitem-icon,
-body .ui-menubar .ui-menuitem-link .ui-menuitem-icon,
-body .ui-tieredmenu .ui-menuitem-link .ui-menuitem-icon,
-body .ui-contextmenu .ui-menuitem-link .ui-menuitem-icon,
-body .ui-megamenu .ui-menuitem-link .ui-menuitem-icon,
-body .ui-slidemenu .ui-menuitem-link .ui-menuitem-icon {
-    color: #dedede;
-    margin-right: 0.5em;
-}
-
-body .ui-menu .ui-menuitem-link:hover,
-body .ui-menubar .ui-menuitem-link:hover,
-body .ui-tieredmenu .ui-menuitem-link:hover,
-body .ui-contextmenu .ui-menuitem-link:hover,
-body .ui-megamenu .ui-menuitem-link:hover,
-body .ui-slidemenu .ui-menuitem-link:hover {
-    background-color: #4c4c4c;
-}
-
-body .ui-menu .ui-menuitem-link:hover .ui-menuitem-text,
-body .ui-menubar .ui-menuitem-link:hover .ui-menuitem-text,
-body .ui-tieredmenu .ui-menuitem-link:hover .ui-menuitem-text,
-body .ui-contextmenu .ui-menuitem-link:hover .ui-menuitem-text,
-body .ui-megamenu .ui-menuitem-link:hover .ui-menuitem-text,
-body .ui-slidemenu .ui-menuitem-link:hover .ui-menuitem-text {
-    color: #dedede;
-}
-
-body .ui-menu .ui-menuitem-link:hover .ui-menuitem-icon,
-body .ui-menubar .ui-menuitem-link:hover .ui-menuitem-icon,
-body .ui-tieredmenu .ui-menuitem-link:hover .ui-menuitem-icon,
-body .ui-contextmenu .ui-menuitem-link:hover .ui-menuitem-icon,
-body .ui-megamenu .ui-menuitem-link:hover .ui-menuitem-icon,
-body .ui-slidemenu .ui-menuitem-link:hover .ui-menuitem-icon {
-    color: #dedede;
-}
+/*
+body .ui-inputtext {
+    font-size: 14px;
+    width: 70%;
+    background: white;
+    padding: 0.429em;
+    border: 1px solid #585858;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+}*/
