@@ -55,6 +55,10 @@ export class UsuarioSesionService {
     return this.usuarioLogado$.asObservable();
   }
 
+  public modificarUsuarioLogado$(usuario: Usuario): void {
+    this.usuarioLogado$.next(usuario);
+  }
+
   public logout(): void {
     this.accessToken$.next(undefined);
     this.usuarioLogado$.next(new Usuario());

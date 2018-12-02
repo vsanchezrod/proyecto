@@ -1,0 +1,14 @@
+li {
+    background: rgb(241, 229, 117);
+}
+
+p {
+    margin: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom: 4px solid #F5AE15;
+}
+
+span {
+    font-weight: bold;
+}

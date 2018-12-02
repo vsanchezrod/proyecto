@@ -8,7 +8,7 @@
             </p-header>
             <ng-template let-actividad pTemplate="item" let-i="index">
                 <div class="ui-g mensaje-item ui-button actividad" (click)="cargarActividad(actividad)">
-                    {{ actividad.nombre }}
+                    <p>- {{ actividad.nombre }}</p>
                 </div>
             </ng-template>
         </p-dataScroller>

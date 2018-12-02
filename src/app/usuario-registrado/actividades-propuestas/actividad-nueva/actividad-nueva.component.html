@@ -2,19 +2,16 @@
 
     <div class="row">
 
-        <h3 class="text-center col-12">{{ titulo }}</h3>
+        <h3 class="text-center col-12 titulo">{{ titulo }}</h3>
 
         <div class="col-sm-12 col-md-6">
 
-            <!-- FORMULARIO CREAR NUEVA ACTIVIDAD -->
             <form #formularioActividad="ngForm" (submit)="crearActividad(formularioActividad.value)">
 
                 <div class="col-12">
                     <h4>Imágen para actividad</h4>
                     <input class="ui-button" type="file" accept="image/*" name="imagen" id="imagen" (change)="cargarImagen($event)" required>
-                    <!--<div class="col-12" *ngIf="imagen.touched && !imagen.valid">
-                        <div *ngIf="imagen.errors?.required">La imagen es requerida</div>
-                    </div>-->
+                    <p class="alerta alert-danger" *ngIf="rellenarImagen">* Se debe elegir una imagen para la actividad!!</p>
                 </div>
 
                 <div class="col-12">
@@ -75,11 +72,10 @@
                     <div class="col-12" *ngIf="fechaInicio.touched && !fechaInicio.valid">
                         <div *ngIf="fechaInicio.errors?.required">*La fecha es requerida</div>
                     </div>
+                    <p class="alerta alert-danger" *ngIf="esFechaIncorrecta">*Elija una fecha correcta</p>
                 </div>
-
-                <p class="alerta alert-danger" *ngIf="formularioActividad.invalid">* Todos los campos tienen que estar rellenos!!</p>
-                <button *ngIf="esNuevaActividad" [disabled]="formularioActividad.invalid" (click)="crearActividad(formularioActividad.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button-info"></button>
-                <button *ngIf="!esNuevaActividad" [disabled]="formularioActividad.invalid" (click)="actualizarActividad(formularioActividad.value)" pButton type="button" label="ACTUALIZAR ACTIVIDAD" class="col-12 ui-button-info"></button>
+                <button *ngIf="esNuevaActividad" [disabled]="formularioActividad.invalid" (click)="crearActividad(formularioActividad.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="btn col-12 button"></button>
+                <button *ngIf="!esNuevaActividad" [disabled]="formularioActividad.invalid" (click)="actualizarActividad(formularioActividad.value)" pButton type="button" label="ACTUALIZAR ACTIVIDAD" class="btn col-12 button"></button>
 
             </form>
 

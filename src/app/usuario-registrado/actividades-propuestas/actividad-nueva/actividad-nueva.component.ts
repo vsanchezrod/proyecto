@@ -31,10 +31,12 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
   public fechaInicioParseada: string;
 
   public esNuevaActividad: boolean;
+  public esFechaIncorrecta: boolean;
   public titulo: string;
   public imagen: string | ArrayBuffer;
   public progreso: number;
   public mostrarSpinner: boolean;
+  public rellenarImagen: boolean;
 
   public es: any;
 
@@ -73,7 +75,6 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
                   this.actividad = actividadAEditar;
                   this.esNuevaActividad = false;
 
-                  /// PENDIENTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
                   this.actividad.categorias.forEach(categoria => {
                     categoria['label'] = categoria.id;
                   });
@@ -88,7 +89,7 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
 
     this.categoriaService.obtenerListaCategorias$().subscribe(categorias => {
       this.listaCategorias = [];
-      /// PENDIENTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
       categorias.forEach(categoria => {
         categoria['label'] = categoria.id;
         this.listaCategorias.push(categoria);
@@ -155,27 +156,35 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
   }
 
   public crearActividad(datosFormularioActividad): void {
-    this.actividad = datosFormularioActividad;
-    this.actividad.imagen = this.imagen;
-    this.actividad.idUsuarioCreacion = this.usuario.id;
-    this.actividad.listaParticipantes = [];
+    const fecha: Date = new Date();
 
-    this.actividadesService.crearActividad(this.actividad).subscribe(
-      (response: HttpResponse<any>) => {
-        console.log('Respuesta: ', response.status);
-        this.redirigirAActividadesPropuestas();
-      },
-      (error) => {
-        console.error('Error: ', error);
+    if (this.imagen !== undefined && fecha < this.actividad.fechaInicio) {
+      this.rellenarImagen = false;
+      this.esFechaIncorrecta = false;
+      this.actividad = datosFormularioActividad;
+      this.actividad.imagen = this.imagen;
+      this.actividad.idUsuarioCreacion = this.usuario.id;
+      this.actividad.listaParticipantes = [];
 
-        // PENDIENTEEEEEEEEEEEEEEEEEEEEEE
-        console.error(error.error.errors[0].defaultMessage);
-      }
-    );
+      this.actividadesService.crearActividad(this.actividad).subscribe(
+        (response: HttpResponse<any>) => {
+          console.log('Respuesta: ', response.status);
+          this.redirigirAActividadesPropuestas();
+        },
+        (error) => {
+          console.error('Error: ', error);
+        }
+      );
+    } if (fecha > this.actividad.fechaInicio) {
+      this.esFechaIncorrecta = true;
+    } else {
+      this.rellenarImagen = true;
+    }
   }
 
   public actualizarActividad(datosFormularioActividad): void {
     const actividadEditada: Actividad = datosFormularioActividad;
+    const fecha: Date = new Date();
 
     if (this.imagen !== undefined) {
       actividadEditada.imagen = this.imagen;
@@ -186,18 +195,21 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
     actividadEditada.idUsuarioCreacion = this.usuario.id;
     actividadEditada.id = this.actividad.id;
 
-    console.log('ACTIVIDAD EDITADA: ', actividadEditada);
-
-    this.actividadesService.actualizarActividad(actividadEditada).subscribe(
-      (response) => {
-        console.log('Actividad Editada: ', actividadEditada);
-        console.log(response);
-        this.redirigirAActividadesPropuestas();
-      },
-      (error) => {
-        console.error('Actividad no pudo ser editada: ', error);
-      }
-    );
+    if (fecha < this.actividad.fechaInicio) {
+      this.actividadesService.actualizarActividad(actividadEditada).subscribe(
+        (response) => {
+          this.esFechaIncorrecta = false;
+          console.log('Actividad Editada: ', actividadEditada);
+          console.log(response);
+          this.redirigirAActividadesPropuestas();
+        },
+        (error) => {
+          console.error('Actividad no pudo ser editada: ', error);
+        }
+      );
+    } else {
+      this.esFechaIncorrecta = true;
+    }
 
   }
 

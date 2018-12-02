@@ -1,4 +1,5 @@
 <div class="container">
+    <h3 class="text-center">Mis opiniones</h3>
     <p-card class="ui-fluid" title="Déjanos tu opinión">
 
         <form [formGroup]="formularioOpinion" (submit)="enviarOpinion()">
@@ -47,7 +48,7 @@
                 </div>
             </div>
 
-            <button [disabled]="formularioOpinion.invalid" pButton type="submit" label="ENVIAR" class="text-center"></button>
+            <button [disabled]="formularioOpinion.invalid" pButton type="submit" label="ENVIAR" class="button text-center"></button>
 
         </form>
     </p-card>
