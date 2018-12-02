@@ -15,3 +15,9 @@ button {
     background: #e7aa00;
     border-bottom: 4px solid black;
 }
+
+.titulo {
+    margin: 20px;
+    font-weight: bolder;
+    border-bottom: 4px solid #F5AE15;
+}

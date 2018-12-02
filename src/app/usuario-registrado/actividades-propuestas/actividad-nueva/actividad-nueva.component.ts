@@ -175,7 +175,9 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
           console.error('Error: ', error);
         }
       );
-    } if (fecha > this.actividad.fechaInicio) {
+    }
+
+    if (fecha > this.actividad.fechaInicio) {
       this.esFechaIncorrecta = true;
     } else {
       this.rellenarImagen = true;

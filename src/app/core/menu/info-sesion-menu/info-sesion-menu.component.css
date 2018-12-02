@@ -1,9 +1,11 @@
 img {
-    width: 75px;
-    height: 75px;
+    width: 2.5em;
+    height: 2.5em;
     border: 2px solid black;
     cursor: pointer;
     background: none;
+    float: left;
+    margin-left: 20px;
 }
 
 i {
@@ -11,12 +13,21 @@ i {
     color: black;
     cursor: pointer;
     margin-left: 5px;
-}
-
-.borde {
-    border: 2px solid white;
+    float: left;
 }
 
 span {
     font-size: 15px;
+    position: relative;
+    top: -25px;
+    left: -15px;
+}
+
+.cajon {
+    margin-top: 10px;
+    height: 60px;
+}
+
+#mensaje {
+    margin-right: -18px;
 }

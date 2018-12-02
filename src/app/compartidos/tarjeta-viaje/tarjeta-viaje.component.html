@@ -11,7 +11,7 @@
         <div class="ui-grid-col-12">Fin: {{ fechaFinParseada }}</div>
         <span class="ui-grid-col-6">Dificultad:</span>
         <p-rating class="ui-grid-col-6" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
-        <div class="ui-grid-col-6">Distancia: {{ viaje.distancia }}</div>
+        <div class="ui-grid-col-6">Distancia: {{ viaje.distancia }} Km</div>
         <span class="ui-grid-col-6">Precio: <strong> {{ viaje.precio }} €</strong></span>
 
         <button pButton *ngIf="mostrarBotonApuntarse()" (click)="verificarLogin()" class="ui-grid-col-12 btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#pagoViaje" type="button" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>

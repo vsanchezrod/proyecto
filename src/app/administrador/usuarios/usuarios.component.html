@@ -1,11 +1,11 @@
 <div class="container">
-
+    <h3 class="titulo col-12 text-center">Admistrador: Gestión de usuarios</h3>
     <p-dataScroller class="col-12" [value]="listaUsuarios" [rows]="10" [inline]="true" scrollHeight="500px">
         <p-header class="col-12">
             LISTA DE USUARIOS
         </p-header>
-        <ng-template class="col-12" let-usuario pTemplate="item">
-            <app-tarjeta-usuario class="col-4" [usuarioLogado]="usuarioLogado" [usuario]="usuario"></app-tarjeta-usuario>
+        <ng-template class="col-12 mx-auto d-block" let-usuario pTemplate="item">
+            <app-tarjeta-usuario [usuarioLogado]="usuarioLogado" [usuario]="usuario"></app-tarjeta-usuario>
         </ng-template>
     </p-dataScroller>
 

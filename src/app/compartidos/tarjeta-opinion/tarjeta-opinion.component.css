@@ -2,3 +2,16 @@ p-card {
     border-radius: 10px;
     margin-bottom: 10px;
 }
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    box-shadow: -2px -2px 2px #F5AE15;
+    border: none;
+    margin-right: 10px;
+}
+
+.avatar:hover {
+    width: 75px;
+    height: 75px;
+}

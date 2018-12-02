@@ -1,43 +1,44 @@
 <div class="container">
 
     <div class="row">
-        <h3 class="col-12 text-center">CREAR CATEGORÍA</h3>
+        <h3 class="categoria col-12 text-center">Admistrador: Crear Categoría</h3>
 
-        <div class="col-sm-12 col-md-6 center-block">
-            <h4 class="col-12">Añade con una imagen</h4>
-            <img *ngIf="imagen == undefined" src="../../../assets/imagenes/logo2">
-            <img *ngIf="imagen !== undefined" [src]="imagen">
-            <input class="col-12" type="file" accept="image/*" (change)="changeListener($event)">
-            <p>Elige una imagen!!</p>
-        </div>
-
-        <form class="col-sm-12 col-md-6" [formGroup]="formularioCategoria" (ngSubmit)="crearCategoria(formularioCategoria.value)">
-
-            <div class="col-12">
-                <h4 class="col-12">Nombre de la categoría</h4>
-                <span class="ui-float-label">
-                    <input [ngStyle]="{'border-color': formularioCategoria.valid || formularioCategoria.get('nombre').pristine ? 'gray' : 'red'}" formControlName="nombre" id="nombre" name="nombre" type="text" size="30" pInputText>
-                    <label for="nombre">Nombre</label>
-                    <div *ngIf="formularioCategoria.get('nombre').dirty && !formularioCategoria.get('nombre').valid" class="form-control-feedback">
-                        <p *ngIf="formularioCategoria.get('nombre').hasError('required')">*Introduce un nombre</p>
-                        <p *ngIf="formularioCategoria.get('nombre').hasError('minlength')">*El nombre debe tener al menos 5 caracteres</p>
-                        <p *ngIf="formularioCategoria.get('nombre').hasError('maxlength')">*El nombre debe tener como máximo 20 caracteres</p>
-                    </div>
-                </span>
-
-                <h4 class="col-12">Añade una descripción</h4>
-                <span class="ui-float-label">
-                    <input [ngStyle]="{'border-color': formularioCategoria.valid || formularioCategoria.get('descripcion').pristine ? 'gray' : 'red'}" formControlName="descripcion" id="descripcion" name="descripcion" type="text" size="30" pInputText>
-                    <label for="descripcion">Nombre</label>
-                    <div *ngIf="formularioCategoria.get('descripcion').dirty && !formularioCategoria.get('descripcion').valid" class="form-control-feedback">
-                        <p *ngIf="formularioCategoria.get('descripcion').hasError('required')">*Introduce una descripción</p>
-                        <p *ngIf="formularioCategoria.get('descripcion').hasError('minlength')">*La descripción debe tener como mínimo 20 caracteres</p>
-                    </div>
-                </span>
+        <div class="mx-auto d-block">
+            <div class="col-sm-12 col-md-12">
+                <img class="imagenCat mx-auto d-block" *ngIf="imagen == undefined" src="../../../assets/imagenes/logo2">
+                <img class="imagenCat mx-auto d-block" *ngIf="imagen !== undefined" [src]="imagen">
+                <input class="col-12 mx-auto d-block" type="file" accept="image/*" (change)="changeListener($event)">
+                <h4 class="col-12 mx-auto d-block">Añade con una imagen</h4>
             </div>
 
-            <button pButton type="submit" [disabled]="formularioCategoria.invalid" label="CREAR" class="col-6 ui-button-info"></button>
-        </form>
+            <form class="col-sm-12 col-md-12" [formGroup]="formularioCategoria" (ngSubmit)="crearCategoria(formularioCategoria.value)">
+
+                <div class="col-12">
+                    <h4 class="col-12">Nombre de la categoría</h4>
+                    <span class="ui-float-label">
+                            <input [ngStyle]="{'border-color': formularioCategoria.valid || formularioCategoria.get('nombre').pristine ? 'gray' : 'red'}" formControlName="nombre" id="nombre" name="nombre" type="text" size="30" pInputText>
+                            <label for="nombre">Nombre</label>
+                            <div *ngIf="formularioCategoria.get('nombre').dirty && !formularioCategoria.get('nombre').valid" class="form-control-feedback">
+                                <p *ngIf="formularioCategoria.get('nombre').hasError('required')">*Introduce un nombre</p>
+                                <p *ngIf="formularioCategoria.get('nombre').hasError('minlength')">*El nombre debe tener al menos 5 caracteres</p>
+                                <p *ngIf="formularioCategoria.get('nombre').hasError('maxlength')">*El nombre debe tener como máximo 20 caracteres</p>
+                            </div>
+                        </span>
+
+                    <h4 class="col-12">Añade una descripción</h4>
+                    <span class="ui-float-label">
+                            <input [ngStyle]="{'border-color': formularioCategoria.valid || formularioCategoria.get('descripcion').pristine ? 'gray' : 'red'}" formControlName="descripcion" id="descripcion" name="descripcion" type="text" size="30" pInputText>
+                            <label for="descripcion">Nombre</label>
+                            <div *ngIf="formularioCategoria.get('descripcion').dirty && !formularioCategoria.get('descripcion').valid" class="form-control-feedback">
+                                <p *ngIf="formularioCategoria.get('descripcion').hasError('required')">*Introduce una descripción</p>
+                                <p *ngIf="formularioCategoria.get('descripcion').hasError('minlength')">*La descripción debe tener como mínimo 20 caracteres</p>
+                            </div>
+                        </span>
+                </div>
+
+                <button pButton type="submit" [disabled]="formularioCategoria.invalid" label="CREAR" class="mx-auto d-block col-12 button btn"></button>
+            </form>
+        </div>
 
     </div>
 
@@ -48,7 +49,7 @@
     <div class="row">
 
         <div class="col-sm-12 col-md-4 col-lg-3" *ngFor="let categoria of listaCategorias">
-            <div class="col-12">
+            <div class="col-12 mx-auto d-block">
                 <img class="cat-imagen mx-auto d-block" [src]="categoria.imagen" alt="FOTO">
                 <h5 class="col-12 text-center">{{ categoria.nombre }}</h5>
             </div>

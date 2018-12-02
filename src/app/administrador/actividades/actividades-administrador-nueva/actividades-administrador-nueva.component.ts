@@ -32,6 +32,9 @@ export class ActividadesAdministradorNuevaComponent implements OnInit, OnDestroy
   public plazasMinimas: number;
   public plazasMaximas: number;
 
+  public esFechaInicioIncorrecta: boolean;
+  public esFechaFinIncorrecta: boolean;
+
   public fechaInicioParseada: string;
   public fechaFinParseada: string;
   public esNuevoViaje: boolean;
@@ -40,6 +43,7 @@ export class ActividadesAdministradorNuevaComponent implements OnInit, OnDestroy
   public imagen: string | ArrayBuffer;
   public progreso: number;
   public mostrarSpinner: boolean;
+  public rellenarImagen: boolean;
 
   public es: any;
   public usuario: Usuario;
@@ -162,34 +166,74 @@ export class ActividadesAdministradorNuevaComponent implements OnInit, OnDestroy
   }
 
   public crearViaje(datos) {
-    this.viaje = datos;
-    this.viaje.imagen = this.imagen;
-    this.viaje.idUsuarioCreacion = this.usuario.id;
-    this.viaje.listaParticipantes = [];
-    this.viajesService.crearViaje(this.viaje).subscribe(response => {
-      console.log('Respuesta: ' + response.status);
-      this.redirigirAActividadesAdministrador();
-    });
+    const fecha: Date = new Date();
+    this.rellenarImagen = false;
+    this.esFechaInicioIncorrecta = false;
+    this.esFechaFinIncorrecta = false;
+
+    if (fecha > this.viaje.fechaInicio) {
+      this.esFechaInicioIncorrecta = true;
+    }
+
+    if (this.viaje.fechaInicio > this.viaje.fechaFin ) {
+      this.esFechaFinIncorrecta = true;
+    }
+
+    if (this.imagen === undefined) {
+      this.rellenarImagen = true;
+    }
+
+    if (this.imagen !== undefined && fecha < this.viaje.fechaInicio && this.viaje.fechaFin > this.viaje.fechaInicio) {
+      this.rellenarImagen = false;
+      this.esFechaInicioIncorrecta = false;
+      this.esFechaFinIncorrecta = false;
+      this.viaje = datos;
+      this.viaje.imagen = this.imagen;
+      this.viaje.idUsuarioCreacion = this.usuario.id;
+      this.viaje.listaParticipantes = [];
+      this.viajesService.crearViaje(this.viaje).subscribe(response => {
+        console.log('Respuesta: ' + response.status);
+        this.redirigirAActividadesAdministrador();
+      });
+    }
   }
 
   public actualizarViaje(datosFormularioViaje): void {
     const viajeEditado: Viaje = datosFormularioViaje;
+    const fecha: Date = new Date();
+
+    if (this.imagen !== undefined) {
+      viajeEditado.imagen = this.imagen;
+    } else {
+      viajeEditado.imagen = this.viaje.imagen;
+    }
+
     viajeEditado.imagen = this.imagen;
     viajeEditado.idUsuarioCreacion = this.usuario.id;
     viajeEditado.id = this.viaje.id;
 
-    console.log('VIAJE EDITADO: ', viajeEditado);
-
-    this.viajesService.actualizarViaje(viajeEditado).subscribe(
-      (response) => {
-        console.log('Viaje Editado: ', viajeEditado);
-        console.log(response);
-        this.redirigirAActividadesAdministrador();
-      },
-      (error) => {
-        console.error('Actividad no pudo ser editada: ', error);
+    if (fecha < this.viaje.fechaInicio && this.viaje.fechaFin > this.viaje.fechaInicio) {
+      this.esFechaFinIncorrecta = false;
+      this.esFechaInicioIncorrecta = false;
+      this.viajesService.actualizarViaje(viajeEditado).subscribe(
+        (response) => {
+          console.log('Viaje Editado: ', viajeEditado);
+          console.log(response);
+          this.redirigirAActividadesAdministrador();
+        },
+        (error) => {
+          console.error('Actividad no pudo ser editada: ', error);
+        }
+      );
+    } else {
+      if (fecha > this.viaje.fechaInicio) {
+        this.esFechaInicioIncorrecta = true;
       }
-    );
+      if (this.viaje.fechaFin < this.viaje.fechaInicio) {
+        this.esFechaFinIncorrecta = true;
+      }
+    }
+
 
   }
 

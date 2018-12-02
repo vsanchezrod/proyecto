@@ -67,7 +67,7 @@
                     <div class="col-12" *ngIf="fechaInicio.touched && !fechaInicio.valid">
                         <div class="alert-danger" *ngIf="fechaInicio.errors?.required">*La fecha es requerida</div>
                     </div>
-                    <p class="alerta alert-danger" *ngIf="esFechaIncorrecta">*Elija una fecha correcta</p>
+                    <p class="alerta alert-danger" *ngIf="esFechaInicioIncorrecta">*Elija una fecha de inicio correcta</p>
                 </div>
 
                 <div class="col-12">
@@ -78,7 +78,7 @@
                     <div class="col-12" *ngIf="fechaFin.touched && !fechaFin.valid">
                         <div class="alert-danger" *ngIf="fechaFin.errors?.required">*La fecha es requerida</div>
                     </div>
-                    <p class="alerta alert-danger" *ngIf="esFechaIncorrecta">*Elija una fecha correcta</p>
+                    <p class="alerta alert-danger" *ngIf="esFechaFinIncorrecta">*Elija una fecha de fin correcta</p>
                 </div>
 
                 <div class="col-12">
@@ -97,8 +97,8 @@
                   </span>
                 </div>
 
-                <button *ngIf="esNuevoViaje" [disabled]="formularioActividadAdmin.invalid" (click)="crearViaje(formularioActividadAdmin.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button"></button>
-                <button *ngIf="!esNuevoViaje" [disabled]="formularioActividadAdmin.invalid" (click)="actualizarViaje(formularioActividadAdmin.value)" pButton type="button" label="ACTUALIZAR ACTIVIDAD" class="col-12 ui-button"></button>
+                <button *ngIf="esNuevoViaje" [disabled]="formularioActividadAdmin.invalid" (click)="crearViaje(formularioActividadAdmin.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 btn"></button>
+                <button *ngIf="!esNuevoViaje" [disabled]="formularioActividadAdmin.invalid" (click)="actualizarViaje(formularioActividadAdmin.value)" pButton type="button" label="ACTUALIZAR ACTIVIDAD" class="col-12 btn"></button>
 
             </form>
         </div>

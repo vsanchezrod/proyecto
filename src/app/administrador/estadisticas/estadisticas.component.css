@@ -1,0 +1,14 @@
+.titulo {
+    margin: 20px;
+    font-weight: bolder;
+    border-bottom: 4px solid #F5AE15;
+}
+
+.titulo2 {
+    margin: 20px;
+    font-weight: bold;
+}
+
+p-chart {
+    margin: 0px;
+}

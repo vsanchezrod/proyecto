@@ -1,16 +1,19 @@
-<p-card class="ui-g" [title]="usuario.nombre" [subtitle]="fechaNacimientoUsuario" styleClass="ui-card-shadow">
-    <p-header class="ui-grid-col-6">
-        <img alt="USUARIO" [src]="usuario.avatar">
-    </p-header>
+<div class="ui-g">
+    <p-card class="ui-g-12" [title]="usuario.nombre" [subtitle]="fechaNacimientoUsuario" styleClass="ui-card-shadow">
+        <p-header class="ui-grid-col-4">
+            <img alt="USUARIO" [src]="usuario.avatar">
+        </p-header>
 
-    <p-footer class="ui-grid-col-6">
-        <p class="ui-grid-col-12">{{ usuario.email }}</p>
-        <p class="ui-grid-col-12">{{ usuario.info }}</p>
-        <p class="ui-grid-col-12" *ngIf="esAdministrador"><span>Admin</span></p>
-        <p-rating class="ui-grid-col-12" [ngModel]="usuario.valoracion" readonly="true" id="valoracion" stars="5" [cancel]="false"></p-rating>
-
-        <button pButton class="ui-grid-col-4" [disabled]="usuarioLogado.id === usuario.id" type="button" label="Eliminar" (click)="borrarUsuario(usuario.id)" icon="pi pi-times" class="ui-button-secondary"></button>
-        <button pButton class="ui-grid-col-4" [disabled]="usuarioLogado.id === usuario.id" *ngIf="esAdministrador" (click)="actualizarAAdmin(false)" type="button" label="Quitar admin" icon="pi pi-user-minus" style="margin-right: .25em"></button>
-        <button pButton class="ui-grid-col-4" *ngIf="!esAdministrador" (click)="actualizarAAdmin(true)" type="button" label="Hacer admin" icon="pi pi-user-plus" style="margin-right: .25em"></button>
-    </p-footer>
-</p-card>
+        <p-footer class="ui-grid-col-8">
+            <div class="ui-grid-col-12">
+                <p class="ui-grid-col-12">{{ usuario.email }}</p>
+                <p class="ui-grid-col-12">{{ usuario.info }}</p>
+                <p class="ui-grid-col-12" *ngIf="esAdministrador"><span>Admin</span></p>
+                <p-rating class="ui-grid-col-12" [ngModel]="usuario.valoracion" readonly="true" id="valoracion" stars="5" [cancel]="false"></p-rating>
+            </div>
+            <button pButton class="ui-grid-col-12" [disabled]="usuarioLogado.id === usuario.id" type="button" label="Eliminar" (click)="borrarUsuario(usuario.id)" icon="pi pi-times" class="ui-button-secondary"></button>
+            <button pButton class="ui-grid-col-6" [disabled]="usuarioLogado.id === usuario.id" *ngIf="esAdministrador" (click)="actualizarAAdmin(false)" type="button" label="Quitar admin" icon="pi pi-user-minus" style="margin-right: .25em"></button>
+            <button pButton class="ui-grid-col-6" *ngIf="!esAdministrador" (click)="actualizarAAdmin(true)" type="button" label="Hacer admin" icon="pi pi-user-plus" style="margin-right: .25em"></button>
+        </p-footer>
+    </p-card>
+</div>

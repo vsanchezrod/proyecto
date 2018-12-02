@@ -1,19 +1,13 @@
-<div class="ui-g-12">
-
-    <h4>Moderador de opiniones</h4>
+<div class="container">
+    <h3 class="titulo col-12 text-center">Administrador: Gestión de opiniones</h3>
 
     <p-dataScroller [value]="listaOpiniones" [rows]="10" [inline]="true" scrollHeight="500px">
         <p-header>
             OPINIONES DE LOS USUARIOS
         </p-header>
         <ng-template let-opinion pTemplate="item">
-
-            <app-tarjeta-opinion [opinion]="opinion"></app-tarjeta-opinion>
-
-            <div class="ui-g-2">
-                <button pButton type="button" label="BORRAR" (click)="borrarOpinion(opinion.id, opinion)" class="ui-button-rounded ui-button-danger"></button>
-            </div>
-
+            <app-tarjeta-opinion class="col-10" [opinion]="opinion"></app-tarjeta-opinion>
+            <button pButton type="button" label="BORRAR" (click)="borrarOpinion(opinion.id, opinion)" class="col-2 ui-button-danger"></button>
         </ng-template>
     </p-dataScroller>
 

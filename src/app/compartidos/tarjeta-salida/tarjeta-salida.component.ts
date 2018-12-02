@@ -44,7 +44,7 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
     this.fechaInicioParseada = moment(this.salida.fechaInicio).locale('es').format('DD/MM/YYYY HH:mm');
     this.usuario = new Usuario();
     this.idUsuario = this.salida.idUsuarioCreacion;
-    this.mensaje = `(Ya somos ${this.salida.listaParticipantes.length + 1})`;
+    this.mensaje = `(Ya somos ${this.salida.listaParticipantes.length})`;
 
     this.subscripcionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
       (usuarioLogado: Usuario) => {

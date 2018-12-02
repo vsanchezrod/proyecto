@@ -27,18 +27,14 @@
 
         <form class="form-inline my-2 my-lg-0">
             <input #textoBusqueda class="form-control mr-sm-2" type="search" placeholder="Busca actividades!" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="buscarActividades(textoBusqueda.value)">Buscar</button>
+            <button class="btn my-2 my-sm-0" type="button" (click)="buscarActividades(textoBusqueda.value)">Buscar</button>
         </form>
 
     </div>
 
 </nav>
 
-<div class="row menuUsuario">
-    <div class="col">
-        <div class="col-12">
-            <button id="botonLogin" *ngIf="!usuarioLogado" routerLink="login" class="col-sm-12 col-md-6 col-lg-2 btn btn-outline-success my-2 my-sm-0" type="submit">Inicia sesión</button>
-            <app-info-sesion-menu class="col-6" *ngIf="usuarioLogado"></app-info-sesion-menu>
-        </div>
-    </div>
+<div class="menuUsuario">
+    <button id="botonLogin" *ngIf="!usuarioLogado" routerLink="login" class="btn" type="submit">Inicia sesión</button>
+    <app-info-sesion-menu *ngIf="usuarioLogado"></app-info-sesion-menu>
 </div>

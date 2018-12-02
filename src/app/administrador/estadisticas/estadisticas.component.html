@@ -1,29 +1,29 @@
-<h4>ESTADÍSTICAS</h4>
 <div class="container">
+    <h3 class="titulo col-12 text-center">Administrador: Visualización de estadísticas</h3>
     <div class="row">
         <div class="col-sm-12 col-md-6">
-            <h5 class="col-12">USUARIOS</h5>
+            <h5 class="titulo2 col-12">USUARIOS</h5>
             <div class="col-12">
                 <p>Nº Usuarios Registrados: <span>{{ contadorUsuarios }}</span></p>
             </div>
         </div>
 
         <div class="col-sm-12 col-md-6">
-            <h5 class="col-12">ACTIVIDADES</h5>
+            <h5 class="titulo2 col-12">ACTIVIDADES</h5>
             <div class="col-12">
                 <p>Nº Actividades Creadas: <span>{{ contadorActividades }}</span> </p>
             </div>
         </div>
 
         <div class="col-sm-12 col-md-6">
-            <h5 class="col-12">VIAJES</h5>
+            <h5 class="titulo2 col-12">VIAJES</h5>
             <div class="col-12">
                 <p>Nº Viajes Creados: <span>{{ contadorViajes }}</span> </p>
             </div>
         </div>
 
         <div class="col-sm-12 col-md-6">
-            <h5 class="col-12">OPINIONES</h5>
+            <h5 class="titulo2 col-12">OPINIONES</h5>
             <div class="col-12">
                 <p>Nº Opiniones Creadas: <span>{{ contadorOpiniones }}</span> </p>
             </div>
@@ -31,8 +31,8 @@
     </div>
 </div>
 
-<h4>GRÁFICA</h4>
 <div class="container">
-    <p-chart type="bar" [data]="data" [options]="options" width="40vw" height="80vh"></p-chart>
-    <p-chart type="bar" [data]="data2" [options]="options2" width="40vw" height="80vh"></p-chart>
+    <h3 class="titulo text-center">Gráficos</h3>
+    <p-chart class="mx-auto d-block col-6" type="bar" [data]="data" [options]="options" width="40vw" height="80vh"></p-chart>
+    <p-chart class="mx-auto d-block col-6" type="bar" [data]="data2" [options]="options2" width="40vw" height="80vh"></p-chart>
 </div>
