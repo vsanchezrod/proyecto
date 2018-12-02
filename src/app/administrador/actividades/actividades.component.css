@@ -2,3 +2,16 @@
     border: 2px solid black;
     background: #25a890;
 }
+
+button {
+    background-color: #dedede;
+    border-radius: 5px;
+    border-bottom: 4px solid #F5AE15;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.borrar {
+    background: #e7aa00;
+    border-bottom: 4px solid black;
+}

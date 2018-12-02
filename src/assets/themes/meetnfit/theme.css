@@ -301,3 +301,11 @@ body .ui-datascroller .ui-datascroller-footer {
     padding: 0.571em 1em;
     border-top: 0 none;
 }
+
+
+/*******************************ACORDEON***********************************/
+
+body .ui-accordion .ui-accordion-header {
+    margin-bottom: 2px;
+    font-size: 20px;
+}

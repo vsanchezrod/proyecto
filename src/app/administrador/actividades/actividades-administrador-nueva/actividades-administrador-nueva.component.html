@@ -1,17 +1,15 @@
-<div class="container formularioViaje" style="z-index: 1000">
+<div class="container fondoTransparente" style="z-index: 1000">
 
     <div class="row">
 
-        <h3 class="text-center col-12">Nuevo viaje!</h3>
+        <h3 class="text-center col-12 titulo">Nuevo viaje!</h3>
         <div class="col-sm-12 col-md-6">
 
             <form #formularioActividadAdmin="ngForm" (submit)="crearViaje(formularioActividadAdmin.value)">
                 <div class="col-12">
                     <h4>Imágen para actividad</h4>
                     <input type="file" accept="image/*" name="imagen" id="imagen" (change)="cargarImagen($event)" required>
-                    <!--<div class="col-12" *ngIf="imagen.touched && !imagen.valid">
-                        <div *ngIf="imagen.errors?.required">La imagen es requerida</div>
-                    </div>-->
+                    <p class="alerta alert-danger" *ngIf="rellenarImagen">* Se debe elegir una imagen para la actividad!!</p>
                 </div>
 
                 <div class="col-12">
@@ -69,6 +67,7 @@
                     <div class="col-12" *ngIf="fechaInicio.touched && !fechaInicio.valid">
                         <div class="alert-danger" *ngIf="fechaInicio.errors?.required">*La fecha es requerida</div>
                     </div>
+                    <p class="alerta alert-danger" *ngIf="esFechaIncorrecta">*Elija una fecha correcta</p>
                 </div>
 
                 <div class="col-12">
@@ -79,6 +78,7 @@
                     <div class="col-12" *ngIf="fechaFin.touched && !fechaFin.valid">
                         <div class="alert-danger" *ngIf="fechaFin.errors?.required">*La fecha es requerida</div>
                     </div>
+                    <p class="alerta alert-danger" *ngIf="esFechaIncorrecta">*Elija una fecha correcta</p>
                 </div>
 
                 <div class="col-12">
@@ -97,9 +97,8 @@
                   </span>
                 </div>
 
-                <p class="alerta alert-danger" *ngIf="formularioActividadAdmin.invalid">* Todos los campos tienen que estar rellenos!!</p>
-                <button class="alert-danger" *ngIf="esNuevoViaje" [disabled]="formularioActividadAdmin.invalid" (click)="crearViaje(formularioActividadAdmin.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button-info"></button>
-                <button class="alert-danger" *ngIf="!esNuevoViaje" [disabled]="formularioActividadAdmin.invalid" (click)="actualizarViaje(formularioActividadAdmin.value)" pButton type="button" label="ACTUALIZAR ACTIVIDAD" class="col-12 ui-button-info"></button>
+                <button *ngIf="esNuevoViaje" [disabled]="formularioActividadAdmin.invalid" (click)="crearViaje(formularioActividadAdmin.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 ui-button"></button>
+                <button *ngIf="!esNuevoViaje" [disabled]="formularioActividadAdmin.invalid" (click)="actualizarViaje(formularioActividadAdmin.value)" pButton type="button" label="ACTUALIZAR ACTIVIDAD" class="col-12 ui-button"></button>
 
             </form>
         </div>

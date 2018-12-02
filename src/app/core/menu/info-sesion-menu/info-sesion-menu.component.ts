@@ -14,7 +14,8 @@ import { Router } from '@angular/router';
 import { Usuario } from '../../../modelos/usuario.model';
 import { Total } from '../../../modelos/total.model';
 
-import { Subscription } from 'rxjs';
+import { Subscription, Observable, interval } from 'rxjs';
+// import 'rxjs/add/observable/interval';
 
 @Component({
   selector: 'app-info-sesion-menu',
@@ -30,6 +31,7 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
 
   private suscripcionObtenerUsuarioLogado: Subscription;
   private subscripcionObtenerMensajes: Subscription;
+  private subscriptionIntervalMensajes: Subscription;
 
   constructor(public usuarioSesionService: UsuarioSesionService,
               private usuariosService: UsuariosService,
@@ -42,15 +44,29 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
     this.suscripcionObtenerUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
       (usuario: Usuario) => {
         this.usuario = usuario;
-        if ('id' in this.usuario && this.usuario.id !== undefined) {
-          this.comprobarMensajes();
-          setInterval(() => {
-            this.comprobarMensajes();
-          }, 15000);
-        }
+        this.comprobarMensajes();
       }
     );
 
+    const intervaloMensajes: Observable<number> = interval(5000);
+    this.subscriptionIntervalMensajes = intervaloMensajes.subscribe(
+      n => {
+        console.log('segs:' + n);
+        this.comprobarMensajes();
+      }
+    );
+
+    this.crearMenuUsuario();
+    this.crearMenuAdmin();
+  }
+
+  ngOnDestroy(): void {
+    console.log('INFOSESSION: ONDESTROY');
+    this.suscripcionObtenerUsuarioLogado.unsubscribe();
+    this.subscriptionIntervalMensajes.unsubscribe();
+  }
+
+  private crearMenuUsuario(): void {
     this.itemsUsuario = [
       {
         label: 'Perfil',
@@ -88,7 +104,9 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
         routerLink: 'usuario/opiniones'
       }
     ];
+  }
 
+  private crearMenuAdmin(): void {
     this.itemsAdmin = [
       {
         label: 'Actividades',
@@ -122,18 +140,15 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
     ];
   }
 
-  ngOnDestroy(): void {
-    console.log('INFOSESSION: ONDESTROY');
-    this.suscripcionObtenerUsuarioLogado.unsubscribe();
-  }
-
   private comprobarMensajes(): void {
-    this.subscripcionObtenerMensajes = this.usuariosService.obtenerNumeroMensajesNoLeidosDeUsuario(this.usuario.id).subscribe(
-      (total: Total) => {
-        this.numeroMensajesSinLeer = total.total;
-        this.subscripcionObtenerMensajes.unsubscribe();
-      }
-    );
+    if ('id' in this.usuario && this.usuario.id !== undefined) {
+      this.subscripcionObtenerMensajes = this.usuariosService.obtenerNumeroMensajesNoLeidosDeUsuario(this.usuario.id).subscribe(
+        (total: Total) => {
+          this.numeroMensajesSinLeer = total.total;
+          this.subscripcionObtenerMensajes.unsubscribe();
+        }
+      );
+    }
   }
 
   public logout(): void {
