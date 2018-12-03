@@ -1,4 +1,7 @@
-<div class="container-fluid caja">
-    <app-tarjeta-salida [salida]="salida"></app-tarjeta-salida>
+<div class="container">
+    <h3 class="titulo text-center">Actividad</h3>
+    <div class="row">
+        <app-tarjeta-salida class="col-md-8 offset-md-2" [salida]="salida"></app-tarjeta-salida>
+    </div>
+    <a class="mx-auto d-block btn btn-outline-danger" [routerLink]="['/calendario']">Regresar a calendario</a>
 </div>
-<a class="col-12 btn btn-outline-danger" [routerLink]="['/inicio']">Regresar a inicio</a>

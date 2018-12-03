@@ -10,7 +10,7 @@
                 <img *ngIf="imagenAvatar !== undefined" class="col-6 avatar" [src]="imagenAvatar">
                 <p-progressSpinner *ngIf="mostrarSpinner"></p-progressSpinner>
                 <div class="form-control-feedback">
-                    <p class="error">Elige un avatar!</p>
+                    <p class="error" *ngIf="imagenAvatar === undefined">Elige un avatar!</p>
                 </div>
             </div>
 

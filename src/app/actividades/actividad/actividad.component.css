@@ -1,8 +1,5 @@
-.caja {
-    margin: 50px 25%;
-}
-
-a {
-    margin-left: 25%;
-    width: 50%;
+.titulo {
+    font-weight: bolder;
+    border-bottom: 4px solid #F5AE15;
+    margin-bottom: 50px;
 }

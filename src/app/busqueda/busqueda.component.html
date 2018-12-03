@@ -1,16 +1,17 @@
 <div class="container">
-    <h3 class="titulo">Resultados de la búsqueda: <small> {{ clave }}</small></h3>
+    <h3 class="col-12 titulo text-center ">Resultados de la búsqueda: <small> {{ clave }}</small></h3>
+
+    <div class="row">
+        <h3 *ngIf="listaViajesBusqueda.length > 0" class="col-12 titulo text-center">Viajes</h3>
+        <app-tarjeta-viaje class="col-md-8 offset-md-2" [viaje]="viaje" *ngFor="let viaje of listaViajesBusqueda"></app-tarjeta-viaje>
+        <span class="text-danger" *ngIf="listaViajesBusqueda.length == 0">No se han encontrado viajes para tu búsqueda</span>
+    </div>
+
+    <div class="row">
+        <h3 *ngIf="listaActividadesBusqueda.length > 0" class="col-12 titulo text-center">Actividades</h3>
+        <app-tarjeta-salida class="col-md-8 offset-md-2" [salida]="salida" *ngFor="let salida of listaActividadesBusqueda"></app-tarjeta-salida>
+        <span class="text-danger text-center" *ngIf="listaActividadesBusqueda.length == 0">No se han encontrado actividades para tu búsqueda</span>
+    </div>
+
     <a class="btn btn-outline-danger btn-block" [routerLink]="['/inicio']">Volver</a>
-</div>
-
-<div class="container">
-    <h2 *ngIf="listaViajesBusqueda.length > 0">VIAJES</h2>
-    <app-tarjeta-viaje [viaje]="viaje" *ngFor="let viaje of listaViajesBusqueda"></app-tarjeta-viaje>
-    <span class="text-danger" *ngIf="listaViajesBusqueda.length == 0">No se han encontrado viajes para tu búsqueda</span>
-</div>
-
-<div class="container">
-    <h2 *ngIf="listaActividadesBusqueda.length > 0">ACTIVIDADES</h2>
-    <app-tarjeta-salida [salida]="salida" *ngFor="let salida of listaActividadesBusqueda"></app-tarjeta-salida>
-    <span class="text-danger" *ngIf="listaActividadesBusqueda.length == 0">No se han encontrado actividades para tu búsqueda</span>
 </div>

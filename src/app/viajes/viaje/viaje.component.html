@@ -1,4 +1,7 @@
 <div class="container">
-    <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
-    <a class="btn btn-outline-danger btn-block" [routerLink]="['/inicio']">Regresar a inicio</a>
+    <h3 class="titulo text-center">Viaje</h3>
+    <div class="row">
+        <app-tarjeta-viaje class="col-md-8 offset-md-2" [viaje]="viaje"></app-tarjeta-viaje>
+        <a class="btn btn-outline-danger btn-block" [routerLink]="['/calendario']">Regresar a calendario</a>
+    </div>
 </div>

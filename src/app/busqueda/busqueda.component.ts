@@ -10,7 +10,6 @@ import { ActivatedRoute } from '@angular/router';
 // Servicios
 import { ActividadesService } from '../servicios/actividades.service';
 import { ViajesService } from '../servicios/viajes.service';
-import { QueryParamsHandling } from '@angular/router/src/config';
 
 @Component({
   selector: 'app-busqueda',
