@@ -2,7 +2,7 @@
     <ng-template let-viaje pTemplate="item">
         <div class="ui-grid ui-grid-responsive">
             <div class="ui-grid-row">
-                <app-tarjeta-viaje [viaje]="viaje"></app-tarjeta-viaje>
+                <app-tarjeta-viaje [ngStyle]="{'border': '2px solid black'}" [viaje]="viaje"></app-tarjeta-viaje>
             </div>
         </div>
     </ng-template>

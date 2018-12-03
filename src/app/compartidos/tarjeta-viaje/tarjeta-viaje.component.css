@@ -1,10 +1,8 @@
 * {
     margin-bottom: 5px;
-    color: white;
 }
 
 p-card {
-    border: 2px solid black;
     border-radius: 10px;
     margin-bottom: 50px;
 }
@@ -46,17 +44,16 @@ h5 {
 }
 
 h4 {
-    color: red;
+    color: #F5AE15;
+    padding: 0px;
+    border-bottom: 4px solid black;
+    background: black;
 }
 
+label {
+    color: black;
+}
 
-/*
-body .ui-inputtext {
-    font-size: 14px;
-    width: 70%;
-    background: white;
-    padding: 0.429em;
-    border: 1px solid #585858;
-    transition: border-color 0.2s;
-    -webkit-appearance: none;
-}*/
+p {
+    color: black;
+}

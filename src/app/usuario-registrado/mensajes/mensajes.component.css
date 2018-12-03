@@ -30,15 +30,16 @@ button {
     font-weight: bolder;
 }
 
+button:hover,
 .borrar {
     background: #e7aa00;
     border-bottom: 4px solid black;
 }
 
-i {
+.sinMensajes {
     font-size: 150px;
 }
 
-p {
+#sinMensajes {
     font-size: 50px;
 }

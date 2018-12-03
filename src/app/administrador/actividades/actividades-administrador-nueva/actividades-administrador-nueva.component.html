@@ -8,20 +8,18 @@
             <form #formularioActividadAdmin="ngForm" (submit)="crearViaje(formularioActividadAdmin.value)">
                 <div class="col-12">
                     <h4>Imágen para actividad</h4>
-                    <input type="file" accept="image/*" name="imagen" id="imagen" (change)="cargarImagen($event)" required>
+                    <input class="ui-button" type="file" accept="image/*" name="imagen" id="imagen" (change)="cargarImagen($event)" required>
                     <p class="alerta alert-danger" *ngIf="rellenarImagen">* Se debe elegir una imagen para la actividad!!</p>
                 </div>
 
                 <div class="col-12">
                     <h4>Nombre</h4>
-                    <span class="ui-float-label">
-                    <input id="nombre" name="nombre" #nombre="ngModel" [(ngModel)]="viaje.nombre" type="text" size="30" pInputText required minlength="5" maxlength="40">
+                    <input [ngStyle]="{'background-color': '#585858', 'color': 'white'}" id="nombre" name="nombre" #nombre="ngModel" [(ngModel)]="viaje.nombre" type="text" size="30" pInputText required minlength="5" maxlength="40">
                     <label for="nombre">Nombre</label>
                     <div class="col-12" *ngIf="nombre.touched && !nombre.valid">
                         <div class="alert-danger" *ngIf="nombre.errors?.required">*El nombre es requerido</div>
-                        <div class="alert-danger" *ngIf="nombre.errors?.minlength">*El nombre debe tener al menos {{nombre.errors.minlength.requiredLength}} caracteres</div>            
+                        <div class="alert-danger" *ngIf="nombre.errors?.minlength">*El nombre debe tener al menos {{nombre.errors.minlength.requiredLength}} caracteres</div>
                     </div>
-                </span>
                 </div>
 
                 <div class="col-12">
@@ -31,81 +29,82 @@
 
                 <div class="col-12">
                     <h4 class="first">Descripción</h4>
-                    <textarea name="descripcion" id="descripcion" #descripcion="ngModel" [(ngModel)]="viaje.descripcion" rows="5" cols="30" pInputTextarea required minlength="50"></textarea>
-                    <div class="col-12" *ngIf="descripcion.touched && !descripcion.valid">
-                        <div class="alert-danger" *ngIf="descripcion.errors?.required">*La descripción es requerida</div>
-                        <div class="alert-danger" *ngIf="descripcion.errors?.minlength">*Debe tener al menos {{descripcion.errors.minlength.requiredLength}} caracteres</div>
+                    <textarea class="col-10" [ngStyle]="{'background': '#585858', 'color': 'white'}" name=" descripcion" id="descripcion" #descripcion="ngModel" [(ngModel)]="viaje.descripcion" rows="5" cols="30" pInputTextarea required minlength="50"></textarea>
+                    <div class="col-12 " *ngIf="descripcion.touched && !descripcion.valid ">
+                        <div class="alert-danger " *ngIf="descripcion.errors?.required ">*La descripción es requerida</div>
+                        <div class="alert-danger " *ngIf="descripcion.errors?.minlength ">*Debe tener al menos {{descripcion.errors.minlength.requiredLength}} caracteres</div>
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 ">
                     <h4>Nivel</h4>
-                    <p-rating stars="3" [(ngModel)]="viaje.nivel" id="nivel" name="nivel" #nivel="ngModel" [cancel]="false" required></p-rating>
-                    <div class="col-12" *ngIf="nivel.touched && !nivel.valid">
-                        <div class="alert-danger" *ngIf="nivel.errors?.required">*El nivel es requerido</div>
+                    <p-rating stars="3 " [ngStyle]="{'color': 'red'}" [(ngModel)]="viaje.nivel " id="nivel " name="nivel " #nivel="ngModel" [cancel]="false " required></p-rating>
+                    <div class="col-12 " *ngIf="nivel.touched && !nivel.valid ">
+                        <div class="alert-danger " *ngIf="nivel.errors?.required ">*El nivel es requerido</div>
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 ">
                     <h4>Distancia {{ viaje.distancia }} km:</h4>
-                    <span class="ui-float-label">
-                    <p-slider [(ngModel)]="viaje.distancia" name="distancia" id="distancia" #distancia="ngModel" [min]="distanciaMinima" [max]="distanciaMaxima" id="distancia" [style]="{'width':'14em'}" [animate]="true" required minlength="1"></p-slider>
-                    <label for="distancia">Km</label>
-                    <div class="col-12" *ngIf="distancia.touched && !distancia.valid">
-                        <div class="alert-danger" *ngIf="distancia.errors?.required">*La distancia es requerida</div>
+                    <span class="ui-float-label ">
+                    <p-slider [(ngModel)]="viaje.distancia " name="distancia " id="distancia " #distancia="ngModel" [min]="distanciaMinima " [max]="distanciaMaxima " id="distancia " [style]="{ 'width': '14em'} " [animate]="true
+                        " required minlength="1 "></p-slider>
+                    <label for="distancia ">Km</label>
+                    <div class="col-12 " *ngIf="distancia.touched && !distancia.valid ">
+                        <div class="alert-danger " *ngIf="distancia.errors?.required ">*La distancia es requerida</div>
                     </div>
                   </span>
                 </div>
 
-                <div class="col-12"></div>
+                <div class="col-12 "></div>
 
-                <div class="col-12">
+                <div class="col-12 ">
                     <h4>Fecha Inicio:</h4>
-                    <span class="ui-float-label">Día</span>
-                    <p-calendar [locale]="es" name="fechaInicio" id="fechaInicio" [numberOfMonths]="2" #fechaInicio="ngModel" (onSelect)="cambiarFechaParseadaInicio(viaje.fechaInicio)" [(ngModel)]="viaje.fechaInicio" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true"
-                        hourFormat="24" required></p-calendar>
-                    <div class="col-12" *ngIf="fechaInicio.touched && !fechaInicio.valid">
-                        <div class="alert-danger" *ngIf="fechaInicio.errors?.required">*La fecha es requerida</div>
+                    <span class="ui-float-label ">Día</span>
+                    <p-calendar [locale]="es " name="fechaInicio " id="fechaInicio " [numberOfMonths]="2 " #fechaInicio="ngModel" (onSelect)="cambiarFechaParseadaInicio(viaje.fechaInicio) " [(ngModel)]="viaje.fechaInicio " dateFormat="dd/mm/yy
+                        " [showTime]="true " [showIcon]="true " hourFormat="24 " required></p-calendar>
+                    <div class="col-12 " *ngIf="fechaInicio.touched && !fechaInicio.valid ">
+                        <div class="alert-danger " *ngIf="fechaInicio.errors?.required ">*La fecha es requerida</div>
                     </div>
-                    <p class="alerta alert-danger" *ngIf="esFechaInicioIncorrecta">*Elija una fecha de inicio correcta</p>
+                    <p class="alerta alert-danger " *ngIf="esFechaInicioIncorrecta ">*Elija una fecha de inicio correcta</p>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 ">
                     <h4>Fecha Fin:</h4>
-                    <span class="ui-float-label">Día</span>
-                    <p-calendar [locale]="es" name="fechaFin" id="fechaFin" [numberOfMonths]="2" #fechaFin="ngModel" (onSelect)="cambiarFechaParseadaFin(viaje.fechaFin)" [(ngModel)]="viaje.fechaFin" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true" hourFormat="24"
-                        required></p-calendar>
-                    <div class="col-12" *ngIf="fechaFin.touched && !fechaFin.valid">
-                        <div class="alert-danger" *ngIf="fechaFin.errors?.required">*La fecha es requerida</div>
+                    <span class="ui-float-label ">Día</span>
+                    <p-calendar [locale]="es " name="fechaFin " id="fechaFin " [numberOfMonths]="2 " #fechaFin="ngModel" (onSelect)="cambiarFechaParseadaFin(viaje.fechaFin) " [(ngModel)]="viaje.fechaFin " dateFormat="dd/mm/yy " [showTime]="true
+                        " [showIcon]="true " hourFormat="24 " required></p-calendar>
+                    <div class="col-12 " *ngIf="fechaFin.touched && !fechaFin.valid ">
+                        <div class="alert-danger " *ngIf="fechaFin.errors?.required ">*La fecha es requerida</div>
                     </div>
-                    <p class="alerta alert-danger" *ngIf="esFechaFinIncorrecta">*Elija una fecha de fin correcta</p>
+                    <p class="alerta alert-danger " *ngIf="esFechaFinIncorrecta ">*Elija una fecha de fin correcta</p>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 ">
                     <h4>Precio {{ viaje.precio }} €:</h4>
-                    <input type="number" [(ngModel)]="viaje.precio" name="precio">
-                    <span class="ui-float-label">
-                    <p-slider [(ngModel)]="viaje.precio" name="precio" [min]="precioMinimo" [max]="precioMaximo" id="precio" [style]="{'width':'14em'}" [animate]="true" required></p-slider>
-                    <label for="precio">€</label>
+                    <input type="number " [ngStyle]="{ 'background': '#585858', 'color': 'white'} " [(ngModel)]="viaje.precio " name="precio ">
+                    <span class="ui-float-label ">
+                    <p-slider [(ngModel)]="viaje.precio " name="precio " [min]="precioMinimo " [max]="precioMaximo " id="precio " [style]="{ 'width': '14em'} " [animate]="true " required></p-slider>
+                    <label for="precio ">€</label>
                   </span>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 ">
                     <h4>Plazas {{ viaje.plazas }}:</h4>
-                    <span class="ui-float-label">
-                    <p-slider [(ngModel)]="viaje.plazas" name="plazas" [min]="plazasMinimas" [max]="plazasMaximas" id="plazas" [style]="{'width':'14em'}" [animate]="true" required></p-slider>
+                    <span class="ui-float-label ">
+                    <p-slider [(ngModel)]="viaje.plazas " name="plazas " [min]="plazasMinimas " [max]="plazasMaximas " id="plazas " [style]="{ 'width': '14em'} " [animate]="true " required></p-slider>
                   </span>
                 </div>
 
-                <button *ngIf="esNuevoViaje" [disabled]="formularioActividadAdmin.invalid" (click)="crearViaje(formularioActividadAdmin.value)" pButton type="button" label="PUBLICAR ACTIVIDAD" class="col-12 btn"></button>
-                <button *ngIf="!esNuevoViaje" [disabled]="formularioActividadAdmin.invalid" (click)="actualizarViaje(formularioActividadAdmin.value)" pButton type="button" label="ACTUALIZAR ACTIVIDAD" class="col-12 btn"></button>
+                <button *ngIf="esNuevoViaje " [disabled]="formularioActividadAdmin.invalid " (click)="crearViaje(formularioActividadAdmin.value) " pButton type="button " label="PUBLICAR ACTIVIDAD " class="col-12 btn "></button>
+                <button *ngIf="!esNuevoViaje " [disabled]="formularioActividadAdmin.invalid " (click)="actualizarViaje(formularioActividadAdmin.value) " pButton type="button " label="ACTUALIZAR ACTIVIDAD " class="col-12 btn "></button>
 
             </form>
         </div>
 
-        <div class="col-sm-12 col-md-6">
-            <h3 class="col-12 text-center">Vista preliminar!</h3>
-            <app-tarjeta-viaje [viaje]="viaje" [fechaInicioParseada]="fechaInicioParseada" [fechaFinParseada]="fechaFinParseada"></app-tarjeta-viaje>
+        <div class="col-sm-12 col-md-6 ">
+            <h3 class="col-12 text-center ">Vista preliminar!</h3>
+            <app-tarjeta-viaje [viaje]="viaje " [fechaInicioParseada]="fechaInicioParseada " [fechaFinParseada]="fechaFinParseada "></app-tarjeta-viaje>
         </div>
 
     </div>

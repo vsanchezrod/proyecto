@@ -318,14 +318,29 @@ body .ui-widget-content p {
 
 /***************************INPUT MENU****************************************/
 
-
-/*
 body .ui-inputtext {
     font-size: 14px;
-    width: 70%;
-    background: white;
+    color: #dedede;
+    background: #585858;
     padding: 0.429em;
     border: 1px solid #585858;
+    -moz-transition: border-color 0.2s;
+    -o-transition: border-color 0.2s;
+    -webkit-transition: border-color 0.2s;
     transition: border-color 0.2s;
     -webkit-appearance: none;
-}*/
+    -moz-appearance: none;
+    appearance: none;
+}
+
+body .ui-inputtext:enabled:hover:not(.ui-state-error) {
+    border-color: #FFB300;
+}
+
+body .ui-inputtext:enabled:focus:not(.ui-state-error) {
+    border-color: #FFB300;
+    outline: 0 none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}

@@ -29,6 +29,7 @@ export class TarjetaViajeComponent implements OnInit, OnDestroy {
   @Input() public fechaFinParseada?: string;
   public usuarioLogado: Usuario;
   public pago: Pago;
+  public fecha: Date;
 
   private subscripcionUsuarioLogado: Subscription;
 
@@ -39,6 +40,7 @@ export class TarjetaViajeComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.pago = new Pago();
+    this.fecha = new Date();
 
     this.fechaInicioParseada = moment(this.viaje.fechaInicio).locale('es').format('DD/MM/YYYY HH:mm');
     this.fechaFinParseada = moment(this.viaje.fechaFin).locale('es').format('DD/MM/YYYY HH:mm');
@@ -80,20 +82,35 @@ export class TarjetaViajeComponent implements OnInit, OnDestroy {
   public apuntarseAViaje(): void {
     console.log('Usuario q quiere apuntarse: ', this.usuarioLogado.id);
     console.log('Viaje id: ', this.viaje.id);
-    this.viajesService.apuntarseAViaje(this.viaje.id, this.usuarioLogado.id).subscribe(
-      (response: HttpResponse<Viaje>) => {
-        console.log('APUNTADO!!', response);
-        this.viajesService.obtenerViajePorId$(this.viaje.id).subscribe(
-          (viajeActualizado: Viaje) => {
-            this.viaje = viajeActualizado;
-          }
-        );
-      },
-      (error: HttpErrorResponse) => {
-        console.error(error);
-      }
-    );
+
+    if (this.verificarPago()) {
+      this.viajesService.apuntarseAViaje(this.viaje.id, this.usuarioLogado.id).subscribe(
+        (response: HttpResponse<Viaje>) => {
+          console.log('APUNTADO!!', response);
+          this.viajesService.obtenerViajePorId$(this.viaje.id).subscribe(
+            (viajeActualizado: Viaje) => {
+              this.viaje = viajeActualizado;
+            }
+          );
+        },
+        (error: HttpErrorResponse) => {
+          console.error(error);
+        }
+      );
+    } else {
+      console.log('No se ha podido confirmar el pago');
+    }
   }
+
+  public verificarPago(): boolean {
+
+    if (this.pago.caducidad > this.fecha || this.pago.numeroTarjeta.toString().length < 16) {
+      return true;
+     } else {
+      return false;
+    }
+  }
+
 
   public verificarLogin() {
     if (this.usuarioLogado.id === undefined) {

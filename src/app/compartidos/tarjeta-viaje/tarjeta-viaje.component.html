@@ -1,26 +1,27 @@
-<p-card class="ui-g" [title]="viaje.nombre" styleClass="ui-card-shadow">
+<div id="tarjeta">
+    <p-card class=" ui-g" [title]="viaje.nombre" styleClass="ui-card-shadow">
 
-    <p-header class="ui-grid-col-12">
-        <img class="ui-grid-col-12" id="actividad" alt="viaje" [src]="viaje.imagen">
-    </p-header>
-    <button id="btnCategorias" class="text-center" *ngFor="let categoria of viaje.categorias" pButton type="button" [label]="categoria.nombre"></button>
-    <div class="ui-grid-col-12">{{ viaje.descripcion }}</div>
+        <p-header class="ui-grid-col-12">
+            <img class="ui-grid-col-12" id="actividad" alt="viaje" [src]="viaje.imagen">
+        </p-header>
+        <button id="btnCategorias" class="text-center" *ngFor="let categoria of viaje.categorias" pButton type="button" [label]="categoria.nombre"></button>
+        <div class="ui-grid-col-12">{{ viaje.descripcion }}</div>
 
-    <p-footer>
-        <div class="ui-grid-col-12">Inicio: {{ fechaInicioParseada }}</div>
-        <div class="ui-grid-col-12">Fin: {{ fechaFinParseada }}</div>
-        <span class="ui-grid-col-6">Dificultad:</span>
-        <p-rating class="ui-grid-col-6" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
-        <div class="ui-grid-col-6">Distancia: {{ viaje.distancia }} Km</div>
-        <span class="ui-grid-col-6">Precio: <strong> {{ viaje.precio }} €</strong></span>
+        <p-footer>
+            <div class="ui-grid-col-12">Inicio: {{ fechaInicioParseada }}</div>
+            <div class="ui-grid-col-12">Fin: {{ fechaFinParseada }}</div>
+            <span class="ui-grid-col-6">Dificultad:</span>
+            <p-rating class="ui-grid-col-6" readonly="true" stars="3" [ngModel]="viaje.nivel" name="nivel" [cancel]="false"></p-rating>
+            <div class="ui-grid-col-6">Distancia: {{ viaje.distancia }} Km</div>
+            <span class="ui-grid-col-6">Precio: <strong> {{ viaje.precio }} €</strong></span>
 
-        <button pButton *ngIf="mostrarBotonApuntarse()" (click)="verificarLogin()" class="ui-grid-col-12 btn btn-default btn-rounded mb-4" data-toggle="modal" [attr.data-target]="'#id' + viaje.id" type="button" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
-        <button pButton *ngIf="usuarioYaApuntado()" class="ui-grid-col-12 ui-button-warning" type="button" icon="pi pi-user-plus" iconPos="right" label="YA APUNTADO!"></button>
-        <p-message class="ui-grid-col-12 text-center" *ngIf="plazasAgotadas()" severity="warn" text="Plazas agotadas :("></p-message>
-    </p-footer>
+            <button pButton *ngIf="mostrarBotonApuntarse()" (click)="verificarLogin()" class="ui-grid-col-12 btn btn-default btn-rounded mb-4" data-toggle="modal" [attr.data-target]="'#id' + viaje.id" type="button" icon="pi pi-user-plus" iconPos="right" label="APÚNTATE"></button>
+            <button pButton *ngIf="usuarioYaApuntado()" class="ui-grid-col-12 ui-button-warning" type="button" icon="pi pi-user-plus" iconPos="right" label="YA APUNTADO!"></button>
+            <p-message class="ui-grid-col-12 text-center" *ngIf="plazasAgotadas()" severity="warn" text="Plazas agotadas :("></p-message>
+        </p-footer>
 
-</p-card>
-
+    </p-card>
+</div>
 <div class="modal fade" [attr.id]="'id'+viaje.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -34,37 +35,47 @@
                 <img class="col-12" src="../../../assets/imagenes/tarjeta.png">
                 <div class="col-12 md-form mb-5">
                     <i class="col-2 fa fa-address-card prefix grey-text"></i>
+                    <label class="col-10" for="numeroTarjeta">NÚMERO DE TARJETA</label>
                     <p-inputMask class="col-10" #numeroTarjeta="ngModel" mask="9999-9999-9999-9999" [(ngModel)]="pago.numeroTarjeta" placeholder="XXXX-XXXX-XXXX-XXXX" id="numeroTarjeta" required></p-inputMask>
-                    <label class="col-12" for="numeroTarjeta">NÚMERO DE TARJETA</label>
                     <div class="col-12" *ngIf="numeroTarjeta.dirty && !numeroTarjeta.valid">
                         <p *ngIf="numeroTarjeta.errors?.required">*El número de tarjeta es obligatorio</p>
+                    </div>
+                    <div class="col-12" *ngIf="numeroTarjeta.dirty && !numeroTarjeta.valid">
+                        <p *ngIf="pago.numeroTarjeta.toString().length < 16">*El número de tarjeta es incorrecto</p>
                     </div>
                 </div>
 
                 <div class="col-12 md-form mb-5">
                     <i class="col-2 fa fa-user-tie prefix grey-text"></i>
+                    <label class="col-10" for="nombreTarjeta">NOMBRE DE LA TARJETA</label>
                     <input class="col-8" #nombreTarjeta="ngModel" [(ngModel)]="pago.nombre" placeholder="NOMBRE DE DE TARJETA" id="nombreTarjeta" type="text" pInputText required>
-                    <div class="text-center col-12" *ngIf="nombreTarjeta.touched && !nombreTarjeta.valid">
-                        <div *ngIf="nombreTarjeta.errors?.required">*El nombre de la tarjeta es obligatorio</div>
+                    <div class="text-center col-12" *ngIf="nombreTarjeta.dirty && !nombreTarjeta.valid">
+                        <p *ngIf="nombreTarjeta.errors?.required">*El nombre de la tarjeta es obligatorio</p>
                     </div>
                 </div>
 
                 <div class="col-12 md-form mb-4">
                     <i class="col-2 fa fa-lock prefix grey-text"></i>
-                    <p-calendar class="col-12" [yearNavigator]="true" yearRange="2018:2030" [(ngModel)]="pago.caducidad" #caducidad="ngModel" view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2000:2030" required></p-calendar>
-                    <p-inputMask class="col-3" #CVC="ngModel" mask="999" [(ngModel)]="pago.CVC" placeholder="CVC" id="cvc" required></p-inputMask>
-                    <div class="col-12" *ngIf="caducidad.touched && !caducidad.valid">
+                    <label class="col-5" for="fecha">Caducidad</label>
+                    <label class="col-5" for="fecha">CVC</label>
+                    <p-calendar class="col-6" id="fecha" [yearNavigator]="true" yearRange="2018:2030" [(ngModel)]="pago.caducidad" #caducidad="ngModel" view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2000:2030" required></p-calendar>
+                    <p-inputMask class="col-6" id="cvc" #CVC="ngModel" mask="999" [(ngModel)]="pago.CVC" placeholder="CVC" id="cvc" required></p-inputMask>
+                    <div class="col-12" *ngIf="caducidad.dirty && !caducidad.valid">
                         <div *ngIf="caducidad.errors?.required">*La caducidad de la tarjeta es obligatoria</div>
                     </div>
-                    <div class="col-12" *ngIf="CVC.touched && !CVC.valid">
-                        <div *ngIf="CVC.errors?.required">*El CVC de la tarjeta es obligatorio</div>
-                        <div *ngIf="CVC.errors?.minlength || CVC.errors?.maxlength ">*El número debe tener {{CVC.errors.minlength.requiredLength}} números</div>
+                    <div class="col-12" *ngIf="pago.caducidad < fecha">
+                        <p>*Tarjeta caducada</p>
+                    </div>
+                    <div class="col-12" *ngIf="CVC.dirty && !CVC.valid">
+                        <p *ngIf="CVC.errors?.required">*El CVC de la tarjeta es obligatorio</p>
+                        <p *ngIf="CVC.errors?.minlength || CVC.errors?.maxlength ">*El número debe tener {{CVC.errors.minlength.requiredLength}} números</p>
                     </div>
                 </div>
+
                 <h5 class="col-5">Importe: {{ viaje.precio}} €</h5>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-                <button class="col-6 btn btn-default btn-primary" [disabled]="CVC.invalid || caducidad.invalid || nombreTarjeta.invalid || numeroTarjeta.invalid" data-dismiss="modal" (click)="apuntarseAViaje()">Realizar Pago</button>
+                <button class="col-6 btn btn-default btn-primary" [disabled]="CVC.invalid || caducidad.invalid || pago.caducidad < fecha || nombreTarjeta.invalid || numeroTarjeta.invalid" data-dismiss="modal" (click)="apuntarseAViaje()">Realizar Pago</button>
             </div>
         </div>
     </div>
