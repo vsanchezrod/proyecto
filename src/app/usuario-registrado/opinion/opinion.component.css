@@ -14,3 +14,8 @@ button {
     font-weight: bolder;
     margin-bottom: 10px;
 }
+
+.titulo {
+    font-weight: bolder;
+    border-bottom: 4px solid #F5AE15;
+}

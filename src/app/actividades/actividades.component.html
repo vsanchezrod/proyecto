@@ -1,5 +1,5 @@
 <div class="container">
-    <h2 class="text-center col-12">APÚNTATE A LAS PRÓXIMAS ACTIVIDADES</h2>
+    <h2 class="titulo text-center col-12">Apúntate a las próximas actividades</h2>
     <div class="row">
         <app-tarjeta-salida class="col-md-6 col-lg-4" [salida]="salida" *ngFor="let salida of listaActividadesActuales"></app-tarjeta-salida>
         <h4 class="text-center col-12" *ngIf="listaActividadesActuales.length == 0">No hay actividades disponibles</h4>
@@ -8,7 +8,7 @@
 
 
 <div class="container">
-    <h2 class="text-center col-12">ACTIVIDADES REALIZADAS</h2>
+    <h2 class="titulo text-center col-12">Actividades Realizadas</h2>
     <div class="row">
         <app-tarjeta-salida class="col-md-6 col-lg-4" [salida]="salida" *ngFor="let salida of listaActividadesRealizadas"></app-tarjeta-salida>
         <h4 class="text-center col-12" *ngIf="listaActividadesRealizadas.length == 0">No hay actividades disponibles</h4>

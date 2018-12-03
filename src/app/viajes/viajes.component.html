@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <h2 class="text-center col-12">APÚNTATE A LOS PRÓXIMOS VIAJES</h2>
+        <h2 class="titulo text-center col-12">Apúntate a los próximos Viajes</h2>
         <app-tarjeta-viaje class="col-md-6 col-lg-4" [viaje]="viaje" *ngFor="let viaje of listaViajesActuales"></app-tarjeta-viaje>
         <h4 class="text-center col-12" *ngIf="listaViajesActuales.length == 0">No hay viajes disponibles</h4>
     </div>
@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row">
-        <h2 class="text-center col-12">VIAJES REALIZADOS</h2>
+        <h2 class="titulo text-center col-12">Viajes Realizados</h2>
         <app-tarjeta-viaje class="col-md-6 col-lg-4" [viaje]="viaje" *ngFor="let viaje of listaViajesRealizados"></app-tarjeta-viaje>
     </div>
 </div>

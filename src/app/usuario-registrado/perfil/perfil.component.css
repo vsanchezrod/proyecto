@@ -22,9 +22,7 @@ button {
     background: #F5AE15;
 }
 
-
-/*
-.caja {
-    margin: 10px;
-    margin-left: 10px;
-}*/
+.titulo {
+    font-weight: bolder;
+    border-bottom: 4px solid #F5AE15;
+}

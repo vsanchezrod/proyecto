@@ -1,6 +1,6 @@
 <div class="jumbotron cajaRegistro">
     <div class="row">
-        <h3 class="text-center col-12">Únete a la comunidad!!</h3>
+        <h2 class="text-center col-12">Únete a la comunidad!!</h2>
 
         <form class="row" [formGroup]="formularioRegistro" (ngSubmit)="enviarDatos(formularioRegistro.value)">
 
@@ -10,7 +10,7 @@
                 <img *ngIf="imagenAvatar !== undefined" class="col-6 avatar" [src]="imagenAvatar">
                 <p-progressSpinner *ngIf="mostrarSpinner"></p-progressSpinner>
                 <div class="form-control-feedback">
-                    <p>Elige un avatar!</p>
+                    <p class="error">Elige un avatar!</p>
                 </div>
             </div>
 
@@ -20,7 +20,7 @@
                     <input [ngStyle]="{'border-color': formularioRegistro.get('nombre').valid || formularioRegistro.get('nombre').pristine ? 'gray' : 'red' }" formControlName="nombre" id="nombre" name="nombre" type="text" size="30" pInputText>
                     <label for="nombre">Nombre</label>
                     <div *ngIf="formularioRegistro.get('nombre').dirty && !formularioRegistro.get('nombre').valid" class="form-control-feedback">
-                        <p *ngIf="formularioRegistro.get('nombre').hasError('required')">*Introduce tu nombre</p>
+                        <p class="error" *ngIf="formularioRegistro.get('nombre').hasError('required')">*Introduce tu nombre</p>
                     </div>
                 </span>
             </div>
@@ -31,7 +31,7 @@
                     <input [ngStyle]="{'border-color': formularioRegistro.get('apellido').valid || formularioRegistro.get('apellido').pristine ? 'gray' : 'red' }" formControlName="apellido" id="apellido" type="text" size="30" pInputText>
                     <label for="apellido">Apellido</label>
                     <div *ngIf="formularioRegistro.get('apellido').dirty && !formularioRegistro.get('apellido').valid" class="form-control-feedback">
-                        <p *ngIf="formularioRegistro.get('apellido').hasError('required')">*Introduce tu apellido</p>
+                        <p class="error" *ngIf="formularioRegistro.get('apellido').hasError('required')">*Introduce tu apellido</p>
                     </div>
                  </span>
             </div>
@@ -42,8 +42,8 @@
                     <input [ngStyle]="{'border-color': formularioRegistro.get('email').valid || formularioRegistro.get('email').pristine ? 'gray' : 'red' }" formControlName="email" id="email" type="text" size="30" pInputText>
                     <label for="email">Email</label>
                     <div *ngIf="formularioRegistro.get('email').dirty && !formularioRegistro.get('email').valid" class="form-control-feedback">
-                        <p *ngIf="formularioRegistro.get('email').hasError('required')">*Introduce tu email</p>
-                        <p *ngIf="formularioRegistro.get('email').hasError('email')">*Formato de email inválido</p>
+                        <p class="error" *ngIf="formularioRegistro.get('email').hasError('required')">*Introduce tu email</p>
+                        <p class="error" *ngIf="formularioRegistro.get('email').hasError('email')">*Formato de email inválido</p>
                     </div>
                 </span>
             </div>
@@ -52,9 +52,9 @@
                 <h3>Contraseña</h3>
                 <input [ngStyle]="{'border-color': formularioRegistro.get('password').valid || formularioRegistro.get('password').pristine ? 'gray' : 'red' }" formControlName="password" id="password" pPassword type="password" name="password" />
                 <div *ngIf="formularioRegistro.get('password').dirty && !formularioRegistro.get('password').valid">
-                    <p *ngIf="formularioRegistro.get('password').hasError('required')">*La contraseña es requerida</p>
-                    <p *ngIf="formularioRegistro.get('password').hasError('minlength')">*La contraseña debe tener mínino 8 caracteres</p>
-                    <p *ngIf="formularioRegistro.get('password').hasError('maxlength')">*La contraseña debe tener como máximo 12 caracteres</p>
+                    <p class="error" *ngIf="formularioRegistro.get('password').hasError('required')">*La contraseña es requerida</p>
+                    <p class="error" *ngIf="formularioRegistro.get('password').hasError('minlength')">*La contraseña debe tener mínino 8 caracteres</p>
+                    <p class="error" *ngIf="formularioRegistro.get('password').hasError('maxlength')">*La contraseña debe tener como máximo 12 caracteres</p>
                 </div>
             </div>
 
@@ -64,7 +64,7 @@
                 <p-calendar [ngStyle]="{'border-color': formularioRegistro.get('fechaNacimiento').valid || formularioRegistro.get('fechaNacimiento').pristine ? 'gray' : 'red' }" formControlName="fechaNacimiento" [showIcon]="true" dateFormat="dd.mm.yy" [yearNavigator]="true"
                     [yearRange]="rangoAnios" [monthNavigator]="true"></p-calendar>
                 <div *ngIf="formularioRegistro.get('fechaNacimiento').dirty && !formularioRegistro.get('fechaNacimiento').valid" class="form-control-feedback">
-                    <p *ngIf="formularioRegistro.get('fechaNacimiento').hasError('required')">*Fecha de nacimiento es requerida</p>
+                    <p class="error" *ngIf="formularioRegistro.get('fechaNacimiento').hasError('required')">*Fecha de nacimiento es requerida</p>
                 </div>
             </div>
 
@@ -72,9 +72,9 @@
                 <h3>Repetir contraseña</h3>
                 <input [ngStyle]="{'border-color': formularioRegistro.get('confirmacionPassword').valid || formularioRegistro.get('confirmacionPassword').pristine ? 'gray' : 'red' }" appValidacion="password" formControlName="confirmacionPassword" pPassword type="password"
                 />
-                <p *ngIf="formularioRegistro.controls['confirmacionPassword'].value != formularioRegistro.controls['password'].value">*Las contraseñas no coinciden</p>
+                <p class="error" *ngIf="formularioRegistro.controls['confirmacionPassword'].value != formularioRegistro.controls['password'].value">*Las contraseñas no coinciden</p>
                 <div *ngIf="formularioRegistro.get('confirmacionPassword').dirty && !formularioRegistro.get('confirmacionPassword').valid">
-                    <p *ngIf="formularioRegistro.get('confirmacionPassword').hasError('required')">*La contraseña de confirmación es requerida</p>
+                    <p class="error" *ngIf="formularioRegistro.get('confirmacionPassword').hasError('required')">*La contraseña de confirmación es requerida</p>
                 </div>
             </div>
 
@@ -84,7 +84,7 @@
                 <p-radioButton [ngStyle]="{'border-color': formularioRegistro.get('sexo').valid || formularioRegistro.get('sexo').pristine ? 'gray' : 'red' }" formControlName="sexo" name="sexo" value="Mujer" label="Mujer"></p-radioButton>
                 <p-radioButton [ngStyle]="{'border-color': formularioRegistro.get('sexo').valid || formularioRegistro.get('sexo').pristine ? 'gray' : 'red' }" formControlName="sexo" name="sexo" value="Hombre" label="Hombre"></p-radioButton>
                 <div *ngIf="formularioRegistro.get('sexo').dirty && !formularioRegistro.get('sexo').valid" class="form-control-feedback">
-                    <p *ngIf="formularioRegistro.get('sexo').hasError('required')">*El sexo es requerido</p>
+                    <p class="error" *ngIf="formularioRegistro.get('sexo').hasError('required')">*El sexo es requerido</p>
                 </div>
             </div>
 
@@ -93,7 +93,7 @@
                 <p-dropdown [ngStyle]="{'border-color': formularioRegistro.get('provincia').valid || formularioRegistro.get('provincia').pristine ? 'gray' : 'red' }" formControlName="provincia" [options]="listaProvincias" placeholder="Selecciona una provincia" optionLabel="nombre"
                     [showClear]="true" filter="true"></p-dropdown>
                 <div *ngIf="formularioRegistro.get('provincia').dirty && !formularioRegistro.get('provincia').valid" class="form-control-feedback">
-                    <p *ngIf="formularioRegistro.get('provincia').hasError('required')">*La provincia es requerida</p>
+                    <p class="error" *ngIf="formularioRegistro.get('provincia').hasError('required')">*La provincia es requerida</p>
                 </div>
             </div>
 
@@ -114,14 +114,15 @@
                 <h3>Términos</h3>
                 <p-inputSwitch formControlName="terminos" [ngStyle]="{'border-color': formularioRegistro.get('terminos').valid || formularioRegistro.get('terminos').pristine ? 'gray' : 'red' }"></p-inputSwitch>
                 <span>Acepto los términos y condiciones</span>
-                <div *ngIf="formularioRegistro.get('terminos').dirty && !formularioRegistro.get('terminos').valid" class="form-control-feedback">
+                <div *ngIf="formularioRegistro.get('terminos').dirty && !formularioRegistro.get('terminos').valid" class="error form-control-feedback">
                     <p *ngIf="formularioRegistro.get('terminos').hasError('required')">*Debes aceptar los términos</p>
                 </div>
             </div>
-            <div class="col-12 error">
+            <div class="col-12">
                 <p *ngIf="esNecesarioRellenarTodosLosCampos">** Es necesario rellenar todos los campos. No olvides elegir una imagen **</p>
             </div>
-            <button pButton [disabled]="formularioRegistro.invalid" type="submit" label="REGISTRO" class="ui-button-info"></button>
+
+            <button class="col-12" pButton [disabled]="formularioRegistro.invalid" type="submit" label="REGISTRO" class="button btn"></button>
 
         </form>
     </div>

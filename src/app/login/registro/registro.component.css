@@ -1,14 +1,38 @@
 .cajaRegistro {
-    margin: 50px auto;
+    margin: 20px auto;
     width: 50%;
-    background: #dedede;
+    background: rgb(255, 245, 159);
+    border: 2px solid black;
 }
 
 .avatar {
     border-radius: 50%;
-    box-shadow: -2px -2px 2px #F5AE15;
+    width: 300px;
+    height: 300px;
+    /*box-shadow: -2px -2px 2px #F5AE15;*/
 }
 
 .error {
     color: red;
+    font-style: oblique;
+}
+
+h2 {
+    font-weight: bolder;
+    border-bottom: 4px solid black;
+}
+
+button {
+    width: 50%;
+    margin-top: 20px;
+    margin-left: 25%;
+    background-color: #dedede;
+    border-radius: 5px;
+    border-bottom: 4px solid #F5AE15;
+    font-weight: bolder;
+}
+
+button:hover {
+    background: #e7aa00;
+    border-bottom: 4px solid black;
 }

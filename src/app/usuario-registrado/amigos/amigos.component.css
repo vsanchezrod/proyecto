@@ -33,8 +33,17 @@ span {
     font-size: 20px;
 }
 
+input {
+    margin: 20px 0;
+}
+
 p-header {
     color: white;
     font-weight: bolder;
     font-size: 20px;
+}
+
+.titulo {
+    font-weight: bolder;
+    border-bottom: 4px solid #F5AE15;
 }

@@ -43,3 +43,8 @@ button:hover,
 #sinMensajes {
     font-size: 50px;
 }
+
+.titulo {
+    font-weight: bolder;
+    border-bottom: 4px solid #F5AE15;
+}

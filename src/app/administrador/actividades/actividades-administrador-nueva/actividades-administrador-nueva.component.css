@@ -13,11 +13,6 @@ h4 {
     margin: 5px;
 }
 
-.titulo {
-    font-weight: bolder;
-    margin: 10px;
-}
-
 button {
     background-color: #dedede;
     border-radius: 5px;
@@ -25,4 +20,9 @@ button {
     font-weight: bolder;
     margin-bottom: 10px;
     margin-top: 10px;
+}
+
+.titulo {
+    font-weight: bolder;
+    border-bottom: 4px solid #F5AE15;
 }
