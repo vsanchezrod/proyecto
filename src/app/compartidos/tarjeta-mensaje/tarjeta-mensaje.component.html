@@ -1,11 +1,11 @@
-<p-card class="ui-g-12" [title]="mensaje.asunto" [subtitle]="fechaParseada">
-    <div class="ui-g-2">
-        <img class="avatar" src="" alt="Avatar" [src]="usuario.avatar">
-    </div>
-    <div class="ui-g-10">
-        <p class="ui-g-12">{{ usuario.nombre }}</p>
-        <div class="ui-g-12">
-            {{ mensaje.cuerpoMensaje }}
+<p-card class="ui-g" [title]="mensaje.asunto" [subtitle]="fechaParseada">
+    <div class="ui-g-12">
+        <img class="ui-g-4 avatar" src="" alt="Avatar" [src]="usuario.avatar">
+        <div class="ui-g-8">
+            <p class="ui-g-12">{{ usuario.nombre }}</p>
+            <div class="ui-g-12">
+                {{ mensaje.cuerpoMensaje }}
+            </div>
         </div>
     </div>
 </p-card>

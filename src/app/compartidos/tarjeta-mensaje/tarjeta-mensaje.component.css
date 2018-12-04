@@ -4,8 +4,8 @@ p-card {
 
 .avatar {
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    /*width: 100px;
+    height: 100px;*/
     box-shadow: -2px -2px 2px #F5AE15;
     margin-right: 10px;
 }

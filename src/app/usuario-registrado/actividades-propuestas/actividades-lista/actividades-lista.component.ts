@@ -54,7 +54,6 @@ export class ActividadesListaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptionUsuarioLogado.unsubscribe();
-    this.subscriptionActividadesUsuario.unsubscribe();
   }
 
   public cargarActividad(actividad: Actividad): void {
@@ -71,6 +70,7 @@ export class ActividadesListaComponent implements OnInit, OnDestroy {
         if (this.listaMisActividadesPropuestas.length > 0) {
           this.salidaSeleccionada = this.listaMisActividadesPropuestas[0];
         }
+        this.subscriptionActividadesUsuario.unsubscribe();
     });
   }
 

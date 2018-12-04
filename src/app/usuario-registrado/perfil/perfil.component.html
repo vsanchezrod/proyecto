@@ -30,10 +30,10 @@
                                 <input [formControl]="formularioActualizacion.controls['nombre']" name="nombre" type="text" pInputText>
                                 <input [formControl]="formularioActualizacion.controls['apellido']" name="apellido" type="text" pInputText>
                             </span>
-                            <div *ngIf="formularioActualizacion.get('nombre').touched && !formularioActualizacion.get('nombre').valid" class="form-control-feedback">
+                            <div *ngIf="formularioActualizacion.get('nombre').dirty && !formularioActualizacion.get('nombre').valid" class="form-control-feedback">
                                 <p *ngIf="formularioActualizacion.get('nombre').hasError('required')">*El nombre es un campo requerido</p>
                             </div>
-                            <div *ngIf="formularioActualizacion.get('apellido').touched && !formularioActualizacion.get('apellido').valid" class="form-control-feedback">
+                            <div *ngIf="formularioActualizacion.get('apellido').dirty && !formularioActualizacion.get('apellido').valid" class="form-control-feedback">
                                 <p *ngIf="formularioActualizacion.get('apellido').hasError('required')">*El apellido es un campo requerido</p>
                             </div>
                         </p-inplace>
@@ -50,7 +50,7 @@
                             <span pInplaceContent class="col-12">
                                 <p-calendar class="col-12" [locale]="es" [formControl]="formularioActualizacion.controls['fechaNacimiento']" [showIcon]="true" dateFormat="dd/mm/yy" [yearNavigator]="true" [yearRange]="rangoAnios" [monthNavigator]="true"></p-calendar>
                             </span>
-                            <div *ngIf="formularioActualizacion.get('fechaNacimiento').touched && !formularioActualizacion.get('fechaNacimiento').valid" class="form-control-feedback">
+                            <div *ngIf="formularioActualizacion.get('fechaNacimiento').dirty && !formularioActualizacion.get('fechaNacimiento').valid" class="form-control-feedback">
                                 <p *ngIf="formularioActualizacion.get('fechaNacimiento').hasError('required')">*El fecha de nacimiento es un campo requerido</p>
                             </div>
 
@@ -71,7 +71,7 @@
                                     <p-radioButton class="col-12" [formControl]="formularioActualizacion.controls['sexo']" name="sexo" value="hombre" label="Hombre"></p-radioButton>
                                 </div>
                             </span>
-                            <div *ngIf="formularioActualizacion.get('sexo').touched && !formularioActualizacion.get('sexo').valid" class="form-control-feedback">
+                            <div *ngIf="formularioActualizacion.get('sexo').dirty && !formularioActualizacion.get('sexo').valid" class="form-control-feedback">
                                 <p *ngIf="formularioActualizacion.get('sexo').hasError('required')">*El fecha de nacimiento es un campo requerido</p>
                             </div>
                         </p-inplace>
@@ -88,7 +88,7 @@
                             <span pInplaceContent class="col-12">
                                 <p-dropdown [formControl]="formularioActualizacion.controls['provincia']" name="provincia" [options]="listaProvincias" optionLabel="nombre" [showClear]="true" filter="true"></p-dropdown>
                             </span>
-                            <div *ngIf="formularioActualizacion.get('provincia').touched && !formularioActualizacion.get('provincia').valid" class="form-control-feedback">
+                            <div *ngIf="formularioActualizacion.get('provincia').dirty && !formularioActualizacion.get('provincia').valid" class="form-control-feedback">
                                 <p *ngIf="formularioActualizacion.get('provincia').hasError('required')">*El fecha de nacimiento es un campo requerido</p>
                             </div>
                         </p-inplace>
@@ -109,7 +109,7 @@
                     </div>
                 </div>
             </div>
-            <button pButton class="btn col-6 mx-auto d-block" type="submit" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
+            <button pButton class="btn col-6 mx-auto d-block" [disabled]="formularioActualizacion.invalid" type="submit" icon="pi pi-pencil" iconPos="right" label="Guardar"></button>
         </form>
     </div>
 </div>
