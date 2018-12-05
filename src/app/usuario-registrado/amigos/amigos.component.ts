@@ -52,12 +52,10 @@ export class AmigosComponent implements OnInit, OnDestroy {
 
   // VER DE CUAL DE LAS DOS MANERAS LO HAGO
   public buscarAtletas(clave: string): void {
-    console.log('La clave es: ' + clave);
     this.listaUsuariosBusqueda = [];
 
     if (clave !== '') {
       for (const usuarioBuscado of this.listaUsuarios) {
-        console.log(usuarioBuscado.nombre);
         if (usuarioBuscado.nombre.toUpperCase().includes(clave.toUpperCase()) && usuarioBuscado.id !== this.usuario.id) {
           this.listaUsuariosBusqueda.push(usuarioBuscado);
         }

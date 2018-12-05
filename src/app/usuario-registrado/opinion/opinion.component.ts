@@ -103,10 +103,5 @@ export class OpinionComponent implements OnInit, OnDestroy {
         this.router.navigate(['acerca']);
       });
 
-
-    // MOSTRAR MENSAJE DE QUE SE HA ENVIADO!!
-
   }
-
-
 }

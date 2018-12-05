@@ -73,7 +73,6 @@ export class MensajesComponent implements OnInit, OnDestroy {
               label: amigo.nombre,
               value: amigo
           };
-          console.log('AmigoUsuario: ', amigoUsuario);
           this.listaAmigos.push(amigoUsuario);
         });
       }
@@ -81,9 +80,7 @@ export class MensajesComponent implements OnInit, OnDestroy {
       // Buscar los mensajes para ese usuario
       this.subscriptionObtenerMensajes = this.mensajesService.obtenerListaDeMensajes$(this.usuario.id).subscribe(
         (mensajes: Array<Mensaje>) => {
-          console.log('La lista de mensajes es: ', this.listaMensajes);
           this.listaMensajes = mensajes;
-
           // Para que cargue por defecto el primer mensaje ordenado por fecha
           this.mensaje = this.listaMensajes[0];
       });

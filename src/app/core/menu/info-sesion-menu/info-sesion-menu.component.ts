@@ -51,7 +51,6 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
     const intervaloMensajes: Observable<number> = interval(5000);
     this.subscriptionIntervalMensajes = intervaloMensajes.subscribe(
       n => {
-        console.log('segs:' + n);
         this.comprobarMensajes();
       }
     );
@@ -61,7 +60,6 @@ export class InfoSesionMenuComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('INFOSESSION: ONDESTROY');
     this.suscripcionObtenerUsuarioLogado.unsubscribe();
     this.subscriptionIntervalMensajes.unsubscribe();
   }

@@ -90,7 +90,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   public cargarImagen(event: Event): void {
-    console.log(event);
     const inputValue: any = event.target;
     const fichero: File = inputValue.files[0];
     const fileReader: FileReader = new FileReader();
@@ -106,7 +105,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
     };
 
     fileReader.onloadend = (evento) => {
-      console.log('Entrando en el onloadend');
       this.imagenAvatar = fileReader.result;
       this.progreso = 100;
       this.mostrarSpinner = false;

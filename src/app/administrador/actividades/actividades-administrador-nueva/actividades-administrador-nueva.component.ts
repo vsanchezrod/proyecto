@@ -234,7 +234,6 @@ export class ActividadesAdministradorNuevaComponent implements OnInit, OnDestroy
       }
     }
 
-
   }
 
   private redirigirAActividadesAdministrador(): void {

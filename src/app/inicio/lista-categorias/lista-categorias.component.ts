@@ -38,7 +38,6 @@ export class ListaCategoriasComponent implements OnInit, OnDestroy {
     this.subscripcionListaCategorias.unsubscribe();
   }
 
-  // PENDIENTE
   public cargarActividades(idCategoria: string): void {
     this.router.navigate(['/busqueda'], { queryParams: { categoria: idCategoria }});
   }

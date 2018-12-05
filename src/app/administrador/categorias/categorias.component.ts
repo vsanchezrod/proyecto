@@ -60,7 +60,6 @@ export class CategoriasComponent implements OnInit, OnDestroy {
     console.log(this.formularioCategoria.value);
 
     this.categoriasService.crearCategoria(datos).subscribe( response => {
-      console.log('CategoriasComp:CrearCategoria:Respuesta: ' + response.status);
       this.obtenerListaCategorias();
     });
     this.formularioCategoria.reset();
@@ -68,11 +67,9 @@ export class CategoriasComponent implements OnInit, OnDestroy {
 
   public borrarCategoria(idCategoria: string): void {
     this.categoriasService.borrarCategoria(idCategoria).subscribe( response => {
-      console.log('CategoriasComp:BorrarCategoria:Respuesta: ' + response.status);
       this.obtenerListaCategorias();
     });
   }
-
 
   // Método que maneja el upload de los archivos subidos
   public changeListener(evento: Event): void {
@@ -115,6 +112,4 @@ export class CategoriasComponent implements OnInit, OnDestroy {
       }
     );
   }
-
-
 }

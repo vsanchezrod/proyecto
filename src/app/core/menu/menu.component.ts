@@ -27,7 +27,6 @@ export class MenuComponent implements OnInit, OnDestroy {
     this.subscriptionAccessToken = this.usuarioSesionService.obtenerAccessToken$().subscribe((accessToken: string) => {
       // Si no es null, undefined o vacío
       this.usuarioLogado = accessToken ? true : false;
-      console.log('MENUCOMP: usuarioLogado: ', this.usuarioLogado);
     });
 
   }

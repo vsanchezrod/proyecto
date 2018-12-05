@@ -2,3 +2,8 @@
     font-weight: bolder;
     border-bottom: 4px solid #F5AE15;
 }
+
+.avatar {
+    border-bottom: 4px solid black;
+    border-right: 4px solid black;
+}

@@ -28,7 +28,7 @@
                     <h4 class="col-12">Añade una descripción</h4>
                     <span class="ui-float-label">
                             <input [ngStyle]="{'border-color': formularioCategoria.valid || formularioCategoria.get('descripcion').pristine ? 'gray' : 'red'}" formControlName="descripcion" id="descripcion" name="descripcion" type="text" size="30" pInputText>
-                            <label for="descripcion">Nombre</label>
+                            <label for="descripcion">Descripción</label>
                             <div *ngIf="formularioCategoria.get('descripcion').dirty && !formularioCategoria.get('descripcion').valid" class="form-control-feedback">
                                 <p *ngIf="formularioCategoria.get('descripcion').hasError('required')">*Introduce una descripción</p>
                                 <p *ngIf="formularioCategoria.get('descripcion').hasError('minlength')">*La descripción debe tener como mínimo 20 caracteres</p>

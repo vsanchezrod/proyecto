@@ -30,13 +30,11 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     // Obtener el usuario logado
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe( (usuario: Usuario) => {
       this.usuarioLogado = usuario;
-      console.log('Usuario Logado: ', this.usuarioLogado.id);
     });
 
     // Obtener lista de usuarios
     this.usuariosService.obtenerListaUsuarios$().subscribe( (listaUsuarios: Array<Usuario>) => {
       this.listaUsuarios = listaUsuarios;
-      console.log('AdminUsuariosComp: listaUsuarios', this.listaUsuarios);
     });
   }
 

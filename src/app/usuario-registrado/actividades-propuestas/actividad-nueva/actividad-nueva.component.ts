@@ -67,7 +67,6 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
         if (url[0]['path'] === 'editar') {
           this.activatedRoute.params.subscribe(
             (param) => {
-              console.log('Param EDitar: ', param);
               const idActividad = param.id;
               this.actividadesService.obtenerActividadPorId$(idActividad).subscribe(
                 (actividadAEditar: Actividad) => {
@@ -78,8 +77,6 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
                   this.actividad.categorias.forEach(categoria => {
                     categoria['label'] = categoria.id;
                   });
-
-                  console.log('ACTIV CATEGORIA: ', this.actividad.categorias[0]);
                 }
               );
             }
@@ -94,8 +91,6 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
         categoria['label'] = categoria.id;
         this.listaCategorias.push(categoria);
       });
-
-      console.log('CAT:', this.listaCategorias[0]);
     });
 
     this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(usuario => {
@@ -124,7 +119,6 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
   }
 
   public cargarImagen(event: Event): void {
-    console.log(event);
     const inputValue: any = event.target;
     const fichero: File = inputValue.files[0];
     const fileReader: FileReader = new FileReader();
@@ -201,7 +195,6 @@ export class ActividadNuevaComponent implements OnInit, OnDestroy {
       this.actividadesService.actualizarActividad(actividadEditada).subscribe(
         (response) => {
           this.esFechaIncorrecta = false;
-          console.log('Actividad Editada: ', actividadEditada);
           console.log(response);
           this.redirigirAActividadesPropuestas();
         },

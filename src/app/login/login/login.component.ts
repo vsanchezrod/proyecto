@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     this.subscripcionLogin = this.usuarioSesionService.login(email, password)
       .subscribe(
         (response) => {
-          console.log('Login response: ', response);
+          console.log('Login Reponse: ', response);
           this.router.navigate(['/inicio']);
           this.subscripcionLogin.unsubscribe();
         },

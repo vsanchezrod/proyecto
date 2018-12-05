@@ -6,10 +6,9 @@ import { Usuario } from '../../modelos/usuario.model';
 
 // Servicios
 import { UsuariosService } from '../../servicios/usuarios.service';
-import { UsuarioSesionService } from '../../servicios/usuario-sesion.service';
 
 import { HttpResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-tarjeta-usuario',
@@ -27,8 +26,6 @@ export class TarjetaUsuarioComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log('Usuario: ', this.usuario.id);
-
     this.esAdministrador = false;
     this.fechaNacimientoUsuario = moment(this.usuario.fechaNacimiento).locale('es').format('d/MM/YYYY');
 
@@ -38,15 +35,11 @@ export class TarjetaUsuarioComponent implements OnInit {
   }
 
   public actualizarAAdmin(admin: boolean): void {
-    console.log('ADMIN:', admin);
     if (admin) {
       this.usuario.roles.push('administrador');
-      console.log('ROLES TRUE: ', this.usuario.roles);
     } else {
       const posicionRolAdministrador = this.usuario.roles.indexOf('administrador');
       this.usuario.roles.splice(posicionRolAdministrador, 1);
-      console.log('POSICION: ', posicionRolAdministrador);
-      console.log('ROLES FALSE: ', this.usuario.roles);
     }
 
     this.usuariosService.editarRolUsuario(this.usuario).subscribe(

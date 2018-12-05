@@ -28,8 +28,8 @@ export class ModalCancelacionActividadesComponent implements OnInit {
 
   public cancelarActividad(): void {
 
+    // Si es una actividad se borra con su servicio correspondiente
     if (this.actividad instanceof Actividad) {
-      console.log('Voy a borrar una actividad: ', this.actividad.id);
       this.actividadesService.borrarActividad(this.actividad.id, this.motivoCancelacion).subscribe(
         (response: HttpResponse<Actividad>) => {
           console.log(response);
@@ -37,9 +37,8 @@ export class ModalCancelacionActividadesComponent implements OnInit {
       );
     }
 
+    // Si es un viaje se borra con su servicio correspondiente
     if (this.actividad instanceof Viaje) {
-      console.log('Voy a borrar un viaje con id: ', this.actividad.id);
-
       this.viajesService.borrarViaje(this.actividad.id, this.motivoCancelacion).subscribe(
         (response: HttpResponse<Viaje>) => {
           console.log(response);

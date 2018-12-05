@@ -16,7 +16,6 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { Provincia } from '../../modelos/provincia.model';
 import { Categoria } from '../../modelos/categoria.model';
 import { Usuario } from '../../modelos/usuario.model';
-import { ValidacionPersonificadaDirective } from '../../compartidos/validacion-personificada.directive';
 
 @Component({
   selector: 'app-registro',
@@ -48,15 +47,12 @@ export class RegistroComponent implements OnInit {
 
     this.esNecesarioRellenarTodosLosCampos = false;
     const anioHasta: string = moment().subtract(this.edadMinima, 'years').format('YYYY');
-    console.log(anioHasta);
 
     this.rangoAnios = `${this.anioDesde}:${anioHasta}`;
 
     this.provinciasService.obtenerProvincias()
       .subscribe(response => {
-        console.log('Respuesta de la petición de lista de provincias: ' + response.status);
         this.listaProvincias = response.body;
-        console.log('Provincias:', this.listaProvincias);
       });
 
     this.categoriasService.obtenerListaCategorias$()

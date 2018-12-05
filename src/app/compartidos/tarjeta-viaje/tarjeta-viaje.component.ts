@@ -80,8 +80,6 @@ export class TarjetaViajeComponent implements OnInit, OnDestroy {
   }
 
   public apuntarseAViaje(): void {
-    console.log('Usuario q quiere apuntarse: ', this.usuarioLogado.id);
-    console.log('Viaje id: ', this.viaje.id);
 
     if (this.verificarPago()) {
       this.viajesService.apuntarseAViaje(this.viaje.id, this.usuarioLogado.id).subscribe(

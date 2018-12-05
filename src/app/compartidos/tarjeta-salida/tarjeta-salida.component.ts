@@ -42,6 +42,7 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.fechaInicioParseada = moment(this.salida.fechaInicio).locale('es').format('DD/MM/YYYY HH:mm');
+    console.log('FEcha parseada: ', this.fechaInicioParseada);
     this.usuario = new Usuario();
     this.idUsuario = this.salida.idUsuarioCreacion;
     this.mensaje = `(Ya somos ${this.salida.listaParticipantes.length})`;
@@ -90,11 +91,7 @@ export class TarjetaSalidaComponent implements OnInit, OnDestroy {
 
   public apuntarAActividad(idActividad: string): void {
 
-    console.log('Usuario: ', this.usuarioLogado.id);
-    console.log('Actividad id: ', idActividad);
-
     if (this.usuarioLogado.id !== undefined) {
-      console.log('Voy a ver si me puedo apuntar!!');
       this.actividadesService.apuntarseAActividad(idActividad, this.usuarioLogado.id).subscribe(
         (response: HttpResponse<Actividad>) => {
           console.log('APUNTADO!!', response);

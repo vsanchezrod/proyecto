@@ -5,7 +5,6 @@ import * as moment from 'moment';
 import { Usuario } from '../../modelos/usuario.model';
 import { Evento } from '../../modelos/evento.model';
 import { Viaje } from '../../modelos/viaje.model';
-import { Actividad } from '../../modelos/actividad.model';
 
 // Servicio
 import { ViajesService } from '../../servicios/viajes.service';
@@ -110,19 +109,16 @@ export class CalendarioUsuarioComponent implements OnInit, OnDestroy {
 
   public visualizarEvento(event: any): void {
 
-    console.log('EVENTO: ', event);
-    const evento: Evento = {
+      const evento: Evento = {
       id: event.calEvent.id,
       tipo: event.calEvent.tipo
     };
 
     if (evento.tipo === 'actividad' ) {
-      console.log(evento.tipo);
       this.verActividad(evento.id);
 
     }
     if (evento.tipo === 'viaje') {
-      console.log(evento.tipo);
       this.verViaje(evento.id);
     }
 

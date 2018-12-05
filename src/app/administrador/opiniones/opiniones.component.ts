@@ -51,7 +51,7 @@ export class OpinionesComponent implements OnInit, OnDestroy {
   public borrarOpinion(idOpinion: string, opinion: Opinion)  {
     this.opinionesService.borrarOpinion(idOpinion).subscribe(
       (response: HttpResponse<any>) => {
-        console.log('Response:', response.status);
+        console.log('Borrar opinion response:', response.status);
         this.mandarMensajeInfoBorradoOpinion(opinion);
     });
   }

@@ -52,7 +52,6 @@ export class ActividadesAdministradorListaComponent implements OnInit {
   }
 
   public redirigirEditarViaje(viaje: Viaje) {
-    console.log('QUIERO REDIRIGIR');
     this.router.navigate(['admin/actividades/editar/' + viaje.id]);
   }
 
