@@ -55,10 +55,10 @@
                 </div>
 
                 <div class="col-12 md-form mb-4">
-                    <i class="col-2 fa fa-lock prefix grey-text"></i>
+                    <i class="col-12 fa fa-lock prefix grey-text"></i>
                     <label class="col-5" for="fecha">Caducidad</label>
-                    <label class="col-5" for="fecha">CVC</label>
                     <p-calendar class="col-6" id="fecha" [yearNavigator]="true" yearRange="2018:2030" [(ngModel)]="pago.caducidad" #caducidad="ngModel" view="month" dateFormat="mm/yy" [yearNavigator]="true" yearRange="2000:2030" required></p-calendar>
+                    <label class="col-5" for="fecha">CVC</label>
                     <p-inputMask class="col-6" id="cvc" #CVC="ngModel" mask="999" [(ngModel)]="pago.CVC" placeholder="CVC" id="cvc" required></p-inputMask>
                     <div class="col-12" *ngIf="caducidad.dirty && !caducidad.valid">
                         <div *ngIf="caducidad.errors?.required">*La caducidad de la tarjeta es obligatoria</div>

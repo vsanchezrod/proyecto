@@ -59,7 +59,7 @@
                 <div class="col-12">
                     <h4>Fecha Inicio:</h4>
                     <span class="ui-float-label ">Día</span>
-                    <p-calendar [locale]="es" name="fechaInicio" id="fechaInicio" #fechaInicio="ngModel" (onSelect)="cambiarFechaParseada(viaje.fechaInicio)" [(ngModel)]="viaje.fechaInicio" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true" hourFormat="24" [numberOfMonths]="2"
+                    <p-calendar [locale]="es" name="fechaInicio" id="fechaInicio" #fechaInicio="ngModel" (onSelect)="cambiarFechaParseadaInicio(viaje.fechaInicio)" [(ngModel)]="viaje.fechaInicio" dateFormat="dd/mm/yy" [showTime]="true" [showIcon]="true" hourFormat="24" [numberOfMonths]="2"
                         required></p-calendar>
                     <div class="col-12" *ngIf="fechaInicio.touched && !fechaInicio.valid">
                         <div class="alert-danger" *ngIf="fechaInicio.errors?.required ">*La fecha es requerida</div>
