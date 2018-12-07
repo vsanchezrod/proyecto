@@ -61,30 +61,34 @@ export class MensajesComponent implements OnInit, OnDestroy {
       'cuerpoMensaje': new FormControl('', Validators.required),
     });
 
-    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe ( (usuario: Usuario) => {
-      this.usuario = usuario;
+    this.subscriptionUsuarioLogado = this.usuarioSesionService.obtenerUsuarioLogado$().subscribe(
+      (usuario: Usuario) => {
+        this.usuario = usuario;
 
-      // Carga de los nombre de cada amigo en el select de mandar nuevo mensaje
-      for (const idAmigo of this.usuario.amigos) {
-        this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe(
-          (amigo: Usuario) => {
+        // Carga de los nombre de cada amigo en el select de mandar nuevo mensaje
+        for (const idAmigo of this.usuario.amigos) {
+          this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe(
+            (amigo: Usuario) => {
 
-            const amigoUsuario: SelectItem = {
-              label: amigo.nombre,
-              value: amigo
-          };
-          this.listaAmigos.push(amigoUsuario);
-        });
+              const amigoUsuario: SelectItem = {
+                label: amigo.nombre,
+                value: amigo
+            };
+            this.listaAmigos.push(amigoUsuario);
+          });
+        }
+
+        if (this.usuario.id !== undefined) {
+          // Buscar los mensajes para ese usuario
+          this.subscriptionObtenerMensajes = this.mensajesService.obtenerListaDeMensajes$(this.usuario.id).subscribe(
+            (mensajes: Array<Mensaje>) => {
+              this.listaMensajes = mensajes;
+              // Para que cargue por defecto el primer mensaje ordenado por fecha
+              this.mensaje = this.listaMensajes[0];
+          });
+        }
       }
-
-      // Buscar los mensajes para ese usuario
-      this.subscriptionObtenerMensajes = this.mensajesService.obtenerListaDeMensajes$(this.usuario.id).subscribe(
-        (mensajes: Array<Mensaje>) => {
-          this.listaMensajes = mensajes;
-          // Para que cargue por defecto el primer mensaje ordenado por fecha
-          this.mensaje = this.listaMensajes[0];
-      });
-    });
+    );
   }
 
   ngOnDestroy() {

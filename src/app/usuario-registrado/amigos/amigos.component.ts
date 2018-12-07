@@ -38,9 +38,9 @@ export class AmigosComponent implements OnInit, OnDestroy {
     this.actualizarListaAmigos();
 
     // Obtener lista de usuarios
-    this.subscriptionListaUsuarios = this.usuariosService.obtenerListaUsuarios$().subscribe( (listaUsuarios: Array<Usuario>) => {
-      this.listaUsuarios = listaUsuarios;
-      console.log('Lista de USUARIOS: listaUsuarios', this.listaUsuarios);
+    this.subscriptionListaUsuarios = this.usuariosService.obtenerListaUsuarios$().subscribe(
+      (listaUsuarios: Array<Usuario>) => {
+        this.listaUsuarios = listaUsuarios;
     });
   }
 
@@ -50,10 +50,8 @@ export class AmigosComponent implements OnInit, OnDestroy {
     this.subscriptionListaUsuarios.unsubscribe();
   }
 
-  // VER DE CUAL DE LAS DOS MANERAS LO HAGO
   public buscarAtletas(clave: string): void {
     this.listaUsuariosBusqueda = [];
-
     if (clave !== '') {
       for (const usuarioBuscado of this.listaUsuarios) {
         if (usuarioBuscado.nombre.toUpperCase().includes(clave.toUpperCase()) && usuarioBuscado.id !== this.usuario.id) {
@@ -95,14 +93,15 @@ export class AmigosComponent implements OnInit, OnDestroy {
       (usuario: Usuario) => {
         this.usuario = usuario;
 
-      // Carga de los datos de cada amigo
-      for (const idAmigo of this.usuario.amigos) {
-        this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe(
-          (amigo: Usuario) => {
-            this.listaAmigos.push(amigo);
-        });
+        // Carga de los datos de cada amigo
+        for (const idAmigo of this.usuario.amigos) {
+          this.usuariosService.buscarUsuarioPorId(idAmigo).subscribe(
+            (amigo: Usuario) => {
+              this.listaAmigos.push(amigo);
+          });
+        }
       }
-    });
+    );
   }
 
 }

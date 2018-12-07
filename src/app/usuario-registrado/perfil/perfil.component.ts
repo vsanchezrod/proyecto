@@ -124,11 +124,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   public actualizarUsuario() {
-
-    const usuarioActualizado: Usuario = this.formularioActualizacion.value;
-    usuarioActualizado.id = this.usuario.id;
+    const usuarioActualizado: Usuario = new Usuario(this.usuario);
+    Object.assign(this.usuario, this.formularioActualizacion.value);
     usuarioActualizado.avatar = this.imagenAvatar;
-    usuarioActualizado.email = this.usuario.email;
+
     this.usuarioService.actualizarUsuario(usuarioActualizado).subscribe(
       (response: HttpResponse<Usuario>) => {
         console.log('Actualizar Usuario: ', response);
